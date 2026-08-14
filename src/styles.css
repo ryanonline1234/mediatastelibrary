@@ -1,0 +1,262 @@
+/* mediatastelibrary.page — family: swiss-grid-lab
+ *
+ * Constants below are cited from the awwwards-taste skill. Where the skill
+ * carries no prior, the value is marked DECISION and is mine, not a
+ * borrowed number — the skill forbids inventing a citation.
+ *
+ * swiss-grid-lab, verbatim from references/families.md:
+ *   Temperature  #F1F1F1 / #010101, accent #FAFF00, ramp #B2B2B2 #606060 #2C2C2C
+ *   Type         10px chrome + 14px copy vs 86/264px display, one 31px rank,
+ *                no 16px anywhere; tracking ~0 small, -0.04em at display
+ *   Motion       stock easings only (510 linear, 101 ease-out, ZERO cubic-bezier)
+ *   Vocabulary   8-column overlay, bands rgba(86,86,86,0.1) spanning 960px;
+ *                0.8px hairlines at three lengths (960/597/352px);
+ *                two rule weights — structural 0.8px lighter than ornamental 1px;
+ *                8x8px square markers; sizes are design px on a 1024 artboard.
+ */
+
+:root {
+  --paper: #F1F1F1;
+  --ink: #010101;
+  --accent: #FAFF00;
+  --r1: #B2B2B2;
+  --r2: #606060;
+  --r3: #2C2C2C;
+  --band: rgba(86, 86, 86, 0.1);
+
+  --rule-structural: 0.8px;   /* lighter than ornamental, per the family */
+  --rule-ornamental: 1px;
+
+  /* 1024 artboard ratios. The family's scale has NO 16px rank; these clamps
+     scale the ratios rather than introducing one. DECISION: the clamp itself
+     (the family gives design px, not a fluid scale). */
+  --t-chrome: clamp(10px, 0.98vw, 12px);   /* 10 / 1024 */
+  --t-copy: clamp(14px, 1.37vw, 17px);     /* 14 / 1024 */
+  --t-rank: clamp(23px, 3.03vw, 31px);     /* 31 / 1024 */
+  --t-display: clamp(38px, 8.4vw, 86px);   /* 86 / 1024 */
+  --t-mega: clamp(64px, 25.8vw, 264px);    /* 264 / 1024 */
+
+  --measure: 960px;  /* the band span the family names */
+  --gutter: clamp(16px, 3vw, 30px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--paper); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: var(--t-copy)/1.55 ui-sans-serif, "Helvetica Neue", Arial, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0;   /* ~0 at small sizes, per the family */
+}
+
+/* Flat ink-on-paper: no depth, no gradient, no canvas. */
+img, svg { max-width: 100%; }
+
+.u-sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 10;
+  background: var(--accent); color: var(--ink);
+  padding: 8px 14px; font-size: var(--t-chrome);
+  text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none;
+}
+.skip:focus { left: 0; }
+
+/* ------------------------------------------------- the grid, load-bearing */
+/* The family's axis of variation runs from "toggled depiction" to
+   "load-bearing CSS Grid". This is the load-bearing pole: .wrap IS the grid
+   the page lays out on, and .grid-overlay merely reveals it. */
+.hero, .band, .top, .fam {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0 var(--gutter);
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.grid-overlay {
+  position: fixed; inset: 0;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0 var(--gutter);
+  pointer-events: none;
+  z-index: 1;
+}
+.grid-overlay[hidden] { display: none; }
+.grid-overlay > i { background: var(--band); }
+
+/* -------------------------------------------------------------- top chrome */
+.top {
+  position: sticky; top: 0; z-index: 2;
+  background: var(--paper);
+  border-bottom: var(--rule-structural) solid var(--r1);
+  padding-block: 12px;
+  align-items: center;
+}
+.top__mark {
+  grid-column: 1 / 4; margin: 0;
+  font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.1em;
+}
+.top__toggle {
+  grid-column: 7 / 9; margin: 0;
+  display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+  font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+/* two-lozenge ON/OFF pill, from the family vocabulary */
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: var(--rule-ornamental) solid var(--ink);
+  padding: 3px 7px 3px 4px; cursor: pointer;
+  font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit;
+  /* stock easing only — the family ships zero cubic-bezier */
+  transition: background-color 120ms ease-out;
+}
+.pill__lz { width: 16px; height: 8px; border: var(--rule-structural) solid var(--ink); display: inline-block; }
+.pill__lz::before { content: ""; display: block; width: 8px; height: 100%; background: var(--ink); }
+.pill[aria-pressed="true"] { background: var(--accent); }
+.pill[aria-pressed="true"] .pill__lz::before { margin-left: 8px; }
+/* hover and focus-visible together — the skill fails a review without it */
+.pill:hover, .pill:focus-visible { background: var(--accent); }
+.pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* -------------------------------------------------------------------- hero */
+.hero { padding-block: clamp(40px, 9vw, 104px) clamp(32px, 6vw, 72px); }
+
+/* The family: "86px headline steps #F1F1F1 -> #B2B2B2 -> #606060 -> #2C2C2C".
+   Read literally that first stop is paper-on-paper; used here from the second
+   stop so line one is legible. DECISION, and a deliberate deviation. */
+.hero__h {
+  grid-column: 1 / 9; margin: 0 0 clamp(24px, 4vw, 44px);
+  font-size: var(--t-display); line-height: 0.94; letter-spacing: -0.04em;
+  font-weight: 700; text-wrap: balance;
+}
+.hero__h span { display: block; }
+.hero__h .s1 { color: var(--r1); }
+.hero__h .s2 { color: var(--r2); }
+.hero__h .s3 { color: var(--r3); }
+.hero__h .s4 { color: var(--ink); }
+
+.hero__lede { grid-column: 1 / 6; }
+.hero__lede p { margin: 0 0 12px; max-width: 54ch; }
+.hero__sub { color: var(--r2); font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ------------------------------------------------- spec tables as ornament */
+/* "10px spec-table rows as ornament (Grid | 12 Columns)" — here the ornament
+   carries the real generated figures, which is the honest version. */
+.spec { margin: 0; font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.06em; }
+.spec > div {
+  display: grid; grid-template-columns: 1fr auto; gap: 8px;
+  padding: 5px 0; border-top: var(--rule-structural) solid var(--r1);
+}
+.spec dt { color: var(--r2); margin: 0; }
+.spec dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+.spec--hero { grid-column: 6 / 9; align-self: end; }
+.spec--find { grid-column: 6 / 9; }
+
+/* ------------------------------------------------------------------- bands */
+.band { padding-block: clamp(36px, 6vw, 72px); border-top: var(--rule-ornamental) solid var(--ink); }
+.band > h2 {
+  grid-column: 1 / 9; margin: 0 0 20px;
+  font-size: var(--t-rank); letter-spacing: -0.02em; font-weight: 700;
+}
+.band__note { grid-column: 1 / 6; margin: 0 0 28px; color: var(--r3); }
+
+.steps { grid-column: 1 / 9; margin: 0; padding: 0; list-style: none;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0 var(--gutter); }
+.steps li { border-top: var(--rule-structural) solid var(--r1); padding: 10px 0 18px; }
+.steps b {
+  display: block; font-size: var(--t-chrome); text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 6px;
+}
+/* 8x8px square marker, from the vocabulary */
+.steps b::before {
+  content: ""; display: inline-block; width: 8px; height: 8px;
+  background: var(--ink); margin-right: 7px; vertical-align: baseline;
+}
+.steps span { display: block; color: var(--r3); }
+
+.find { grid-column: 1 / 9; display: grid; grid-template-columns: subgrid; }
+.find__txt { grid-column: 1 / 6; }
+.find__txt p { margin: 0 0 12px; max-width: 58ch; }
+.band--find b { background: var(--accent); }
+
+/* ---------------------------------------------------------------- families */
+.fam { padding-block: 0 26px; max-width: none; margin: 0; padding-inline: 0; grid-column: 1 / 9;
+  grid-template-columns: subgrid; }
+.fam__rule { grid-column: 1 / 9; height: var(--rule-structural); background: var(--r1); margin-bottom: 14px; }
+.fam__idx {
+  grid-column: 1 / 2; margin: 0; font-size: var(--t-chrome);
+  color: var(--r2); font-variant-numeric: tabular-nums; letter-spacing: 0.06em;
+}
+.fam__name {
+  grid-column: 2 / 6; margin: 0 0 6px; font-size: var(--t-copy);
+  letter-spacing: 0; font-weight: 700;
+}
+.fam__thesis { grid-column: 2 / 6; margin: 0 0 14px; color: var(--r3); max-width: 56ch; }
+.spec--fam { grid-column: 6 / 9; grid-row: 2 / 6; }
+.fam__sw { grid-column: 2 / 6; margin: 0 0 12px; display: flex; gap: 4px; }
+.sw { width: 14px; height: 14px; background: var(--sw); border: var(--rule-structural) solid rgba(1,1,1,.18); }
+.fam__use { grid-column: 2 / 6; margin: 0 0 14px; font-size: var(--t-chrome); line-height: 1.7; }
+.fam__use p { margin: 0 0 4px; color: var(--r3); }
+.fam__use b { text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); margin-right: 6px; }
+
+.fam__mem { grid-column: 2 / 9; margin: 0; padding: 0; list-style: none; }
+.m {
+  display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1.6fr) auto auto;
+  gap: 10px; align-items: baseline;
+  padding: 6px 0; border-top: var(--rule-structural) solid var(--r1);
+  font-size: var(--t-chrome); letter-spacing: 0.04em;
+}
+.m__site { font-weight: 700; text-transform: uppercase; color: var(--ink); text-decoration: none;
+  border-bottom: var(--rule-ornamental) solid transparent; }
+.m__site:hover, .m__site:focus-visible { border-bottom-color: var(--ink); background: var(--accent); }
+.m__award { color: var(--r2); text-transform: uppercase; }
+.m__src { color: var(--r2); text-decoration: none; border-bottom: var(--rule-structural) solid var(--r1); }
+.m__src:hover, .m__src:focus-visible { color: var(--ink); border-bottom-color: var(--ink); }
+.m__state { color: var(--r2); text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.m--dead .m__site { color: var(--r2); }
+.m--dead .m__state { color: var(--ink); background: var(--accent); padding: 0 4px; }
+a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ------------------------------------------------------------------ ending */
+.band--end { padding-bottom: clamp(48px, 8vw, 96px); }
+.end { grid-column: 1 / 7; }
+.end p { margin: 0 0 12px; max-width: 60ch; color: var(--r3); }
+.end code { background: var(--accent); padding: 0 4px; font: inherit; }
+.end__links { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 18px; }
+.end__links a { color: var(--ink); text-decoration: none; border-bottom: var(--rule-ornamental) solid var(--ink);
+  font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.1em; }
+.end__links a:hover, .end__links a:focus-visible { background: var(--accent); }
+.end__gen { font-size: var(--t-chrome); color: var(--r1); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ------------------------------------------------------------- small print */
+@media (max-width: 720px) {
+  .hero, .band, .top, .fam, .grid-overlay { grid-template-columns: repeat(4, 1fr); }
+  .grid-overlay > i:nth-child(n+5) { display: none; }
+  .hero__h, .hero__lede, .spec--hero, .band > h2, .band__note,
+  .steps, .find, .find__txt, .spec--find, .end, .fam,
+  .fam__name, .fam__thesis, .fam__use, .fam__sw, .fam__mem, .fam__rule { grid-column: 1 / 5; }
+  .spec--fam { grid-column: 1 / 5; grid-row: auto; }
+  .fam__idx { grid-column: 1 / 5; }
+  .m { grid-template-columns: 1fr auto; row-gap: 2px; }
+}
+
+/* The skill's honesty gate: reduced motion is a real path, and this page has
+   no rAF loop to gate — the only motion is short stock-eased transitions,
+   which are removed outright here. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

@@ -1,0 +1,1626 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Taste Library — 131 Awwwards winners, read as a system</title>
+<meta name="description" content="An experiment: AI agents studied 131 Awwwards award rows from 2018-2026, clustered them into 43 aesthetic families, verified every code constant, and compiled the result into a design skill.">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="The Taste Library">
+<meta property="og:description" content="131 Awwwards winners, 43 aesthetic families, 1,112 defects found in the process.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- The 8-column overlay is the family's signature move. Here it is a real
+     CSS Grid the page is laid out on, not a picture of one. -->
+<div class="grid-overlay" data-grid hidden aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<header class="top">
+  <p class="top__mark">Taste&nbsp;Library</p>
+  <div class="top__toggle">
+    <span class="lab" id="gridlab">Grid:</span>
+    <button class="pill" type="button" data-grid-toggle aria-pressed="false" aria-labelledby="gridlab">
+      <span class="pill__lz" aria-hidden="true"></span><span class="pill__tx">OFF</span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <h1 class="hero__h">
+    <span class="s1">131 award-winning</span>
+    <span class="s2">websites, read</span>
+    <span class="s3">as one system</span>
+    <span class="s4">of 43 families.</span>
+  </h1>
+  <div class="hero__lede">
+    <p>Agents swept every Awwwards Site&nbsp;of&nbsp;the&nbsp;Year and Site&nbsp;of&nbsp;the&nbsp;Month winner from 2018-2026, opened each one, and wrote down what it actually does. Not a gallery — a taxonomy, with the working shown.</p>
+    <p class="hero__sub">Every figure on this page is generated from the dataset. None is typed by hand.</p>
+  </div>
+  <dl class="spec spec--hero">
+    <div><dt>Award rows</dt><dd>131</dd></div>
+    <div><dt>Site of the Year</dt><dd>8</dd></div>
+    <div><dt>Category winners</dt><dd>21</dd></div>
+    <div><dt>Site of the Month</dt><dd>102</dd></div>
+    <div><dt>Years</dt><dd>2018-2026</dd></div>
+    <div><dt>Families</dt><dd>43</dd></div>
+    <div><dt>Cards</dt><dd>117</dd></div>
+    <div><dt>Still live</dt><dd>80</dd></div>
+    <div><dt>Offline</dt><dd>37</dd></div>
+    <div><dt>Code priors</dt><dd>160</dd></div>
+  </dl>
+</section>
+
+<section class="band" id="method" aria-labelledby="h-method">
+  <h2 id="h-method">The method</h2>
+  <ol class="steps">
+    <li><b>Harvest</b><span>Crawl the archives. 131 rows kept at 2018+, each with its award, date and live URL.</span></li>
+    <li><b>Card</b><span>One study card per site, written from the case page and the live build, then attacked by a second agent that had to disprove it.</span></li>
+    <li><b>Cluster</b><span>Two independent agents proposed taxonomies; a third reconciled them. 43 families survived.</span></li>
+    <li><b>Dissect</b><span>Per family, a deep dive: prose reference plus original re-implementations of the signature techniques.</span></li>
+    <li><b>Validate</b><span>Every constant re-checked for whether it <i>takes effect</i> — not just whether it was copied correctly.</span></li>
+    <li><b>Compile</b><span>The survivors became a skill an agent can use to design from, citing sources.</span></li>
+  </ol>
+</section>
+
+<section class="band band--find" id="findings" aria-labelledby="h-find">
+  <h2 id="h-find">What the checking found</h2>
+  <div class="find">
+    <div class="find__txt">
+      <p>The interesting part is not the taxonomy. It is that <b>the code we wrote about other people's code was the least reliable thing in the library</b>.</p>
+      <p>A late pass re-read every extracted constant asking a question the earlier passes never had: does this value actually do anything? 1,112 defects came back. 37 of the sites studied are themselves already offline — the awarded design gone, even where the domain still answers.</p>
+      <p>Nothing was deleted. Defects are annotated where they sit, because a record of what was wrong is worth more than a clean file that lies.</p>
+    </div>
+    <dl class="spec spec--find">
+      <div><dt>Entries reviewed</dt><dd>2,266</dd></div>
+      <div><dt>Defects found</dt><dd>1,112</dd></div>
+      <div><dt>Excluded constants</dt><dd>996</dd></div>
+      <div><dt>Citable priors</dt><dd>160</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="band" id="families" aria-labelledby="h-fams">
+  <h2 id="h-fams">43 families</h2>
+  <p class="band__note">Ordered by member count. Each is a visual system, not a template — the <b>Not for</b> line is the part that keeps it honest.</p>
+  <section class="fam" id="f-matte-toybox-playworld" aria-labelledby="h-matte-toybox-playworld">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">01</p>
+  <h3 class="fam__name" id="h-matte-toybox-playworld">matte-toybox-playworld</h3>
+  <p class="fam__thesis">A full-bleed matte 3D toy world you inhabit — walk, drive, fly at eye level instead of scrolling — hue and silhouette separating objects, candy grading per zone, UI shrunk to a white sticker layer.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>9</dd></div>
+    <div><dt>Live</dt><dd>4</dd></div>
+    <div><dt>Temperature</dt><dd>Candy over cool fog #93a2bf: sky #81BFBC, ink #363a3c, accent #66BDE6, #f3c258 #c25959</dd></div>
+    <div><dt>Type</dt><dd>Physical type: extruded 3D letters in-scene; MSDF in-world copy (UglyDave-Alternates dialogue, REM-Medium nametags)</dd></div>
+    <div><dt>Motion</dt><dd>Mostly linear — 'none' 69x vs inOut1 11x; physics carries the feel. House eases: inOut1 cubic-bezier(.5,0,.1,1), inOut2 (.56,0,0,1).</dd></div>
+    <div><dt>Varies by</dt><dd>Traversal agency vs surviving chrome: Bruno's physics car, zero chrome → Messenger in-canvas UI → Kode diorama-menu → Oat watch-and-choose</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#1c228c" title="#1c228c"></i><i class="sw" style="--sw:#f50359" title="#f50359"></i><i class="sw" style="--sw:#ff4000" title="#ff4000"></i><i class="sw" style="--sw:#7d0e8b" title="#7d0e8b"></i><i class="sw" style="--sw:#eecd02" title="#eecd02"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#282828" title="#282828"></i><i class="sw" style="--sw:#3771df" title="#3771df"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Brief is 'a world exists and you should want to be in it' with a real loop — play, explore, role-play — to justify traversal replacing scroll.</p>
+    <p><b>Not for</b> Pastiche when content needs SEO/a11y/deep-links/conversion (empty-DOM trade); a game-skin with no playable loop; multiplayer as decoration; real content on a walkable sphere — no URLs, no back button.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://www.kodeclubs.com/" rel="noopener noreferrer nofollow" target="_blank">Kode Sports Club</a>
+      <span class="m__award">Developer of the Year 2020 · Site of the Month 2020.11</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/kode" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Kode Sports Club</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://umamiland.withgoogle.com/en" rel="noopener noreferrer nofollow" target="_blank">Umami Land</a>
+      <span class="m__award">Developer of the Year 2021 · Site of the Month 2021.02</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/umami-land" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Umami Land</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://coastalworld.com" rel="noopener noreferrer nofollow" target="_blank">Coastal World</a>
+      <span class="m__award">Site of the Month 2022.08</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/coastal-world" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Coastal World</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://messenger.abeto.co" rel="noopener noreferrer nofollow" target="_blank">Messenger</a>
+      <span class="m__award">Developer of the Year 2025</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/messenger" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Messenger</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://bruno-simon.com" rel="noopener noreferrer nofollow" target="_blank">Bruno's Portfolio</a>
+      <span class="m__award">Site of the Month 2026.01</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/brunos-portfolio" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Bruno's Portfolio</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://bruno-simon.com/" rel="noopener noreferrer nofollow" target="_blank">Bruno Simon Portfolio</a>
+      <span class="m__award">Developer of the Year 2019 · Site of the Month 2019.11</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/bruno-simon-portfolio" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Bruno Simon Portfolio</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://2019.makemepulse.com" rel="noopener noreferrer nofollow" target="_blank">Nomadic Tribe</a>
+      <span class="m__award">Site of the Year 2019 · Site of the Month 2019.02</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/nomadic-tribe" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Nomadic Tribe</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="http://oatthegoat.co.nz/intl.html" rel="noopener noreferrer nofollow" target="_blank">Oat the Goat</a>
+      <span class="m__award">Site of the Month 2018.06</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/oat-the-goat" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Oat the Goat</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="http://playdoh-lagaleriedesespeces.com/en/" rel="noopener noreferrer nofollow" target="_blank">Gallery of emerging species</a>
+      <span class="m__award">Site of the Month 2018.03</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/gallery-of-emerging-species" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Gallery of emerging species</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-blackbox-keyline-hud" aria-labelledby="h-blackbox-keyline-hud">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">02</p>
+  <h3 class="fam__name" id="h-blackbox-keyline-hud">blackbox-keyline-hud</h3>
+  <p class="fam__thesis">No document: a black full-viewport canvas stage where emissive content is the only light, the interface is hairline HUD keylines in tracked micro-caps, and navigation is camera travel.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>8</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>Cold void: near-black #0e1215 → blue-green #192a2c edge haze; white .3-alpha chrome</dd></div>
+    <div><dt>Type</dt><dd>NB Architekt: tracked micro-caps 9–15px / 0.1em for all labels + one 110px hairline display cut; nothing mid-size</dd></div>
+    <div><dt>Motion</dt><dd>Camera travel on a waypoint rail, 700ms easeOutCubic into panels; framerate-normalized chase lerps; permanent slow drift; easeOutSine/Cubic</dd></div>
+    <div><dt>Varies by</dt><dd>How much chroma the void allows and what emits: Orano's lone chartreuse pointer → Xbox's five-hue legend → V6/V4's dichroic-neon spectra.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#0e1215" title="#0e1215"></i><i class="sw" style="--sw:#192a2c" title="#192a2c"></i><i class="sw" style="--sw:#2c464c" title="#2c464c"></i><i class="sw" style="--sw:#192737" title="#192737"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#ff0000" title="#ff0000"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Briefs where a live WebGL scene IS the content — immersive showcases, museums, launch experiences; low density, exploration over findability.</p>
+    <p><b>Not for</b> Pastiche when: HUD chrome over a flat page with no live scene beneath; content-dense or must-be-found material; stock three.js+GSAP rebuilds; hardcoded chrome white (must be per-scene tokens).</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="http://activetheory.net" rel="noopener noreferrer nofollow" target="_blank">Active Theory V6</a>
+      <span class="m__award">Site of the Month 2024.02</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/active-theory-v6" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Active Theory V6</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://adidaschile20.com/" rel="noopener noreferrer nofollow" target="_blank">CHILE20</a>
+      <span class="m__award">Site of the Month 2020.10</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/chile20" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for CHILE20</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://www.ibm.com/resources/activations/harmonic-state" rel="noopener noreferrer nofollow" target="_blank">The Harmonic State</a>
+      <span class="m__award">Site of the Month 2021.07</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/the-harmonic-state" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Harmonic State</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="http://museum.xbox.com/" rel="noopener noreferrer nofollow" target="_blank">20 Years of Xbox Museum</a>
+      <span class="m__award">Site of the Month 2021.12</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/20-years-of-xbox-museum" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for 20 Years of Xbox Museum</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://frontierwithin.thorne.com/" rel="noopener noreferrer nofollow" target="_blank">The Frontier Within</a>
+      <span class="m__award">Site of the Month 2019.07</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/the-frontier-within" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Frontier Within</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://www.orano.group/experience/innovation/en" rel="noopener noreferrer nofollow" target="_blank">Orano — Innovation Experience</a>
+      <span class="m__award">Developer of the Year 2018 · Site of the Month 2018.11</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/orano" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Orano — Innovation Experience</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://www.foosballworldcup18.com/" rel="noopener noreferrer nofollow" target="_blank">Foosball World Cup 18</a>
+      <span class="m__award">Site of the Month 2018.07</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/foosball-world-cup-18" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Foosball World Cup 18</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://activetheory.net" rel="noopener noreferrer nofollow" target="_blank">Active Theory v4</a>
+      <span class="m__award">Site of the Year 2018 · Site of the Month 2018.01</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/active-theory-v4" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Active Theory v4</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-overscale-grotesk-whiteout" aria-labelledby="h-overscale-grotesk-whiteout">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">03</p>
+  <h3 class="fam__name" id="h-overscale-grotesk-whiteout">overscale-grotesk-whiteout</h3>
+  <p class="fam__thesis">One grotesk at billboard scale cropped by the viewport, a bimodal scale (display vs ~11px caps), achromatic two-value chrome; photography supplies 100% of the color; sections invert whole grounds.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>6</dd></div>
+    <div><dt>Live</dt><dd>5</dd></div>
+    <div><dt>Temperature</dt><dd>Cold neutral #1c1c1c/#fff to warm bone #fcf6f4/#100f0f (ali-ali); always one pair</dd></div>
+    <div><dt>Type</dt><dd>One grotesk sitewide (Neue Montreal variable), 12.5rem/200px lh 1, edge-cropped; heading ramp hollow 3.125→8.75rem</dd></div>
+    <div><dt>Motion</dt><dd>Per-line mask wipes, asymmetric easing — enter 1.5s cubic-bezier(.075,.82,.165,1), exit .6s harder; survives with zero animation library</dd></div>
+    <div><dt>Varies by</dt><dd>Motion substrate deforming the billboard word, 2018→2024: WebGL displacement → marquee → GSAP scroll → pure CSS transitions (pangram)</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#14181A" title="#14181A"></i><i class="sw" style="--sw:#0d0e13" title="#0d0e13"></i><i class="sw" style="--sw:#f8f8f8" title="#f8f8f8"></i><i class="sw" style="--sw:#e4e0db" title="#e4e0db"></i><i class="sw" style="--sw:#e0ccbb" title="#e0ccbb"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Sites fronting commissioned campaign photography or a photographed physical object — foundries, studios, portfolios — where imagery earns 200px of empty ground.</p>
+    <p><b>Not for</b> With stock photography it reads unstyled, not restrained; in product-is-colour categories (food, fashion, cosmetics, paint); anywhere a mid-scale subhead, second face, or accent hue is needed.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://bennettandclive.com" rel="noopener noreferrer nofollow" target="_blank">Bennett &amp; Clive</a>
+      <span class="m__award">Site of the Month 2024.03</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/bennett-clive" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Bennett &amp; Clive</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://www.exoape.com" rel="noopener noreferrer nofollow" target="_blank">Exo Ape</a>
+      <span class="m__award">Site of the Month 2022.05</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/exo-ape" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Exo Ape</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://pangrampangram.com/" rel="noopener noreferrer nofollow" target="_blank">Pangram Pangram Foundry</a>
+      <span class="m__award">Ecommerce of the Year 2021</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/pangram-pangram-foundry" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Pangram Pangram Foundry</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://alitwotimes.com/" rel="noopener noreferrer nofollow" target="_blank">Ali Ali</a>
+      <span class="m__award">Site of the Month 2020.08</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/ali-ali" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Ali Ali</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://locomotive.ca" rel="noopener noreferrer nofollow" target="_blank">Locomotive</a>
+      <span class="m__award">Site of the Month 2019.06</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/locomotive-1" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Locomotive</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="http://robinmastromarino.com/" rel="noopener noreferrer nofollow" target="_blank">Robin Mastromarino - Portfolio</a>
+      <span class="m__award">Site of the Month 2018.09</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/robin-mastromarino-portfolio-1" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Robin Mastromarino - Portfolio</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-colorfield-poster-grotesk" aria-labelledby="h-colorfield-poster-grotesk">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">04</p>
+  <h3 class="fam__name" id="h-colorfield-poster-grotesk">colorfield-poster-grotesk</h3>
+  <p class="fam__thesis">Silkscreen-poster logic on scroll: flat saturated colour fields with viewport-scale grotesk in black/white ink, hierarchy from scale and ink discipline alone, and whole-ground hard swaps per section.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>5</dd></div>
+    <div><dt>Live</dt><dd>4</dd></div>
+    <div><dt>Temperature</dt><dd>Flat and printed; #ffa441 #16a147 #4596ff #ff6359 fields, pure #000/#fff ink</dd></div>
+    <div><dt>Type</dt><dd>Three voices, no mid-sizes: ultra-black grotesk at viewport scale, serif for all prose, mono 500 uppercase at 12/14px.</dd></div>
+    <div><dt>Motion</dt><dd>Hard ground cut at the seam, never crossfade; chrome re-inks over .2s; sticky scale-scrub squashes the poster (ease:none); Lenis .6</dd></div>
+    <div><dt>Varies by</dt><dd>Ink chroma: achromatic + one red emblem → near-black/white on colour → second pigment (brown on amber) → 40%-opacity tinted mono</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#ffa441" title="#ffa441"></i><i class="sw" style="--sw:#16a147" title="#16a147"></i><i class="sw" style="--sw:#4596ff" title="#4596ff"></i><i class="sw" style="--sw:#ff6359" title="#ff6359"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#FAAD17" title="#FAAD17"></i><i class="sw" style="--sw:#471E10" title="#471E10"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Editorial, cultural and archive subjects; brand or exhibition sites with real long-form to carry; clients who own strong flat artwork or photography.</p>
+    <p><b>Not for</b> Poster screens without a reading system say nothing; bracket-mono labels alone = generic 2023 tic; synthetic squiggles = decoration; one shadow/gradient/rounded card collapses the conceit.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://gehry.getty.edu/" rel="noopener noreferrer nofollow" target="_blank">Sculpting Harmony</a>
+      <span class="m__award">Site of the Month 2023.11</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/sculpting-harmony" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Sculpting Harmony</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://synchrodogs.com/" rel="noopener noreferrer nofollow" target="_blank">Synchrodogs Portfolio</a>
+      <span class="m__award">Site of the Month 2023.08</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/synchrodogs-portfolio" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Synchrodogs Portfolio</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://theothersideoftruth.com" rel="noopener noreferrer nofollow" target="_blank">The Other Side of Truth</a>
+      <span class="m__award">Userschoice of the Year 2022</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/the-other-side-of-truth" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Other Side of Truth</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://designcanada.com" rel="noopener noreferrer nofollow" target="_blank">Design Canada</a>
+      <span class="m__award">Site of the Month 2018.04</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/design-canada" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Design Canada</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://www.franshalsmuseum.nl/en/" rel="noopener noreferrer nofollow" target="_blank">Frans Hals Museum</a>
+      <span class="m__award">Ecommerce of the Year 2018</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/franshals-museum" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Frans Hals Museum</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-prop-occluded-grotesk" aria-labelledby="h-prop-occluded-grotesk">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">05</p>
+  <h3 class="fam__name" id="h-prop-occluded-grotesk">prop-occluded-grotesk</h3>
+  <p class="fam__thesis">One flat single-hue field, an oversized uppercase grotesk headline, and matte-or-glassy 3D props layered with the type in depth — all depth from occlusion, never drop shadows — plus quiet pill/micro chrome.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>5</dd></div>
+    <div><dt>Live</dt><dd>5</dd></div>
+    <div><dt>Temperature</dt><dd>Cool pales to hot flats: periwinkle #c9d2e7 / WebGL 0xCAD6EC, vermilion #ff5043, #dbdad9→#fff</dd></div>
+    <div><dt>Type</dt><dd>Oversized uppercase grotesk (Neue Machina) on a hard pixel ladder 30–120px, line-height:100%, irregular word gaps</dd></div>
+    <div><dt>Motion</dt><dd>Two-speed: idle 3s sine.inOut yoyo (±20° yaw/±8° pitch) under a lagging 2s pointer tween, riding a scroll-scrubbed camera walk (2090vh track)</dd></div>
+    <div><dt>Varies by</dt><dd>Prop meaning: pure volume (noomo) → gesture/desk objects → literal SKUs (silencio); hue and occlusion direction vary independently.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#DEE7F1" title="#DEE7F1"></i><i class="sw" style="--sw:#c9d2e7" title="#c9d2e7"></i><i class="sw" style="--sw:#dae2f2" title="#dae2f2"></i><i class="sw" style="--sw:#e3dde2" title="#e3dde2"></i><i class="sw" style="--sw:#181520" title="#181520"></i><i class="sw" style="--sw:#231b35" title="#231b35"></i><i class="sw" style="--sw:#dbdad9" title="#dbdad9"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Agency/studio statements, single-product launches, brand monuments — one idea fills a viewport and the brief has more 3D budget than copy.</p>
+    <p><b>Not for</b> Neue Machina + chrome plus-blocks lifted whole is 2022–23 period costume; flat props on a flat field without material value-work; 2090vh tracks on pages with copy to read; hidden-h1 depth hacks.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://noomoagency.com" rel="noopener noreferrer nofollow" target="_blank">Noomo Agency</a>
+      <span class="m__award">Userschoice of the Year 2023</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/noomo-agency" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Noomo Agency</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://silencio.es/" rel="noopener noreferrer nofollow" target="_blank">SILENCIO - DIGITAL PRODUCTS</a>
+      <span class="m__award">Site of the Month 2023.04</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/silencio-digital-products" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for SILENCIO - DIGITAL PRODUCTS</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://superlist.craftedbygc.com/" rel="noopener noreferrer nofollow" target="_blank">Superlist</a>
+      <span class="m__award">Site of the Month 2021.04</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/superlist" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Superlist</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://2018.craftedbygc.com/" rel="noopener noreferrer nofollow" target="_blank">2018: Year in Review</a>
+      <span class="m__award">Site of the Month 2019.03</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/2018-year-in-review" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for 2018: Year in Review</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://www.nike-react.com/" rel="noopener noreferrer nofollow" target="_blank">Nike Reactor</a>
+      <span class="m__award">Site of the Month 2018.05</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/nike-reactor" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Nike Reactor</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-flat-mascot-carnival" aria-labelledby="h-flat-mascot-carnival">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">06</p>
+  <h3 class="fam__name" id="h-flat-mascot-carnival">flat-mascot-carnival</h3>
+  <p class="fam__thesis">Flat-vector characters at high density own the page — cropped by the viewport — over saturated grounds that hard-swap wholesale per section; chrome whispers in pills, motion bounces, never fades.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>4</dd></div>
+    <div><dt>Live</dt><dd>4</dd></div>
+    <div><dt>Temperature</dt><dd>Loud warm childlike: marigold #ffd372, sky #88c1f8, bubblegum #f6b1cf on cream #fef7e6</dd></div>
+    <div><dt>Type</dt><dd>One grotesk (Neue Montreal, 3 weights); UI clamp(15px,1.31vw,25px) vs display clamp(80px,23.2vw,446px) — ~18:1 scale</dd></div>
+    <div><dt>Motion</dt><dd>Elastic-only: 27 elastic eases in 11 tunings, zero back/bounce/fades; hovers squash 1.05 then settle 0.96 in 300ms; scrubs ease:&quot;none&quot;</dd></div>
+    <div><dt>Varies by</dt><dd>Where the carnival is authored, how ground is addressed: data-attr/token CSS repaints + vector engines → one field + physics → raster plates.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#FFD372" title="#FFD372"></i><i class="sw" style="--sw:#F15B40" title="#F15B40"></i><i class="sw" style="--sw:#88c1f8" title="#88c1f8"></i><i class="sw" style="--sw:#f6b1cf" title="#f6b1cf"></i><i class="sw" style="--sw:#acd084" title="#acd084"></i><i class="sw" style="--sw:#fef7e6" title="#fef7e6"></i><i class="sw" style="--sw:#7E7EFF" title="#7E7EFF"></i><i class="sw" style="--sw:#F894C0" title="#F894C0"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Playful consumer brands with bespoke character art — beverage/snack e-com, mascot-led products, sites where a detour delights rather than blocks a task.</p>
+    <p><b>Not for</b> Without a real illustrator — stock or generated flat-vector collapses into 2019 corporate-Alegria; on text-heavy layouts (copy stays off color fields); on task-completion flows like checkout.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://en.manayerbamate.com/" rel="noopener noreferrer nofollow" target="_blank">Mana Yerba Mate</a>
+      <span class="m__award">Ecommerce of the Year 2023</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/mana-yerba-mate" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Mana Yerba Mate</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://ponpon-mania.com/" rel="noopener noreferrer nofollow" target="_blank">Ponpon Mania</a>
+      <span class="m__award">Site of the Month 2025.10</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/ponpon-mania" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Ponpon Mania</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://mindmarket.com/" rel="noopener noreferrer nofollow" target="_blank">MindMarket</a>
+      <span class="m__award">Site of the Month 2025.12</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/mindmarket" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for MindMarket</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://dontboardme.com" rel="noopener noreferrer nofollow" target="_blank">Don't Board Me</a>
+      <span class="m__award">Userschoice of the Year 2024</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/dont-board-me" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Don't Board Me</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-flavor-swap-colorfield" aria-labelledby="h-flavor-swap-colorfield">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">07</p>
+  <h3 class="fam__name" id="h-flavor-swap-colorfield">flavor-swap-colorfield</h3>
+  <p class="fam__thesis">The palette IS the navigation: one flat unmodulated color field bound to the current SKU by data attributes, so switching repaints ground and ink together; one focal object on the field, chrome tiny.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>4</dd></div>
+    <div><dt>Live</dt><dd>3</dd></div>
+    <div><dt>Temperature</dt><dd>Candy, warm-biased: mint #8bd3b9, salmon #f7987c, marigold #ffb700, magenta #e34f7f</dd></div>
+    <div><dt>Type</dt><dd>One viewport-scale word drawn through the object: Sailec Regular white, 9.9vw/13.125vw, line-height:1, no kicker</dd></div>
+    <div><dt>Motion</dt><dd>Swap repaints all slots in one beat: 1s cubic-bezier(.645,.045,.355,1) + RGBA-lerped canvas clear, restart-from-cur; 2-phase quint nav bar</dd></div>
+    <div><dt>Varies by</dt><dd>How many palettes and who authors them: 4-10 hand-picked themes buy a commissioned object each; jams' 91 CMS pairs degrade to photos+blend-mode</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#f9f3ec" title="#f9f3ec"></i><i class="sw" style="--sw:#c9e3b7" title="#c9e3b7"></i><i class="sw" style="--sw:#8fceee" title="#8fceee"></i><i class="sw" style="--sw:#fff8f1" title="#fff8f1"></i><i class="sw" style="--sw:#fdd301" title="#fdd301"></i><i class="sw" style="--sw:#ff6d2f" title="#ff6d2f"></i><i class="sw" style="--sw:#8bd3b9" title="#8bd3b9"></i><i class="sw" style="--sw:#03705a" title="#03705a"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Multi-SKU/flavor product lines with a small hand-picked palette set and budget for one commissioned hero object per SKU — beverages, produce, records.</p>
+    <p><b>Not for</b> Without commissioned per-SKU objects — stock 3D/flat vector collapses it to startup-blob; past a small hand-picked theme set (generated palettes = arbitrary rainbow); multilingual single-script face.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="http://jams.basicagency.com" rel="noopener noreferrer nofollow" target="_blank">B/D® JAMS</a>
+      <span class="m__award">Site of the Month 2022.09</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/b-d-r-jams" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for B/D® JAMS</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://delassus.com" rel="noopener noreferrer nofollow" target="_blank">Delassus</a>
+      <span class="m__award">Site of the Month 2020.06</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/delassus" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Delassus</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://sloshseltzer.com/" rel="noopener noreferrer nofollow" target="_blank">Slosh Seltzer</a>
+      <span class="m__award">Site of the Month 2024.06</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/slosh-seltzer" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Slosh Seltzer</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://matruecannabis.com" rel="noopener noreferrer nofollow" target="_blank">MA True Cannabis</a>
+      <span class="m__award">Ecommerce of the Year 2019 · Site of the Month 2019.08</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/ma" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for MA True Cannabis</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-gilded-monument-walkthrough" aria-labelledby="h-gilded-monument-walkthrough">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">08</p>
+  <h3 class="fam__name" id="h-gilded-monument-walkthrough">gilded-monument-walkthrough</h3>
+  <p class="fam__thesis">A warm monochrome luxury 3D world — plaster arches, ochre salons, gilded skies — traversed by a chaptered camera; large display serif set into the scene, hairline chrome in one gold/sand tint.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>4</dd></div>
+    <div><dt>Live</dt><dd>4</dd></div>
+    <div><dt>Temperature</dt><dd>Warm: apricot-over-sandstone, ember-red interiors; chrome #f6cea0 on rgba(37,37,37,.1)</dd></div>
+    <div><dt>Type</dt><dd>Flared high-contrast display serif at hero scale, capped min(20vh), over one line of small sans; no scrim, tracking 0</dd></div>
+    <div><dt>Motion</dt><dd>Chaptered camera: travel, hard stop where the UI speaks, travel; free look at stops recentres at min(|playSpeed|,1); seams hidden in 2s fog</dd></div>
+    <div><dt>Varies by</dt><dd>How much camera the viewer gets, chrome growing with it — scroll-playhead (bare) → clicked chapter graph (nav) → free flight (HUD)</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#987654" title="#987654"></i><i class="sw" style="--sw:#D14836" title="#D14836"></i><i class="sw" style="--sw:#ECD06F" title="#ECD06F"></i><i class="sw" style="--sw:#252525" title="#252525"></i><i class="sw" style="--sw:#f6cea0" title="#f6cea0"></i><i class="sw" style="--sw:#79644b" title="#79644b"></i><i class="sw" style="--sw:#6E6548" title="#6E6548"></i><i class="sw" style="--sw:#C1380F" title="#C1380F"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Heritage, museum, maison and single-hero-product stories — anywhere the object or place is the argument and you can afford real 3D art direction.</p>
+    <p><b>Not for</b> Needs an authored world: over stock or generic renders the display serif reads as perfume ad and the family collapses into beige emptiness. No ENTER gate or auto-advance without narration worth it.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="http://www.getty.edu/persepolis" rel="noopener noreferrer nofollow" target="_blank">Persepolis Reimagined</a>
+      <span class="m__award">Developer of the Year 2022 · Site of the Month 2022.06</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/persepolis-reimagined" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Persepolis Reimagined</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://pasqua.it/" rel="noopener noreferrer nofollow" target="_blank">Pasqua Wines</a>
+      <span class="m__award">Site of the Month 2023.06</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/pasqua-wines" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Pasqua Wines</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://cartier-waw-0225.dev.60fps.fr/" rel="noopener noreferrer nofollow" target="_blank">Cartier Watches &amp; Wonders 2025</a>
+      <span class="m__award">Site of the Month 2025.08</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/cartier-watches-wonders-2025" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Cartier Watches &amp; Wonders 2025</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://www.cartier.com/thefabulouscartierjourney" rel="noopener noreferrer nofollow" target="_blank">The Fabulous Cartier Journey</a>
+      <span class="m__award">Site of the Month 2023.12</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/the-fabulous-cartier-journey" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Fabulous Cartier Journey</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-keyart-dossier-mono" aria-labelledby="h-keyart-dossier-mono">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">09</p>
+  <h3 class="fam__name" id="h-keyart-dossier-mono">keyart-dossier-mono</h3>
+  <p class="fam__thesis">Full-bleed commissioned media annotated by a filing apparatus in mono/tracked caps — bracketed indices, sigla, hairline rules, terminal boots — reads as classified records or a broadcast monitor.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>4</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>Achromatic ink chrome; warmth from imagery. #000/#fff, #080808, hsla(39,67%,94%,.6)</dd></div>
+    <div><dt>Type</dt><dd>Tight-not-tracked mono captions (.8–1.1rem, -.02em, slashed zero) vs heavy grotesque scaling to -.095em at 50.4rem</dd></div>
+    <div><dt>Motion</dt><dd>Instrumentation, not flourish: char decode-in w/ lagging glitch tail, index squares blink hard square wave, irregular 150–400ms boot ticker</dd></div>
+    <div><dt>Varies by</dt><dd>Legibility over media: theme-token swap (kpr) / mix-blend difference (inkfish) / one ink on graded-dark (dark) / corner-pin + veil (MoH)</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#6D64A3" title="#6D64A3"></i><i class="sw" style="--sw:#0e4347" title="#0e4347"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#968adf" title="#968adf"></i><i class="sw" style="--sw:#c0fb50" title="#c0fb50"></i><i class="sw" style="--sw:#080808" title="#080808"></i><i class="sw" style="--sw:#000000" title="#000000"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Campaign/key-art sites over commissioned, graded media you control — game/film/entertainment launches, studio reels — where UI should read as annotation.</p>
+    <p><b>Not for</b> Over media you didn't commission/grade — stock/generative fill gives the crosshairs nothing to survey. Borrowed diegesis; mono past caption size or letter-spaced; boot replayed to returning users.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://kprverse.com/" rel="noopener noreferrer nofollow" target="_blank">KPR</a>
+      <span class="m__award">Site of the Year 2022 · Site of the Month 2022.12</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/kpr" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for KPR</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="http://darknetflix.io" rel="noopener noreferrer nofollow" target="_blank">Dark: Official Netflix Guide</a>
+      <span class="m__award">Userschoice of the Year 2020</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/dark-official-netflix-guide" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Dark: Official Netflix Guide</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="http://www.oculus.com/medalofhonor" rel="noopener noreferrer nofollow" target="_blank">Medal of Honor: Above &amp; Beyond</a>
+      <span class="m__award">Site of the Month 2020.12</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/medal-of-honor-above-beyond" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Medal of Honor: Above &amp; Beyond</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://inkfishnyc.com/" rel="noopener noreferrer nofollow" target="_blank">Inkfish</a>
+      <span class="m__award">Site of the Month 2024.05</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/inkfish" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Inkfish</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-scrubbed-product-cinema" aria-labelledby="h-scrubbed-product-cinema">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">10</p>
+  <h3 class="fam__name" id="h-scrubbed-product-cinema">scrubbed-product-cinema</h3>
+  <p class="fam__thesis">One hero product as cinema: a full-bleed stage whose camera is scrubbed by scroll (sticky canvas, prerendered video, chaptered stops), one sparse claim per viewport floating over the image.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>4</dd></div>
+    <div><dt>Live</dt><dd>4</dd></div>
+    <div><dt>Temperature</dt><dd>Cold achromatic near-black; #0071e3 pill, #2997ff hover, #111 escapes, #fff flips</dd></div>
+    <div><dt>Type</dt><dd>Huge tight-tracked grotesk claims (150px/.66667 leading, -.015em, desktop-only) over mono micro-caps spec register</dd></div>
+    <div><dt>Motion</dt><dd>Scroll = playhead; chaptered, half the runway frozen hold; image lerps ease .2 (port to damp()), copy raw ease 1; ±40px counter-drift</dd></div>
+    <div><dt>Varies by</dt><dd>Where the camera is computed — baked JPEGs → scrubbed alpha video → cued prerenders → live three.js; copy chrome varies inversely</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#111111" title="#111111"></i><i class="sw" style="--sw:#9d9d9d" title="#9d9d9d"></i><i class="sw" style="--sw:#2997ff" title="#2997ff"></i><i class="sw" style="--sw:#0071e3" title="#0071e3"></i><i class="sw" style="--sw:#052424" title="#052424"></i><i class="sw" style="--sw:#f0f0f0" title="#f0f0f0"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Exactly one object worth this much attention, and the brief is &quot;make people believe it is beautifully made.&quot;</p>
+    <p><b>Not for</b> Achromatic void + system blue on non-Apple products = instant Apple pastiche; underweight sequences stutter and read cheap; content-heavy pages can't hold the void — even Apple escaped to white.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="http://apple.com/airpods-pro" rel="noopener noreferrer nofollow" target="_blank">Apple AirPods Pro</a>
+      <span class="m__award">Site of the Month 2020.01</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/apple-airpods-pro" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Apple AirPods Pro</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://terminal-industries.com" rel="noopener noreferrer nofollow" target="_blank">Terminal Industries</a>
+      <span class="m__award">Site of the Month 2025.09</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/terminal-industries" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Terminal Industries</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://www.gq.com/sponsored/story/the-extraordinary-lab" rel="noopener noreferrer nofollow" target="_blank">GQ &amp; AP The Extraordinary Lab</a>
+      <span class="m__award">Site of the Month 2026.03</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/gq-ap-the-extraordinary-lab" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for GQ &amp; AP The Extraordinary Lab</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://oryzo.ai" rel="noopener noreferrer nofollow" target="_blank">Oryzo AI</a>
+      <span class="m__award">Site of the Month 2026.04</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/oryzo-ai" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Oryzo AI</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-void-specimen-stage" aria-labelledby="h-void-specimen-stage">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">11</p>
+  <h3 class="fam__name" id="h-void-specimen-stage">void-specimen-stage</h3>
+  <p class="fam__thesis">One sculptural centerpiece in a single-hue near-black void, reframed per section instead of relaid; corner micro-chrome, a two-island type scale, accents only on controls, drag/drift motion.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>4</dd></div>
+    <div><dt>Live</dt><dd>4</dd></div>
+    <div><dt>Temperature</dt><dd>Voids: #121212, #2d4034 sage, #030303, indigo (#0d1224 sampled); accent #4456d8 fills.</dd></div>
+    <div><dt>Type</dt><dd>Two islands, no ramp: display serif (Monarch, GT Sectra) at 1.8rem+, sans capped 1.6rem; split by typeface, not size.</dd></div>
+    <div><dt>Motion</dt><dd>Drag, not scroll (221:30); 5:1 elliptical scrubber, 70% commit snap; #121212 veil .666s linear; durations on a sixths ladder (381/505).</dd></div>
+    <div><dt>Varies by</dt><dd>What drives the reframe — discrete states+veil, 1-D scrub, scroll+ground flip, overlay dim — and whether a light counter-state exists.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#121212" title="#121212"></i><i class="sw" style="--sw:#4456d8" title="#4456d8"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#e6e8ed" title="#e6e8ed"></i><i class="sw" style="--sw:#1b1a41" title="#1b1a41"></i><i class="sw" style="--sw:#657da7" title="#657da7"></i><i class="sw" style="--sw:#2d4034" title="#2d4034"></i><i class="sw" style="--sw:#3a4e3f" title="#3a4e3f"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Campaigns, institutions, monuments, single-artifact launches — one object worth staring at, copy short enough to live in corners.</p>
+    <p><b>Not for</b> No photoreal specimen = just a dark theme; flat vector on #121212 isn't this. Drag-only nav without an ordered journey tanks usability; the display face past a few lines becomes a costume.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://www.no-fishing.net" rel="noopener noreferrer nofollow" target="_blank">Sea Shepherd - No fishing net</a>
+      <span class="m__award">Site of the Month 2021.01</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/sea-shepherd-no-fishing-net" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Sea Shepherd - No fishing net</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://theyearofgreta.com/" rel="noopener noreferrer nofollow" target="_blank">The Year of Greta</a>
+      <span class="m__award">Site of the Month 2020.02</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/the-year-of-greta" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Year of Greta</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://immersive-g.com/" rel="noopener noreferrer nofollow" target="_blank">Immersive Garden website</a>
+      <span class="m__award">Site of the Month 2025.01</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/immersive-garden-website" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Immersive Garden website</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="http://www.dogstudio.co" rel="noopener noreferrer nofollow" target="_blank">Dogstudio</a>
+      <span class="m__award">Site of the Month 2019.04</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/dogstudio-1" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Dogstudio</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-canvas-native-studio" aria-labelledby="h-canvas-native-studio">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">12</p>
+  <h3 class="fam__name" id="h-canvas-native-studio">canvas-native-studio</h3>
+  <p class="fam__thesis">The page IS a realtime WebGL application: the full-frame canvas does all the voice while a thin, perfectly-synced two-color DOM layer stays out of its way — extravagant rendering, austere graphics.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>3</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Cool blue-violet: electric #1A2FFB on paper-white #F0F1FA, near-black #121416 panel fill</dd></div>
+    <div><dt>Type</dt><dd>One neutral grotesk (Aeonik) everywhere; mono companions (IBM Plex Mono, LusionMono) as opt-ins; headlines undersized</dd></div>
+    <div><dt>Motion</dt><dd>Engineered not choreographed: virtual scroll damped 1−e^(−12·dt), wheel ±200px, overscroll gauge flings to next project; one ease .35,0,0,1</dd></div>
+    <div><dt>Varies by</dt><dd>Where hue lives: blue-on-paper field (lusion-v3); per-scene hue-worlds under white ink (lusion); diegetic brand accents in white void (GCI)</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#1a2ffb" title="#1a2ffb"></i><i class="sw" style="--sw:#f0f1fa" title="#f0f1fa"></i><i class="sw" style="--sw:#071bdf" title="#071bdf"></i><i class="sw" style="--sw:#2b2e3a" title="#2b2e3a"></i><i class="sw" style="--sw:#e4e6ef" title="#e4e6ef"></i><i class="sw" style="--sw:#121416" title="#121416"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Agency flagship, product-launch spectacle, interactive labs — &quot;the-site-is-the-demo&quot; briefs where the rendering is the product and content is sparse.</p>
+    <p><b>Not for</b> Wholesale imitation without perf discipline is a 5MB main-thread slideshow; no custom geometry formats/GPU FFT bloom outside rendering showcases; conversion pages won't be forgiven the usability tax.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://lusion.co/" rel="noopener noreferrer nofollow" target="_blank">Lusion v3</a>
+      <span class="m__award">Site of the Year 2023 · Site of the Month 2023.10</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/lusion-v3" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Lusion v3</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://lusion.co/" rel="noopener noreferrer nofollow" target="_blank">Lusion</a>
+      <span class="m__award">Site of the Month 2019.05</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/lusion" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Lusion</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://cloud.withgoogle.com/infrastructure/" rel="noopener noreferrer nofollow" target="_blank">Google Cloud Infrastructure</a>
+      <span class="m__award">Site of the Month 2018.10</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/google-cloud-infrastructure" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Google Cloud Infrastructure</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-display-serif-hue-flood" aria-labelledby="h-display-serif-hue-flood">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">13</p>
+  <h3 class="fam__name" id="h-display-serif-hue-flood">display-serif-hue-flood</h3>
+  <p class="fam__thesis">A playful poster-scale display serif IS the layout on a warm ground, colliding with circular ornaments, while whole sections flood to flat candy hues via token swaps; chrome tiny, entrances long.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>3</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>Warm candy-flat: bone #f3eee8 ground; floods #ffe699 #f8c1ca #a0c0cd #d73234.</dd></div>
+    <div><dt>Type</dt><dd>Display serif (Voyage) at 9.5–14vw, mixed-case, IS the layout; body a quiet sans (Staff); tiny caps chrome, no tracking on the exemplar.</dd></div>
+    <div><dt>Motion</dt><dd>1.4–3s Power4.easeOut entrances from +50–90px; exits snap back in 0s; ornaments rock -30°→+30° (1.6s alternate), never spin.</dd></div>
+    <div><dt>Varies by</dt><dd>Flood's authority over the type: serif as watermark ground (2-state flip) → black figure over 8 banded hues → loud figure under 6-theme iris.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#2779a7" title="#2779a7"></i><i class="sw" style="--sw:#49c5b6" title="#49c5b6"></i><i class="sw" style="--sw:#D14836" title="#D14836"></i><i class="sw" style="--sw:#fdfbf5" title="#fdfbf5"></i><i class="sw" style="--sw:#191919" title="#191919"></i><i class="sw" style="--sw:#e9e9e9" title="#e9e9e9"></i><i class="sw" style="--sw:#f3eee8" title="#f3eee8"></i><i class="sw" style="--sw:#e3dacd" title="#e3dacd"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Personality-forward portfolios, illustrators, playful brand sites with short cadenced copy authored line-by-line and low content density — one idea per screen.</p>
+    <p><b>Not for</b> Content-deep sites (the 7.48 usability score is this rhythm's bill); arbitrary-length CMS headlines; the display serif at body size; unclamped vw type; scroll hijack; ungated infinite motion.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://unleashingbest.com/" rel="noopener noreferrer nofollow" target="_blank">Unleashing Your Best Version</a>
+      <span class="m__award">Site of the Month 2022.07</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/unleashing-your-best-version" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Unleashing Your Best Version</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://www.chungiyoo.com/" rel="noopener noreferrer nofollow" target="_blank">Chungi Folio</a>
+      <span class="m__award">Mobile of the Year 2021</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/chungi-folio" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Chungi Folio</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="http://beyond-beauty.co/" rel="noopener noreferrer nofollow" target="_blank">Beyond Beauty</a>
+      <span class="m__award">Site of the Month 2018.08</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/beyond-beauty" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Beyond Beauty</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-floating-inset-panel" aria-labelledby="h-floating-inset-panel">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">14</p>
+  <h3 class="fam__name" id="h-floating-inset-panel">floating-inset-panel</h3>
+  <p class="fam__thesis">The scrolling document is a sheet over a persistent stage — an object on a table, not a page — with a barbell type ratio (7:1–21:1) and a two-token ink/ground pair one ancestor switch inverts.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>3</dd></div>
+    <div><dt>Live</dt><dd>3</dd></div>
+    <div><dt>Temperature</dt><dd>Achromatic: #000/#FFF, #1a1a1a/#f4f4f4, #0e0e0e/#f1efeb bone; floods #DA382E/#312DFB</dd></div>
+    <div><dt>Type</dt><dd>Ratio barbell: hairline didone / scrubbed weight axis / 96–209px grotesk at 7:1–21:1 over a stepped-px utility base</dd></div>
+    <div><dt>Motion</dt><dd>Decelerate-only, two curves site-wide (easeOutCubic + easeOutQuint); scroll writes --progress, CSS calc() does the rest — not tweens</dd></div>
+    <div><dt>Varies by</dt><dd>How literally the sheet is an object: editorial-new scale(.25) on a visible table → akaru seams-only; locomotive's stage is media</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#FFFFFF" title="#FFFFFF"></i><i class="sw" style="--sw:#DA382E" title="#DA382E"></i><i class="sw" style="--sw:#BB0B18" title="#BB0B18"></i><i class="sw" style="--sw:#D31006" title="#D31006"></i><i class="sw" style="--sw:#29EDF9" title="#29EDF9"></i><i class="sw" style="--sw:#0E0E0E" title="#0E0E0E"></i><i class="sw" style="--sw:#F1EFEB" title="#F1EFEB"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Studio/agency sites, type specimens, brand microsites, annual reports — curated documents that own photography or motion good enough to be a stage.</p>
+    <p><b>Not for</b> Docs, dashboards, commerce need the middle type rungs; stage-pin over a flat gradient is just a slower page; pixel-mosaic censor over stock = privacy blur; don't copy the a11y layer — there isn't one.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://locomotive.ca" rel="noopener noreferrer nofollow" target="_blank">Locomotive®</a>
+      <span class="m__award">Site of the Month 2023.03</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/locomotive-r" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Locomotive®</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://akaru.fr/" rel="noopener noreferrer nofollow" target="_blank">Akaru</a>
+      <span class="m__award">Site of the Month 2024.04</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/akaru-2" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Akaru</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://editorialnew.com" rel="noopener noreferrer nofollow" target="_blank">Editorial New</a>
+      <span class="m__award">Site of the Month 2019.10</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/editorial-new" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Editorial New</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-keyart-slab-stage" aria-labelledby="h-keyart-slab-stage">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">15</p>
+  <h3 class="fam__name" id="h-keyart-slab-stage">keyart-slab-stage</h3>
+  <p class="fam__thesis">Full-bleed key art as the stage; ultra-heavy viewport-scale type physically negotiating with the subject (eclipsed or split across corners); hard whole-theme value flips; micro-mono corner chrome.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>3</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>High-heat, no tints: #000000 #DFDFF2 #5542FF #EDFF66; hape #0f0f0f #6a0000 #ffffff</dd></div>
+    <div><dt>Type</dt><dd>Ultra-fat condensed display ~18vw, lh .8, -.01em, uppercase; micro-caps mono chrome +.02/.04em. Hard tracking polarity.</dd></div>
+    <div><dt>Motion</dt><dd>Scroll/state, not hover: scrubbed video, mask reveals, theme tripwires; type rotates in — rotateX(-40deg) 1.3s power4.out, .1s line stagger.</dd></div>
+    <div><dt>Varies by</dt><dd>Stage-art register and what type does at the subject (eclipsed vs split); what pulls the theme lever: page turn, toggle, scroll tripwire.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#0f0f0f" title="#0f0f0f"></i><i class="sw" style="--sw:#6a0000" title="#6a0000"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#9c7443" title="#9c7443"></i><i class="sw" style="--sw:#c81c01" title="#c81c01"></i><i class="sw" style="--sw:#d14836" title="#d14836"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#080315" title="#080315"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Briefs with commissioned hero art — game launches, film/title promos, character IP — where one subject per section can carry a full-bleed frame.</p>
+    <p><b>Not for</b> Without commissioned art — 18vw type over stock renders is just a big word on an empty field; anywhere calm, institutional, or expensive — the palette is gaming/web3 heat. No mix-blend-mode depth.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="http://www.hape.io" rel="noopener noreferrer nofollow" target="_blank">HAPE</a>
+      <span class="m__award">Site of the Month 2022.04</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/hape" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for HAPE</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://zentry.com/" rel="noopener noreferrer nofollow" target="_blank">Zentry</a>
+      <span class="m__award">Site of the Month 2024.08</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/zentry" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Zentry</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://www.onceuponatimemag.com/" rel="noopener noreferrer nofollow" target="_blank">Once Upon a Time in Hollywood</a>
+      <span class="m__award">Site of the Month 2019.08</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/once-upon-a-time-in-hollywood" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Once Upon a Time in Hollywood</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-single-ink-cinema-poster" aria-labelledby="h-single-ink-cinema-poster">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">16</p>
+  <h3 class="fam__name" id="h-single-ink-cinema-poster">single-ink-cinema-poster</h3>
+  <p class="fam__thesis">Cinema footage unified by flooding it with one saturated ink — duotones, overprints — under poster-scale display type and cinema-print furniture on dark stages; one hue is the art direction.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>3</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>One hot ink #ff391e on cool near-mono #f8f8f8 / #0b0b0b / #dddee2 grey ground</dd></div>
+    <div><dt>Type</dt><dd>Poster display: variable grotesk 210px at 1728, line-height .8, -.04em, first glyph optically hung past the 8px margin</dd></div>
+    <div><dt>Motion</dt><dd>Panels hinge 4–15° on named transformOrigin corners, child rotates harder and lags; sticky stages + invisible rails, never pin:true</dd></div>
+    <div><dt>Varies by</dt><dd>Where the ink comes from and how much screen it owns: fixed hex flooded (Line), fixed but spent once (Siena), re-keyed per film (ÖJS)</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#FF391E" title="#FF391E"></i><i class="sw" style="--sw:#F8F8F8" title="#F8F8F8"></i><i class="sw" style="--sw:#0b0b0b" title="#0b0b0b"></i><i class="sw" style="--sw:#0e0e0e" title="#0e0e0e"></i><i class="sw" style="--sw:#faf7ef" title="#faf7ef"></i><i class="sw" style="--sw:#ff0f00" title="#ff0f00"></i><i class="sw" style="--sw:#ffc700" title="#ffc700"></i><i class="sw" style="--sw:#d6d3cc" title="#d6d3cc"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Film/animation studio portfolios, festivals, director reels — heterogeneous cinematic footage that one ink can unify at poster scale</p>
+    <p><b>Not for</b> Breaks with a second accent, multiply over bright busy photos (filter, not print), or keyword red on warm footage; copied crossbar logotype = pastiche; products must clamp() the vw scale</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://thelinestudio.com/" rel="noopener noreferrer nofollow" target="_blank">The Line Studio</a>
+      <span class="m__award">Site of the Month 2024.11</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/thelinestudio-com" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Line Studio</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://siena.film" rel="noopener noreferrer nofollow" target="_blank">Siena Film Foundation</a>
+      <span class="m__award">Site of the Month 2025.03</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/siena-film-foundation" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Siena Film Foundation</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://onnujonuson.com/clip/almost-over-you" rel="noopener noreferrer nofollow" target="_blank">Önnu Jónu Son</a>
+      <span class="m__award">Site of the Month 2023.09</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/onnu-jonu-son" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Önnu Jónu Son</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-slat-reel-strip" aria-labelledby="h-slat-reel-strip">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">17</p>
+  <h3 class="fam__name" id="h-slat-reel-strip">slat-reel-strip</h3>
+  <p class="fam__thesis">One lateral strip of tall vh-proportioned media slats on an empty ground; the centered slat enlarges and takes color, travel is sideways scrubbing, chroma lives inside the slats, corner chrome quiet.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>3</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>Neutral, value-compressed: #141414, warm bone #e7e5df, #191919; chroma lives in the slats</dd></div>
+    <div><dt>Type</dt><dd>Two faces, 2-3 sizes only: compressed display title at 37.5vh; 6-12px uppercase micro-labels tracked 1-2px in corners.</dd></div>
+    <div><dt>Motion</dt><dd>Wipes ±101% per letter/line in overflow:hidden; z-push + color reveal + louver swivel all ride damped scroll velocity — stop, color drains.</dd></div>
+    <div><dt>Varies by</dt><dd>How much strip is present: 30 GPU planes → 10 draggable DOM columns → one card + ghost mosaic; ground variable (Aristide) vs constant.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#e7e5df" title="#e7e5df"></i><i class="sw" style="--sw:#f8f6ef" title="#f8f6ef"></i><i class="sw" style="--sw:#e3e1db" title="#e3e1db"></i><i class="sw" style="--sw:#ddd9ce" title="#ddd9ce"></i><i class="sw" style="--sw:#d8d5cc" title="#d8d5cc"></i><i class="sw" style="--sw:#554d3d" title="#554d3d"></i><i class="sw" style="--sw:#141414" title="#141414"></i><i class="sw" style="--sw:#bac4b8" title="#bac4b8"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Portfolios and reels with a small curated set (10-30 items) of strong imagery, where one lateral strip is the whole site.</p>
+    <p><b>Not for</b> Client or content sites needing wayfinding (the no-titles hairline readout cost Usability 7.37); catalogues past ~30 items; weak or stock imagery — the drained shell leaves nothing else to look at.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://www.alanmenken.com/" rel="noopener noreferrer nofollow" target="_blank">Alan Menken</a>
+      <span class="m__award">Site of the Month 2020.05</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/alan-menken" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Alan Menken</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://www.aristidebenoist.com" rel="noopener noreferrer nofollow" target="_blank">Aristide – Portfolio 2021</a>
+      <span class="m__award">Site of the Month 2021.06</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/aristide-portfolio-2021" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Aristide – Portfolio 2021</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://everest.agency" rel="noopener noreferrer nofollow" target="_blank">Everest</a>
+      <span class="m__award">Site of the Month 2019.01</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/everest" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Everest</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-webgl-scroll-journey" aria-labelledby="h-webgl-scroll-journey">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">18</p>
+  <h3 class="fam__name" id="h-webgl-scroll-journey">webgl-scroll-journey</h3>
+  <p class="fam__thesis">The page is a scripted camera path through one cinematic 3D scene — sections are waypoints the camera flies between, with momentum scroll as the scrubber of a weighty, produced film.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>3</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Cold: #050310 base, cyan pair #4cc9f0/#7df9ff, off-white #eef2ff; warm only at blast</dd></div>
+    <div><dt>Type</dt><dd>Three-role: geometric display (Space Grotesk), neutral body, 10px uppercase mono at 0.2-0.34em tracking for all labels.</dd></div>
+    <div><dt>Motion</dt><dd>Everything damps, slerps, breathes — nothing snaps; camera trails scroll (damp λ3.2), smoothstep-window reveals, asymmetric λ0.7/9 climax.</dd></div>
+    <div><dt>Varies by</dt><dd>The 3D world flown through (each member's own concept) and where display type lives — in-canvas MSDF/GL text vs DOM cockpit overlays.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#001c0c" title="#001c0c"></i><i class="sw" style="--sw:#17120f" title="#17120f"></i><i class="sw" style="--sw:#224528" title="#224528"></i><i class="sw" style="--sw:#10421a" title="#10421a"></i><i class="sw" style="--sw:#4e2e10" title="#4e2e10"></i><i class="sw" style="--sw:#FDF0E1" title="#FDF0E1"></i><i class="sw" style="--sw:#E74833" title="#E74833"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Portfolio or launch/announcement fan-outs where the experience IS the product; on a SaaS landing only as the deliberate loud-wildcard variant.</p>
+    <p><b>Not for</b> Conversion/content pages: 10-page runways bounce users, scroll-jacking fights reading, custom cursor breaks touch; violet/cyan-on-navy is the gen-1 slop palette — port the rig, re-skin the world.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://cornrevolution.resn.global/" rel="noopener noreferrer nofollow" target="_blank">Pioneer - Corn Revolutionized</a>
+      <span class="m__award">Site of the Year 2020 · Site of the Month 2020.07</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/pioneer-corn-revolutionized" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Pioneer - Corn Revolutionized</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://www.prometheusfuels.com/" rel="noopener noreferrer nofollow" target="_blank">Prometheus Fuels</a>
+      <span class="m__award">Site of the Year 2021 · Site of the Month 2021.05</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/prometheus-fuels" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Prometheus Fuels</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://www.imabandi.to/" rel="noopener noreferrer nofollow" target="_blank">twenty øne piløts - Banditø</a>
+      <span class="m__award">Site of the Month 2018.12</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/twenty-one-pilots-bandito" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for twenty øne piløts - Banditø</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-atmosphere-as-wayfinding" aria-labelledby="h-atmosphere-as-wayfinding">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">19</p>
+  <h3 class="fam__name" id="h-atmosphere-as-wayfinding">atmosphere-as-wayfinding</h3>
+  <p class="fam__thesis">Place-per-section: each chapter's identity carried entirely by atmosphere and grading of one full-bleed landscape; chrome is a whisper-thin caps constant — the weather is the navigation.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>Monochrome chrome: #fff + navy #2d628c (tints #81a0bb, #d1dde8); warmth is in the grade.</dd></div>
+    <div><dt>Type</dt><dd>Josefin Sans 300 caps display (0.1em h1, 0.32em titles); Century Gothic UI voice — 12px caps nav 0.04em, 1rem/1.6 body.</dd></div>
+    <div><dt>Motion</dt><dd>One scroll-scrubbed float (uChapter) windowed by smoothsteps; terrain lags type via second lerp; world-space summit dissolve, not crossfade.</dd></div>
+    <div><dt>Varies by</dt><dd>How atmosphere is manufactured (computed shader grade ↔ photographed footage) and how much reaches the chrome (binary ink ↔ per-place hue).</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#29648e" title="#29648e"></i><i class="sw" style="--sw:#f4f6f8" title="#f4f6f8"></i><i class="sw" style="--sw:#0f1010" title="#0f1010"></i><i class="sw" style="--sw:#171717" title="#171717"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#f9f6f5" title="#f9f6f5"></i><i class="sw" style="--sw:#d7d7d7" title="#d7d7d7"></i><i class="sw" style="--sw:#545454" title="#545454"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Orgs whose divisions are genuinely different places — holding companies, expeditions, climate/territory stories, resorts; needs real art-direction budget.</p>
+    <p><b>Not for</b> Conversion pages (zero-fallback WebGL = blank page), weak imagery (five mediocre skies read as one stock template), body copy at 0.32em caps tracking, or opacity-.4 nav over uncontrolled imagery.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://mont-fort.com/" rel="noopener noreferrer nofollow" target="_blank">Montfort</a>
+      <span class="m__award">Site of the Month 2025.06</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/montfort" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Montfort</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://www.2-c.earth/" rel="noopener noreferrer nofollow" target="_blank">2°C EARTH</a>
+      <span class="m__award">Site of the Month 2020.09</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/2degc-earth" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for 2°C EARTH</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-blend-mode-swiss-poster" aria-labelledby="h-blend-mode-swiss-poster">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">20</p>
+  <h3 class="fam__name" id="h-blend-mode-swiss-poster">blend-mode-swiss-poster</h3>
+  <p class="fam__thesis">Swiss event posters at viewport scale — giant tight grotesk, hard slabs of saturated color, knockout bars breaking type mid-letterform — incident supplied by a fixed blend-mode WebGL layer.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Saturated full-strength hues on #f2f2f2/#141414 grounds; #27249c→#177aee cobalt, #0f0 CTA</dd></div>
+    <div><dt>Type</dt><dd>Single neo-grotesque, single weight (Neue Montreal 500); h1 17.5rem/1, h2 15rem/.8; edge-anchored, ink white/near-black</dd></div>
+    <div><dt>Motion</dt><dd>Single-axis rectangle slides: 1.5–1.6s counter-translate wipes on cubic-bezier(.22,1,.36,1); exits fall — translateY(100vh) rotate(±24deg)</dd></div>
+    <div><dt>Varies by</dt><dd>GL ownership: C2 keeps one canvas fixed under real DOM text via blend modes only; Webbys registers every element as a glitching GL tile.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#141414" title="#141414"></i><i class="sw" style="--sw:#F2F2F2" title="#F2F2F2"></i><i class="sw" style="--sw:#00FF00" title="#00FF00"></i><i class="sw" style="--sw:#ED6339" title="#ED6339"></i><i class="sw" style="--sw:#FA5CA6" title="#FA5CA6"></i><i class="sw" style="--sw:#177AEE" title="#177AEE"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#000000" title="#000000"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Loud poster briefs: conferences, festivals, award shows, campaign launches — big real-text type, hard color, one signature GL incident.</p>
+    <p><b>Not for</b> An empty interior with nothing live reads as a failed load; #0f0 plus any second accent is a dev placeholder; blend modes die inside transformed ancestors. Add the reduced-motion guard C2 never had.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://c2mtl.koki-kiko.com/" rel="noopener noreferrer nofollow" target="_blank">C2 Montréal</a>
+      <span class="m__award">Site of the Month 2023.05</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/c2-montreal" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for C2 Montréal</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://watch.webbyawards.com/" rel="noopener noreferrer nofollow" target="_blank">2021 Virtual Webbys</a>
+      <span class="m__award">Site of the Month 2021.08</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/2021-virtual-webbys" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for 2021 Virtual Webbys</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-contact-sheet-drift" aria-labelledby="h-contact-sheet-drift">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">21</p>
+  <h3 class="fam__name" id="h-contact-sheet-drift">contact-sheet-drift</h3>
+  <p class="fam__thesis">One draggable full-canvas field of photo tiles with momentum — no vertical scroll — the wordmark drawn beneath the tiles so identity reads through gutters, chrome achromatic and whispered.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Achromatic: #fff ground, black ink; all colour lives in the photo tiles, none in chrome</dd></div>
+    <div><dt>Type</dt><dd>Graphik 200/400/500 + Optima LT Std 500; wordmark an in-scene SVG at 64% width under the tiles, read through gutters</dd></div>
+    <div><dt>Motion</dt><dd>Drag-with-lag: pointer delta/64 → one offset; tiles chase k=0.05 + ring delay, logo k=0.1; 0.0015/frame idle wander; d3-ease only, no GSAP</dd></div>
+    <div><dt>Varies by</dt><dd>How far identity is buried in the field — in-scene wordmark under tiles ↔ DOM chrome above; 2-axis drag ↔ 1-axis momentum scroll.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#f2f2f2" title="#f2f2f2"></i><i class="sw" style="--sw:#aeaeae" title="#aeaeae"></i><i class="sw" style="--sw:#c4aa8d" title="#c4aa8d"></i><i class="sw" style="--sw:#212d8e" title="#212d8e"></i><i class="sw" style="--sw:#2779a7" title="#2779a7"></i><i class="sw" style="--sw:#ECD06F" title="#ECD06F"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Portfolios/catalogues whose inventory is the argument — architecture studios, photographers, product decks, archives. Needs dozens of strong tiles.</p>
+    <p><b>Not for</b> Wayfinding-dependent sites: the work IS the menu (usability 7.68) — pays only for studio portfolios. Sparse content reads as empty tech demo. As-shipped: no keyboard path, no reduced-motion stop.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://www.powerhouse-company.com/" rel="noopener noreferrer nofollow" target="_blank">Powerhouse Company</a>
+      <span class="m__award">Site of the Month 2020.04</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/powerhouse-company" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Powerhouse Company</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://fwa.thecoolclub.co/" rel="noopener noreferrer nofollow" target="_blank">The Cool Club x FWA</a>
+      <span class="m__award">Mobile of the Year 2019</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/the-cool-club-x-fwa" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Cool Club x FWA</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-exploded-blueprint-mono" aria-labelledby="h-exploded-blueprint-mono">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">22</p>
+  <h3 class="fam__name" id="h-exploded-blueprint-mono">exploded-blueprint-mono</h3>
+  <p class="fam__thesis">Spec-sheet register: 1px white exploded line-art diagrams on near-black with hairline leader lines to tiny mono labels, two-column ledgers, and color withheld except on the component currently named.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Warm neutrals: near-black #252423 inverts to warm bone #DAD5D0 to annotate; hairlines #93908e</dd></div>
+    <div><dt>Type</dt><dd>Two faces, ~5:1 span: wide DIN grotesk (DINish wdth 125, wt 800, lh .865em) capped 4rem; all else Berkeley Mono .75–.875rem</dd></div>
+    <div><dt>Motion</dt><dd>Cubic, short: out(3)/inOut(3) eases, 250ms reveals, 10ms staggers; labels lead the self-drawing leader lines by 50ms; section-height scroll scrub</dd></div>
+    <div><dt>Varies by</dt><dd>Is the drawing alive? Living instrument (anime-js: real 3D, scroll-scrubbed explode, lines re-solved per frame) → printed datasheet (opal: fixed vector axonometric + hairline ledgers + buy card)</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#252423" title="#252423"></i><i class="sw" style="--sw:#DAD5D0" title="#DAD5D0"></i><i class="sw" style="--sw:#FFDB01" title="#FFDB01"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#35383c" title="#35383c"></i><i class="sw" style="--sw:#0a0a0a" title="#0a0a0a"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> A single product with real, nameable parts and real measured numbers — hardware teardowns, dev tools/libraries, spec-driven product pages that can file claims as units.</p>
+    <p><b>Not for</b> Services, agencies, apps without real parts — the hairlines become costume and the tell is labels degrading into adjectives. Outside dev-tool audiences the 18-hue chip strip reads as an unthemed color picker; no fake LCD numerals without a live metric.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://animejs.com" rel="noopener noreferrer nofollow" target="_blank">Anime.js</a>
+      <span class="m__award">Site of the Month 2025.05</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/anime-js" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Anime.js</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://www.opalcamera.com/opal-tadpole" rel="noopener noreferrer nofollow" target="_blank">Opal Tadpole</a>
+      <span class="m__award">Ecommerce of the Year 2024</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/opal-tadpole" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Opal Tadpole</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-flat-sticker-pop" aria-labelledby="h-flat-sticker-pop">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">23</p>
+  <h3 class="fam__name" id="h-flat-sticker-pop">flat-sticker-pop</h3>
+  <p class="fam__thesis">Dead-flat sticker-sheet: zero shadows or gradients, saturated single-hue grounds, chunky rounded primitives each dealt one candy hue, one loud reserved action color; a play surface, not a mascot cast.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>0</dd></div>
+    <div><dt>Temperature</dt><dd>Saturated candy: #ff6d38 #7a78ff #c7ff69 #ffc412 over cream #fdf9f0 / near-black #141414</dd></div>
+    <div><dt>Type</dt><dd>OldschoolGrotesk 900 -.04em lh .8 vs Aeonik body +.01em; ~7:1 jump; ratio is the portable part (both faces commercial)</dd></div>
+    <div><dt>Motion</dt><dd>Scroll-scrubbed Rive timelines; svh sections overlap via negative margins; CSS+JS share n-out/n-in-out eases; hover un-rounds pill to 1rem</dd></div>
+    <div><dt>Varies by</dt><dd>Black keyline (licenses clashing hues; life in interaction) vs value-cut, no outline (one hue family; life in 11 hand-set tilts).</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#FF6D38" title="#FF6D38"></i><i class="sw" style="--sw:#8584FF" title="#8584FF"></i><i class="sw" style="--sw:#141414" title="#141414"></i><i class="sw" style="--sw:#FDF9F0" title="#FDF9F0"></i><i class="sw" style="--sw:#00A652" title="#00A652"></i><i class="sw" style="--sw:#FFC412" title="#FFC412"></i><i class="sw" style="--sw:#ffa42b" title="#ffa42b"></i><i class="sw" style="--sw:#ffc862" title="#ffc862"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Consumer products that must read as playable — gamified apps, kids/education, community/loyalty programs; &quot;make the boring thing feel like a toy&quot;.</p>
+    <p><b>Not for</b> Dies the moment a ninth hue or one gradient arrives. Don't copy the 4K-video layer, hover-only states, or site-wide user-select:none; hand-set tilt belongs to Astrology Club, not Navigate.</p>
+  </div>
+  <ul class="fam__mem"><li class="m m--dead">
+      <a class="m__site" href="https://nvg8.io/" rel="noopener noreferrer nofollow" target="_blank">Navigate</a>
+      <span class="m__award">Site of the Month 2025.04</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/navigate" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Navigate</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://astrologyclub.byspotify.com" rel="noopener noreferrer nofollow" target="_blank">Spotify - Astrology Club</a>
+      <span class="m__award">Site of the Month 2022.10</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/spotify-astrology-club" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Spotify - Astrology Club</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-glacial-slate-telemetry" aria-labelledby="h-glacial-slate-telemetry">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">24</p>
+  <h3 class="fam__name" id="h-glacial-slate-telemetry">glacial-slate-telemetry</h3>
+  <p class="fam__thesis">One cold blue-grey grade moved in value, never hue, over full-bleed expedition photography; structure as open hairline rules, real data as instruments, one accent only on things you can act on.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Cold blue-grey slate #466383; one accent per build: #ffb702 amber or #f56905 orange</dd></div>
+    <div><dt>Type</dt><dd>Uppercase by default, .1em tracking, self-hosted grotesque; rem rebased to viewport (html{font-size:.52083vw})</dd></div>
+    <div><dt>Motion</dt><dd>One curve per layer: cubic-bezier(.19,1,.22,1) sole CSS bezier; Expo.easeOut dominant JS ease; duration varies far more than curve.</dd></div>
+    <div><dt>Varies by</dt><dd>Whether the telemetry describes the photograph (Mammut: inert SVG, native scroll) or controls it (Storm: the gauge is a dial you turn).</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#191919" title="#191919"></i><i class="sw" style="--sw:#f56905" title="#f56905"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#23293c" title="#23293c"></i><i class="sw" style="--sw:#f0f0f0" title="#f0f0f0"></i><i class="sw" style="--sw:#676767" title="#676767"></i><i class="sw" style="--sw:#ffb702" title="#ffb702"></i><i class="sw" style="--sw:#466383" title="#466383"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Subjects where conditions are the story — expedition, field research, launch/telemetry, climate, logistics — with real measurements and real photography.</p>
+    <p><b>Not for</b> Strip the photography and hairlines become a dashboard skin; strip real numbers and gauges become decoration. Gesture-per-beat nav on task-bearing UI; military grotesque off-subject reads as costume.</p>
+  </div>
+  <ul class="fam__mem"><li class="m m--dead">
+      <a class="m__site" href="https://eiger-extreme.mammut.com" rel="noopener noreferrer nofollow" target="_blank">Mammut Expedition Baikal</a>
+      <span class="m__award">Ecommerce of the Year 2020</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/mammut-expedition-baikal" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Mammut Expedition Baikal</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="http://www.airforce.com/intothestorm" rel="noopener noreferrer nofollow" target="_blank">Into the Storm</a>
+      <span class="m__award">Site of the Month 2021.03</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/into-the-storm" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Into the Storm</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-hazed-relic-runes" aria-labelledby="h-hazed-relic-runes">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">25</p>
+  <h3 class="fam__name" id="h-hazed-relic-runes">hazed-relic-runes</h3>
+  <p class="fam__thesis">Mythic stone monuments sunk in volumetric haze, desaturated to near-neutrals; one acid accent spent as light and glyphs; an invented alphabet cross-fades beside Latin; tracked-caps corner chrome.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>Warm olive-khaki/cool grey neutrals on near-black #08080c; ink #f8ffed; accent #ebfc53</dd></div>
+    <div><dt>Type</dt><dd>Wide-thin PP Rader caps at 8.4vw/lh .83 composited inside the render; chrome Space Grotesk 300 tracked .1em.</dd></div>
+    <div><dt>Motion</dt><dd>House easing cubic-bezier(.4,0,.1,1); page changes are 1.2s/1.7s linear dissolves, not cuts; synthetic scroll lerps baked world states.</dd></div>
+    <div><dt>Varies by</dt><dd>Exterior fog-space you orbit vs discrete interior rooms you teleport between; accent shifts from motion transient to state marker.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#09090c" title="#09090c"></i><i class="sw" style="--sw:#181a18" title="#181a18"></i><i class="sw" style="--sw:#08080c" title="#08080c"></i><i class="sw" style="--sw:#f8ffed" title="#f8ffed"></i><i class="sw" style="--sw:#ebfc53" title="#ebfc53"></i><i class="sw" style="--sw:#515158" title="#515158"></i><i class="sw" style="--sw:#08110a" title="#08110a"></i><i class="sw" style="--sw:#102416" title="#102416"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Immersive world-building sites: mythic/cinematic brand chapters, game or film tie-ins, WebGL scroll experiences where the render is the page ground.</p>
+    <p><b>Not for</b> Pastiche without real depth (flat art + CSS blur reads as smudge), on light content pages, with runes in wayfinding/body copy, or without budget for a preloader and a keyboard path.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://www.aten7.com/" rel="noopener noreferrer nofollow" target="_blank">Aten7</a>
+      <span class="m__award">Site of the Month 2023.07</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/aten7" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Aten7</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://wakanda-forever-master.dogstudio-dev.co/zerolimits" rel="noopener noreferrer nofollow" target="_blank">The Hall of Zero Limits</a>
+      <span class="m__award">Site of the Month 2023.01</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/the-hall-of-zero-limits" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Hall of Zero Limits</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-iridescent-plaster-gallery" aria-labelledby="h-iridescent-plaster-gallery">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">26</p>
+  <h3 class="fam__name" id="h-iridescent-plaster-gallery">iridescent-plaster-gallery</h3>
+  <p class="fam__thesis">Pale warm plaster/marble architecture carries the frame under huge high-contrast serif; two declared colors (cream/charcoal), all saturation in one iridescent token spent only on state and progress.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>Warm: ground #EDC1CB/#F6F3E4, ink #212121, fog #E0CFCF; chroma one #EECFFF→#B5BBFF ramp</dd></div>
+    <div><dt>Type</dt><dd>Two families, three files — Neue Montreal + Saol Display Light; huge serif sized to the frame, colliding with the plate</dd></div>
+    <div><dt>Motion</dt><dd>Expo-dominated, unhurried; frame never still (brownian camera rig); capsule border travels on ease:none constant-speed middles</dd></div>
+    <div><dt>Varies by</dt><dd>Manufactured vs captured plate: rendered room bakes type in, ink wears the ramp; photo forces DOM type + scrims, ramp goes to UI.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#EDC1CB" title="#EDC1CB"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#EAD7D1" title="#EAD7D1"></i><i class="sw" style="--sw:#212121" title="#212121"></i><i class="sw" style="--sw:#353535" title="#353535"></i><i class="sw" style="--sw:#EFDED9" title="#EFDED9"></i><i class="sw" style="--sw:#F6F3E4" title="#F6F3E4"></i><i class="sw" style="--sw:#212121" title="#212121"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Studios, cultural institutions, exhibitions — anything arguing atmosphere plus one name; needs one genuinely strong plate and a headline worth that size.</p>
+    <p><b>Not for</b> Weak imagery leaves corner-cluster chrome on nothing; a primitives/MatCap plate reads as Blender tutorial; one full-chroma photo shatters the blush set; ramp past ~12 uses kills it; no gated canvas H1.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://unseen.co/" rel="noopener noreferrer nofollow" target="_blank">Unseen Studio</a>
+      <span class="m__award">Site of the Month 2023.02</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/unseen-studio" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Unseen Studio</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://www.magische-spiegelungen.de" rel="noopener noreferrer nofollow" target="_blank">Magical Reflections</a>
+      <span class="m__award">Site of the Month 2022.02</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/magical-reflections" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Magical Reflections</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-old-master-remix" aria-labelledby="h-old-master-remix">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">27</p>
+  <h3 class="fam__name" id="h-old-master-remix">old-master-remix</h3>
+  <p class="fam__thesis">A full-bleed period oil carries the whole surface; every modern element sits in one graphically pure layer — one quarantined accent, hairline rules, one numeral system — painting and UI never blend.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Warm olive: parchment #f7f7ee on #292919; pink quarantined to imagery (CANALS: #D14836)</dd></div>
+    <div><dt>Type</dt><dd>Three roles, never traded: bold grotesque (lh .9, -.03em), old-style serif (-.05em), script rationed to ::first-letter</dd></div>
+    <div><dt>Motion</dt><dd>Survey lines drawn on via pathLength=1 (3s, cubic-bezier(.34,.22,.47,.84)); chrome choreographed by root data-attributes, no timeline lib</dd></div>
+    <div><dt>Varies by</dt><dd>How far the modern layer enters the picture plane: CANALS protects a flat scan, all on top; Renaissance re-renders it 3D and goes inside.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#F7F7EE" title="#F7F7EE"></i><i class="sw" style="--sw:#292919" title="#292919"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#D14836" title="#D14836"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#F00000" title="#F00000"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Campaign or seasonal microsites and editorial releases where the anachronism has a reason — the conceit must close (commerce props in a 'Renaissance' edition).</p>
+    <p><b>Not for</b> Pastiche when the joke doesn't close (Old Master + random modern prop), when genAI paint artefacts show, when the script face sets words, or in persistent product UI — Roman numerals alone cost you.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://www.shopify.com/editions/winter2026" rel="noopener noreferrer nofollow" target="_blank">The Renaissance Edition</a>
+      <span class="m__award">Site of the Month 2026.02</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/the-renaissance-edition" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Renaissance Edition</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://canals-amsterdam.com/" rel="noopener noreferrer nofollow" target="_blank">CANALS</a>
+      <span class="m__award">Site of the Month 2019.12</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/canals" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for CANALS</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-orrery-chart-vellum" aria-labelledby="h-orrery-chart-vellum">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">28</p>
+  <h3 class="fam__name" id="h-orrery-chart-vellum">orrery-chart-vellum</h3>
+  <p class="fam__thesis">Navigation drawn as an antique chart: orbital rings, waypoint nodes, year-rails as hairline apparatus over cinematic plates, readable face vs hard-tracked micro-caps — the IA is a diagram you travel.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>0</dd></div>
+    <div><dt>Temperature</dt><dd>Warm bone #f5f1eb / plum-black #2f2425 ink; vermilion #f93c04 rules; dark #122330→#431e2e</dd></div>
+    <div><dt>Type</dt><dd>Two faces, two jobs, zero overlap: Roobert 300 carries every readable size; Rogan quarantined to 9–12px caps at .24em.</dd></div>
+    <div><dt>Motion</dt><dd>Iris from scale3d(12,12,1) at origin 0 0, 1s; easeOutQuint open / easeInOutQuint close; rings 150s linear; scroll-velocity skew ±90°</dd></div>
+    <div><dt>Varies by</dt><dd>What the chart charts + drawn vs computed apparatus: system/drawn SVG rings (star-atlas) vs territory/WebGL map, 49 shader pairs (continent)</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#f5f1eb" title="#f5f1eb"></i><i class="sw" style="--sw:#2f2425" title="#2f2425"></i><i class="sw" style="--sw:#f53a02" title="#f53a02"></i><i class="sw" style="--sw:#322fb3" title="#322fb3"></i><i class="sw" style="--sw:#122330" title="#122330"></i><i class="sw" style="--sw:#431e2e" title="#431e2e"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#2779a7" title="#2779a7"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Cinematic world-building — game universes, lore launches, atmospheric brand chapters — with a pre-rendered art budget and nav that can afford to be a diagram.</p>
+    <p><b>Not for</b> Anything with a task behind it — the jury docked usability to 7.36. The atmosphere is bought with studio-grade pre-rendered art (no WebGL) and collapses without it. Never scale vermilion into fills.</p>
+  </div>
+  <ul class="fam__mem"><li class="m m--dead">
+      <a class="m__site" href="https://staratlas.com" rel="noopener noreferrer nofollow" target="_blank">Star Atlas</a>
+      <span class="m__award">Userschoice of the Year 2021</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/star-atlas" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Star Atlas</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m m--dead">
+      <a class="m__site" href="https://www.witchernetflix.com/" rel="noopener noreferrer nofollow" target="_blank">Welcome To The Continent</a>
+      <span class="m__award">Site of the Month 2022.03</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/welcome-to-the-continent" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Welcome To The Continent</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-rounded-frame-diorama" aria-labelledby="h-rounded-frame-diorama">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">29</p>
+  <h3 class="fam__name" id="h-rounded-frame-diorama">rounded-frame-diorama</h3>
+  <p class="fam__thesis">A rounded screen or scene-object on a soft pastel field; one crafted 3D diorama carries the whole story — the camera moves through it, room-scoped theming retints the quiet chrome, two accents only.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>Warm: bone #f2efea ground, ink #241f21, chartreuse #e9e778 + persimmon #f76c46 accents</dd></div>
+    <div><dt>Type</dt><dd>One variable grotesk, connection axis pinned max on every style (&quot;cnct&quot; 1000), titles tracked -.04em; vw scale &gt;2000px.</dd></div>
+    <div><dt>Motion</dt><dd>Expo-out only (cubic-bezier(.19,1,.22,1)), .5s chrome / .8s copy; 150vh-per-slide sticky deck; heavy 3D in a Worker on OffscreenCanvas.</dd></div>
+    <div><dt>Varies by</dt><dd>Is the region a place or a moment — Kriss: rooms w/ coordinates, quads named for architecture; Floema: scroll ranges, quads named for mood.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#241F21" title="#241F21"></i><i class="sw" style="--sw:#E9E778" title="#E9E778"></i><i class="sw" style="--sw:#D1CACC" title="#D1CACC"></i><i class="sw" style="--sw:#0F0F0F" title="#0F0F0F"></i><i class="sw" style="--sw:#B29FA3" title="#B29FA3"></i><i class="sw" style="--sw:#919A8E" title="#919A8E"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Products whose value is a place or system you'd have to be shown — a clinic, a public-space furniture catalogue, a physical service with rooms and stages.</p>
+    <p><b>Not for</b> Needs one genuinely crafted asset; without it, a stock isometric illustration with pastel labels — a 2021 SaaS page. Transplanted moss/kingfisher content is pastiche; flat cutouts read as clip art.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://www.floema.com/en" rel="noopener noreferrer nofollow" target="_blank">Floema</a>
+      <span class="m__award">Site of the Month 2026.05</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/floema" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Floema</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://kriss.ai/" rel="noopener noreferrer nofollow" target="_blank">Kriss.ai</a>
+      <span class="m__award">Site of the Month 2024.10</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/kriss-ai" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Kriss.ai</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-swiss-grid-lab" aria-labelledby="h-swiss-grid-lab">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">30</p>
+  <h3 class="fam__name" id="h-swiss-grid-lab">swiss-grid-lab</h3>
+  <p class="fam__thesis">The page's own construction is the subject — grid overlays, spec tables, bezier handles and keyframe markers drawn as content on flat ink-and-paper grounds: a design system demonstrating itself.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>Flat ink-on-paper: #F1F1F1/#010101, accent #FAFF00, ramp #B2B2B2→#606060→#2C2C2C</dd></div>
+    <div><dt>Type</dt><dd>10px chrome + 14px copy vs 86/264px display, one 31px rank, no 16px anywhere; tracking ~0 small, −0.04em at display.</dd></div>
+    <div><dt>Motion</dt><dd>Stock easings only (510 linear, 101 ease-out, zero cubic-bezier); travel via offset-path not transform; delay = held first keyframe stop.</dd></div>
+    <div><dt>Varies by</dt><dd>How optional the apparatus is + whether the drawn grid is actually in force: toggled depiction (grids) vs load-bearing CSS Grid (dropbox).</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#F1F1F1" title="#F1F1F1"></i><i class="sw" style="--sw:#010101" title="#010101"></i><i class="sw" style="--sw:#FAFF00" title="#FAFF00"></i><i class="sw" style="--sw:#B2B2B2" title="#B2B2B2"></i><i class="sw" style="--sw:#606060" title="#606060"></i><i class="sw" style="--sw:#2C2C2C" title="#2C2C2C"></i><i class="sw" style="--sw:#0061fe" title="#0061fe"></i><i class="sw" style="--sw:#1a1918" title="#1a1918"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Documentation, design systems, brand guidelines, editorial explainers, teaching projects — where the method is the content and the reader agreed to be taught.</p>
+    <p><b>Not for</b> Pastiche when the page documents nothing — apparatus is honest only describing what it decorates. No #FAFF00 off-black, no signature curves, no zoomed fixed artboard.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://grids.obys.agency/" rel="noopener noreferrer nofollow" target="_blank">Grids</a>
+      <span class="m__award">Site of the Month 2021.09</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/grids" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Grids</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://brand.dropbox.com/" rel="noopener noreferrer nofollow" target="_blank">Dropbox Brand</a>
+      <span class="m__award">Site of the Month 2025.02</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/dropbox-brand" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Dropbox Brand</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-torn-paper-editorial" aria-labelledby="h-torn-paper-editorial">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">31</p>
+  <h3 class="fam__name" id="h-torn-paper-editorial">torn-paper-editorial</h3>
+  <p class="fam__thesis">The page as physical printed stock: warm paper grounds, torn scanned scraps occluding a giant masthead, serif editorial furniture, and motion that only does what a sheet could — tear, slip, clip.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>2</dd></div>
+    <div><dt>Temperature</dt><dd>Warm off-white stocks: #f3efe3 #fefefe #f4e8e0 (Watson), #CDC6BE (Miranda); never cool</dd></div>
+    <div><dt>Type</dt><dd>One display word at 20–37vw, physically occluded; serif copy with drop caps, footnote numerals, hairline swept rules</dd></div>
+    <div><dt>Motion</dt><dd>State changes tear, slip, or clip a sheet — never crossfade; house 1000ms cubic-bezier(.19,1,.22,1), damping 0.09, clip-path inset wipes</dd></div>
+    <div><dt>Varies by</dt><dd>Where paper lives: geometry+normal maps in three.js, modern print (Watson) → texture overlay + shader tear, 19th-c broadsheet (Miranda)</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#fefefe" title="#fefefe"></i><i class="sw" style="--sw:#f4e8e0" title="#f4e8e0"></i><i class="sw" style="--sw:#e6e3d9" title="#e6e3d9"></i><i class="sw" style="--sw:#1c1b20" title="#1c1b20"></i><i class="sw" style="--sw:#1D1D1B" title="#1D1D1B"></i><i class="sw" style="--sw:#CDC6BE" title="#CDC6BE"></i><i class="sw" style="--sw:#96B59F" title="#96B59F"></i><i class="sw" style="--sw:#69645F" title="#69645F"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Studio, portfolio, or manifesto sites with few short routes, print-grade scanned assets, and an editorial voice — art-book or broadsheet briefs</p>
+    <p><b>Not for</b> No-scroll on long/docs/shop sites; four-multiply duotone on dense grids; per-glyph rig on long headlines; ripped-edge PNGs over stock photos = 2011 Photoshop pastiche — 90% asset quality, 10% code</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://watson.la/" rel="noopener noreferrer nofollow" target="_blank">Watson</a>
+      <span class="m__award">Site of the Month 2024.09</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/watson" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Watson</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://niccolomiranda.com" rel="noopener noreferrer nofollow" target="_blank">Miranda – Paper Portfolio</a>
+      <span class="m__award">Site of the Month 2021.11</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/miranda-paper-portfolio" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Miranda – Paper Portfolio</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-two-face-splice-editorial" aria-labelledby="h-two-face-splice-editorial">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">32</p>
+  <h3 class="fam__name" id="h-two-face-splice-editorial">two-face-splice-editorial</h3>
+  <p class="fam__thesis">Gallery-white ground with whisper corner chrome and a display headline splicing two typefaces inside one block — per glyph or per line — imagery as floating cropped fragments, one tiny accent.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>2</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Paper-neutral: #f0f0f0 ground, never pure white, two greys; one accent #fe4249 (cursor)</dd></div>
+    <div><dt>Type</dt><dd>One h1, two faces: hairline display serif vs neutral grotesque, display 16% larger; 13.5:1 over support; vw-root scale</dd></div>
+    <div><dt>Motion</dt><dd>One-way data-shown latch + data-d delay ladders in CSS: 25ms/char, 100/50ms word in/out, 75ms/block; four custom cubic-beziers total</dd></div>
+    <div><dt>Varies by</dt><dd>Grain of the splice, glyph to line: coarser grain earns its own size and metrics, louder chrome; accent moves from content to interface</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#3046b3" title="#3046b3"></i><i class="sw" style="--sw:#c95a1a" title="#c95a1a"></i><i class="sw" style="--sw:#409289" title="#409289"></i><i class="sw" style="--sw:#eb7c16" title="#eb7c16"></i><i class="sw" style="--sw:#f0f0f0" title="#f0f0f0"></i><i class="sw" style="--sw:#141414" title="#141414"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Studios, photographers, editorial and cultural clients — where the headline IS the identity and the budget is typographic, not 3D; the library's type-only pole</p>
+    <p><b>Not for</b> Pastiche when: hairline face scaled small; clock/counter chrome with no place or sequence to report; era-default second face (Saol); axis change without cursor coaching</p>
+  </div>
+  <ul class="fam__mem"><li class="m m--dead">
+      <a class="m__site" href="https://www.madeleinedalla.com" rel="noopener noreferrer nofollow" target="_blank">Madeleine Dalla</a>
+      <span class="m__award">Site of the Month 2020.03</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/madeleine-dalla" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Madeleine Dalla</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li>
+<li class="m">
+      <a class="m__site" href="https://theshift.tokyo/en/" rel="noopener noreferrer nofollow" target="_blank">The Shift</a>
+      <span class="m__award">Site of the Month 2021.10</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/the-shift-1" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Shift</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-acid-scrawl-telemetry" aria-labelledby="h-acid-scrawl-telemetry">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">33</p>
+  <h3 class="fam__name" id="h-acid-scrawl-telemetry">acid-scrawl-telemetry</h3>
+  <p class="fam__thesis">Acid lime on soot black alternating with sage-bone editorial, broadcast stat cards with giant ordinals and circuit traces, and a neon marker scrawl replacing one word of a three-register headline.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Acid-hot single accent: lime #D2FF00 on soot #111112/#282c20 &lt;-&gt; sage-bone #efefe5/#f4f4ed</dd></div>
+    <div><dt>Type</dt><dd>Mona Sans Variable (wdth 75 = telemetry, 660/93 display) + Brier swash on one &lt;strong&gt; word, larger than the grotesk</dd></div>
+    <div><dt>Motion</dt><dd>Two grammars: clip-inset chased by an accent bar (half-overlap) and edge-anchored ellipse clips; 4 GSAP defaults, ease:'none' scrubbed</dd></div>
+    <div><dt>Varies by</dt><dd>Where the hand-made mark comes from (real vs synthesised hand) and how hot the accent runs — stated as prediction; single-member family.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#111112" title="#111112"></i><i class="sw" style="--sw:#D2FF00" title="#D2FF00"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Athlete/team/personal sports brands, hype product drops — broadcast-telemetry energy plus an editorial second register and a real hand-made mark.</p>
+    <p><b>Not for</b> Anything needing calm, trust, or expense — the acid palette is hype-only. Reads as pastiche the instant the scrawl isn't a real person's hand, or a generic 3D object fills the hero slot.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://landonorris.com/" rel="noopener noreferrer nofollow" target="_blank">Lando Norris</a>
+      <span class="m__award">Site of the Year 2025 · Site of the Month 2025.11</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/lando-norris" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Lando Norris</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-archival-particle-editorial" aria-labelledby="h-archival-particle-editorial">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">34</p>
+  <h3 class="fam__name" id="h-archival-particle-editorial">archival-particle-editorial</h3>
+  <p class="fam__thesis">Real artwork thumbnails as the particles of scroll-choreographed data-viz formations — ribbons, rings, timelines — on a white museum field with a bookish serif; violent density alternation as pacing.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Warm-neutral: white stage, putty #c3b8ac tint, frosted #bababa33; fog keeps warmth.</dd></div>
+    <div><dt>Type</dt><dd>Bradford serif = all narration/headlines; Graphik sans = every label, credit, footnote; tracking always −.01…−.03em.</dd></div>
+    <div><dt>Motion</dt><dd>Scroll-scrubbed, paced in screens not seconds (89.5 total); power2.inOut throughout; hover dims .1s in, 1s out; velocity drift on the ring.</dd></div>
+    <div><dt>Varies by</dt><dd>Latent (1 member): how literally the formation is a chart — texture (ribbon) → notation (wedges + DOM labels at computed coords).</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#FFFFFF" title="#FFFFFF"></i><i class="sw" style="--sw:#DAE2E8" title="#DAE2E8"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Collections, archives, catalogues raisonnés, provenance/citation indexes — hundreds of good images + real per-item records; the argument is the corpus's shape.</p>
+    <p><b>Not for</b> SaaS/consumer products (white field + bookish serif = borrowed gravitas); stock photos (swarm becomes confetti, museum register a costume); real DOM content under 90 screens (scrolljacked document).</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://www.getty.edu/tracingart/" rel="noopener noreferrer nofollow" target="_blank">Tracing Art</a>
+      <span class="m__award">Site of the Month 2025.07</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/tracing-art" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Tracing Art</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-botanical-wallpaper-mono" aria-labelledby="h-botanical-wallpaper-mono">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">35</p>
+  <h3 class="fam__name" id="h-botanical-wallpaper-mono">botanical-wallpaper-mono</h3>
+  <p class="fam__thesis">A wallpapered panel inset in a pure-white margin: white paper printed with a tonal tile in the section's ink, forest-green bookmark tabs bleed off the edges, one typewriter cut carries all hierarchy.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>0</dd></div>
+    <div><dt>Temperature</dt><dd>Cool paper white + forest green #215732; base #EEEEEE; shades #F45923/#3B7F83/#FAC8B1</dd></div>
+    <div><dt>Type</dt><dd>Rational TW typewriter cut (Display+Text) for all hierarchy; Sailec geometric sans for body copy + scroll cue.</dd></div>
+    <div><dt>Motion</dt><dd>Five hand-set CSS curves, all decelerating to a dead stop; 0.8s cubic-bezier(.43,.195,.02,1) tab slides; underline wipes scaleX(0)→1.</dd></div>
+    <div><dt>Varies by</dt><dd>None measured (singleton). Code-exposed knobs: frame thickness (90/30px), ground ink (pattern and tint are one vec3), per-sprite shade hue.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#f3f5f2" title="#f3f5f2"></i><i class="sw" style="--sw:#3a5738" title="#3a5738"></i><i class="sw" style="--sw:#539273" title="#539273"></i><i class="sw" style="--sw:#dfaea7" title="#dfaea7"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Restaurant/café or artisanal-brand sites wanting a printed, illustrated, wallpapered feel — one brand green, flat cut-out art, scale-only hierarchy.</p>
+    <p><b>Not for</b> Grainy botanicals on sage with coral accents is now the default artisanal-cafe template; without per-object chromatic shading, dithered-band lighting, and the 45px module it reads as stock pastiche.</p>
+  </div>
+  <ul class="fam__mem"><li class="m m--dead">
+      <a class="m__site" href="http://koox.co.uk/" rel="noopener noreferrer nofollow" target="_blank">Koox</a>
+      <span class="m__award">Developer of the Year 2018</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/koox" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Koox</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-carved-ice-mono" aria-labelledby="h-carved-ice-mono">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">36</p>
+  <h3 class="fam__name" id="h-carved-ice-mono">carved-ice-mono</h3>
+  <p class="fam__thesis">An arctic monochrome canvas world you descend into, not a page you scroll — chunky sculpted ice with light glowing from the seams, all UI rendered inside the 3D scene as expedition-HUD telemetry.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Cold, fog-narrow blue-grey: #B6BAC5/#383E4E, fog #6A6F7D→#E1E6F1, rim accent #83A1C5</dd></div>
+    <div><dt>Type</dt><dd>IBM Plex Mono only, MSDF-rendered in-canvas with glyph-scramble decode reveals; reads as expedition-HUD telemetry.</dd></div>
+    <div><dt>Motion</dt><dd>Virtual scroll: wheel×0.1, friction 0.97, double-lerp .075→.15, 1.4s inOut3 auto-snap, modulo wrap; exp/log framerate-independent damp.</dd></div>
+    <div><dt>Varies by</dt><dd>Singleton; the free axis is fidelity of light-from-within — full spectral-IOR WebGL ice down to CSS glow through gaps — not the palette.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#b6bac5" title="#b6bac5"></i><i class="sw" style="--sw:#383e4e" title="#383e4e"></i><i class="sw" style="--sw:#A0A5B1" title="#A0A5B1"></i><i class="sw" style="--sw:#6A6F7D" title="#6A6F7D"></i><i class="sw" style="--sw:#E1E6F1" title="#E1E6F1"></i><i class="sw" style="--sw:#83A1C5" title="#83A1C5"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Brand monuments, product-universe launches, &quot;we are a world&quot; statements; the maximal-immersion pole of the DOM↔canvas spectrum in a Phase-1 fan-out.</p>
+    <p><b>Not for</b> SEO/a11y/conversion pages (empty-DOM scored 6.4–6.6 on its own card); WebGL2-only with no reduced-motion path must be re-authored; expedition-HUD crypto styling as costume on an unrelated brand.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://www.igloo.inc/" rel="noopener noreferrer nofollow" target="_blank">Igloo Inc</a>
+      <span class="m__award">Site of the Year 2024 · Site of the Month 2024.07</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/igloo-inc" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Igloo Inc</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-cg-diorama-poster" aria-labelledby="h-cg-diorama-poster">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">37</p>
+  <h3 class="fam__name" id="h-cg-diorama-poster">cg-diorama-poster</h3>
+  <p class="fam__thesis">A photoreal period CG room explored by camera pan; a flat single-hue poster type layer that refuses to belong to the render, hairline affordances at scene depth, treasure count as the whole HUD.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>0</dd></div>
+    <div><dt>Temperature</dt><dd>Warm — cream plaster, apricot tile, honey wood — under one saturated red #ec3030</dd></div>
+    <div><dt>Type</dt><dd>Huge uppercase display (155px @1920), tracked -0.035em, leaded 0.77; three mixins, no scale: display, caps, body=caps.</dd></div>
+    <div><dt>Motion</dt><dd>Camera pan replaces scroll (twin Catmull-Rom splines); GSAP power3.out/expo.out; affordances resolve fill→2px hairline via one lineWidth.</dd></div>
+    <div><dt>Varies by</dt><dd>Predicted (1 member): how far the type acknowledges the render — exemplar at zero (no scrim/blend); a #ed3030 flood ships gated off.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#ec3030" title="#ec3030"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#EDE2D4" title="#EDE2D4"></i><i class="sw" style="--sw:#FFFAF4" title="#FFFAF4"></i><i class="sw" style="--sw:#E94EBD" title="#E94EBD"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Briefs pairing a fully art-directed 3D interior with a bold campaign identity — exhibition/anniversary microsites, explorable scene + poster-grade type.</p>
+    <p><b>Not for</b> Stock 360 photo under the type collapses into real-estate tour; low-contrast red hairline chrome scored 5.80 accessibility; period props without an earning subject read as hidden-object asset pack.</p>
+  </div>
+  <ul class="fam__mem"><li class="m m--dead">
+      <a class="m__site" href="https://adobexbowie75.com/" rel="noopener noreferrer nofollow" target="_blank">Adobe X Bowie</a>
+      <span class="m__award">Site of the Month 2022.11</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/adobe-x-bowie" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Adobe X Bowie</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-constructivist-bone-grid" aria-labelledby="h-constructivist-bone-grid">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">38</p>
+  <h3 class="fam__name" id="h-constructivist-bone-grid">constructivist-bone-grid</h3>
+  <p class="fam__thesis">Warm bone ground, flat near-black furniture: a constructivist monogram masthead terminated by a full-measure slab, one 1px-ruled utility strip as the chrome, chroma quarantined in matte art plates.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Warm two-token: bone #E7E4DF / ink #141414; --grey declared but referenced 0 times.</dd></div>
+    <div><dt>Type</dt><dd>One face, two weights (KH Teka 400/500); body font-size:1vw scale-locks the poster; display step: 5.69em / 9.5em.</dd></div>
+    <div><dt>Motion</dt><dd>Masked line reveals; rule-divs scale 0→1; stock new Lenis() smooth scroll; hard-cut page swap under a full-viewport veil on a 700ms hold.</dd></div>
+    <div><dt>Varies by</dt><dd>PROPOSED, n=1: (a) display work the drawn mark absorbs (AIM: all); (b) quarantine airtightness (AIM: zero hue in chrome).</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#141414" title="#141414"></i><i class="sw" style="--sw:#E7E4DF" title="#E7E4DF"></i><i class="sw" style="--sw:#F5F2EE" title="#F5F2EE"></i><i class="sw" style="--sw:#A72805" title="#A72805"></i><i class="sw" style="--sw:#EA7313" title="#EA7313"></i><i class="sw" style="--sw:#E6D6BA" title="#E6D6BA"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Archives, exhibitions, editorial indexes, type foundries — a fixed catalogue of real images that disagree about colour and must read as one collection.</p>
+    <p><b>Not for</b> When the brand owns a colour (swiss-grid-lab's side); one accent in the chrome kills the quarantine. Spelling words with the monogram = 1920s pastiche. Mobile gets a different, simpler design.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://aim.obys.agency/" rel="noopener noreferrer nofollow" target="_blank">AIM — AI Modernism of Kharkiv</a>
+      <span class="m__award">Site of the Month 2024.01</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/aim-ai-modernism-of-kharkiv" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for AIM — AI Modernism of Kharkiv</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-ink-scrawl-white-cube" aria-labelledby="h-ink-scrawl-white-cube">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">39</p>
+  <h3 class="fam__name" id="h-ink-scrawl-white-cube">ink-scrawl-white-cube</h3>
+  <p class="fam__thesis">A photoreal white-cube gallery on a rail whose entire graphic voice is one commissioned hand-lettered face used as a system — signage, marginalia, inked rules, even the visitor's form input.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>0</dd></div>
+    <div><dt>Temperature</dt><dd>Warm: bone #f4f1ef/#fff ground, near-black ink #231f20, tan #c1ab8e rationed (5 uses)</dd></div>
+    <div><dt>Type</dt><dd>Hand-lettered face bound to 5 classes + form inputs; Georgia artwork titles; Open Sans body; tracking grows with size.</dd></div>
+    <div><dt>Motion</dt><dd>Two speeds: 0.85s quint.out (weight), 0.35s cubic-bezier(.22,1,.36,1) (state); text written on via snap:{opacity:1}; 12fps brush wipes.</dd></div>
+    <div><dt>Varies by</dt><dd>How much of the hand is baked into the 3D world vs the DOM — and how far past titles it goes (form fields = extreme); rail vs room.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#231f20" title="#231f20"></i><i class="sw" style="--sw:#f4f1ef" title="#f4f1ef"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#c1ab8e" title="#c1ab8e"></i><i class="sw" style="--sw:#e5e0db" title="#e5e0db"></i><i class="sw" style="--sw:#ECD06F" title="#ECD06F"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Artist collaborations, museum/exhibition microsites, luxury carte-blanche commissions — anywhere a named individual's hand is the asset being sold.</p>
+    <p><b>Not for</b> On stock content it's pastiche — strip the commissioned artwork and it's an empty room with a novelty font. Check hand-face glyph coverage before inputs; the taught walkthrough cost Usability 7.49.</p>
+  </div>
+  <ul class="fam__mem"><li class="m m--dead">
+      <a class="m__site" href="https://unconventionalgallery.ruinart.com" rel="noopener noreferrer nofollow" target="_blank">The Unconventional Gallery</a>
+      <span class="m__award">Site of the Month 2022.01</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/the-unconventional-gallery" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for The Unconventional Gallery</span></a>
+      <span class="m__state" aria-label="awarded design offline">offline</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-split-specimen-cinema" aria-labelledby="h-split-specimen-cinema">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">40</p>
+  <h3 class="fam__name" id="h-split-specimen-cinema">split-specimen-cinema</h3>
+  <p class="fam__thesis">A hard vertical split of two temperatures — a warm bone paper field holding one product specimen against full-bleed near-black cinema of its raw material — one giant display face bridging the seam.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Warm bone #f1eee9 vs near-black #0f0b04 ink; one dust-rose #a68676 hairline accent</dd></div>
+    <div><dt>Type</dt><dd>One −90° display word at 90–110px; all else 10–13px micro-caps (Gill Sans +2px, Miller caps +6px) — two-island scale</dd></div>
+    <div><dt>Motion</dt><dd>All expo ease-out; every transition is a CSS filter — blur rack-focus, brightness/contrast film burn — never opacity; open 0.5s, close 1.0s</dd></div>
+    <div><dt>Varies by</dt><dd>How much the split is layout vs scroll state, and which side carries the ink; secondary dial: 60/40 ratio (invert flips who quotes whom).</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#efeeec" title="#efeeec"></i><i class="sw" style="--sw:#0a0908" title="#0a0908"></i><i class="sw" style="--sw:#3d473f" title="#3d473f"></i><i class="sw" style="--sw:#902247" title="#902247"></i><i class="sw" style="--sw:#a68676" title="#a68676"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Materials, manufacturing, automotive interiors, leather/textile suppliers — the product is a substance and there is real process footage to spend.</p>
+    <p><b>Not for</b> Without genuinely cinematic footage the 40% band is a stock-video hole; the rotated serif Welcome verbatim is 2018 period costume; micro-caps cannot carry body copy; no autoplay ambient audio.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://www.couroazul.com/" rel="noopener noreferrer nofollow" target="_blank">Couro Azul</a>
+      <span class="m__award">Site of the Month 2018.02</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/couro-azul" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Couro Azul</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-sumi-e-paper" aria-labelledby="h-sumi-e-paper">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">41</p>
+  <h3 class="fam__name" id="h-sumi-e-paper">sumi-e-paper</h3>
+  <p class="fam__thesis">Sumi-e ink-wash atelier on warm paper: one generated ink-wash asset family, a single serif at every scale, and one vermillion accent under hanko-seal discipline, voiced in koans.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Warm: paper #F2ECDF, ink #211B15, vermillion #A4342C (INDEX variant: cooler stock)</dd></div>
+    <div><dt>Type</dt><dd>One serif everywhere: Cormorant Garamond 300–500, clamp(4rem,15vw,12.5rem) hero→caption; Shippori Mincho vertical rails</dd></div>
+    <div><dt>Motion</dt><dd>Lenis .09 + ScrollTrigger reveals (top 58–88%), 2 pins, scroll-scrubbed video via 0.18/frame currentTime lerp, scroll-stirred petal canvas</dd></div>
+    <div><dt>Varies by</dt><dd>Paper temperature: warm flat #F2ECDF vs cooler in-shader paper scan; scroll-scrub cinema vs dissolve-and-drift with ambient sound.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#E2E2E1" title="#E2E2E1"></i><i class="sw" style="--sw:#DCDCDC" title="#DCDCDC"></i><i class="sw" style="--sw:#F7F7F6" title="#F7F7F6"></i><i class="sw" style="--sw:#8BA167" title="#8BA167"></i><i class="sw" style="--sw:#B8C7B1" title="#B8C7B1"></i><i class="sw" style="--sw:#E5C459" title="#E5C459"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Brand/atelier/gallery/editorial one-pagers where the brief allows an artisanal register; mood pieces selling atmosphere; warm cousin of vast-quiet.</p>
+    <p><b>Not for</b> Ink-wash Kyoto atelier on an unrelated SaaS reads as costume — steal the discipline, not the kimono. 11 viewports of pacing on a conversion page; its reduced-motion guards are fake — write your own.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://davidwhyte.com/experience/" rel="noopener noreferrer nofollow" target="_blank">David Whyte Experience</a>
+      <span class="m__award">Site of the Month 2024.12</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/david-whyte-experience" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for David Whyte Experience</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-warped-serif-noir" aria-labelledby="h-warped-serif-noir">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">42</p>
+  <h3 class="fam__name" id="h-warped-serif-noir">warped-serif-noir</h3>
+  <p class="fam__thesis">Near-black near-zero-sat stage; a monumental wedge-terminal serif dimmed by opacity so ground reads through; headline sheared into stacked clipped copies along drawn seams; warp only under a gesture.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Cold noir: #151515 ground, #000 sections, #979797 hairlines; one pale celadon #deebc8.</dd></div>
+    <div><dt>Type</dt><dd>Wedge-terminal display serif at 16vw, opacity .75, vs .6vw all-caps neo-grotesque — 26.7:1 ratio is the whole hierarchy.</dd></div>
+    <div><dt>Motion</dt><dd>Gestural, never idle: filters park at 0 — displacement 0→50 on 180ms hold, 1s in/2s out; SVG turbulence shreds underlines 600ms, RoughEase.</dd></div>
+    <div><dt>Varies by</dt><dd>How far damage travels from wordmark into page: case view (shear off, inverted) → hero (4 shards, drawn seams, filters); provisional.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#000000" title="#000000"></i><i class="sw" style="--sw:#151515" title="#151515"></i><i class="sw" style="--sw:#ffffff" title="#ffffff"></i><i class="sw" style="--sw:#e3e3e3" title="#e3e3e3"></i><i class="sw" style="--sw:#b5b5b5" title="#b5b5b5"></i><i class="sw" style="--sw:#979797" title="#979797"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Studios, film, fashion, showreel-first portfolios — the client is the work, the imagery is dark, the page can afford a full screen on a wordmark.</p>
+    <p><b>Not for</b> Content sites — a viewport on four words dented Usability (7.50); warp on running copy reads as a broken shader; don't lift the trial-licence Klim/RLT faces or hover-only keyboard-dead interactions.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://synchronized.studio/" rel="noopener noreferrer nofollow" target="_blank">Synchronized studio</a>
+      <span class="m__award">Mobile of the Year 2020</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/synchronized-studio" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Synchronized studio</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+<section class="fam" id="f-woven-scanline-duotone" aria-labelledby="h-woven-scanline-duotone">
+  <div class="fam__rule" aria-hidden="true"></div>
+  <p class="fam__idx">43</p>
+  <h3 class="fam__name" id="h-woven-scanline-duotone">woven-scanline-duotone</h3>
+  <p class="fam__thesis">A strict two-hex world where imagery, wordmark and page transition are all rasterized into one vertical-thread loom halftone — glitch-textile material against a formal Roman serif voice.</p>
+  <dl class="spec spec--fam">
+    <div><dt>Members</dt><dd>1</dd></div>
+    <div><dt>Live</dt><dd>1</dd></div>
+    <div><dt>Temperature</dt><dd>Swapping earth pair: wool khaki #a89474 &lt;-&gt; near-black umber #2c2824; no third hue.</dd></div>
+    <div><dt>Type</dt><dd>KTF Metro Roman display (-.064em, 83.333% leading) vs Blueline body (+.08em) — two styles of one superfamily, all-caps</dd></div>
+    <div><dt>Motion</dt><dd>Lenis 1.2s expo; images dissolve by scrubbing blackPoint/whitePoint, never opacity; 20x12 grid of scaleX 0-&gt;1 cells wipes page transitions</dd></div>
+    <div><dt>Varies by</dt><dd>INFERRED (single member): how much of the page the weave owns — all imagery (Son Daven's max) vs one hero texture vs transition-only.</dd></div>
+  </dl>
+  <p class="fam__sw" aria-hidden="true"><i class="sw" style="--sw:#A89474" title="#A89474"></i><i class="sw" style="--sw:#2C2824" title="#2C2824"></i></p>
+  <div class="fam__use">
+    <p><b>For</b> Place/heritage/estate brands with commissioned imagery and a two-colour identity — one shader makes even stock-quality source look commissioned. Desktop-first.</p>
+    <p><b>Not for</b> Never a third hue (every cell is already binary; the weave becomes noise). Never rasterize body copy — display-only. Never below 992px. Borrowed Hutsul motifs read as folk cosplay.</p>
+  </div>
+  <ul class="fam__mem"><li class="m">
+      <a class="m__site" href="https://sondaven.com/en" rel="noopener noreferrer nofollow" target="_blank">Son Daven</a>
+      <span class="m__award">Site of the Month 2026.06</span>
+      <a class="m__src" href="https://www.awwwards.com/sites/son-daven" rel="noopener noreferrer nofollow" target="_blank">awwwards<span class="u-sr">&nbsp;entry for Son Daven</span></a>
+      <span class="m__state" aria-label="awarded design still live">live</span>
+    </li></ul>
+</section>
+</section>
+
+<section class="band band--end" id="about" aria-labelledby="h-about">
+  <h2 id="h-about">Credits &amp; method notes</h2>
+  <div class="end">
+    <p>Every site named here belongs to its authors; links go to the original work and its Awwwards entry. This page studies them, and claims none of them.</p>
+    <p>This page was designed by an AI agent using the skill the experiment produced — the same skill, on itself. Its family is <code>swiss-grid-lab</code>, chosen because that family is for documentation "where the method is the content". The grid you can toggle above is the grid the page is built on.</p>
+    <p class="end__links">
+      <a href="https://github.com/ryanonline1234/mediatastelibrary" rel="noopener">Source of this site</a>
+      <a href="https://www.awwwards.com/" rel="noopener noreferrer nofollow" target="_blank">Awwwards</a>
+    </p>
+    <p class="end__gen">Generated 2026-08-14 from taste-library/bin/build-provenance.mjs.</p>
+  </div>
+</section>
+
+</main>
+<script src="app.js" defer></script>
+</body>
+</html>

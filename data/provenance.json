@@ -1,0 +1,26 @@
+{
+ "generated": "2026-08-14",
+ "generated_by": "taste-library/bin/build-provenance.mjs",
+ "source": "https://github.com/ryanonline1234/taste-library (private)",
+ "award_rows_studied": 131,
+ "sites_of_the_year_winners": 8,
+ "soty_sibling_category_winners": 21,
+ "sites_of_the_month": 102,
+ "years_covered": "2018-2026",
+ "cards": {
+  "total": 117,
+  "alive": 80,
+  "dead": 37,
+  "lite_depth": 27
+ },
+ "dead_rate_note": "live_status tracks the AWARDED design; rebuilds count as dead",
+ "aesthetic_families": 43,
+ "deep_dive_references": 45,
+ "code_tier_families": 44,
+ "semantic_validation": {
+  "entries_reviewed": 2266,
+  "findings": 1112,
+  "citable_priors": 160,
+  "excluded_ledger": 996
+ }
+}
