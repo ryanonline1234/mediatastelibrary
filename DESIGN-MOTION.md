@@ -146,3 +146,62 @@ v1 markup (the DOM mostly survives; this is a layer, not a rewrite), run
 the harness, iterate until the gates pass, redeploy. Do not invent
 constants: anything not cited here and not in the skill's priors gets a
 DECISION mark and a spec label that says so.
+
+---
+
+## Implementation record (Opus phase, 2026-08-14)
+
+Built to the score above. Two constants CORRECTED against the priors during
+implementation, both improvements on the design doc:
+
+- **Lenis is `lerp: 0.15`, not duration-mode.** The score chose duration to
+  dodge the lerp+duration dead-key trap; the right fix is lerp-ONLY. Duration
+  mode makes long throws feel fast and short nudges sluggish (motion-priors
+  §2.2). Feel row: snappy/technical, whose signature move is literally
+  "monospace counters, steps() reveals" — swiss-grid-lab in motion terms.
+- **Count-up is 2.0s power3.inOut**, not 1.2s power2.out — Trionn's odometer
+  prior, "the number IS the content" (§4.2).
+
+### What the harness caught that review would not
+
+1. **7 assertion failures from a coordinate-space mismatch.** Per-section
+   triggers used viewport bounds (`top bottom → bottom top`) while the spec
+   defines scene progress as DOCUMENT ranges. Every scrubbed var sat at 1
+   before its scene began. Fixed by the §2.2 shared-progress pattern: ONE
+   trigger, every scene derived from it against the spec's own ranges.
+2. **Jank FAIL 14.5% dropped**, one 327ms frame with 278ms forced layout —
+   43 sections each creating a trigger. `ScrollTrigger.batch` → 3.1%.
+3. **Still 5-8% after that.** The reduced-motion floor measured 0.59%, which
+   killed the "measurement noise" hypothesis: the motion path genuinely cost
+   10x. Cause: `querySelector` ×4 and five `textContent` writes PER FRAME.
+   Cached refs + change-guards → p95 16.6ms to 9.2ms.
+4. **The real defect underneath:** the families rail animated `width` — a
+   LAYOUT property, violating compositor-only. `scaleX` → 4/4 runs PASS at
+   1.0-1.4%, p99 16.6ms → 9.3ms.
+5. **A passing assert that was still wrong.** A contact-sheet still showed
+   family entries at p=0.19, which the spec called the exhibit scene. The
+   ranges were ESTIMATES and the runtime mapped against the same estimates —
+   spec and code agreed with each other and both disagreed with the page.
+   Only the image caught it. `bin/sync-spec.mjs` now derives ranges from the
+   built page, and `verify.sh` enforces build → sync → REBUILD → capture →
+   assert (the rebuild is load-bearing: build.mjs embeds the ranges).
+
+### Gate results
+
+- assert: **42 passed, 0 failed** — and shown to FAIL on a deliberate break
+  (positive control: disabling one tween produced 2 failures, restored clean).
+- jank: **PASS 1.0-1.6% dropped**, p95 9.1ms against a 9.1ms static floor.
+- reduced-motion: **PASS 0.29%**, loads NO libraries (`lenis: false`), zero
+  hidden content, all figures at final values, 238 focusable elements — a
+  complete alternative page, not a frozen one.
+- frames: no freeze / flat / no-motion failures.
+
+### Honest limits
+
+- The rAF-tick probe I first wrote measured its own loop and proved nothing.
+  The real evidence for "no loop under reduced motion" is structural: the
+  code returns before the imports.
+- Jank is measured on a machine also running Playwright and a dev server;
+  the static floor is the control that makes the number meaningful.
+- Mobile (390x844) has NO spec file. Per the schema, that needs its own —
+  pinned/100vh work breaks there first. Not written; not claimed.

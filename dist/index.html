@@ -29,16 +29,21 @@
 
 <main id="main">
 
-<section class="hero">
-  <h1 class="hero__h">
-    <span class="s1">131 award-winning</span>
-    <span class="s2">websites, read</span>
-    <span class="s3">as one system</span>
-    <span class="s4">of 43 families.</span>
+<section class="hero" data-scene="hero">
+  <p class="hero__count" data-motion="hero-count">
+    <span data-count-to="131" data-count-pad="3">131</span>
+  </p>
+  <p class="mlabel" title="Trionn odometer — code/kinetic-type-studio: duration 2, power3.inOut. §4.2: the number IS the content">COUNT 0→131 · POWER3.INOUT · 2S</p>
+  <h1 class="hero__h" data-motion="hero-line">
+    <span class="ln"><span class="ln__i s1">award-winning</span></span>
+    <span class="ln"><span class="ln__i s2">websites, read</span></span>
+    <span class="ln"><span class="ln__i s3">as one system</span></span>
+    <span class="ln"><span class="ln__i s4">of 43 families.</span></span>
   </h1>
+  <p class="mlabel" title="Osmo/Codrops masked-line recipe (yPercent 110→0 under overflow:clip, 0.8s, 0.08 stagger); ease from the snappy row, one ease family per site">LINES · Y110→0 · POWER3.OUT · 0.8S · STAGGER 0.08</p>
   <div class="hero__lede">
     <p>Agents swept every Awwwards Site&nbsp;of&nbsp;the&nbsp;Year and Site&nbsp;of&nbsp;the&nbsp;Month winner from 2018-2026, opened each one, and wrote down what it actually does. Not a gallery — a taxonomy, with the working shown.</p>
-    <p class="hero__sub">Every figure on this page is generated from the dataset. None is typed by hand.</p>
+    <p class="hero__sub">Every figure on this page is generated from the dataset. None is typed by hand — and so is every motion constant printed beside the thing it drives.</p>
   </div>
   <dl class="spec spec--hero">
     <div><dt>Award rows</dt><dd>131</dd></div>
@@ -52,10 +57,18 @@
     <div><dt>Offline</dt><dd>37</dd></div>
     <div><dt>Code priors</dt><dd>160</dd></div>
   </dl>
+  <p class="mlabel" title="motion-priors §8 snappy/technical — Lenis lerp 0.15 (λ 9)">LENIS LERP 0.15 · NO DURATION KEY</p>
 </section>
 
-<section class="band" id="method" aria-labelledby="h-method">
+<section class="band" id="method" data-scene="method" aria-labelledby="h-method">
   <h2 id="h-method">The method</h2>
+  <p class="mlabel" title="swiss-grid-lab motion line: travel via offset-path not transform">OFFSET-PATH · SCRUB 0.6 · EASE NONE</p>
+  <div class="walk" data-motion="method-walk" aria-hidden="true">
+    <svg class="walk__svg" viewBox="0 0 960 40" preserveAspectRatio="none" focusable="false">
+      <path class="walk__path" d="M4 20 H956" fill="none" />
+    </svg>
+    <i class="walk__dot"></i>
+  </div>
   <ol class="steps">
     <li><b>Harvest</b><span>Crawl the archives. 131 rows kept at 2018+, each with its award, date and live URL.</span></li>
     <li><b>Card</b><span>One study card per site, written from the case page and the live build, then attacked by a second agent that had to disprove it.</span></li>
@@ -66,7 +79,7 @@
   </ol>
 </section>
 
-<section class="band band--find" id="findings" aria-labelledby="h-find">
+<section class="band band--find" id="findings" data-scene="findings" aria-labelledby="h-find">
   <h2 id="h-find">What the checking found</h2>
   <div class="find">
     <div class="find__txt">
@@ -74,18 +87,49 @@
       <p>A late pass re-read every extracted constant asking a question the earlier passes never had: does this value actually do anything? 1,112 defects came back. 37 of the sites studied are themselves already offline — the awarded design gone, even where the domain still answers.</p>
       <p>Nothing was deleted. Defects are annotated where they sit, because a record of what was wrong is worth more than a clean file that lies.</p>
     </div>
-    <dl class="spec spec--find">
-      <div><dt>Entries reviewed</dt><dd>2,266</dd></div>
-      <div><dt>Defects found</dt><dd>1,112</dd></div>
-      <div><dt>Excluded constants</dt><dd>996</dd></div>
-      <div><dt>Citable priors</dt><dd>160</dd></div>
-    </dl>
+    <div class="find__side">
+      <dl class="spec spec--find" data-motion="findings-counter">
+        <div><dt>Entries reviewed</dt><dd><span data-scrub-to="2266" data-count-pad="5">2,266</span></dd></div>
+        <div><dt>Defects found</dt><dd><span data-scrub-to="1112" data-count-pad="5">1,112</span></dd></div>
+        <div><dt>Excluded constants</dt><dd><span data-scrub-to="996" data-count-pad="3">996</span></dd></div>
+        <div><dt>Citable priors</dt><dd><span data-scrub-to="160" data-count-pad="3">160</span></dd></div>
+      </dl>
+      <p class="mlabel" title="§8 cross-cutting — scrubbed tweens are ALWAYS ease:&quot;none&quot;">SCRUB 0.6 · EASE NONE · WIDTH-STABLE NUMERALS</p>
+    </div>
   </div>
 </section>
 
-<section class="band" id="families" aria-labelledby="h-fams">
+<section class="band band--exhibit" id="exhibit" data-scene="exhibit" aria-labelledby="h-exhibit">
+  <h2 id="h-exhibit">The easing this page uses, drawn</h2>
+  <p class="band__note">Every reveal above rides this curve. The dot is linear in scroll; the curve is the shape — which is the whole difference between a scrubbed tween that was given an ease and one that was not.</p>
+  <p class="mlabel" title="motion-priors §8 snappy/technical reveal ease">SCRUB 0.6 · DOT LINEAR IN SCROLL · CURVE = POWER3.OUT</p>
+  <figure class="ex" data-motion="exhibit-dot">
+    <svg class="ex__svg" viewBox="0 0 400 240" focusable="false" role="img" aria-label="Cubic bezier curve for the power3.out easing used by this page, with its control handles drawn.">
+      <!-- power3.out ≈ cubic-bezier(0.215, 0.61, 0.355, 1) -->
+      <g class="ex__grid">
+        <path d="M40 200 H360 M40 200 V40" />
+      </g>
+      <path class="ex__curve" d="M40 200 C 108.8 78.8 153.6 40 360 40" fill="none" />
+      <g class="ex__handles">
+        <path d="M40 200 L108.8 78.8" /><path d="M360 40 L153.6 40" />
+        <rect x="36" y="196" width="8" height="8" /><rect x="104.8" y="74.8" width="8" height="8" />
+        <rect x="149.6" y="36" width="8" height="8" /><rect x="356" y="36" width="8" height="8" />
+      </g>
+      <circle class="ex__dot" r="5" cx="0" cy="0" />
+    </svg>
+    <figcaption class="ex__cap">
+      <span>power3.out</span>
+      <span>cubic-bezier(0.215, 0.61, 0.355, 1)</span>
+      <span data-ex-readout>t 0.00 · p 0.00</span>
+    </figcaption>
+  </figure>
+</section>
+
+<section class="band" id="families" data-scene="families" aria-labelledby="h-fams">
+  <div class="rail" data-motion="families-rail" aria-hidden="true"><i></i></div>
   <h2 id="h-fams">43 families</h2>
   <p class="band__note">Ordered by member count. Each is a visual system, not a template — the <b>Not for</b> line is the part that keeps it honest.</p>
+  <p class="mlabel" title="motion-priors §8 snappy — sections 0.5s, stagger amount 0.4 clamp (§6.4: budget the cascade, not the item)">SECTION · POWER3.OUT · 0.5S · STAGGER AMOUNT 0.4</p>
   <section class="fam" id="f-matte-toybox-playworld" aria-labelledby="h-matte-toybox-playworld">
   <div class="fam__rule" aria-hidden="true"></div>
   <p class="fam__idx">01</p>
@@ -1621,6 +1665,10 @@
 </section>
 
 </main>
-<script src="app.js" defer></script>
+<!-- The constants the runtime animates from. Identical object to the one that
+     printed the spec labels above, so a label cannot describe a value the
+     page does not actually use. -->
+<script type="application/json" id="motion-config">{"scroll":{"lerp":0.15,"cite":"motion-priors §8 snappy/technical — Lenis lerp 0.15 (λ 9)"},"ease":{"reveal":"power3.out","cite":"motion-priors §8 snappy/technical reveal ease","scrub":"none","scrubCite":"§8 cross-cutting — scrubbed tweens are ALWAYS ease:\"none\""},"heroLines":{"yPercent":110,"duration":0.8,"stagger":0.08,"ease":"power3.out","cite":"Osmo/Codrops masked-line recipe (yPercent 110→0 under overflow:clip, 0.8s, 0.08 stagger); ease from the snappy row, one ease family per site"},"count":{"duration":2,"ease":"power3.inOut","cite":"Trionn odometer — code/kinetic-type-studio: duration 2, power3.inOut. §4.2: the number IS the content"},"gridBuild":{"stagger":0.06,"duration":0.4,"ease":"none","cite":"DECISION — no prior carries a grid-construction timing. Linear because the grid is a measuring instrument drawing itself, not an object arriving."},"section":{"duration":0.5,"staggerAmount":0.4,"ease":"power3.out","cite":"motion-priors §8 snappy — sections 0.5s, stagger amount 0.4 clamp (§6.4: budget the cascade, not the item)"},"scrub":{"value":0.6,"cite":"scroll-architecture §6.1 sticky stage — scrub 0.6"},"hover":{"durationMs":120,"ease":"ease-out","cite":"swiss-grid-lab measured motion: 510 linear + 101 ease-out, ZERO cubic-bezier in CSS"},"scenes":{"hero":[0,0.0478],"method":[0.0478,0.0751],"findings":[0.0751,0.0944],"exhibit":[0.0944,0.1235],"families":[0.1235,1]}}</script>
+<script src="app.js" type="module"></script>
 </body>
 </html>

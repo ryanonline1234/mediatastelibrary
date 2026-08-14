@@ -131,8 +131,33 @@ img, svg { max-width: 100%; }
 .pill:hover, .pill:focus-visible { background: var(--accent); }
 .pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
+/* ------------------------------------------------- motion spec labels */
+/* The page prints the constant beside the thing it drives. Generated from
+   the same object the runtime animates from — see src/motion-config.mjs. */
+.mlabel {
+  grid-column: 1 / 9; margin: 0 0 14px;
+  font-size: var(--t-chrome); color: var(--r2);
+  text-transform: uppercase; letter-spacing: 0.09em;
+  font-variant-numeric: tabular-nums;
+  border-left: var(--rule-ornamental) solid var(--accent);
+  padding-left: 8px;
+}
+.mlabel::before { content: "▸ "; color: var(--r1); }
+
 /* -------------------------------------------------------------------- hero */
 .hero { padding-block: clamp(40px, 9vw, 104px) clamp(32px, 6vw, 72px); }
+
+/* the 264px rank, finally used */
+.hero__count {
+  grid-column: 1 / 9; margin: 0 0 4px;
+  font-size: var(--t-mega); line-height: 0.8; letter-spacing: -0.04em;
+  font-weight: 700; font-variant-numeric: tabular-nums;
+  will-change: transform;
+}
+
+/* Osmo masked-line structure: overflow:clip wrapper, inner rides yPercent. */
+.hero__h .ln { display: block; overflow: clip; }
+.hero__h .ln__i { display: block; }
 
 /* The family: "86px headline steps #F1F1F1 -> #B2B2B2 -> #606060 -> #2C2C2C".
    Read literally that first stop is paper-on-paper; used here from the second
@@ -191,7 +216,72 @@ img, svg { max-width: 100%; }
 .find { grid-column: 1 / 9; display: grid; grid-template-columns: subgrid; }
 .find__txt { grid-column: 1 / 6; }
 .find__txt p { margin: 0 0 12px; max-width: 58ch; }
+.find__side { grid-column: 6 / 9; }
+.find__side .mlabel { grid-column: auto; margin-top: 10px; }
 .band--find b { background: var(--accent); }
+.spec--find { grid-column: auto; }
+/* Scrubbed numerals must not reflow the row as digits appear. */
+[data-scrub-to], [data-count-to] { font-variant-numeric: tabular-nums; white-space: pre; }
+
+/* ------------------------------------------------- the offset-path walk */
+/* swiss-grid-lab motion line, verbatim: "travel via offset-path not
+   transform". The 8x8 square is the family's own marker, walking its rule. */
+.walk {
+  grid-column: 1 / 9; position: relative; height: 40px; margin-bottom: 8px;
+  --walk: 0;
+}
+.walk__svg { display: block; width: 100%; height: 40px; }
+.walk__path { stroke: var(--r1); stroke-width: var(--rule-structural); }
+.walk__dot {
+  position: absolute; inset: 0; width: 8px; height: 8px; background: var(--ink);
+  offset-path: path("M4 20 H956");
+  offset-distance: calc(var(--walk) * 100%);
+  offset-rotate: 0deg;
+  will-change: offset-distance;
+}
+/* offset-path takes the raw viewBox coordinate space, so the traveller is
+   pinned to a 960-unit path while the svg stretches. Scale it back. */
+@supports (offset-path: path("M0 0 H1")) {
+  .walk { --walk-scale: calc(100% / 960); }
+}
+
+/* ------------------------------------------------------- bezier exhibit */
+.band--exhibit .ex {
+  grid-column: 2 / 7; margin: 0;
+  border-top: var(--rule-structural) solid var(--r1); padding-top: 18px;
+  --t: 0;
+}
+.ex__svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ex__grid path { stroke: var(--r1); stroke-width: var(--rule-structural); fill: none; }
+.ex__curve { stroke: var(--ink); stroke-width: var(--rule-ornamental); }
+.ex__handles path { stroke: var(--r1); stroke-width: var(--rule-structural); }
+.ex__handles rect { fill: var(--paper); stroke: var(--ink); stroke-width: var(--rule-structural); }
+.ex__dot {
+  fill: var(--ink);
+  offset-path: path("M40 200 C 108.8 78.8 153.6 40 360 40");
+  offset-distance: calc(var(--t) * 100%);
+  will-change: offset-distance;
+}
+.ex__cap {
+  display: flex; gap: 18px; flex-wrap: wrap; margin-top: 12px;
+  font-size: var(--t-chrome); color: var(--r2);
+  text-transform: uppercase; letter-spacing: 0.08em; font-variant-numeric: tabular-nums;
+}
+.ex__cap span:first-child { color: var(--ink); background: var(--accent); padding: 0 4px; }
+
+/* ------------------------------------------------------ families rail */
+.rail {
+  grid-column: 1 / 9; height: var(--rule-ornamental); background: var(--r1);
+  margin-bottom: 22px; --fam: 0;
+}
+/* scaleX, NOT width. width is a layout property — animating it per frame
+   violates the compositor-only rule and was the one real perf defect the
+   jank pass pointed at. transform-origin left makes it read identically. */
+.rail > i {
+  display: block; height: 100%; width: 100%; background: var(--ink);
+  transform: scaleX(var(--fam)); transform-origin: left center;
+  will-change: transform;
+}
 
 /* ---------------------------------------------------------------- families */
 .fam { padding-block: 0 26px; max-width: none; margin: 0; padding-inline: 0; grid-column: 1 / 9;
@@ -206,14 +296,18 @@ img, svg { max-width: 100%; }
   letter-spacing: 0; font-weight: 700;
 }
 .fam__thesis { grid-column: 2 / 6; margin: 0 0 14px; color: var(--r3); max-width: 56ch; }
-.spec--fam { grid-column: 6 / 9; grid-row: 2 / 6; }
+/* The spec table sits BESIDE the left column, not under it — removing this
+   span stacked them and grew the page 8226px. The void the contact sheet
+   showed was the left column being shorter than this 419px table, so the fix
+   is to give the left column the member list (below), not to unspan this. */
+.spec--fam { grid-column: 6 / 9; grid-row: 2 / 7; align-self: start; }
 .fam__sw { grid-column: 2 / 6; margin: 0 0 12px; display: flex; gap: 4px; }
 .sw { width: 14px; height: 14px; background: var(--sw); border: var(--rule-structural) solid rgba(1,1,1,.18); }
 .fam__use { grid-column: 2 / 6; margin: 0 0 14px; font-size: var(--t-chrome); line-height: 1.7; }
 .fam__use p { margin: 0 0 4px; color: var(--r3); }
 .fam__use b { text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); margin-right: 6px; }
 
-.fam__mem { grid-column: 2 / 9; margin: 0; padding: 0; list-style: none; }
+.fam__mem { grid-column: 2 / 6; margin: 0; padding: 0; list-style: none; }
 .m {
   display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1.6fr) auto auto;
   gap: 10px; align-items: baseline;
@@ -259,4 +353,17 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
    which are removed outright here. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* Reveal initial state, armed by JS only when motion will actually run
+   (html.mtl-motion). Doing this in CSS instead of a ~215-element gsap.set
+   removed the last chunk of init cost the jank pass flagged. Compositor-only
+   properties, so the reveal never triggers layout. */
+.mtl-motion .fam[data-rv] .fam__rule,
+.mtl-motion .fam[data-rv] .fam__idx,
+.mtl-motion .fam[data-rv] .fam__name,
+.mtl-motion .fam[data-rv] .fam__thesis,
+.mtl-motion .fam[data-rv] .m {
+  opacity: 0;
+  transform: translateY(12px);
 }

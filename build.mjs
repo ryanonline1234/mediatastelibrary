@@ -15,11 +15,23 @@
 
 import fs from 'node:fs'
 import path from 'node:path'
+import { MOTION, label } from './src/motion-config.mjs'
 
 const ROOT = path.resolve(import.meta.dirname)
 const read = f => JSON.parse(fs.readFileSync(path.join(ROOT, 'data', f), 'utf8'))
 const P = read('provenance.json')
 const FAMS = read('families.json')
+
+// A spec label. Rendered from the SAME object the runtime animates from, so
+// the printed constant and the executed constant are one value.
+const spec = (text, cite) => `<p class="mlabel"${cite ? ` title="${esc(cite)}"` : ''}>${esc(text)}</p>`
+
+// The scroll spec is not documentation — it is the source of the scene ranges
+// the runtime actually maps against. Reading it here means the assertion file
+// and the implementation cannot disagree about where a scene begins, which is
+// exactly the class of bug the first capture caught.
+const SPEC_FILE = JSON.parse(fs.readFileSync(path.join(ROOT, 'scroll-spec.json'), 'utf8'))
+const SCENES = Object.fromEntries(SPEC_FILE.scenes.map(s => [s.id, [s.range.from, s.range.to]]))
 
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
 const n = x => Number(x).toLocaleString('en-US')
@@ -128,24 +140,37 @@ const html = `<!doctype html>
 
 <main id="main">
 
-<section class="hero">
-  <h1 class="hero__h">
-    <span class="s1">${n(P.award_rows_studied)} award-winning</span>
-    <span class="s2">websites, read</span>
-    <span class="s3">as one system</span>
-    <span class="s4">of ${n(P.aesthetic_families)} families.</span>
+<section class="hero" data-scene="hero">
+  <p class="hero__count" data-motion="hero-count">
+    <span data-count-to="${P.award_rows_studied}" data-count-pad="${n(P.award_rows_studied).length}">${n(P.award_rows_studied)}</span>
+  </p>
+  ${spec(label.count, MOTION.count.cite)}
+  <h1 class="hero__h" data-motion="hero-line">
+    <span class="ln"><span class="ln__i s1">award-winning</span></span>
+    <span class="ln"><span class="ln__i s2">websites, read</span></span>
+    <span class="ln"><span class="ln__i s3">as one system</span></span>
+    <span class="ln"><span class="ln__i s4">of ${n(P.aesthetic_families)} families.</span></span>
   </h1>
+  ${spec(label.heroLines, MOTION.heroLines.cite)}
   <div class="hero__lede">
     <p>Agents swept every Awwwards Site&nbsp;of&nbsp;the&nbsp;Year and Site&nbsp;of&nbsp;the&nbsp;Month winner from ${P.years_covered}, opened each one, and wrote down what it actually does. Not a gallery — a taxonomy, with the working shown.</p>
-    <p class="hero__sub">Every figure on this page is generated from the dataset. None is typed by hand.</p>
+    <p class="hero__sub">Every figure on this page is generated from the dataset. None is typed by hand — and so is every motion constant printed beside the thing it drives.</p>
   </div>
   <dl class="spec spec--hero">
     ${SPEC.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('\n    ')}
   </dl>
+  ${spec(label.scroll, MOTION.scroll.cite)}
 </section>
 
-<section class="band" id="method" aria-labelledby="h-method">
+<section class="band" id="method" data-scene="method" aria-labelledby="h-method">
   <h2 id="h-method">The method</h2>
+  ${spec(label.walk, 'swiss-grid-lab motion line: travel via offset-path not transform')}
+  <div class="walk" data-motion="method-walk" aria-hidden="true">
+    <svg class="walk__svg" viewBox="0 0 960 40" preserveAspectRatio="none" focusable="false">
+      <path class="walk__path" d="M4 20 H956" fill="none" />
+    </svg>
+    <i class="walk__dot"></i>
+  </div>
   <ol class="steps">
     <li><b>Harvest</b><span>Crawl the archives. ${n(P.award_rows_studied)} rows kept at 2018+, each with its award, date and live URL.</span></li>
     <li><b>Card</b><span>One study card per site, written from the case page and the live build, then attacked by a second agent that had to disprove it.</span></li>
@@ -156,7 +181,7 @@ const html = `<!doctype html>
   </ol>
 </section>
 
-<section class="band band--find" id="findings" aria-labelledby="h-find">
+<section class="band band--find" id="findings" data-scene="findings" aria-labelledby="h-find">
   <h2 id="h-find">What the checking found</h2>
   <div class="find">
     <div class="find__txt">
@@ -164,15 +189,46 @@ const html = `<!doctype html>
       <p>A late pass re-read every extracted constant asking a question the earlier passes never had: does this value actually do anything? ${n(P.semantic_validation.findings)} defects came back. ${n(P.cards.dead)} of the sites studied are themselves already offline — the awarded design gone, even where the domain still answers.</p>
       <p>Nothing was deleted. Defects are annotated where they sit, because a record of what was wrong is worth more than a clean file that lies.</p>
     </div>
-    <dl class="spec spec--find">
-      ${FINDINGS.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('\n      ')}
-    </dl>
+    <div class="find__side">
+      <dl class="spec spec--find" data-motion="findings-counter">
+        ${FINDINGS.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd><span data-scrub-to="${String(v).replace(/,/g, '')}" data-count-pad="${String(v).length}">${esc(v)}</span></dd></div>`).join('\n        ')}
+      </dl>
+      ${spec(label.findings, MOTION.ease.scrubCite)}
+    </div>
   </div>
 </section>
 
-<section class="band" id="families" aria-labelledby="h-fams">
+<section class="band band--exhibit" id="exhibit" data-scene="exhibit" aria-labelledby="h-exhibit">
+  <h2 id="h-exhibit">The easing this page uses, drawn</h2>
+  <p class="band__note">Every reveal above rides this curve. The dot is linear in scroll; the curve is the shape — which is the whole difference between a scrubbed tween that was given an ease and one that was not.</p>
+  ${spec(label.exhibit, MOTION.ease.cite)}
+  <figure class="ex" data-motion="exhibit-dot">
+    <svg class="ex__svg" viewBox="0 0 400 240" focusable="false" role="img" aria-label="Cubic bezier curve for the power3.out easing used by this page, with its control handles drawn.">
+      <!-- power3.out ≈ cubic-bezier(0.215, 0.61, 0.355, 1) -->
+      <g class="ex__grid">
+        <path d="M40 200 H360 M40 200 V40" />
+      </g>
+      <path class="ex__curve" d="M40 200 C 108.8 78.8 153.6 40 360 40" fill="none" />
+      <g class="ex__handles">
+        <path d="M40 200 L108.8 78.8" /><path d="M360 40 L153.6 40" />
+        <rect x="36" y="196" width="8" height="8" /><rect x="104.8" y="74.8" width="8" height="8" />
+        <rect x="149.6" y="36" width="8" height="8" /><rect x="356" y="36" width="8" height="8" />
+      </g>
+      <circle class="ex__dot" r="5" cx="0" cy="0" />
+    </svg>
+    <figcaption class="ex__cap">
+      <span>${esc(MOTION.ease.reveal)}</span>
+      <span>cubic-bezier(0.215, 0.61, 0.355, 1)</span>
+      <span data-ex-readout>t 0.00 · p 0.00</span>
+    </figcaption>
+  </figure>
+</section>
+
+<section class="band" id="families" data-scene="families" aria-labelledby="h-fams">
+  <div class="rail" data-motion="families-rail" aria-hidden="true"><i></i></div>
   <h2 id="h-fams">${n(FAMS.length)} families</h2>
   <p class="band__note">Ordered by member count. Each is a visual system, not a template — the <b>Not for</b> line is the part that keeps it honest.</p>
+  ${spec(label.section, MOTION.section.cite)}
   ${FAMS.map(familySection).join('\n')}
 </section>
 
@@ -190,7 +246,11 @@ const html = `<!doctype html>
 </section>
 
 </main>
-<script src="app.js" defer></script>
+<!-- The constants the runtime animates from. Identical object to the one that
+     printed the spec labels above, so a label cannot describe a value the
+     page does not actually use. -->
+<script type="application/json" id="motion-config">${JSON.stringify({ ...MOTION, scenes: SCENES })}</script>
+<script src="app.js" type="module"></script>
 </body>
 </html>
 `

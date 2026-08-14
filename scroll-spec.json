@@ -1,0 +1,278 @@
+{
+  "$schema": "/Users/ryantseng/.claude/skills/awwwards-motion/scripts/scroll-spec.schema.json",
+  "specVersion": 1,
+  "name": "mediatastelibrary-home-desktop",
+  "description": "The page performs its own spec. Five scenes; every scrubbed effect is driven from one shared normalized progress var, mapped against THESE ranges — which are the sections' measured document positions, not estimates. The first draft used estimates and the implementation mapped against the same estimates, so the assertions passed while the exhibit fired two sections early. Feel row: snappy/technical. Lenis lerp 0.15, power3.out reveals, monospace counters.",
+  "url": "http://localhost:8811/",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "dpr": 2,
+    "colorScheme": "light",
+    "reducedMotion": "no-preference"
+  },
+  "scroll": {
+    "totalHeightPx": 26110,
+    "totalHeightTolerancePx": 400,
+    "scrollAccuracyTolerancePx": 4,
+    "sampleMatchWindow": 0.01,
+    "allowSceneOverlap": false,
+    "coverage": {
+      "require": "full",
+      "maxGapProgress": 0.005
+    }
+  },
+  "settleMinMs": 0,
+  "settleMaxMs": 2500,
+  "positions": [
+    0,
+    0.0239,
+    0.0478,
+    0.0615,
+    0.0751,
+    0.0847,
+    0.0944,
+    0.1089,
+    0.1235,
+    0.3,
+    0.5,
+    0.5617,
+    0.7,
+    0.9,
+    1
+  ],
+  "targets": {
+    "root": {
+      "selector": ":root",
+      "vars": [
+        "--scroll-progress"
+      ]
+    },
+    "hero-section": "[data-scene='hero']",
+    "hero-count": "[data-motion='hero-count']",
+    "method-section": "[data-scene='method']",
+    "method-walk": {
+      "selector": "[data-motion='method-walk']",
+      "vars": [
+        "--walk"
+      ]
+    },
+    "findings-section": "[data-scene='findings']",
+    "findings-counter": {
+      "selector": "[data-motion='findings-counter']",
+      "vars": [
+        "--count"
+      ]
+    },
+    "exhibit-section": "[data-scene='exhibit']",
+    "exhibit-dot": {
+      "selector": "[data-motion='exhibit-dot']",
+      "vars": [
+        "--t"
+      ]
+    },
+    "families-section": "[data-scene='families']",
+    "families-rail": {
+      "selector": "[data-motion='families-rail']",
+      "vars": [
+        "--fam"
+      ]
+    }
+  },
+  "globalExpectations": [
+    {
+      "id": "scroll-progress-var",
+      "target": "root",
+      "property": "cssVar",
+      "cssVarName": "--scroll-progress",
+      "tolerance": 0.03,
+      "monotonic": "increasing",
+      "keys": [
+        {
+          "progress": 0,
+          "value": 0,
+          "label": "top"
+        },
+        {
+          "progress": 0.5,
+          "value": 0.5,
+          "label": "midpoint"
+        },
+        {
+          "progress": 1,
+          "value": 1,
+          "label": "bottom"
+        }
+      ],
+      "easeRef": "linear by construction — raw normalized scroll, never eased",
+      "note": "The one shared value. If this is wrong every scene below is a symptom, not a cause. Read this row first."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hero",
+      "label": "Hero — the count departs",
+      "selector": "[data-scene='hero']",
+      "range": {
+        "from": 0,
+        "to": 0.0478
+      },
+      "expectations": [
+        {
+          "id": "hero-count-departs",
+          "target": "hero-count",
+          "property": "translateY",
+          "tolerance": 8,
+          "monotonic": "decreasing",
+          "monotonicEpsilon": 1,
+          "keys": [
+            {
+              "localProgress": 0,
+              "value": 0,
+              "label": "at rest, 264px rank"
+            },
+            {
+              "localProgress": 1,
+              "value": -60,
+              "label": "departed"
+            }
+          ],
+          "easeRef": "none — scrubbed. motion-priors §8 cross-cutting: scrubbed tweens are always ease:'none'.",
+          "note": "The 264px count leaves slightly faster than the page. Load-time count-up (2.0s power3.inOut, Trionn odometer prior) is not scroll-driven and is checked as an invariant, not here."
+        }
+      ]
+    },
+    {
+      "id": "method",
+      "label": "Method — the marker walks the offset-path",
+      "selector": "[data-scene='method']",
+      "range": {
+        "from": 0.0478,
+        "to": 0.0751
+      },
+      "expectations": [
+        {
+          "id": "method-walk-progress",
+          "target": "method-walk",
+          "property": "cssVar",
+          "cssVarName": "--walk",
+          "tolerance": 0.06,
+          "monotonic": "increasing",
+          "keys": [
+            {
+              "localProgress": 0,
+              "value": 0,
+              "label": "start of path"
+            },
+            {
+              "localProgress": 1,
+              "value": 1,
+              "label": "end of path"
+            }
+          ],
+          "easeRef": "none — scrubbed",
+          "note": "Drives offset-distance on the 8x8 square. swiss-grid-lab motion line, verbatim: 'travel via offset-path not transform'."
+        }
+      ]
+    },
+    {
+      "id": "findings",
+      "label": "Findings — the honest numbers count",
+      "selector": "[data-scene='findings']",
+      "range": {
+        "from": 0.0751,
+        "to": 0.0944
+      },
+      "expectations": [
+        {
+          "id": "findings-count-progress",
+          "target": "findings-counter",
+          "property": "cssVar",
+          "cssVarName": "--count",
+          "tolerance": 0.06,
+          "monotonic": "increasing",
+          "keys": [
+            {
+              "localProgress": 0,
+              "value": 0,
+              "label": "zero"
+            },
+            {
+              "localProgress": 1,
+              "value": 1,
+              "label": "full figures"
+            }
+          ],
+          "easeRef": "none — scrubbed",
+          "note": "Four stats scrub-count. Width-stable numerals: the pad-preserving formatter, NOT the toLocaleString version, which is a DO-NOT-COPY in the library (it collapses 7 chars to 1 on frame one)."
+        }
+      ]
+    },
+    {
+      "id": "exhibit",
+      "label": "Bezier exhibit — the page draws its own easing",
+      "selector": "[data-scene='exhibit']",
+      "range": {
+        "from": 0.0944,
+        "to": 0.1235
+      },
+      "expectations": [
+        {
+          "id": "exhibit-dot-travel",
+          "target": "exhibit-dot",
+          "property": "cssVar",
+          "cssVarName": "--t",
+          "tolerance": 0.06,
+          "monotonic": "increasing",
+          "keys": [
+            {
+              "localProgress": 0,
+              "value": 0,
+              "label": "curve start"
+            },
+            {
+              "localProgress": 1,
+              "value": 1,
+              "label": "curve end"
+            }
+          ],
+          "easeRef": "none — scrubbed. The DOT is linear in scroll; the CURVE it rides is the eased shape, which is the whole exhibit.",
+          "note": "The one signature moment. Handles and 8x8 markers drawn per swiss-grid-lab's sibling drafting kit."
+        }
+      ]
+    },
+    {
+      "id": "families",
+      "label": "Families — 43 sections, reading rail",
+      "selector": "[data-scene='families']",
+      "range": {
+        "from": 0.1235,
+        "to": 1
+      },
+      "expectations": [
+        {
+          "id": "families-rail-progress",
+          "target": "families-rail",
+          "property": "cssVar",
+          "cssVarName": "--fam",
+          "tolerance": 0.06,
+          "monotonic": "increasing",
+          "keys": [
+            {
+              "localProgress": 0,
+              "value": 0,
+              "label": "first family"
+            },
+            {
+              "localProgress": 1,
+              "value": 1,
+              "label": "last family"
+            }
+          ],
+          "easeRef": "none — scrubbed",
+          "note": "Reading-progress rail across the 43-item index. Per-section reveals are enter-triggered (0.5s power3.out, stagger amount 0.4 — snappy row) and fire once; they are deliberately NOT scrubbed, so they are not asserted here."
+        }
+      ]
+    }
+  ]
+}
