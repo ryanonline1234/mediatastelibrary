@@ -50,12 +50,22 @@ Motion follows the family's measured rule: stock easings only, zero
 skill's honesty gate requires reduced-motion to stop the loop itself, and the
 cheapest way to satisfy that is not to open one.
 
-## Build
+## Build and deploy
 
 ```bash
+node bin/sync-data.mjs         # data/ <- ~/taste-library (after every skill rebuild there)
 node build.mjs                 # -> dist/
+./verify.sh                    # motion QA; needs dist/ served on 127.0.0.1:8811
+npx wrangler deploy            # dist/ -> https://mediatastelibrary.page (Cloudflare)
 node bin/inline-preview.mjs    # single-file copy, for preview surfaces only
 ```
+
+Hosting: Cloudflare Workers static assets on a Workers Custom Domain
+(`wrangler.jsonc`), which creates the apex DNS record itself. The domain's DNS
+is on Cloudflare because R2 media lives on `media.mediatastelibrary.page`.
+Before 2026-09-24 the page was deployed to Vercel, but the apex never had a
+record pointing there, so it did not resolve; the Vercel project is now unused.
+Check a deploy by loading the public URL, not by the CLI's success message.
 
 ## Layout
 

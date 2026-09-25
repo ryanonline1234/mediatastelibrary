@@ -19,6 +19,22 @@ const cfgEl = document.getElementById('motion-config')
 const M = cfgEl ? JSON.parse(cfgEl.textContent) : null
 
 /* ------------------------------------------------------------------ */
+/* walk path fit — offset-path coordinates are CSS pixels of the dot's  */
+/* containing block, NOT the svg's stretched 960-unit viewBox, so the   */
+/* fixed "M4 20 H956" ran ~600px off a 390px phone (page 586px wider    */
+/* than the screen, found 2026-09-24). Fit the path to the rule's real  */
+/* width. Runs on both motion paths; writes only on resize.            */
+/* ------------------------------------------------------------------ */
+;(function walkFit() {
+  var walk = document.querySelector('[data-motion="method-walk"]')
+  var dot = walk && walk.querySelector('.walk__dot')
+  if (!dot) return
+  function fit() { dot.style.offsetPath = 'path("M4 20 H' + Math.max(4, walk.clientWidth - 4) + '")' }
+  fit()
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(walk)
+})()
+
+/* ------------------------------------------------------------------ */
 /* grid toggle — plain DOM, no dependency, runs even if GSAP never loads */
 /* ------------------------------------------------------------------ */
 ;(function gridToggle() {

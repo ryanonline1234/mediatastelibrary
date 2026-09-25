@@ -239,11 +239,9 @@ img, svg { max-width: 100%; }
   offset-rotate: 0deg;
   will-change: offset-distance;
 }
-/* offset-path takes the raw viewBox coordinate space, so the traveller is
-   pinned to a 960-unit path while the svg stretches. Scale it back. */
-@supports (offset-path: path("M0 0 H1")) {
-  .walk { --walk-scale: calc(100% / 960); }
-}
+/* offset-path is in CSS px while the svg stretches its 960-unit viewBox, so
+   the path above is only right at 960px wide. app.js walkFit() rewrites it
+   to the rule's real width (the old --walk-scale here was never applied). */
 
 /* ------------------------------------------------------- bezier exhibit */
 .band--exhibit .ex {

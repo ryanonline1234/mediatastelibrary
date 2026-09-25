@@ -1,7 +1,7 @@
 {
   "schema": "awwwards-motion/samples@1",
   "url": "http://127.0.0.1:8811/",
-  "capturedAt": "2026-09-25T01:12:59.052Z",
+  "capturedAt": "2026-09-25T01:36:42.346Z",
   "viewport": {
     "width": 1440,
     "height": 900,
@@ -305,7 +305,7 @@
       "scrollY": 0,
       "nativeScrollY": 0,
       "settled": true,
-      "settleMs": 25.8,
+      "settleMs": 31.2,
       "measurements": {
         "root": {
           "found": true,
@@ -704,7 +704,7 @@
       "scrollY": 617,
       "nativeScrollY": 617,
       "settled": true,
-      "settleMs": 25.5,
+      "settleMs": 27,
       "measurements": {
         "root": {
           "found": true,
@@ -1103,7 +1103,7 @@
       "scrollY": 1234,
       "nativeScrollY": 1234,
       "settled": true,
-      "settleMs": 27.3,
+      "settleMs": 26.7,
       "measurements": {
         "root": {
           "found": true,
@@ -1502,7 +1502,7 @@
       "scrollY": 1579,
       "nativeScrollY": 1579,
       "settled": true,
-      "settleMs": 26.9,
+      "settleMs": 28.7,
       "measurements": {
         "root": {
           "found": true,
@@ -1901,7 +1901,7 @@
       "scrollY": 1923,
       "nativeScrollY": 1923,
       "settled": true,
-      "settleMs": 29.7,
+      "settleMs": 29.2,
       "measurements": {
         "root": {
           "found": true,
@@ -2300,7 +2300,7 @@
       "scrollY": 2166,
       "nativeScrollY": 2166,
       "settled": true,
-      "settleMs": 30.4,
+      "settleMs": 29.2,
       "measurements": {
         "root": {
           "found": true,
@@ -2699,7 +2699,7 @@
       "scrollY": 2409,
       "nativeScrollY": 2409,
       "settled": true,
-      "settleMs": 29.6,
+      "settleMs": 28.6,
       "measurements": {
         "root": {
           "found": true,
@@ -3098,7 +3098,7 @@
       "scrollY": 2778,
       "nativeScrollY": 2778,
       "settled": true,
-      "settleMs": 30.1,
+      "settleMs": 30.7,
       "measurements": {
         "root": {
           "found": true,
@@ -3497,7 +3497,7 @@
       "scrollY": 3144,
       "nativeScrollY": 3144,
       "settled": true,
-      "settleMs": 29.9,
+      "settleMs": 29.7,
       "measurements": {
         "root": {
           "found": true,
@@ -3896,7 +3896,7 @@
       "scrollY": 8013,
       "nativeScrollY": 8013,
       "settled": true,
-      "settleMs": 21,
+      "settleMs": 25.6,
       "measurements": {
         "root": {
           "found": true,
@@ -4295,7 +4295,7 @@
       "scrollY": 13356,
       "nativeScrollY": 13356,
       "settled": true,
-      "settleMs": 27.3,
+      "settleMs": 26,
       "measurements": {
         "root": {
           "found": true,
@@ -4694,7 +4694,7 @@
       "scrollY": 14926,
       "nativeScrollY": 14926,
       "settled": true,
-      "settleMs": 23.5,
+      "settleMs": 25.7,
       "measurements": {
         "root": {
           "found": true,
@@ -5093,7 +5093,7 @@
       "scrollY": 18698,
       "nativeScrollY": 18698,
       "settled": true,
-      "settleMs": 32.7,
+      "settleMs": 35.9,
       "measurements": {
         "root": {
           "found": true,
@@ -5492,7 +5492,7 @@
       "scrollY": 24040,
       "nativeScrollY": 24040,
       "settled": true,
-      "settleMs": 39.1,
+      "settleMs": 38.4,
       "measurements": {
         "root": {
           "found": true,
@@ -5891,7 +5891,7 @@
       "scrollY": 26711,
       "nativeScrollY": 26711,
       "settled": true,
-      "settleMs": 34.3,
+      "settleMs": 40.3,
       "measurements": {
         "root": {
           "found": true,
