@@ -2,7 +2,7 @@
 // Re-derive the scroll spec's scene ranges and document height from the BUILT
 // page, then rewrite scroll-spec.json.
 //
-//   node bin/sync-spec.mjs [url]
+//   node bin/sync-spec.mjs [url] [spec file]   (default scroll-spec.json)
 //
 // WHY THIS EXISTS. The first spec was written with estimated ranges, and the
 // runtime mapped scene-local progress against those same estimates — so the
@@ -22,7 +22,7 @@ import { MOTION } from '../src/motion-config.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
 const URL = process.argv[2] || 'http://127.0.0.1:8811/'
-const SPEC = path.join(ROOT, 'scroll-spec.json')
+const SPEC = path.resolve(ROOT, process.argv[3] || 'scroll-spec.json')
 
 const browser = await chromium.launch()
 const page = await (await browser.newContext({ viewport: { width: 1440, height: 900 } })).newPage()

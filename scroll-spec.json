@@ -1,9 +1,6 @@
 {
   "$schema": "/Users/ryantseng/.claude/skills/awwwards-motion/scripts/scroll-spec.schema.json",
   "specVersion": 1,
-  "name": "mediatastelibrary-home-desktop",
-  "description": "The page performs its own spec. Five scenes; every scrubbed effect is driven from one scrubbed proxy tween (scrub 0.6, real), mapped against THESE ranges — measured from the built page: a scene starts when its section enters at 85% of the viewport and ends when the next one does. The first draft used estimates and the implementation mapped against the same estimates, so the assertions passed while the exhibit fired two sections early. Feel row: snappy/technical. Lenis lerp 0.15, power3.out reveals, monospace counters.",
-  "url": "http://localhost:8811/",
   "viewport": {
     "width": 1440,
     "height": 900,
@@ -12,7 +9,7 @@
     "reducedMotion": "no-preference"
   },
   "scroll": {
-    "totalHeightPx": 27748,
+    "totalHeightPx": 9504,
     "totalHeightTolerancePx": 400,
     "scrollAccuracyTolerancePx": 4,
     "sampleMatchWindow": 0.01,
@@ -24,52 +21,66 @@
   },
   "settleMinMs": 0,
   "settleMaxMs": 2500,
+  "name": "mediatastelibrary-argument-desktop",
+  "url": "http://localhost:8811/",
+  "description": "The argument, in chapters. Every scrubbed effect derives from one scrubbed proxy tween (scrub 0.6) mapped against these ranges, measured from the built page: a scene starts when its section enters at 85% of the viewport and ends when the next one does. Two signature moments (the load: grid, count and 131 modules; the ink flip into 'What broke') are time/state-based and checked in verify.sh, not here.",
   "positions": [
     0,
-    0.0098,
-    0.0196,
-    0.0324,
-    0.0453,
-    0.0543,
-    0.0634,
-    0.0776,
-    0.0917,
+    0.0217,
+    0.0434,
+    0.0874,
+    0.1314,
+    0.1749,
+    0.2184,
     0.3,
+    0.3091,
+    0.3998,
+    0.492,
     0.5,
-    0.5458,
+    0.5843,
+    0.6858,
     0.7,
+    0.7873,
+    0.8937,
     0.9,
     1
   ],
   "targets": {
-    "hero-section": "[data-scene='hero']",
     "hero-count": "[data-motion='hero-count']",
-    "method-section": "[data-scene='method']",
     "method-walk": {
       "selector": "[data-motion='method-walk']",
       "vars": [
         "--walk"
       ]
     },
-    "findings-section": "[data-scene='findings']",
-    "exhibit-section": "[data-scene='exhibit']",
-    "exhibit-dot": {
-      "selector": "[data-motion='exhibit-dot']",
+    "sheet": {
+      "selector": "[data-motion='sheet']",
       "vars": [
-        "--t"
-      ]
-    },
-    "families-section": "[data-scene='families']",
-    "families-rail": {
-      "selector": "[data-motion='families-rail']",
-      "vars": [
-        "--fam"
+        "--sheet"
       ]
     },
     "findings-mark": {
       "selector": "[data-motion='findings-mark']",
       "vars": [
         "--find"
+      ]
+    },
+    "test-bars": {
+      "selector": "[data-motion='test-bars']",
+      "vars": [
+        "--bars"
+      ]
+    },
+    "glyphs": {
+      "selector": "[data-motion='glyphs']",
+      "vars": [
+        "--draw"
+      ]
+    },
+    "exhibit-dot": {
+      "selector": "[data-motion='exhibit-dot']",
+      "vars": [
+        "--t"
       ]
     }
   },
@@ -80,7 +91,7 @@
       "selector": "[data-scene='hero']",
       "range": {
         "from": 0,
-        "to": 0.0196
+        "to": 0.0434
       },
       "expectations": [
         {
@@ -89,12 +100,11 @@
           "property": "translateY",
           "tolerance": 8,
           "monotonic": "decreasing",
-          "monotonicEpsilon": 1,
           "keys": [
             {
               "localProgress": 0,
               "value": 0,
-              "label": "at rest, 264px rank"
+              "label": "at rest"
             },
             {
               "localProgress": 1,
@@ -102,140 +112,202 @@
               "label": "departed"
             }
           ],
-          "easeRef": "none — scrubbed. motion-priors §8 cross-cutting: scrubbed tweens are always ease:'none'.",
-          "note": "The 264px count leaves slightly faster than the page. Load-time count-up (2.0s power3.inOut, Trionn odometer prior) is not scroll-driven and is checked as an invariant, not here."
+          "easeRef": "none — scrubbed",
+          "monotonicEpsilon": 1
         }
       ]
     },
     {
-      "id": "method",
-      "label": "Method — the marker walks the offset-path",
-      "selector": "[data-scene='method']",
+      "id": "sweep",
+      "label": "01 — the walk visits the six steps (held stops)",
+      "selector": "[data-scene='sweep']",
       "range": {
-        "from": 0.0196,
-        "to": 0.0453
+        "from": 0.0434,
+        "to": 0.1314
       },
       "expectations": [
         {
-          "id": "method-walk-progress",
+          "id": "sweep-walk",
           "target": "method-walk",
           "property": "cssVar",
-          "cssVarName": "--walk",
           "tolerance": 0.06,
           "monotonic": "increasing",
           "keys": [
             {
               "localProgress": 0,
               "value": 0,
-              "label": "start of path"
+              "label": "start"
             },
             {
               "localProgress": 1,
               "value": 1,
-              "label": "end of path"
+              "label": "end"
             }
           ],
           "easeRef": "none — scrubbed",
-          "note": "Drives offset-distance on the 8x8 square. swiss-grid-lab motion line, verbatim: 'travel via offset-path not transform'."
+          "cssVarName": "--walk",
+          "note": "--walk drives offset-distance through measured marker positions; 60% travel / 40% hold per leg; markers fill as reached."
         }
       ]
     },
     {
-      "id": "findings",
-      "label": "Findings — the key sentence is highlighted as it is read",
-      "selector": "[data-scene='findings']",
+      "id": "sheet",
+      "label": "01 — the contact sheet, rows in award order",
+      "selector": "[data-scene='sheet']",
       "range": {
-        "from": 0.0453,
-        "to": 0.0634
+        "from": 0.1314,
+        "to": 0.2184
       },
       "expectations": [
         {
-          "id": "findings-highlight",
+          "id": "sheet-sheet",
+          "target": "sheet",
+          "property": "cssVar",
+          "tolerance": 0.06,
+          "monotonic": "increasing",
+          "keys": [
+            {
+              "localProgress": 0,
+              "value": 0,
+              "label": "start"
+            },
+            {
+              "localProgress": 1,
+              "value": 1,
+              "label": "end"
+            }
+          ],
+          "easeRef": "none — scrubbed",
+          "cssVarName": "--sheet"
+        }
+      ]
+    },
+    {
+      "id": "broke",
+      "label": "02 — the thesis is underlined as it is read (ink ground)",
+      "selector": "[data-scene='broke']",
+      "range": {
+        "from": 0.2184,
+        "to": 0.3998
+      },
+      "expectations": [
+        {
+          "id": "broke-find",
           "target": "findings-mark",
           "property": "cssVar",
-          "cssVarName": "--find",
           "tolerance": 0.06,
           "monotonic": "increasing",
           "keys": [
             {
               "localProgress": 0,
               "value": 0,
-              "label": "unmarked"
+              "label": "start"
             },
             {
               "localProgress": 1,
               "value": 1,
-              "label": "fully marked"
+              "label": "end"
             }
           ],
           "easeRef": "none — scrubbed",
-          "note": "The four counters beside it count ONCE on enter (time-based, 2s power3.inOut, stagger 0.1), so they are not scroll-asserted; this highlight is the scrubbed effect."
+          "cssVarName": "--find",
+          "note": "The 1,118 and the spec figures count ONCE on enter (time-based), so they are not scroll-asserted."
         }
       ]
     },
     {
-      "id": "exhibit",
-      "label": "Bezier exhibit — the page draws its own easing",
-      "selector": "[data-scene='exhibit']",
+      "id": "test",
+      "label": "03 — score bars drawn to scale",
+      "selector": "[data-scene='test']",
       "range": {
-        "from": 0.0634,
-        "to": 0.0917
+        "from": 0.3998,
+        "to": 0.5843
       },
       "expectations": [
         {
-          "id": "exhibit-dot-travel",
-          "target": "exhibit-dot",
+          "id": "test-bars",
+          "target": "test-bars",
           "property": "cssVar",
-          "cssVarName": "--t",
           "tolerance": 0.06,
           "monotonic": "increasing",
           "keys": [
             {
               "localProgress": 0,
               "value": 0,
-              "label": "curve start"
+              "label": "start"
             },
             {
               "localProgress": 1,
               "value": 1,
-              "label": "curve end"
+              "label": "end"
             }
           ],
-          "easeRef": "none — scrubbed. The DOT is linear in scroll; the CURVE it rides is the eased shape, which is the whole exhibit.",
-          "note": "The one signature moment. Handles and 8x8 markers drawn per swiss-grid-lab's sibling drafting kit."
+          "easeRef": "none — scrubbed",
+          "cssVarName": "--bars"
         }
       ]
     },
     {
-      "id": "families",
-      "label": "Families — 43 sections, reading rail",
-      "selector": "[data-scene='families']",
+      "id": "fams",
+      "label": "04 — each family's own curve draws",
+      "selector": "[data-scene='fams']",
       "range": {
-        "from": 0.0917,
+        "from": 0.5843,
+        "to": 0.7873
+      },
+      "expectations": [
+        {
+          "id": "fams-draw",
+          "target": "glyphs",
+          "property": "cssVar",
+          "tolerance": 0.06,
+          "monotonic": "increasing",
+          "keys": [
+            {
+              "localProgress": 0,
+              "value": 0,
+              "label": "start"
+            },
+            {
+              "localProgress": 1,
+              "value": 1,
+              "label": "end"
+            }
+          ],
+          "easeRef": "none — scrubbed",
+          "cssVarName": "--draw"
+        }
+      ]
+    },
+    {
+      "id": "self",
+      "label": "05 — the exhibit dot rides the page's own ease",
+      "selector": "[data-scene='self']",
+      "range": {
+        "from": 0.7873,
         "to": 1
       },
       "expectations": [
         {
-          "id": "families-rail-progress",
-          "target": "families-rail",
+          "id": "self-t",
+          "target": "exhibit-dot",
           "property": "cssVar",
-          "cssVarName": "--fam",
           "tolerance": 0.06,
           "monotonic": "increasing",
           "keys": [
             {
               "localProgress": 0,
               "value": 0,
-              "label": "first family"
+              "label": "start"
             },
             {
               "localProgress": 1,
               "value": 1,
-              "label": "last family"
+              "label": "end"
             }
           ],
           "easeRef": "none — scrubbed",
-          "note": "Reading-progress rail across the 43-item index. Per-section reveals are enter-triggered (0.5s power3.out, stagger amount 0.4 — snappy row) and fire once; they are deliberately NOT scrubbed, so they are not asserted here."
+          "cssVarName": "--t"
         }
       ]
     }

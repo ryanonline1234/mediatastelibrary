@@ -73,6 +73,29 @@ export const MOTION = {
     cite: 'scroll-architecture §6.1 sticky stage — scrub 0.6',
   },
 
+  walk: {
+    travel: 0.6,   // DECISION: each leg is 60% travel, 40% held at the step it reaches
+    cite: 'swiss-grid-lab entry Motion line: "delay = held first keyframe stop" (the exemplar holds 86.36% — swiss-grid-lab#8 — on a 4.4s timed intro; a scrubbed walk needs shorter holds, so 40% is a DECISION)',
+  },
+
+  sheet: {
+    cite: 'DECISION — contact-sheet rows appear in award order across the scene; frames are declared palettes (data), not screenshots',
+  },
+
+  bars: {
+    scaleMax: 60,
+    cite: 'DECISION — score bars drawn to scale (out of 60) across the scene',
+  },
+
+  glyph: {
+    ride: 1.1,     // seconds: watching register, motion-priors §4.3 (600-1200ms)
+    cite: 'Each family glyph is its own validated easing record, sampled; the rider uses CSS linear() from the same function; ride time from motion-priors §4.3 watching register',
+  },
+
+  flip: {
+    cite: 'swiss-grid-lab#11 {"duration": 0} — layer swaps are instant; swiss-grid-lab#15 ground/ink swap wholesale; entry Sequencing: teaching pages flip the WHOLE ground',
+  },
+
   hover: {
     durationMs: 120,
     ease: 'ease-out',
@@ -86,7 +109,10 @@ export const label = {
   // the target is data, so the label takes it as an argument (was a typed 131)
   count: (to) => `COUNT 0→${to} · ${MOTION.count.ease.toUpperCase()} · ${MOTION.count.duration}S`,
   gridBuild: `GRID BUILD · SCALEY · LINEAR · STAGGER ${MOTION.gridBuild.stagger} · HOLD ${MOTION.gridBuild.hold}S`,
-  walk: `OFFSET-PATH · SCRUB ${MOTION.scrub.value} · EASE NONE`,
+  walk: `OFFSET-PATH THROUGH 6 STOPS · ${Math.round(MOTION.walk.travel * 100)}% TRAVEL / ${Math.round((1 - MOTION.walk.travel) * 100)}% HOLD · SCRUB ${MOTION.scrub.value} · EASE NONE`,
+  sheet: `CONTACT SHEET · ROWS IN AWARD ORDER · SCRUB ${MOTION.scrub.value} · EASE NONE`,
+  bars: `BARS TO SCALE /${MOTION.bars.scaleMax} · SCRUB ${MOTION.scrub.value} · EASE NONE`,
+  glyphs: `EACH CURVE = THE FAMILY'S OWN RECORD · RIDER ${MOTION.glyph.ride}S · X LINEAR, Y = THE FAMILY'S EASE`,
   findings: `COUNT ON ENTER · ${MOTION.count.ease.toUpperCase()} · ${MOTION.count.duration}S · STAGGER ${MOTION.findings.stagger} · WIDTH-STABLE NUMERALS`,
   exhibit: `SCRUB ${MOTION.scrub.value} · DOT LINEAR IN SCROLL · CURVE = ${MOTION.ease.reveal.toUpperCase()} = ${MOTION.ease.revealFormula}`,
   section: `SECTION · ${MOTION.section.ease.toUpperCase()} · ${MOTION.section.duration}S · STAGGER AMOUNT ${MOTION.section.staggerAmount}`,

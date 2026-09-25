@@ -1,0 +1,384 @@
+{
+  "schema": "awwwards-motion/samples@1",
+  "url": "http://127.0.0.1:8811/families.html",
+  "capturedAt": "2026-09-25T04:56:33.290Z",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "dpr": 1
+  },
+  "scrollHeight": 31857,
+  "maxScroll": 30957,
+  "scrollDriver": "lenis",
+  "lenisVia": "window.lenis",
+  "reducedMotion": "no-preference",
+  "specPath": "/Users/ryantseng/mediatastelibrary/scroll-spec.families.json",
+  "spec": {
+    "$schema": "/Users/ryantseng/.claude/skills/awwwards-motion/scripts/scroll-spec.schema.json",
+    "specVersion": 1,
+    "viewport": {
+      "width": 1440,
+      "height": 900,
+      "dpr": 2,
+      "colorScheme": "light",
+      "reducedMotion": "no-preference"
+    },
+    "scroll": {
+      "totalHeightPx": 31857,
+      "totalHeightTolerancePx": 400,
+      "scrollAccuracyTolerancePx": 4,
+      "sampleMatchWindow": 0.01,
+      "allowSceneOverlap": false,
+      "coverage": {
+        "require": "full",
+        "maxGapProgress": 0.005
+      }
+    },
+    "settleMinMs": 0,
+    "settleMaxMs": 2500,
+    "name": "mediatastelibrary-archive-desktop",
+    "url": "http://localhost:8811/families.html",
+    "description": "The archive: one scene; the header rail reads progress through the 43 families. Per-family reveals are enter-triggered (0.5s power3.out, stagger amount 0.4) and fire once, so they are not scroll-asserted.",
+    "positions": [
+      0,
+      0.3,
+      0.5,
+      0.7,
+      0.9,
+      1
+    ],
+    "targets": {
+      "archive-rail": {
+        "selector": "[data-motion='archive-rail']",
+        "vars": [
+          "--fam"
+        ]
+      }
+    },
+    "scenes": [
+      {
+        "id": "archive",
+        "label": "Archive — reading rail in the header",
+        "selector": "[data-scene='archive']",
+        "range": {
+          "from": 0,
+          "to": 1
+        },
+        "expectations": [
+          {
+            "id": "archive-fam",
+            "target": "archive-rail",
+            "property": "cssVar",
+            "tolerance": 0.06,
+            "monotonic": "increasing",
+            "keys": [
+              {
+                "localProgress": 0,
+                "value": 0,
+                "label": "start"
+              },
+              {
+                "localProgress": 1,
+                "value": 1,
+                "label": "end"
+              }
+            ],
+            "easeRef": "none — scrubbed",
+            "cssVarName": "--fam"
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [],
+  "diagnostics": {
+    "pageErrors": [],
+    "consoleErrors": [],
+    "consoleWarningCount": 0,
+    "failedRequests": []
+  },
+  "samples": [
+    {
+      "progress": 0,
+      "requestedY": 0,
+      "scrollY": 0,
+      "nativeScrollY": 0,
+      "settled": true,
+      "settleMs": 32.2,
+      "measurements": {
+        "archive-rail": {
+          "found": true,
+          "rect": {
+            "x": 240,
+            "y": 51,
+            "width": 960,
+            "height": 1,
+            "top": 51,
+            "right": 1200,
+            "bottom": 52,
+            "left": 240
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "absolute",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 0.94229,
+          "inView": true,
+          "vars": {
+            "--fam": "0.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='archive-rail']"
+        }
+      }
+    },
+    {
+      "progress": 0.3,
+      "requestedY": 9287,
+      "scrollY": 9287,
+      "nativeScrollY": 9287,
+      "settled": true,
+      "settleMs": 343.2,
+      "measurements": {
+        "archive-rail": {
+          "found": true,
+          "rect": {
+            "x": 240,
+            "y": 51,
+            "width": 960,
+            "height": 1,
+            "top": 51,
+            "right": 1200,
+            "bottom": 52,
+            "left": 240
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "absolute",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 0.94229,
+          "inView": true,
+          "vars": {
+            "--fam": "0.299"
+          },
+          "count": 1,
+          "selector": "[data-motion='archive-rail']"
+        }
+      }
+    },
+    {
+      "progress": 0.5,
+      "requestedY": 15479,
+      "scrollY": 15479,
+      "nativeScrollY": 15479,
+      "settled": true,
+      "settleMs": 337.3,
+      "measurements": {
+        "archive-rail": {
+          "found": true,
+          "rect": {
+            "x": 240,
+            "y": 51,
+            "width": 960,
+            "height": 1,
+            "top": 51,
+            "right": 1200,
+            "bottom": 52,
+            "left": 240
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "absolute",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 0.94229,
+          "inView": true,
+          "vars": {
+            "--fam": "0.498"
+          },
+          "count": 1,
+          "selector": "[data-motion='archive-rail']"
+        }
+      }
+    },
+    {
+      "progress": 0.7,
+      "requestedY": 21670,
+      "scrollY": 21670,
+      "nativeScrollY": 21670,
+      "settled": true,
+      "settleMs": 339.1,
+      "measurements": {
+        "archive-rail": {
+          "found": true,
+          "rect": {
+            "x": 240,
+            "y": 51,
+            "width": 960,
+            "height": 1,
+            "top": 51,
+            "right": 1200,
+            "bottom": 52,
+            "left": 240
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "absolute",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 0.94229,
+          "inView": true,
+          "vars": {
+            "--fam": "0.698"
+          },
+          "count": 1,
+          "selector": "[data-motion='archive-rail']"
+        }
+      }
+    },
+    {
+      "progress": 0.9,
+      "requestedY": 27861,
+      "scrollY": 27861,
+      "nativeScrollY": 27861,
+      "settled": true,
+      "settleMs": 342.5,
+      "measurements": {
+        "archive-rail": {
+          "found": true,
+          "rect": {
+            "x": 240,
+            "y": 51,
+            "width": 960,
+            "height": 1,
+            "top": 51,
+            "right": 1200,
+            "bottom": 52,
+            "left": 240
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "absolute",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 0.94229,
+          "inView": true,
+          "vars": {
+            "--fam": "0.898"
+          },
+          "count": 1,
+          "selector": "[data-motion='archive-rail']"
+        }
+      }
+    },
+    {
+      "progress": 1,
+      "requestedY": 30957,
+      "scrollY": 30957,
+      "nativeScrollY": 30957,
+      "settled": true,
+      "settleMs": 314.6,
+      "measurements": {
+        "archive-rail": {
+          "found": true,
+          "rect": {
+            "x": 240,
+            "y": 51,
+            "width": 960,
+            "height": 1,
+            "top": 51,
+            "right": 1200,
+            "bottom": 52,
+            "left": 240
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "absolute",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 0.94229,
+          "inView": true,
+          "vars": {
+            "--fam": "0.998"
+          },
+          "count": 1,
+          "selector": "[data-motion='archive-rail']"
+        }
+      }
+    }
+  ]
+}

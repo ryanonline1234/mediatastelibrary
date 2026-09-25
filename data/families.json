@@ -35,7 +35,8 @@
      "#7d0e8b",
      "#eecd02",
      "#ffffff"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "umami-land",
@@ -55,7 +56,8 @@
      "#f19d38",
      "#d7e3f9",
      "#949494"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "coastal-world",
@@ -74,7 +76,8 @@
      "#3b3777",
      "#02c6a7",
      "#f2676f"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "messenger",
@@ -89,7 +92,8 @@
     "palette": [
      "#81BFBC",
      "#C9D5C3"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "brunos-portfolio",
@@ -108,7 +112,8 @@
      "#c21515",
      "#46123b",
      "#d5ff95"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "bruno-simon-portfolio",
@@ -128,7 +133,8 @@
      "#e8e0d8 (SAMPLED)",
      "#d94f3d (SAMPLED)",
      "#ffffff (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "nomadic-tribe",
@@ -148,7 +154,8 @@
      "#ece2d6 (SAMPLED)",
      "#486078 (SAMPLED)",
      "#c0d8c0 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "oat-the-goat",
@@ -167,7 +174,8 @@
      "#f1ecdd (SAMPLED)",
      "#ecd3b1 (SAMPLED)",
      "#282112 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "gallery-of-emerging-species",
@@ -186,13 +194,27 @@
      "#cba30e (SAMPLED)",
      "#aa7182 (SAMPLED)",
      "#491a20 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "messenger",
    "kode"
-  ]
+  ],
+  "signature_move": "You walk, not scroll: the keyboard drives a character over a ~40-unit tiny planet (camera 1 up, 5 back); idle damping 0.65 per 60 Hz frame parks it crisply, heading lerps 0.075 per frame.",
+  "sequencing": "No sections: one continuous walkable place, wayfinding by diegetic cues (quest arrows, NPCs, road paint, a held map); scene swaps are a diagonal white wipe (out 1.15s, in 2s inOut1) plus flash.",
+  "nearest": "rounded-frame-diorama: same toy-3D vocabulary but warm, one crafted diorama walked by scroll; here you traverse freely in loud candy colour.",
+  "requires": {
+   "asset": "modelled low-poly 3D world and characters (Draco geometry) UV-mapped to one palette atlas, plus face sprite sheets",
+   "code_substitute": "procedural low-poly primitives shaded from a code-built palette texture with derived two-tone shadow"
+  },
+  "motion_budget": {
+   "level": "very-high",
+   "text": "Everything is real-time: physics character, following camera and sun, blinking NPCs. 113 tween call sites, 69 linear: the linear curve set is physics carrying the feel, not low volume."
+  },
+  "records": 10,
+  "ease": null
  },
  {
   "name": "blackbox-keyline-hud",
@@ -229,7 +251,8 @@
      "#192a2c (SAMPLED)",
      "#2c464c (SAMPLED)",
      "#192737 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "chile20",
@@ -248,7 +271,8 @@
      "#ffffff",
      "#353535",
      "#aaaaaa"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "the-harmonic-state",
@@ -267,7 +291,8 @@
      "#0072C3",
      "#007D79",
      "#8A3FFC"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "20-years-of-xbox-museum",
@@ -286,7 +311,8 @@
      "#060606 (SAMPLED)",
      "#0a1004 (SAMPLED)",
      "#b06924 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "the-frontier-within",
@@ -304,7 +330,8 @@
      "#D14836",
      "#4080a0 (SAMPLED)",
      "#600040 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "orano",
@@ -322,7 +349,8 @@
      "#d7e23c (SAMPLED emissive chartreuse-yellow)",
      "#c9ccd6 (SAMPLED wireframe/chrome white-grey)",
      "#8f93a0 (SAMPLED body-copy grey)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "foosball-world-cup-18",
@@ -341,7 +369,8 @@
      "#5c2430 (SAMPLED)",
      "#e0244e (SAMPLED)",
      "#d4e157 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "active-theory-v4",
@@ -361,13 +390,32 @@
      "#202040 (SAMPLED)",
      "#400020 (SAMPLED)",
      "#e0e0e0 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "active-theory-v6",
    "chile20"
-  ]
+  ],
+  "signature_move": "Scroll flies the camera down a helix of panels (50deg steps, radius 3.8) via a framerate-normalised chase lerp of .2; click locks the rail and dives in over 700ms easeOutCubic.",
+  "sequencing": "No sections or document: projects sit in world space on a descending helix; scroll dollies the camera panel to panel, entering above the first, sinking below the last; click dives in, scroll closes.",
+  "nearest": "glacial-slate-telemetry: shares hairline keylines, but grades real expedition photography with real data; this is a synthetic, emissive WebGL void.",
+  "requires": {
+   "asset": "A live WebGL scene whose content emits the light (3D work panels, video, particles); the HUD needs a world beneath",
+   "code_substitute": "A procedural emissive shader scene under the bloom-crush grade; not stock three.js particle dust (reads as a 2015 demo)"
+  },
+  "motion_budget": {
+   "level": "very-high",
+   "text": "Whole frame moves: live scene in permanent drift, scroll dollies the camera down a rail, followers chase-lerp, RGB shift keyed to scroll delta; 64 of 115 counted ease calls are Sine/Cubic out."
+  },
+  "records": 31,
+  "ease": {
+   "id": "blackbox-keyline-hud#17",
+   "value": "cubic-bezier(.17,.4,.02,.99)",
+   "label": "cubic-bezier(.17,.4,.02,.99)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "overscale-grotesk-whiteout",
@@ -400,7 +448,8 @@
     "palette": [
      "#000000",
      "#ffffff"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "exo-ape",
@@ -419,7 +468,8 @@
      "#f8f8f8",
      "#e4e0db",
      "#e0ccbb"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "pangram-pangram-foundry",
@@ -438,7 +488,8 @@
      "#8e8e8e",
      "#eceff1",
      "#ff6600"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "ali-ali",
@@ -455,7 +506,8 @@
      "#100f0f",
      "#dbe3e5",
      "#e5e5e5"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "locomotive-1",
@@ -473,7 +525,8 @@
      "#8091a1 (SAMPLED, photography plates)",
      "#d81f26 (SAMPLED, project art)",
      "#4c84f1 (SAMPLED, FAB accent)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "robin-mastromarino-portfolio-1",
@@ -490,13 +543,27 @@
      "#111111",
      "#919191",
      "#f7f7f7"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "pangram-pangram-foundry",
    "bennett-clive"
-  ]
+  ],
+  "signature_move": "Each billboard line wipes up out of its own mask as the slide enters — 1.5s cubic-bezier(.075,.82,.165,1), +0.1s per line — and leaves faster on .6s cubic-bezier(.65,.05,.36,1).",
+  "sequencing": "Held photo plate, type wiping over it; next section = whole-ground ink/ground flip, never a divider; below the fold density collapses (Pangram: font-card grid; Bennett Clive: unaligned image index).",
+  "nearest": "colorfield-poster-grotesk: both use viewport-scale grotesk and whole-ground swaps, but its colour is painted flat fields; here only photos carry colour.",
+  "requires": {
+   "asset": "Commissioned campaign photography or a photographed physical object; the imagery supplies every hue, the chrome none",
+   "code_substitute": "none — with stock photography it reads unstyled, not restrained (deep dive)"
+  },
+  "motion_budget": {
+   "level": "medium",
+   "text": "One curve, not little motion: 15 hero lines mask-wipe in (1.5s, +0.1s per line) across 4 carousel slides; 29 data-scroll-speed parallax layers; the one ease recurs 90× on links, header, burger."
+  },
+  "records": 4,
+  "ease": null
  },
  {
   "name": "colorfield-poster-grotesk",
@@ -533,7 +600,8 @@
      "#ff6359",
      "#000000",
      "#ffffff"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "synchrodogs-portfolio",
@@ -552,7 +620,8 @@
      "#d2c9a0",
      "#dd6900",
      "#794330"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "the-other-side-of-truth",
@@ -571,7 +640,8 @@
      "#da1111",
      "#ffffff",
      "#000000"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "design-canada",
@@ -587,7 +657,8 @@
      "#000000",
      "#ec1c24",
      "#ffffff"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "franshals-museum",
@@ -606,13 +677,32 @@
      "#f5e578 (SAMPLED)",
      "#c9a89a (SAMPLED)",
      "#a184ba (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "sculpting-harmony",
    "synchrodogs-portfolio"
-  ]
+  ],
+  "signature_move": "Scroll crosses a section seam: the ground cuts instantly to the next flat colour while the fixed chrome re-inks over .2s, fired by a 1px marker at the header line (42px at 1800 design width).",
+  "sequencing": "Each section owns one flat ground; the next arrives as a hard colour cut, never a crossfade. Colour-field chapters alternate with theme=light essay sections; [READ MORE] collapses long prose.",
+  "nearest": "blend-mode-swiss-poster: its incident comes from a fixed WebGL blend/glitch layer; here the whole poster is flat CSS/SVG with a hard ground swap per section.",
+  "requires": {
+   "asset": "Client-owned flat artwork, archive drawings or photography + real long-form copy (Getty: catalogued Gehry sketches)",
+   "code_substitute": "Type-only posters: flat CSS fields + SVG-outline or giant web grotesk + mono labels; omit the drawing layer"
+  },
+  "motion_budget": {
+   "level": "medium",
+   "text": "Grounds never animate (hard cut). Motion lives in the display word — sticky scaleY scrub to 0.3 over 170vh, pointer-damped glyphs at speed 3 — plus a .2s chrome re-ink and 8 loader loops."
+  },
+  "records": 11,
+  "ease": {
+   "id": "colorfield-poster-grotesk#3",
+   "value": "ease:\"none\"",
+   "label": "ease",
+   "kind": "keyword"
+  }
  },
  {
   "name": "prop-occluded-grotesk",
@@ -649,7 +739,8 @@
      "#e3dde2 (SAMPLED)",
      "#181520",
      "#231b35"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "silencio-digital-products",
@@ -667,7 +758,8 @@
      "#000",
      "#dededd",
      "#f0efef"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "superlist",
@@ -686,7 +778,8 @@
      "#ed4439",
      "#f5f5f5",
      "#e3e3e3"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "2018-year-in-review",
@@ -703,7 +796,8 @@
      "#1c41d8 (SAMPLED)",
      "#e3f4ee (SAMPLED)",
      "#bfd3c7 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "nike-reactor",
@@ -722,13 +816,32 @@
      "#0048a8 (SAMPLED)",
      "#003090 (SAMPLED)",
      "#f0f0f0 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "noomo-agency",
    "superlist"
-  ]
+  ],
+  "signature_move": "Props live in the headline's depth: idle sine.inOut yoyo (±20° yaw/±8° pitch, 3s each way) under a 2s pointer tween (ny/10, nx/20 rad) as scroll carries glyphs in front of and behind them.",
+  "sequencing": "One idea per viewport on one continuous camera walk: 8 named waypoints chained in vmin on a body-triggered score (~200-vmin legs, mostly 5-vmin holds); DOM copy toggles play/reverse, never scrubbed.",
+  "nearest": "void-specimen-stage: one lit object in a dark room under a moving camera; here props sit on a flat single-hue page, layered in depth with the type.",
+  "requires": {
+   "asset": "3D prop models (glTF) with baked material: matcap PNGs or an equirect JPEG env map; no light rig",
+   "code_substitute": "procedural three.js primitives on a code-generated matcap, layered between two DOM type layers"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "All 3D always moves: every prop idles (3s-each-way yoyo) under a 2s pointer tween while scroll scrubs one camera over 8 waypoints on a 2090vh track. Small amplitude, not small volume."
+  },
+  "records": 45,
+  "ease": {
+   "id": "prop-occluded-grotesk#16",
+   "value": "power2.inOut",
+   "label": "power2.inOut",
+   "kind": "gsap"
+  }
  },
  {
   "name": "flat-mascot-carnival",
@@ -765,7 +878,8 @@
      "#f6b1cf",
      "#acd084",
      "#fef7e6"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "ponpon-mania",
@@ -780,7 +894,8 @@
     "palette": [
      "#7E7EFF",
      "#F894C0"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "mindmarket",
@@ -795,7 +910,8 @@
     "palette": [
      "#8ED462",
      "#F5E211"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "dont-board-me",
@@ -814,13 +930,32 @@
      "#2B6786",
      "#F3F3E9",
      "#F3C3CB"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "mana-yerba-mate",
    "dont-board-me"
-  ]
+  ],
+  "signature_move": "Everything that arrives or is touched overshoots, never fades: letters pop scale .8→1 on elastic.out(2, 0.5), stagger .07s; hovered pills squash 1.05→.96→1 in 300ms.",
+  "sequencing": "Colour is the navigation: each section/state is a saturated room (whole ground swaps, .3s delayed under a cover) with its own in-view character loops; pages change under a click bloom + Lottie wipe.",
+  "nearest": "flat-sticker-pop: same dead-flat saturated grounds but no mascot cast (ruling); rounded sticker primitives. Here bespoke characters own the page.",
+  "requires": {
+   "asset": "Bespoke flat-vector character cast from a real illustrator (Lottie/Rive/SVG); optional 3D product model + HDR",
+   "code_substitute": "None for the cast. Grounds, pills and elastic motion are code; a cutout PNG can stand in for the 3D product"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "High: 58 looping Lottie character animations in 17 viewport-gated groups, 27 elastic tweens, 27 scrubbed tweens incl. a 400vh WebGL can tumble; pill hovers squash."
+  },
+  "records": 13,
+  "ease": {
+   "id": "flat-mascot-carnival#4",
+   "value": "elastic.out(2, 0.5)",
+   "label": "elastic.out",
+   "kind": "gsap"
+  }
  },
  {
   "name": "flavor-swap-colorfield",
@@ -857,7 +992,8 @@
      "#fff8f1",
      "#fdd301",
      "#ff6d2f"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "delassus",
@@ -876,7 +1012,8 @@
      "#e7524c",
      "#fd9436",
      "#ffb700"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "slosh-seltzer",
@@ -895,7 +1032,8 @@
      "#0069D8",
      "#FF5F00",
      "#FFC800"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "ma",
@@ -915,13 +1053,32 @@
      "#eda707 (SAMPLED hero ground)",
      "#f6fafb (SAMPLED interior ground)",
      "#7fbec3 (SAMPLED relax ground)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "delassus",
    "b-d-r-jams"
-  ]
+  ],
+  "signature_move": "Switch SKU (nav click, drag or 5s autoplay): ground, panel, button, ink and shadow repaint in one ~1s beat (DOM: cubic-bezier(.645,.045,.355,1); canvas ground RGBA-lerped), restarting from current.",
+  "sequencing": "Home is a horizontal SKU slideshow, not a vertical scroll: nav, drag or autoplay advances and each slide repaints the whole field. Interior pages invert to #fafafa, hue kept as a cropped band or card.",
+  "nearest": "prop-occluded-grotesk: also one flat hue + object + big grotesk; flavor-swap requires a full repaint bound to a variant attribute on switch (p2 ruling).",
+  "requires": {
+   "asset": "one commissioned focal object per SKU (rendered 3D or photo) as an alpha PNG with a baked contact shadow",
+   "code_substitute": "none — stock 3D or flat vector collapses it to startup-blob; the flat field has nothing else to look at"
+  },
+  "motion_budget": {
+   "level": "medium",
+   "text": "Concentrated at the SKU switch: 1s full-field repaint, word stretch and a 2x0.5s underline, plus a 5s autoplay countdown; the field itself never modulates. No motion census in sources."
+  },
+  "records": 9,
+  "ease": {
+   "id": "flavor-swap-colorfield#5",
+   "value": "1s cubic-bezier(.645,.045,.355,1)",
+   "label": "cubic-bezier(.645,.045,.355,1)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "gilded-monument-walkthrough",
@@ -959,7 +1116,8 @@
      "#252525",
      "#f6cea0",
      "#79644b"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "pasqua-wines",
@@ -977,7 +1135,8 @@
      "#BBBBAD",
      "#5C621C",
      "#161615"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "cartier-watches-wonders-2025",
@@ -996,7 +1155,8 @@
      "#97836A",
      "#291B0E",
      "#FFFFFF"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "the-fabulous-cartier-journey",
@@ -1015,13 +1175,32 @@
      "#7a2c35",
      "#ae9852",
      "#eae7e1"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "persepolis-reimagined",
    "pasqua-wines"
-  ]
+  ],
+  "signature_move": "Scroll is a playhead on a baked camera clip: gaps in a remap table park it (Gate: scroll .30–.34 holds camera at .171) while the title speaks; free look recentres by min(|playSpeed|,1).",
+  "sequencing": "Each chapter is its own route and camera clip: travel → dwell (title/hotspot exist only in the gap) → travel. Seams hide in fog (2s ramps; 2.1s-out/3.7s-in wipe); ordinal filigree counter + 3px rail.",
+  "nearest": "cg-diorama-poster: same baked CG walkthrough and hairline chrome, but flat type in one saturated hue; here type inherits the render's warm light.",
+  "requires": {
+   "asset": "Authored photoreal 3D world (baked scene with lightmaps, or a prerendered camera-pass video) plus an ambient audio bed",
+   "code_substitute": "none — over code-drawn, stock or generic renders the family collapses into beige emptiness (all 4 cards)"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "The whole frame moves: scroll drives a full-bleed camera through 6 chapters (Apadana ≈15.7 capped viewports). DOM motion is sparse: one title at each stop. One ease limits curves, not volume."
+  },
+  "records": 32,
+  "ease": {
+   "id": "gilded-monument-walkthrough#19",
+   "value": "cubic-bezier(.2, 0, 0, 1)",
+   "label": "cubic-bezier(.2,0,0,1)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "keyart-dossier-mono",
@@ -1059,7 +1238,8 @@
      "#000000",
      "#968adf",
      "#c0fb50"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "dark-official-netflix-guide",
@@ -1077,7 +1257,8 @@
      "#ffffff",
      "#b9964f (SAMPLED)",
      "#81746d (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "medal-of-honor-above-beyond",
@@ -1096,7 +1277,8 @@
      "#2f201c",
      "#dfdbd6",
      "#d3d0cd"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "inkfish",
@@ -1112,13 +1294,32 @@
      "#000000",
      "#ffffff",
      "#8ebee0 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "kpr",
    "inkfish"
-  ]
+  ],
+  "signature_move": "Captions decode in as they scroll into view (start \"center bottom\", desktop only): write head 0.04s/char, scramble tail +0.4s behind, both linear; the index square blinks 14 hard steps 0.075s apart.",
+  "sequencing": "Full-bleed media panels each declare a [theme] role-token set; one inset frame pinned over the whole document crossfades two ink copies at each ground change; captions decode in as each panel arrives.",
+  "nearest": "",
+  "requires": {
+   "asset": "commissioned, graded full-bleed media you control: painted key art, graded stills or campaign footage",
+   "code_substitute": "none: sources say stock or generative fill leaves the apparatus nothing to survey"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Every caption decodes in beside a blinking index square; all media is scroll-scrubbed under ScrollSmoother; Home route chunk: 86 stock GSAP ease uses. 'Instrumentation' is the kind, not the volume."
+  },
+  "records": 24,
+  "ease": {
+   "id": "keyart-dossier-mono#12",
+   "value": "ease: \"linear\"",
+   "label": "ease",
+   "kind": "keyword"
+  }
  },
  {
   "name": "scrubbed-product-cinema",
@@ -1155,7 +1356,8 @@
      "#9d9d9d",
      "#2997ff",
      "#0071e3"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "terminal-industries",
@@ -1174,7 +1376,8 @@
      "#454742",
      "#abff02",
      "#fb6b3c"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "gq-ap-the-extraordinary-lab",
@@ -1188,7 +1391,8 @@
     "status": "alive",
     "palette": [
      "#000000"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "oryzo-ai",
@@ -1202,13 +1406,27 @@
     "palette": [
      "#100904",
      "#FF8539"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "apple-airpods-pro",
    "terminal-industries"
-  ]
+  ],
+  "signature_move": "Scroll is the playhead of a sticky full-bleed stage: the image lags (ease .2/frame, about λ 13.4/s) while each transparent claim tracks exactly, fading in over 20vh and drifting +40 to -40px.",
+  "sequencing": "Chapters with dead holds, not stepped progress: half the runway advances nothing, one claim per viewport crops the product; dense sections escape to opaque #111 or white; 2025 uses 150vh sticky units.",
+  "nearest": "void-specimen-stage: also one centerpiece in a void, but no product and no scroll-scrub; it reframes per section (taxonomy ruling).",
+  "requires": {
+   "asset": "A real hero product rendered or filmed as frame sequences or alpha video (AirPods: 1,509 JPEGs, ~54 MB at large)",
+   "code_substitute": "none: stand-in objects read as mockups or configurator demos; cheapest honest path is one alpha video per section"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Whole page is a scroll-driven film: 10 sequences (1,509 frames) on one sticky stage, frozen about half the runway (1,975vh hold vs 1,970vh move); every copy block fades 20vh, drifts 80px."
+  },
+  "records": 5,
+  "ease": null
  },
  {
   "name": "void-specimen-stage",
@@ -1246,7 +1464,8 @@
      "#e6e8ed",
      "#1b1a41 (SAMPLED)",
      "#657da7 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "the-year-of-greta",
@@ -1265,7 +1484,8 @@
      "#d2e191",
      "#dbdbdb",
      "#868686"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "immersive-garden-website",
@@ -1283,7 +1503,8 @@
      "#030303",
      "#e8e8e8",
      "#a6a6a6"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "dogstudio-1",
@@ -1301,13 +1522,32 @@
      "#0d1224 (SAMPLED)",
      "#3d4470 (SAMPLED)",
      "#26395c (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "sea-shepherd-no-fishing-net",
    "the-year-of-greta"
-  ]
+  ],
+  "signature_move": "Section change = the same specimen re-cropped under a full-viewport #121212 veil: opacity .666s linear, reframe hidden, copy released at .766s (100ms slack). Fired by drag-commit or click, not scroll.",
+  "sequencing": "No page scroll: 4 store view-states on one route, each re-crops the one specimen (whole/centred, bled off 3 edges, small in the void) under the veil. Members swap in a 1-D year scrub or a ground flip.",
+  "nearest": "scrubbed-product-cinema: there scroll scrubs a hero product's camera; here one non-product specimen in a void is re-cropped per section (p2 ruling).",
+  "requires": {
+   "asset": "One photoreal 3D specimen (glTF + PBR/IBL textures): a globe, figure or flora worth the whole render budget",
+   "code_substitute": "none: flat vector or procedural stand-ins on #121212 read as a plain dark theme, not this family"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "High, not scroll-driven: drag-spun WebGL specimen reframed per view, Lottie ornaments, staged DOM entrances, drag scrubber; 505 non-zero CSS durations. Restraint = one duration ladder, not volume."
+  },
+  "records": 39,
+  "ease": {
+   "id": "void-specimen-stage#5",
+   "value": "cubic-bezier(0.165, 0.84, 0.44, 1)",
+   "label": "cubic-bezier(0.165,0.84,0.44,1)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "canvas-native-studio",
@@ -1345,7 +1585,8 @@
      "#2b2e3a",
      "#e4e6ef",
      "#121416"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "lusion",
@@ -1364,7 +1605,8 @@
      "#300018 (SAMPLED)",
      "#e080c0 (SAMPLED)",
      "#a0e0e0 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "google-cloud-infrastructure",
@@ -1383,10 +1625,24 @@
      "#34a853",
      "#2d2d2d",
      "#ffffff"
-    ]
+    ],
+    "disputed": false
    }
   ],
-  "exemplars": []
+  "exemplars": [],
+  "signature_move": "Wheel/drag feed one virtual scroll scalar, damped 1-e^(-12*dt) (tau about 83ms), wheel clamped to 200px per event, moving the DOM (translate3d) and the WebGL scene together. No native scroll.",
+  "sequencing": "No native scroll: sections are ScrollDomRange ranges (isActive, ratio) on one virtual scroll scalar; a project page ends in an overscroll gauge routing to the next project under a Canvas2D curtain.",
+  "nearest": "webgl-scroll-journey: scroll flies one scripted camera through one 3D scene; here the canvas is the page, many DOM-registered effects under real DOM text.",
+  "requires": {
+   "asset": "3D models (custom .buf), EXR/jpg matcaps, project reel video and webp + depth-map pairs, on a rendering R&D budget",
+   "code_substitute": "Procedural WebGL (2D fluid sim, curl-noise particles, refraction) fed by DOM rects, over real DOM text"
+  },
+  "motion_budget": {
+   "level": "very-high",
+   "text": "Very high: realtime WebGL app, no native scroll; one damped scalar moves canvas and DOM every frame; FLIP fluid, GPGPU particles, per-word reveals (bundle-read, runtime unseen). Restraint is graphic."
+  },
+  "records": 7,
+  "ease": null
  },
  {
   "name": "display-serif-hue-flood",
@@ -1423,7 +1679,8 @@
      "#fdfbf5",
      "#191919",
      "#e9e9e9"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "chungi-folio",
@@ -1442,7 +1699,8 @@
      "#f8c1ca",
      "#f6bac6",
      "#ffe699"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "beyond-beauty",
@@ -1460,13 +1718,32 @@
      "#202020 (SAMPLED)",
      "#f2eeea (SAMPLED)",
      "#eccdae (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "chungi-folio",
    "unleashing-your-best-version"
-  ]
+  ],
+  "signature_move": "Load: stacked serif rows rise 50px on a 0.1s ladder (1.4s Power3-out), then a 2px SVG ring draws round one word (1s, 1.2s delay); em-sized stamps rock +/-30deg, never spin.",
+  "sequencing": "No pinning: full-width flat-hue bands, one idea per screen (14-26rem padding), each a rounded-top slab rising under the last with a pill on the seam. Member: 2s circle iris per route.",
+  "nearest": "colorfield-poster-grotesk: both flood whole sections to flat hue; that sets viewport grotesk in black/white ink, this a playful serif with circular ornaments.",
+  "requires": {
+   "asset": "none - code-native; optional hand-drawn stamps (the exemplar's smileys are the artist's own brand marks)",
+   "code_substitute": "em-sized SVG rings, 100vw CSS discs, flat one-declaration hue classes; the look survives without the PIXI layer"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "High volume, narrow curves: dense scroll reveals (live home DOM: 34x data-preset=\"opacity\" + 6x opacity,rotation), 1-1.8s power-out, exits snap 0s; stamps rock nonstop."
+  },
+  "records": 27,
+  "ease": {
+   "id": "display-serif-hue-flood#16",
+   "value": "cubic-bezier(0.230, 1.000, 0.320, 1.000)",
+   "label": "cubic-bezier(0.230,1.000,0.320,1.000)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "floating-inset-panel",
@@ -1502,7 +1779,8 @@
      "#BB0B18 (SAMPLED)",
      "#D31006 (SAMPLED)",
      "#29EDF9 (SAMPLED)"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "akaru-2",
@@ -1521,7 +1799,8 @@
      "#B692A1",
      "#798E7B",
      "#B4E3EE"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "editorial-new",
@@ -1537,13 +1816,32 @@
      "#1a1a1a",
      "#000000",
      "#f4f4f4"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "locomotive-r",
    "akaru-2"
-  ]
+  ],
+  "signature_move": "On scroll the next section rises over a CSS-pinned full-bleed stage while the stage clip wipes it from below: box min(100vw,200vh), margin −½, top-half clip, sticky child ½ — zero JS.",
+  "sequencing": "Sheets slide over held stages: each stage-pin holds its media while the next section rises over and clips it; editorial-new scrubs the whole sheet from scale(.25) on a dark table to 1:1.",
+  "nearest": "warped-serif-noir: dark stage too, but ruled out for lacking the sheet-over-stage shell; here an ordinary document slides over a held stage.",
+  "requires": {
+   "asset": "Stage-worthy media (own photography, video or a prerendered object frame sequence) + one strong display face",
+   "code_substitute": "A flat achromatic stage (#1a1a1a) with the sheet staged as an object, scale(.25)→1, as editorial-new does"
+  },
+  "motion_budget": {
+   "level": "medium",
+   "text": "Medium; two-curve restraint is the curve set, not volume: easeOutCubic ×43/easeOutQuint ×9 chrome transitions (.3s ×42, .15s ×24) + scroll-written --progress parallax, veil, frame scrub."
+  },
+  "records": 15,
+  "ease": {
+   "id": "floating-inset-panel#1",
+   "value": "cubic-bezier(0.215, 0.61, 0.355, 1)",
+   "label": "cubic-bezier(0.215,0.61,0.355,1)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "keyart-slab-stage",
@@ -1580,7 +1878,8 @@
      "#9c7443",
      "#c81c01",
      "#d14836"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "zentry",
@@ -1599,7 +1898,8 @@
      "#240e4b",
      "#dfdff2",
      "#ffff4a"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "once-upon-a-time-in-hollywood",
@@ -1617,13 +1917,27 @@
      "#3e2a22 (SAMPLED)",
      "#1f1210 (SAMPLED)",
      "#dea7ad (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "zentry",
    "hape"
-  ]
+  ],
+  "signature_move": "A title crossing 95% of the viewport swings up on a perspective hinge: rotateX -40deg to 0, y 120 to 0, 1.3s power4.out (quintic), origin center top; exits .5s power2.in.",
+  "sequencing": "Sections are 100lvh full-bleed art stages butted edge to edge; a zero-length scroll tripwire at a section top rewrites the whole theme (ground 150ms, ink 500ms); headlines split to opposite corners.",
+  "nearest": "keyart-dossier-mono: same full-bleed commissioned art; that annotates it with mono filing marks, this sets ~18vw fat slab type the subject eclipses or splits.",
+  "requires": {
+   "asset": "Commissioned full-bleed key art per section (painted, rendered or photographed subject; scrubbed video plates)",
+   "code_substitute": "none - ref: without commissioned art an 18vw word over stock renders is just a big word on an empty field"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Scroll owns motion: key-art video scrubs, slab titles hinge in (rotateX -40deg to 0, 1.3s), themes flip at tripwires, masks open 1.2s then idle-drift; hover only in corner chrome."
+  },
+  "records": 9,
+  "ease": null
  },
  {
   "name": "single-ink-cinema-poster",
@@ -1656,7 +1970,8 @@
      "#FF391E",
      "#F8F8F8",
      "#0b0b0b"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "siena-film-foundation",
@@ -1674,7 +1989,8 @@
      "#ff0f00",
      "#ffc700",
      "#d6d3cc"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "onnu-jonu-son",
@@ -1693,13 +2009,27 @@
      "#0E0D1F (SAMPLED)",
      "#120D14 (SAMPLED)",
      "#AFD6C3 (SAMPLED)"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "thelinestudio-com",
    "siena-film-foundation"
-  ]
+  ],
+  "signature_move": "Scroll the hero: the multiply ink layer and masthead peel off the still footage together (xPercent -10, rotate -15deg about bottom-left, power1.in, scrubbed); the footage never moves.",
+  "sequencing": "Sticky 100lvh stages on svh runways, never pin:true; work cards hinge in off invisible 3rem rails, title lagging, last card drifting down to hand off; header ink flips per panel.",
+  "nearest": "woven-scanline-duotone: also a strict two-colour world, but every image is rasterized into a loom halftone; single-ink lays one flat, untextured ink on footage.",
+  "requires": {
+   "asset": "cinematic source footage: dense near-monochrome linework, cels or documentary stills/video to overprint",
+   "code_substitute": "none — the ink needs dense footage beneath it; over sparse or flat imagery multiply reads as a filter"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Scroll-scrubbed throughout: the homepage runs 10 scroll tweens on 7 scrubbed timelines under Lenis lerp .2, plus 70 CSS transitions; panels, cards and routes hinge 4-15deg in and out."
+  },
+  "records": 8,
+  "ease": null
  },
  {
   "name": "slat-reel-strip",
@@ -1737,7 +2067,8 @@
      "#ddd9ce",
      "#d8d5cc",
      "#554d3d"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "aristide-portfolio-2021",
@@ -1756,7 +2087,8 @@
      "#1e1e1e",
      "#a8a8a8",
      "#de4c3f"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "everest",
@@ -1773,13 +2105,27 @@
      "#202020 (SAMPLED)",
      "#ffffff (SAMPLED)",
      "#f0a9bb (SAMPLED, per-slide photo chroma — changes with each case study)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "aristide-portfolio-2021",
    "alan-menken"
-  ]
+  ],
+  "signature_move": "Scrub sideways (wheel/drag): slats nearest centre push toward camera and take colour, all swivel like louvers (rotateY -0.4 x velocity, <=39deg); stop and they drain to gray at alpha .4.",
+  "sequencing": "No sections, no document scroll: one strip. Clicking a slat (under 6px of drag) swaps the target array: it damps to a 1054x602 plate, neighbours become half-width shoulders, ground re-inks at .05.",
+  "nearest": "contact-sheet-drift: also a no-scroll draggable photo field; slat-reel is one mid-height band with one privileged centre slat, not a full-canvas tile field.",
+  "requires": {
+   "asset": "10-30 strong curated project images or video stills that survive a 1:3.7 vertical crop and a drain to gray",
+   "code_substitute": "none — the drained shell has nothing else to look at; procedural textures are only test stand-ins"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Whole screen is input-driven: one rAF loop damps 9 props on every slat; z-push, colour and a <=39deg swivel ride scroll velocity. At rest amp 0.000, all gray. Titles wipe ±101%."
+  },
+  "records": 13,
+  "ease": null
  },
  {
   "name": "webgl-scroll-journey",
@@ -1817,7 +2163,8 @@
      "#224528",
      "#10421a",
      "#4e2e10"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "prometheus-fuels",
@@ -1837,7 +2184,8 @@
      "#66B4AD",
      "#122A2B",
      "#FFA300"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "twenty-one-pilots-bandito",
@@ -1853,13 +2201,27 @@
      "#000000 (SAMPLED, ~55% of hero frame)",
      "#F4E032 (SAMPLED, sole chromatic ink)",
      "#FFFFFF (emissive window slits only — fringe accent, not area-dominant)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "pioneer-corn-revolutionized",
    "prometheus-fuels"
-  ]
+  ],
+  "signature_move": "Scroll scrubs a camera along an authored shot-list path; the camera trails the scrollbar (damp λ3.2 per second, technique source: non-winner) so each section arrives flown, not jumped.",
+  "sequencing": "No pinned slides: one camera flight where each chapter is a scene record sized in viewports (Prometheus heights 10/3/2/9/4); copy on overlapping ranges (.13–.28/.22–.37) cross-dissolves.",
+  "nearest": "scrubbed-product-cinema: scrubs a prerendered film of one product on a sticky canvas; this flies a live camera through an authored world with in-canvas GL type.",
+  "requires": {
+   "asset": "An authored 3D world: modelled scenes/GLBs + textures (Pioneer CGI corn, Prometheus car and dunes, Bandito city)",
+   "code_substitute": "none — Pioneer card: without the CGI budget it collapses to a generic dark hero; procedural-only is untested"
+  },
+  "motion_budget": {
+   "level": "very-high",
+   "text": "Whole viewport is a WebGL scene rendered every frame; scroll flies its camera across a 1000vh runway (TOTAL_PAGES = 10, technique source); DOM overlays only fade and slide."
+  },
+  "records": 20,
+  "ease": null
  },
  {
   "name": "atmosphere-as-wayfinding",
@@ -1891,7 +2253,8 @@
     "palette": [
      "#29648e",
      "#f4f6f8"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "2degc-earth",
@@ -1910,13 +2273,32 @@
      "#f9f6f5",
      "#d7d7d7",
      "#545454"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "montfort",
    "2degc-earth"
-  ]
+  ],
+  "signature_move": "Scroll scrubs one float (uChapter 0→2→3→4→5); every scene layer fades on its own smoothstep window, so the same landscape regrades into another place while the chrome only flips ink.",
+  "sequencing": "Plain document scrolls over one fixed landscape; each section is a place whose grade range ends one viewport early (settled light, camera still moving); ink flips at the top-85% line; 150vh hero.",
+  "nearest": "webgl-scroll-journey: scroll narrates through objects there; here an ordinary document scrolls and only the weather behind it changes.",
+  "requires": {
+   "asset": "art-directed landscape: 3D terrain GLB with per-place baked lightmaps, or commissioned location photo/video",
+   "code_substitute": "procedural layered-ridge canvas graded per section off one scroll dial (tier's composed 2D demo)"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "A full-viewport WebGL landscape renders every frame, never stopping: camera on Catmull-Rom paths, 9 layer windows off one scroll dial. Chrome layout is fixed; its ink flips (.4s linear), a rail fills."
+  },
+  "records": 9,
+  "ease": {
+   "id": "atmosphere-as-wayfinding#3",
+   "value": "ease:\"none\"",
+   "label": "ease",
+   "kind": "keyword"
+  }
  },
  {
   "name": "blend-mode-swiss-poster",
@@ -1953,7 +2335,8 @@
      "#ED6339",
      "#FA5CA6",
      "#177AEE"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "2021-virtual-webbys",
@@ -1972,13 +2355,27 @@
      "#ff00ff",
      "#e6fe40",
      "#ef3844"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "c2-montreal",
    "2021-virtual-webbys"
-  ]
+  ],
+  "signature_move": "On scroll the black slab inside h1 line 1 scrubs yPercent -90 (ease none, desktop >=1024px) while the type holds still, so the black/colour boundary climbs through the letters.",
+  "sequencing": "No pin, no steps: each viewport is a new poster. Blocks arrive as class-toggled plate wipes (wrapper/inner counter-translate; colour plates slide off images, .15s stagger); overlays exit falling.",
+  "nearest": "colorfield-poster-grotesk: same saturated slabs and white/near-black grotesk ink; this family adds a fixed WebGL blend/glitch layer and rectangles cutting type",
+  "requires": {
+   "asset": "none required: type, slabs and blend layer are code; exemplar adds event photos/video under colour plates",
+   "code_substitute": "procedural WebGL under mix-blend-mode: difference (e.g. instanced discs); the knockout needs motion beneath"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "~90 CSS transitions (curve uses 55 arrive / 33 exit / 6 wipe), 6 scrubbed parallax timelines, Lenis, a fixed WebGL disc chain pulsing every 4-8s. All single-axis slides; nothing pinned."
+  },
+  "records": 1,
+  "ease": null
  },
  {
   "name": "contact-sheet-drift",
@@ -2015,7 +2412,8 @@
      "#aeaeae",
      "#c4aa8d",
      "#212d8e"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "the-cool-club-x-fwa",
@@ -2033,12 +2431,31 @@
      "#FF9398",
      "#f2f2f2 (SAMPLED)",
      "#141414 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "powerhouse-company"
-  ]
+  ],
+  "signature_move": "Pointer drag (delta/64px mouse, /32 touch) moves one offset; the wordmark under the tiles follows at k=0.1/frame, tiles lag at k=0.05 via a 1–2-frame ring, so letters shear in gutters.",
+  "sequencing": "No sections, no document scroll: home is one draggable field. Browse = 2-axis drag to an elastic edge; narrow = filter menu dims non-matches to 0.2 alpha + grey. Interior pages unstudied.",
+  "nearest": "archival-particle-editorial: both swarm real photos; here the grid is a draggable layout encoding nothing, there scroll forms thumbnails into data shapes.",
+  "requires": {
+   "asset": "Dozens of strong commissioned photos (3 crop aspects, focal points) + an SVG wordmark; a sparse set reads as a demo",
+   "code_substitute": "Flat single-hue vector tiles (the Cool Club member's cards); the drag/lag/wander field runs in 2D canvas, no WebGL"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "One rAF loop moves every tile all the time: drag glide + shear, permanent 0.0015/frame idle wander, 5–6 s staggered intro, 9.5 s camera dolly. d3-ease only, no GSAP."
+  },
+  "records": 19,
+  "ease": {
+   "id": "contact-sheet-drift#12",
+   "value": "20 − 7 · easeSinOut(t/9500)",
+   "label": "easeSinOut",
+   "kind": "penner"
+  }
  },
  {
   "name": "exploded-blueprint-mono",
@@ -2069,7 +2486,8 @@
     "palette": [
      "#252423",
      "#DAD5D0"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "opal-tadpole",
@@ -2086,13 +2504,27 @@
      "#ffffff",
      "#35383c (SAMPLED)",
      "#0a0a0a (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "anime-js",
    "opal-tadpole"
-  ]
+  ],
+  "signature_move": "Scrolling into a chapter seeks the master timeline: corner mono labels fade in (250 timeline-ms, out(3), 10ms stagger from last), 1px leader lines draw on 50ms behind, 45° elbow into the part.",
+  "sequencing": "One paused master timeline seeked by scroll; chapter segment = its pixel height, paced by 100lvh spacers; annotated chapters flip ground #252423 to #DAD5D0 in one 250ms inOutQuad tween (DOM + shader).",
+  "nearest": "swiss-grid-lab: same drafting vocabulary pointed at the page's own grid; here it annotates one machine with real parts and measured numbers.",
+  "requires": {
+   "asset": "A real product with nameable parts and measured numbers, plus its geometry: 22 per-part GLB meshes or a vector drawing",
+   "code_substitute": "Axonometric coded from SVG primitives in 1px non-scaling strokes, SVG leader lines, color-mix ramps (Opal static branch)"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "High, on one clock: scroll seeks one master timeline that explodes the 3D assembly, reveals labels and draws 11 leader lines (re-solved per frame); 113 ease: declarations in bundle. Short ≠ little."
+  },
+  "records": 13,
+  "ease": null
  },
  {
   "name": "flat-sticker-pop",
@@ -2129,7 +2561,8 @@
      "#FDF9F0 (SAMPLED)",
      "#00A652 (SAMPLED)",
      "#FFC412 (SAMPLED)"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "spotify-astrology-club",
@@ -2148,13 +2581,32 @@
      "#ff7439",
      "#121212",
      "#202f72"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "navigate",
    "spotify-astrology-club"
-  ]
+  ],
+  "signature_move": "Hover (add :focus-visible) squares the sticker: a 4.6rem capsule at radius 2.3rem un-rounds to 1rem over .3s cubic-bezier(0.22,1,0.36,1); nothing scales, nothing shadows.",
+  "sequencing": "No pinned steps: sections reserve scroll in svh (hero, intro 300svh) and reach back over the prior one (margin-top -200svh/-300svh), crossfading by opacity; grounds flip black→orange on a 0.3s class.",
+  "nearest": "flat-mascot-carnival spends its flat vocabulary on a character cast and hard-swaps grounds per character; here the cast stays out of the chrome.",
+  "requires": {
+   "asset": "Code-native chrome; motion lives in authored Rive character timelines (Navigate) / Lottie stickers (Astrology) + video",
+   "code_substitute": "Inline SVG stickers on a closed 8-hue token set, moved by scroll-mapped CSS transforms; drop the 4K video layer"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "High volume, few authored eases: scroll scrubs Rive timelines (progress x 10.5 s) and chapter video across 300svh overlapping sections; only 37 JS ease literals in 1.5 MB."
+  },
+  "records": 6,
+  "ease": {
+   "id": "flat-sticker-pop#1",
+   "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+   "label": "cubic-bezier(0.22,1,0.36,1)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "glacial-slate-telemetry",
@@ -2191,7 +2643,8 @@
      "#23293c",
      "#f0f0f0",
      "#676767"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "into-the-storm",
@@ -2210,13 +2663,32 @@
      "#ffffff",
      "#000000",
      "#1b1b1b"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "into-the-storm",
    "mammut-expedition-baikal"
-  ]
+  ],
+  "signature_move": "Each beat's hairline frame draws itself: four 1px spans scale 0→1, .35s each (last .5s), origins flipping so one stroke runs TL→TR→BR→BL; corner labels start printing at 1.5s.",
+  "sequencing": "Storm: full-viewport beats advanced by named gestures (drag, half-turn, full circle); treks scrub a paused timeline off wheel deltas, latching at .98. Mammut: 28 blocks, media vs narrow white text.",
+  "nearest": "blackbox-keyline-hud: shares keylines and HUD micro-labels, but is synthetic and screen-native; this grades real photography and gauges real data.",
+  "requires": {
+   "asset": "Real full-bleed cold expedition photography or video, plus real measured values (temps, times, distances) for the gauges",
+   "code_substitute": "None for the ground: without real photos and numbers it is a dashboard skin. The split-gamma shader grades any media"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Curve set is strict, volume is not: live WebGL scene + grain every frame, GSAP timelines scrubbed per scene (TimelineMax 34 hits), pen-traced frames, printing labels. Mammut: one bezier ×135."
+  },
+  "records": 9,
+  "ease": {
+   "id": "glacial-slate-telemetry#3",
+   "value": "cubic-bezier(.25,.46,.45,.94)",
+   "label": "cubic-bezier(.25,.46,.45,.94)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "hazed-relic-runes",
@@ -2252,7 +2724,8 @@
      "#f8ffed",
      "#ebfc53",
      "#515158"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "the-hall-of-zero-limits",
@@ -2271,13 +2744,27 @@
      "#2df872",
      "#99ff88",
      "#00964d"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "aten7",
    "the-hall-of-zero-limits"
-  ]
+  ],
+  "signature_move": "Invented alphabet decodes into Latin glyph by glyph: 3 stacked spans per character race on opacity, and acid #ebfc53 lights a character only in its own window (×1.7). 0.02s per char, 0.3s window.",
+  "sequencing": "No sections: one monument orbited 0→900° while the year runs 2027→2126; scroll blends neighbouring baked states (fog, LUT, sky). Inner pages dissolve in 1.2s, out 1.7s, linear, after a .3s hold.",
+  "nearest": "",
+  "requires": {
+   "asset": "A rendered monumental 3D world with real depth (6 baked states: HDR, plates, LUTs) and a bespoke 26-glyph rune font",
+   "code_substitute": "none — the haze needs a real depth signal; flat art under a CSS blur reads as a smudge filter"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "The render carries it: synthetic scroll orbits the camera 900° (2.5 turns) across 6 crossfaded world states. Chrome barely moves: .3–1s CSS transitions, 1.2s/1.7s linear page dissolves."
+  },
+  "records": 2,
+  "ease": null
  },
  {
   "name": "iridescent-plaster-gallery",
@@ -2314,7 +2801,8 @@
      "#212121",
      "#353535",
      "#EFDED9"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "magical-reflections",
@@ -2332,13 +2820,32 @@
      "#f5aae0",
      "#a47cda",
      "#4d4bd2"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "unseen-studio",
    "magical-reflections"
-  ]
+  ],
+  "signature_move": "Hovering the 1.5rem capsule: its border stroke travels round the pill (expo.in .25s, constant-speed .12/.12/.10s legs, expo.out .25s) while a cloned label replaces the old (.6s out, .8s in).",
+  "sequencing": "Whole views swap, not stacked sections: a numbered 01 Index/02 Projects/03 Contact/04 World menu changes rooms (matcaps cross-fade mid-transition); Index hard-cuts to black, drag-driven.",
+  "nearest": "",
+  "requires": {
+   "asset": "One strong pale architectural plate: an authored 3D room (glTF + matcaps) or a commissioned interior photograph",
+   "code_substitute": "none: a primitives+MatCap stand-in reads as a Blender tutorial; type, ramp and capsule are code-native"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Frame never still: brownian camera drift (amp .026) and pointer-stirred fluid ink in a full-screen WebGL room; theme.js has >=143 GSAP ease strings. Restraint is palette, not motion."
+  },
+  "records": 36,
+  "ease": {
+   "id": "iridescent-plaster-gallery#1",
+   "value": "cubic-bezier(.16,1,.3,1)",
+   "label": "cubic-bezier(.16,1,.3,1)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "old-master-remix",
@@ -2371,7 +2878,8 @@
     "palette": [
      "#F7F7EE",
      "#292919"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "canals",
@@ -2388,12 +2896,26 @@
      "#D14836",
      "#ffffff",
      "#F00000 (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "the-renaissance-edition"
-  ]
+  ],
+  "signature_move": "At each chapter change on scroll, the painted scene wipes to the next along a noise-torn edge, both sides dissolving into their own line drawings (fwidth luma edges x5 to x10).",
+  "sequencing": "Scroll maps to section index + local progress (cumulative heights, earlyCrossfade lead-in); chapters change by shader wipe, never cut or slide; survey lines draw on by group (8 groups); Roman nav.",
+  "nearest": "archival-particle-editorial: real artworks as particles in scroll-choreographed formations on white; here one period oil fills the frame, never cropped.",
+  "requires": {
+   "asset": "A real period oil painting (licensed scan or commissioned re-staging) plus modern props that close the joke",
+   "code_substitute": "none: the painting carries the surface and genAI paint collapses the premise; only the overlay is code"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "High, layered: scroll crossfades 13 code-split WebGL scenes through a paint-to-engraving shader wipe; 27 Rive in-page product animations; survey lines draw on over 3s; chrome = CSS on root data-attrs."
+  },
+  "records": 3,
+  "ease": null
  },
  {
   "name": "orrery-chart-vellum",
@@ -2429,7 +2951,8 @@
      "#322fb3",
      "#122330",
      "#431e2e"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "welcome-to-the-continent",
@@ -2448,13 +2971,32 @@
      "#091218",
      "#2c3338",
      "#375b5a"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "star-atlas",
    "welcome-to-the-continent"
-  ]
+  ],
+  "signature_move": "Menu click: overlay irises in from scale3d(12,12,1) at transform-origin 0 0 over 1s cubic-bezier(.23,1,.32,1); nodes land on 4 orbit radii, opacity staggered .595s + .095s·i.",
+  "sequencing": "No pinning (pin: 0): an entry gate, chapter intros marked by ringed tabular numerals, and a Showroom corridor of items 1500px apart in Z, travelled by real scroll and tracked by a dotted left rail.",
+  "nearest": "",
+  "requires": {
+   "asset": "Studio-grade pre-rendered CG stills/video plates + authored SVG ring art; the atmosphere collapses without that art",
+   "code_substitute": "Rings, rails, diamonds and nav coords computed in SVG/CSS from one radius list; no code substitute for the plates"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Two hotspots: the menu (1s iris from 12×, 150s/100s ring spin, 1.2s node fly-in from 255vw/570°) and the Showroom Z-corridor (scroll travel, velocity skew, card tilt). GSAP 41 refs, pin 0."
+  },
+  "records": 43,
+  "ease": {
+   "id": "orrery-chart-vellum#4",
+   "value": "cubic-bezier(.23,1,.32,1)",
+   "label": "cubic-bezier(.23,1,.32,1)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "rounded-frame-diorama",
@@ -2486,7 +3028,8 @@
     "palette": [
      "#241F21",
      "#E9E778"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "kriss-ai",
@@ -2503,13 +3046,27 @@
      "#0F0F0F",
      "#B29FA3",
      "#919A8E"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "floema",
    "kriss-ai"
-  ]
+  ],
+  "signature_move": "Crossing a region retints the chrome: Floema flips a 4-6 token quad as the nav box itself crosses a section edge (.5s cubic-bezier(.19,1,.22,1)); Kriss re-points 4 aliases per camera room.",
+  "sequencing": "One idea per viewport, 150vh per slide in a sticky (unpinned) deck: images clip-wipe with scroll, 15% overlapped; copy snaps per slide after a 0.25s beat. Kriss: in-scene hotspots replace sections.",
+  "nearest": "matte-toybox-playworld: same toy-3D diorama vocabulary, but this family holds colour to two accents on a pastel ground; toybox plays it loud and saturated",
+  "requires": {
+   "asset": "One genuinely crafted scene (CGI diorama/sculpture or isometric room model) or strong product photography",
+   "code_substitute": "none: flat cutouts read as clip art; shade wash, token-quad retint and deck are code but need a scene"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Always quietly alive: worker scenes (wind-wobbled leaf shade, photo-tunnel fly-through), 60s orbiting cut-outs, a 900vh scroll deck. Restraint is amplitude and expo-out-led curves, not volume."
+  },
+  "records": 4,
+  "ease": null
  },
  {
   "name": "swiss-grid-lab",
@@ -2547,7 +3104,8 @@
      "#B2B2B2",
      "#606060",
      "#2C2C2C"
-    ]
+    ],
+    "disputed": true
    },
    {
     "slug": "dropbox-brand",
@@ -2566,13 +3124,27 @@
      "#b4dc19",
      "#fa551e",
      "#fad24b"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "grids",
    "dropbox-brand"
-  ]
+  ],
+  "signature_move": "Click the 10px \"Grid:\" pill: an 8-band column overlay (111px bands, rgba(86,86,86,.1), 960px span) appears instantly (duration 0) over the page, the layout shown as content.",
+  "sequencing": "Four long scroll pages as chapters; teaching pages flip the whole ground to #010101, not a section. Spreads pair spec tables with 31px notes numbered inline (1)(2)(3); pieces sweep 2-3k px on scroll.",
+  "nearest": "exploded-blueprint-mono: same drafting vocabulary (hairlines, labels, ledgers) aimed at a machine; swiss-grid-lab's apparatus documents the page itself.",
+  "requires": {
+   "asset": "none — code-native; exhibits are screenshots of the system being documented (twenty 597x448 on grids)",
+   "code_substitute": "live CSS grid overlays, SVG hairlines and spec tables rendered from the page's own layout values"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "High volume, stock curves: grids ships 578 keyframe blocks on 1,171 offset-path containers (312 travel, median 3,000px) on load, click, scroll. \"Restraint\" = curve set, not volume."
+  },
+  "records": 17,
+  "ease": null
  },
  {
   "name": "torn-paper-editorial",
@@ -2607,7 +3179,8 @@
      "#f4e8e0",
      "#e6e3d9",
      "#1c1b20"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "miranda-paper-portfolio",
@@ -2626,13 +3199,27 @@
      "#69645F",
      "#000000",
      "#ab846b (SAMPLED)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "watson",
    "miranda-paper-portfolio"
-  ]
+  ],
+  "signature_move": "Clicking a route slips two sheets on one 1000 ms clock: new stock rises a full viewport as the old page clips from the bottom on (.76,0,.2,1); old content drifts -250×(vh/1080) px on (.58,0,.38,1).",
+  "sequencing": "Short routes, each on its own stock (route-table hex), joined by the page turn; after it nav reveals at 500 ms and hero at 1300 ms; wheel/keys drive a damped virtual scroller (0.09, 300 ms snap).",
+  "nearest": "sumi-e-paper is also warm paper but scrub-plays ink-wash cinema and dissolves; this family only tears, slips or clips sheets over a giant occluded masthead.",
+  "requires": {
+   "asset": "Print-grade scans of torn paper stock (glTF + normal maps at the Watson pole) and film photography to print onto it",
+   "code_substitute": "Partial: warm flat stocks, grayscale x multiply duotone and clip-path sheet slips are code; the scraps need real scans"
+  },
+  "motion_budget": {
+   "level": "medium",
+   "text": "33 CSS transitions (22 at 1000 ms) for underline sweeps and clipping wipes, a 1000 ms two-sheet page turn, scraps fluttering in 5 fps bursts, pointer parallax. No native scroll."
+  },
+  "records": 22,
+  "ease": null
  },
  {
   "name": "two-face-splice-editorial",
@@ -2669,7 +3256,8 @@
      "#c95a1a",
      "#409289",
      "#eb7c16"
-    ]
+    ],
+    "disputed": false
    },
    {
     "slug": "the-shift-1",
@@ -2688,13 +3276,27 @@
      "#e6e6e6",
      "#323232",
      "#050505"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "the-shift-1",
    "madeleine-dalla"
-  ]
+  ],
+  "signature_move": "On load the spliced h1 flips in per glyph: words turn rotateX -90deg to 0 as letters rise from 110% inside masks, 1.2s cubic-bezier(.26,1,.48,1), 25ms per character.",
+  "sequencing": "Horizontal/diagonal drag-scrolled slides with a (03/06) counter; the cursor disc scales 2x and names the gesture (Drag, Next); Barba page swaps whose word exit runs double speed (50ms/word).",
+  "nearest": "warped-serif-noir: both disturb one headline block; this splices two faces on gallery white, that shears one dimmed serif on black.",
+  "requires": {
+   "asset": "A few photographs for capsule-masked, bled fragments; no 3D or illustration (the library's type-only pole)",
+   "code_substitute": "The two-face headline splice carries it: two free faces, flat colour capsules or no imagery at all"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Dense: every block reveals once on a one-way latch (25ms/char, 100ms/word, 75ms/block), 1.2s per-glyph h1 flip; drag slides, coaching cursor, marquees; custom curves used 40x and 33x."
+  },
+  "records": 14,
+  "ease": null
  },
  {
   "name": "acid-scrawl-telemetry",
@@ -2726,12 +3328,26 @@
     "palette": [
      "#111112",
      "#D2FF00"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "lando-norris"
-  ]
+  ],
+  "signature_move": "On entry (top 90%, once) each line unmasks clip-path inset(0 100% 0 0)→inset(0 0% 0 0), 0.6s power2.out, while a lime bar scaleX 1→0 (0.6s power2.inOut) starts 0.3s in; stagger 0.15.",
+  "sequencing": "Sections alternate soot and sage-bone grounds; one scrubbed ScrollTrigger lerps the WebGL contour colours and body background between them; each block enters by marker pass or edge-anchored oval.",
+  "nearest": "glacial-slate-telemetry: shares the telemetry furniture, but runs a cold accent with no handwriting and no editorial second ground.",
+  "requires": {
+   "asset": "A real person's handwriting as vector strokes (Rive), a subject-true 3D artifact for the hero, real stats",
+   "code_substitute": "Contour ground, marker reveals and ordinals are code-native; none for the scrawl (a synthetic hand reads as pastiche)"
+  },
+  "motion_budget": {
+   "level": "very-high",
+   "text": "All JS, on every block: marker/oval reveals (70 split-text blocks on home), scrubbed Rive, Lenis, per-frame contour + fluid sim. 90 GSAP ease uses vs 3 CSS transition shorthands."
+  },
+  "records": 4,
+  "ease": null
  },
  {
   "name": "archival-particle-editorial",
@@ -2764,12 +3380,31 @@
     "palette": [
      "#FFFFFF",
      "#DAE2E8"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "tracing-art"
-  ]
+  ],
+  "signature_move": "~1500 tinted artwork thumbnails swarm into a chart on scroll: two labelled groups of 75 assemble at stagger .01 screen, the anonymous ~1350 at .00025 (40× tighter), power2.inOut, scrubbed.",
+  "sequencing": "One fixed stage, no DOM flow: 3 chapters (19/34.5/39 screens, 1.4/1.6 overlap) paced as beat deltas (+7,+4,+2…); a serif paragraph holds 2–3 screens on a halo, silences run longer; dot→pill scrubber.",
+  "nearest": "contact-sheet-drift: also swarms real photos, but as a draggable layout field; here scroll choreographs them into statistical formations (P2 ruling).",
+  "requires": {
+   "asset": "Real image corpus with per-item records: hundreds of credit-able works (packed as 128px WebP atlases) + a named subset",
+   "code_substitute": "none — with stock or a dozen images the swarm is confetti and the museum register a costume"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Scroll-scrubbed over 89.5 screens: ~1500 sprites re-form each beat, ring drifts nonstop. Volume alternates: gaps up to 8 screens, the mass lands in ~0.34 screen. Four easings ≠ little motion."
+  },
+  "records": 5,
+  "ease": {
+   "id": "archival-particle-editorial#5",
+   "value": "cubic-bezier(.25,.46,.45,.94)",
+   "label": "cubic-bezier(.25,.46,.45,.94)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "botanical-wallpaper-mono",
@@ -2805,12 +3440,26 @@
      "#3a5738 (SAMPLED forest ink/tabs)",
      "#539273 (SAMPLED leaf green)",
      "#dfaea7 (SAMPLED coral accent)"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "koox"
-  ]
+  ],
+  "signature_move": "Chrome parked off the edges slides home on .is-active: green tabs from translateX(∓100%) in .8s cubic-bezier(.43,.195,.02,1); 90px frame bars from 65px out in .4s. Trigger unrecorded.",
+  "sequencing": "A discrete-wheel scroller (wheel-indicator; section stepping inferred) inside a fixed white frame; the printed ground re-inks to each section colour (0.1/frame). One dish per viewport: stills only.",
+  "nearest": "floating-inset-panel: also a panel in a margin, but a sheet sliding over a dark/media stage; here fixed white bars frame a printed pattern ground.",
+  "requires": {
+   "asset": "Commissioned flat cut-out illustrations with normal maps, a 256px tonal pattern tile, and food photography",
+   "code_substitute": "Ground only: an SVG/CSS pattern tile masked in the section ink; the dithered cut-out art has no code stand-in"
+  },
+  "motion_budget": {
+   "level": "medium",
+   "text": "Medium, never rendered: 62 CSS transitions (.8s ×10, most .4–1s) on chrome and frame; a WebGL loop lags 70 sprites behind scroll (friction .01–.08) and eases the ground ink per section."
+  },
+  "records": 22,
+  "ease": null
  },
  {
   "name": "carved-ice-mono",
@@ -2848,10 +3497,29 @@
      "#6A6F7D",
      "#E1E6F1",
      "#83A1C5"
-    ]
+    ],
+    "disputed": false
    }
   ],
-  "exemplars": []
+  "exemplars": [],
+  "signature_move": "Wheel never scrolls a page: a virtual rig (velocity x0.1, friction 0.97/60fps frame, .075 then .15 double damp) scrubs the camera down from y 21 into the lit igloo; 1.4s idle snaps (inOut3).",
+  "sequencing": "Scenes stack by height in pages on one virtual scroll that wraps by modulo, so it never ends; neighbours cut by a data-texture diagonal ice wipe; after 1.4s idle it snaps to the nearest anchor.",
+  "nearest": "glacial-slate-telemetry: also cold blue-grey expedition HUD, but over photography with DOM hairlines and real data; carved-ice is an all-canvas 3D world.",
+  "requires": {
+   "asset": "Sculpted 3D models + baked lightmaps (15 Draco meshes, ~27 KTX2 maps, EXR env) and ~20 ambient audio layers",
+   "code_substitute": "Light-from-within at CSS fidelity: glow escaping gaps between solid blocks, plus mono HUD type; loses the 3D descent"
+  },
+  "motion_budget": {
+   "level": "very-high",
+   "text": "Whole viewport is one WebGL world always in motion: virtual-scroll camera, mouse-orbit parallax, shake, particle sims, pointer frost, scramble type; no static DOM. Dev Animations score 9.60."
+  },
+  "records": 39,
+  "ease": {
+   "id": "carved-ice-mono#36",
+   "value": "M0,0 C0.6,0 0,1 1,1",
+   "label": "custom path",
+   "kind": "path"
+  }
  },
  {
   "name": "cg-diorama-poster",
@@ -2888,12 +3556,31 @@
      "#EDE2D4 (SAMPLED)",
      "#FFFAF4 (SAMPLED)",
      "#E94EBD (SAMPLED)"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "adobe-x-bowie"
-  ]
+  ],
+  "signature_move": "As the landing appears, the ENTER ring is born as ink: a stroked disc thins from lineWidth 0.25xwidth to a 2px hairline (1 s expo.out, +0.2 s) while its radius grows 0 to 0.8 (1 s power3.out).",
+  "sequencing": "No scroll, no sections: poster landing over the corridor, click ENTER at the door, camera rides twin position/look-at splines into the room, free-look hunt (HUD \"N OF 9\"), flat-swatch overview sheet.",
+  "nearest": "gilded-monument-walkthrough: same CG-walkthrough ground, but its type inherits the scene light; here one flat hue sits on the render with no scrim.",
+  "requires": {
+   "asset": "Fully modelled 3D period interior, baked (lamp-on/off lightmap pair per surface), plus a reveal video per collectible",
+   "code_substitute": "none: a stock photo or 360 pano under the type collapses into a real-estate tour"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Whole viewport moves: pointer pans the camera (inverted spring follow) and splines carry it door to room; chrome is GSAP-tweened (power3.out x28, expo.out x21, sine.out x11). No scroll."
+  },
+  "records": 17,
+  "ease": {
+   "id": "cg-diorama-poster#2",
+   "value": "power3.out",
+   "label": "power3.out",
+   "kind": "gsap"
+  }
  },
  {
   "name": "constructivist-bone-grid",
@@ -2930,12 +3617,26 @@
      "#A72805",
      "#EA7313",
      "#E6D6BA"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "aim-ai-modernism-of-kharkiv"
-  ]
+  ],
+  "signature_move": "1px rule-divs draw themselves from nothing (scaleX 0→1 from the left, vertical ones scaleY from the top) while display lines rise out of per-line masks; exemplar timings unshipped (no IX2 JSON).",
+  "sequencing": "Page-to-page: a 700ms hold under a full-viewport ink veil, then hard navigation; each view repeats the 1px-ruled strip; inner pages invert to ink (9.5em); art plates stagger on a black band.",
+  "nearest": "swiss-grid-lab (Grids, also Obys): same ruled grid on a near-mono ground, but its accent lives in the interface; here every hue is fenced inside image plates.",
+  "requires": {
+   "asset": "A fixed catalogue of real images whose colours disagree (AIM: matte renders), each on a hand-matched opaque plate",
+   "code_substitute": "none for the images (stock or screenshots leave nothing to quarantine); mark, slab, rules are plain SVG/CSS"
+  },
+  "motion_budget": {
+   "level": "low",
+   "text": "Entrance motion, not scroll-linked: display lines rise from per-line masks and .anim-line rules draw 0→1; 3 SVG Lotties (loader 3.917s, scroll cue); 700ms veil between pages; nothing scrubbed."
+  },
+  "records": 3,
+  "ease": null
  },
  {
   "name": "ink-scrawl-white-cube",
@@ -2972,12 +3673,31 @@
      "#c1ab8e",
      "#e5e0db",
      "#ECD06F"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "the-unconventional-gallery"
-  ]
+  ],
+  "signature_move": "Text is written on, not faded: each character's opacity snaps 0→1 (snap:{opacity:1}) at stagger .03s inside a .85s tween, so letters land like ink on paper.",
+  "sequencing": "Gallery = a rail: camera rides a 31-stop baked spline; release snaps ≤1 stop in a constant 1000ms velocity-matched curve; pages/panels wiped by a 12-frame painted-brush flipbook, reversed to leave.",
+  "nearest": "acid-scrawl-telemetry: a scrawled word over broadcast stat chrome with acid lime; here one commissioned hand is the whole type system on bone/white.",
+  "requires": {
+   "asset": "Commissioned hand-lettered typeface + the artist's drawings; painted brush-stroke frames; a baked photoreal gallery",
+   "code_substitute": "none — strip the commissioned hand and it is an empty room with a novelty font (reference Don't-steal)"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Busy on a moving world: 132 transition-related CSS declarations (.35s ×46), JS .85s ×56, 17 ScrollTriggers (4 scrubbed); camera rides a 31-stop rail. 'Two speeds' limits durations, not volume."
+  },
+  "records": 29,
+  "ease": {
+   "id": "ink-scrawl-white-cube#26",
+   "value": "cubic-bezier(.22,1,.36,1)",
+   "label": "cubic-bezier(.22,1,.36,1)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "split-specimen-cinema",
@@ -3014,12 +3734,31 @@
      "#902247 (SAMPLED)",
      "#a68676",
      "#ffffff"
-    ]
+    ],
+    "disputed": false
    }
   ],
   "exemplars": [
    "couro-azul"
-  ]
+  ],
+  "signature_move": "First scroll off the top slides the whole 100vw cinema layer +60vw (footage counter-slides −30vw) into a 40vw band, Expo.easeInOut, open 0.5s / close 1.0s — bone paper and specimen appear.",
+  "sequencing": "Sections change by a hand-inked sprite-strip mask wipe (1s, steps(10)) and images swap through a film burn (brightness(0) contrast(4)), not pinned steps; the hero split closes again at scroll top.",
+  "nearest": "scrubbed-product-cinema: also product + footage, but gives the whole viewport to the product and scrubs its camera; here the paper/film seam is the subject.",
+  "requires": {
+   "asset": "Real process footage of the material being made, plus a specimen video shot on the page paper with its shadow baked in",
+   "code_substitute": "None for the footage (without it the 40% band is a stock-video hole); split, grain and filter moves are code"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "High volume, narrow curve set: 135 CSS curve uses + 202 GSAP ease refs (Power4/Expo.easeOut 88/82); seam, film burns, rack-focus, mask wipes over looping video and 60fps 5% grain."
+  },
+  "records": 21,
+  "ease": {
+   "id": "split-specimen-cinema#14",
+   "value": "cubic-bezier(.19,1,.22,1)",
+   "label": "cubic-bezier(.19,1,.22,1)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "sumi-e-paper",
@@ -3055,12 +3794,31 @@
      "#8BA167",
      "#B8C7B1",
      "#E5C459"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "david-whyte-experience"
-  ]
+  ],
+  "signature_move": "Scroll scrubs a paused ink-wash video's currentTime inside a 220%-runway pin (0.18/frame lerp, about λ 11.9/s) while a 10%-opacity 花吹雪 watermark drifts yPercent 46 to -46.",
+  "sequencing": "Still/scrubbed alternate: hero, seal-stamped pull-quote, scrub-cinema pin, 2 kanji-numbered gallery rooms wiping in from opposite sides, stillness scrub, ink footer; pins melt into 22vh paper fades.",
+  "nearest": "torn-paper-editorial: also warm paper + serif, but tears/slips scanned scraps over a masthead; sumi pins ink-wash video and rations one seal-red accent.",
+  "requires": {
+   "asset": "One generated ink-wash image+video family: painting-grows hero loop, two 6s scrub clips, misty watercolor landscapes",
+   "code_substitute": "none for the plates (CSS-filter watercolor reads as greeting card); paper, seal, serif, grain, rails are code-native"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "Every section moves, slowly: 2 pinned scrub cinemas (the first runs +=220%), scroll reveals on every head (start top 58-88%), 26-petal canvas and grain always on. Tempo slow, volume high."
+  },
+  "records": 24,
+  "ease": {
+   "id": "sumi-e-paper#23",
+   "value": "cubic-bezier(.7, 0, .2, 1)",
+   "label": "cubic-bezier(.7,0,.2,1)",
+   "kind": "bezier"
+  }
  },
  {
   "name": "warped-serif-noir",
@@ -3097,12 +3855,26 @@
      "#e3e3e3",
      "#b5b5b5",
      "#979797"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "synchronized-studio"
-  ]
+  ],
+  "signature_move": "Press-and-hold (180 ms intent gate, so a click never warps) liquefies imagery: Pixi displacement scale 0 to 50 in 1 s, back to 0 over 2 s, map sprite spinning .008 rad per frame.",
+  "sequencing": "Smooth-scrolled #000 sections on #151515; data-attribute waypoint reveals (y 200→0, 1s Power4.easeOut); pages change by drag (1/10 viewport, snap past half) or arrows, displacement pulsing to 40.",
+  "nearest": "two-face-splice-editorial also disturbs one headline, but splices two typefaces on gallery white; this family keeps one face and breaks its geometry on black.",
+  "requires": {
+   "asset": "Dark client photography or showreel stills to liquefy on grab (the photographed drape ground is card-attested only)",
+   "code_substitute": "Type alone holds it: dimmed serif shear + drawn seams on #151515 and SVG-turbulence hover shreds; generate the noise map"
+  },
+  "motion_budget": {
+   "level": "medium",
+   "text": "Still at rest bar a 10 s sunburst; motion fires under the hand: hold displaces 0 to 50 (1 s in/2 s out), 600 ms hover shred, wheel blur .1 to .16; 34 <waypoint> reveal refs; hero rows fly in."
+  },
+  "records": 6,
+  "ease": null
  },
  {
   "name": "woven-scanline-duotone",
@@ -3135,11 +3907,30 @@
     "palette": [
      "#A89474",
      "#2C2824"
-    ]
+    ],
+    "disputed": true
    }
   ],
   "exemplars": [
    "son-daven"
-  ]
+  ],
+  "signature_move": "Scroll re-exposes images: scrubbing blackPoint/whitePoint (0/255 to 45/175 on the hero overlay) thins each cell's vertical thread one by one; black > white flips polarity. Never opacity.",
+  "sequencing": "Sections swap ground and ink of the same two hexes as scroll crosses each boundary (each chip flips at its own midpoint); pages change by a 20x12 scaleX cell wipe; images dissolve into the weave.",
+  "nearest": "single-ink-cinema-poster / keyart-slab-stage reach two colours by blending or tinting; woven rasterizes imagery into directional cell marks (bar width = tone).",
+  "requires": {
+   "asset": "Subject photos/video shot or keyed on pure black (23 loops, 120-frame hero); stock-grade is fine, the raster elevates it",
+   "code_substitute": "Repeating-bar CSS background plus a build-time path quantizer pass the membership test; the shader is optional"
+  },
+  "motion_budget": {
+   "level": "high",
+   "text": "All imagery is live WebGL halftone (16 scenes; levels or bounds scrubbed, tweened, drifted), a 120-frame scrubbed hero, 240-cell page wipe, word-scatter heads. Restraint is palette, not volume."
+  },
+  "records": 21,
+  "ease": {
+   "id": "woven-scanline-duotone#19",
+   "value": "cubic-bezier(0.76, 0, 0.24, 1)",
+   "label": "cubic-bezier(0.76,0,0.24,1)",
+   "kind": "bezier"
+  }
  }
 ]

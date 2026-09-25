@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gale, the time-series database for wind-farm telemetry</title>
+<meta name="description" content="Gale is an open-source time-series database for wind-farm telemetry. One node ingests 3.6 million turbine sensor readings a second.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,300..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Martian+Mono:wght@400&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{
+  --paper:#E3E9E7;
+  --panel:#EEF2F0;
+  --ink:#16343D;
+  --ink-2:#48636A;
+  --rule:#A7BABA;
+  --signal:#F2B400;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-lusion:cubic-bezier(0.35,0,0,1);
+  --dur-ui:200ms;
+  --dur-section:500ms;
+  --g:clamp(16px,3.3vw,56px);
+  --wide:"Anybody","Arial Narrow",sans-serif;
+  --serif:"Source Serif 4",Georgia,serif;
+  --mono:"Martian Mono",ui-monospace,Menlo,monospace;
+}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6;overflow-x:hidden}
+::selection{background:var(--signal);color:var(--ink)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--signal)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;z-index:30;left:var(--g);top:-80px;background:var(--ink);color:var(--paper);padding:10px 16px;font-family:var(--wide);font-size:14px;text-decoration:none}
+.skip:focus{top:12px}
+
+.top{position:absolute;z-index:5;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px var(--g)}
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--wide);font-variation-settings:"wdth" 150;font-weight:800;font-size:22px;letter-spacing:.01em;text-decoration:none}
+.logo svg{width:26px;height:26px}
+.top nav{display:flex;gap:clamp(14px,2.4vw,36px);font-family:var(--wide);font-variation-settings:"wdth" 100;font-weight:500;font-size:15px}
+.top nav a{text-decoration:none;position:relative;padding:6px 0}
+.top nav a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--signal);transform:scaleX(0);transform-origin:0 50%;transition:transform var(--dur-ui) var(--ease-out)}
+.top nav a:hover::after{transform:scaleX(1)}
+
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;display:flex;align-items:center}
+#field{position:absolute;inset:0;width:100%;height:100%;display:block}
+.js #field{transform:scale(1.035)}
+.play #field{transform:none;transition:transform 1100ms var(--ease-lusion)}
+.copy{position:relative;z-index:2;width:min(680px,47%);margin-left:var(--g);padding:110px 0 90px}
+.copy h1{margin:0 0 26px;font-family:var(--wide);font-variation-settings:"wdth" 118;font-weight:760;font-size:clamp(40px,4.35vw,72px);line-height:1;letter-spacing:-.012em}
+.copy .lead{margin:0 0 30px;max-width:34em;font-size:clamp(17px,1.3vw,20px);line-height:1.55}
+.acts{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px}
+.btn{display:inline-flex;align-items:center;min-height:50px;padding:0 22px;background:var(--signal);color:var(--ink);font-family:var(--wide);font-variation-settings:"wdth" 110;font-weight:700;font-size:16px;text-decoration:none;border:2px solid var(--ink);transition:transform 160ms var(--ease-out)}
+.btn:hover{transform:translate3d(0,-2px,0)}
+.btn:active{transform:scale(.97)}
+.cmd{display:inline-flex;align-items:center;min-height:50px;border:2px solid var(--ink);background:var(--panel);max-width:100%}
+.cmd code{font-family:var(--mono);font-size:13px;padding:0 14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmd button{align-self:stretch;border:0;border-left:2px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--wide);font-variation-settings:"wdth" 100;font-weight:600;font-size:14px;padding:0 14px;cursor:pointer;min-width:78px}
+.cmd button:hover{background:var(--signal)}
+.fine{margin:18px 0 0;font-size:15px;color:var(--ink-2)}
+.fine a{text-underline-offset:3px}
+
+.js .reveal-h{clip-path:inset(0 100% 0 0)}
+.js .reveal{opacity:0;transform:translate3d(0,8px,0)}
+.play .reveal-h{animation:wipe 560ms steps(14,end) 260ms both}
+.play .reveal{animation:rise var(--dur-section) var(--ease-out) both}
+.play .reveal.r1{animation-delay:720ms}
+.play .reveal.r2{animation-delay:760ms}
+.play .reveal.r3{animation-delay:800ms}
+@keyframes wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes rise{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+
+.readout{position:absolute;z-index:3;top:74px;right:var(--g);display:flex;align-items:center;gap:12px;font-size:15px;line-height:1.35;text-align:right}
+.readout svg{width:54px;height:54px;flex:none}
+.readout svg .st{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round}
+.readout svg .pn{fill:var(--ink)}
+.readout b{font-family:var(--wide);font-variation-settings:"wdth" 112;font-weight:700;font-size:17px;display:block;font-variant-numeric:tabular-nums}
+.scale{position:absolute;z-index:3;right:var(--g);bottom:26px;font-size:14px;color:var(--ink-2);display:flex;align-items:flex-end;gap:14px}
+.scale svg{display:block}
+.hint{position:absolute;z-index:3;left:var(--g);bottom:26px;margin:0;font-size:15px;color:var(--ink-2);font-style:italic}
+
+.probe{position:absolute;z-index:4;left:0;top:0;min-width:188px;padding:12px 14px 10px;background:var(--panel);border:2px solid var(--ink);font-size:14px;line-height:1.3;pointer-events:none;opacity:0;transition:opacity var(--dur-ui) var(--ease-out)}
+.probe.on{opacity:1}
+.probe .id{margin:0 0 8px;font-family:var(--wide);font-variation-settings:"wdth" 125;font-weight:750;font-size:17px}
+.probe dl{display:grid;grid-template-columns:auto auto;column-gap:16px;row-gap:3px;margin:0}
+.probe dt{color:var(--ink-2)}
+.probe dd{margin:0;text-align:right;font-family:var(--wide);font-variation-settings:"wdth" 100;font-weight:600;font-variant-numeric:tabular-nums}
+
+.band{background:var(--signal);color:var(--ink);padding:clamp(56px,10vh,120px) var(--g) clamp(48px,8vh,96px)}
+.band .eq{margin:0;font-family:var(--wide);font-variation-settings:"wdth" 132;font-weight:780;font-size:clamp(34px,5.6vw,96px);line-height:1;letter-spacing:-.01em}
+.band .eq span{display:block}
+.band .eq .res{font-variation-settings:"wdth" 70;font-weight:820}
+.band p{margin:28px 0 0;max-width:36em;font-size:clamp(18px,1.4vw,21px)}
+
+.ingest{padding:clamp(64px,12vh,140px) var(--g) clamp(64px,12vh,140px)}
+.ing-body{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.45fr);column-gap:clamp(28px,5vw,90px);align-items:start}
+.plate-wrap{grid-column:2;grid-row:1;position:sticky;top:clamp(24px,9vh,96px)}
+.plate{position:relative;height:min(78vh,52vw);min-height:360px;border:2px solid var(--ink);background:var(--panel)}
+#plate{position:absolute;inset:0;width:100%;height:100%;display:block}
+.how{grid-column:1;grid-row:1;list-style:none;margin:0;padding:0;counter-reset:s}
+.how li{counter-increment:s;min-height:88vh;padding-top:clamp(40px,18vh,200px);opacity:.4;transition:opacity 200ms var(--ease-out)}
+.how li:first-child{padding-top:clamp(20px,12vh,140px)}
+.how li:last-child{min-height:70vh}
+.how li.on{opacity:1}
+.how h3{margin:0 0 12px;font-family:var(--wide);font-variation-settings:"wdth" 118;font-weight:720;font-size:clamp(26px,2.3vw,36px);line-height:1.05}
+.how h3::before{content:counter(s);display:inline-flex;align-items:center;justify-content:center;width:1.25em;height:1.25em;margin-right:.45em;border:2px solid var(--ink);border-radius:50%;font-size:.62em;font-variation-settings:"wdth" 100;vertical-align:.18em}
+.how p{margin:0;max-width:30em}
+
+.spec{margin-top:clamp(40px,8vh,90px);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.45fr);column-gap:clamp(28px,5vw,90px);border-top:2px solid var(--ink);padding-top:28px}
+.spec h3{margin:0;font-family:var(--wide);font-variation-settings:"wdth" 118;font-weight:720;font-size:clamp(22px,1.9vw,28px);line-height:1.1}
+.spec table{width:100%;border-collapse:collapse;font-size:17px}
+.spec th,.spec td{text-align:left;padding:12px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.spec th{font-weight:400;color:var(--ink-2);padding-right:20px}
+.spec td{font-family:var(--wide);font-variation-settings:"wdth" 112;font-weight:700;font-size:20px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.spec .note{margin:20px 0 16px;max-width:36em}
+.foot{padding:28px var(--g) 40px;border-top:2px solid var(--ink);display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;font-size:15px;color:var(--ink-2)}
+.foot a{color:var(--ink)}
+
+@media (max-width:820px){
+  .top nav a.opt{display:none}
+  .hero{align-items:flex-start}
+  .copy{width:auto;flex:1 1 auto;min-width:0;margin:0 var(--g);padding:92px 0 0}
+  .copy h1{font-variation-settings:"wdth" 100;font-size:clamp(32px,9.2vw,52px);margin-bottom:20px}
+  .readout{top:auto;bottom:50px;left:var(--g);right:auto;flex-direction:row-reverse;text-align:left}
+  .readout b{font-size:15px}
+  .readout svg{width:44px;height:44px}
+  .scale{display:none}
+  .hint{bottom:18px;right:var(--g)}
+  .band .eq{font-variation-settings:"wdth" 104;font-size:clamp(28px,8.6vw,48px)}
+  .ing-body{display:block}
+  .plate-wrap{position:sticky;top:0;z-index:3;margin:0 calc(var(--g) * -1);padding:10px var(--g);background:var(--paper)}
+  .plate{height:46svh;min-height:300px}
+  .how li,.how li:first-child{min-height:64svh;padding-top:8svh}
+  .how li:last-child{min-height:56svh}
+  .cmd{display:flex;width:100%}
+  .cmd code{flex:1 1 auto;min-width:0;overflow-x:auto;text-overflow:clip;padding-block:16px}
+  .spec{display:block}
+  .spec h3{margin-bottom:12px}
+  .spec td{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .reveal-h{clip-path:none}
+  .js .reveal{opacity:1;transform:none}
+  .play .reveal-h,.play .reveal{animation:none}
+  .js #field,.play #field{transform:none;transition:none}
+  .btn,.probe,.how li,.top nav a::after{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#ingest">Skip to how ingest works</a>
+<header class="top">
+  <a class="logo" href="#top" aria-label="Gale home"><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M3 9h14a4 4 0 1 0-4-4M3 14h19a3.5 3.5 0 1 1-3.5 3.5M3 19h9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg>Gale</a>
+  <nav aria-label="Main">
+    <a href="#ingest">How it works</a>
+    <a href="#bench" class="opt">Benchmark</a>
+    <a href="#docs">Docs</a>
+    <a href="#source">Source</a>
+  </nav>
+</header>
+<main id="top">
+  <section class="hero" aria-labelledby="h1">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <p class="sr">Illustration: a simulated offshore wind farm of sixty turbines, with wind streaming through the array and slower air in each turbine’s wake.</p>
+    <div class="copy" id="copy">
+      <h1 id="h1" class="reveal-h">Every turbine, every sensor, ten times a second.</h1>
+      <p class="lead reveal r1">Gale is an open-source time-series database built for wind-farm telemetry. One node ingests 3.6 million sensor readings a second and keeps years of SCADA history queryable in milliseconds.</p>
+      <div class="acts reveal r2">
+        <a class="btn" href="#docs" id="docs">Read the quick start</a>
+        <div class="cmd"><code id="cmdText">docker run -p 7070:7070 galedb/gale:1.0</code><button type="button" id="copyBtn" aria-live="polite">Copy</button></div>
+      </div>
+      <p class="fine reveal r3" id="source">Apache 2.0, written in Rust. <a href="#source">Read the source on GitHub</a></p>
+    </div>
+    <div class="readout" aria-hidden="true">
+      <span><b id="windTxt">From 262° at 23 kn</b><span id="windSub">Mean wind across the array</span></span>
+      <svg viewBox="-30 -30 60 60" id="barb"><g id="barbG"></g></svg>
+    </div>
+    <div class="scale" aria-hidden="true">
+      <svg width="62" height="62" viewBox="0 0 62 62"><path d="M31 6 L38 30 L31 25 L24 30 Z" fill="currentColor"/><text x="31" y="48" text-anchor="middle" font-size="14" fill="currentColor" font-family="Source Serif 4, serif">N</text></svg>
+      <svg width="150" height="30" viewBox="0 0 150 30"><path d="M1 22V12M1 17H149M149 22V12M75 20V14" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M1 17H75" stroke="currentColor" stroke-width="4"/><text x="0" y="8" font-size="12" fill="currentColor" font-family="Source Serif 4, serif">0</text><text x="150" y="8" font-size="12" text-anchor="end" fill="currentColor" font-family="Source Serif 4, serif">2 km</text></svg>
+    </div>
+    <p class="hint" id="hint" aria-hidden="true">Point at a turbine to query its last second.</p>
+    <div class="probe" id="probe" aria-hidden="true">
+      <p class="id" id="pId">Turbine C07</p>
+      <dl>
+        <dt>Hub wind</dt><dd id="pW">11.8 m/s</dd>
+        <dt>Output</dt><dd id="pP">6.9 MW</dd>
+        <dt>Rotor</dt><dd id="pR">9.8 rpm</dd>
+        <dt>Yaw</dt><dd id="pY">262°</dd>
+        <dt>Readings</dt><dd>12,000 a second</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="eq">
+    <h2 class="eq" id="eq"><span>300 turbines × 1,200 sensors × 10 Hz</span><span class="res">= 3,600,000 readings a second</span></h2>
+    <p>That is one large offshore wind farm. Gale writes all of it on a single machine, and keeps writing at the same speed on day four hundred as on day one. Here is how.</p>
+  </section>
+
+  <section class="ingest" id="ingest" aria-label="How ingest works">
+    <div class="ing-body" id="ingBody">
+      <div class="plate-wrap" id="plateWrap">
+        <div class="plate"><canvas id="plate" aria-hidden="true"></canvas></div>
+      </div>
+      <ol class="how" id="how">
+        <li class="on">
+          <h3>Sorted at the turbine</h3>
+          <p>Readings leave a nacelle interleaved: pitch, then temperature, then vibration, then pitch again. Gale’s edge agent groups them by sensor before they are sent, so each series reaches the server already in time order. There is no out-of-order merge on the write path.</p>
+        </li>
+        <li>
+          <h3>Compressed as columns</h3>
+          <p>Within a series, timestamps are stored as the change in the gap between readings, and values as the bits that differ from the previous reading. Sensors that sample steadily compress hard: a 16-byte reading lands on disk as about 1.3 bytes.</p>
+        </li>
+        <li>
+          <h3>Appended, never rewritten</h3>
+          <p>Each second of a turbine becomes one immutable block at the end of a log. There is no per-point index to update, so the cost of a write stays flat whether the archive holds a day or a decade.</p>
+        </li>
+      </ol>
+    </div>
+    <div class="spec" id="bench">
+      <h3>Measured, not promised</h3>
+      <div>
+        <table>
+          <tr><th scope="row">Sustained ingest, one node</th><td>3.6 M readings/s</td></tr>
+          <tr><th scope="row">Write acknowledgement, p99</th><td>4 ms</td></tr>
+          <tr><th scope="row">Stored size per reading</th><td>1.3 bytes</td></tr>
+          <tr><th scope="row">One year of one turbine, range query</th><td>38 ms</td></tr>
+        </table>
+        <p class="note">Run for 72 hours on one 16-core machine with a single NVMe drive. The load generator and the raw results live in the repository, so you can repeat the run on your own hardware.</p>
+        <div class="cmd"><code>gale bench --turbines 300 --sensors 1200 --hz 10</code></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <span>Gale is free software under the Apache 2.0 licence.</span>
+  <span><a href="#docs">Docs</a> &nbsp; <a href="#source">Source</a> &nbsp; <a href="#bench">Benchmark</a></span>
+</footer>
+<script>
+(function(){
+  var d=document,root=d.documentElement;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var narrowQ=matchMedia('(max-width: 820px)');
+  var clamp=function(v){return v<0?0:v>1?1:v};
+  var INK='22,52,61';
+
+  var go=function(){root.classList.add('play')};
+  if(d.fonts&&d.fonts.ready){d.fonts.ready.then(go)}
+  setTimeout(go,1200);
+
+  var copyBtn=d.getElementById('copyBtn'),cmdText=d.getElementById('cmdText'),ct;
+  copyBtn.addEventListener('click',function(){
+    var done=function(){copyBtn.textContent='Copied';clearTimeout(ct);ct=setTimeout(function(){copyBtn.textContent='Copy'},1600)};
+    try{navigator.clipboard.writeText(cmdText.textContent).then(done,function(){copyBtn.textContent='Select it'})}catch(e){copyBtn.textContent='Select it'}
+  });
+  if(!fine)d.getElementById('hint').textContent='Tap a turbine to query its last second.';
+
+  var hero=d.querySelector('.hero'),cv=d.getElementById('field'),cx=cv.getContext('2d'),copy=d.getElementById('copy');
+  var probe=d.getElementById('probe'),pId=d.getElementById('pId'),pW=d.getElementById('pW'),pP=d.getElementById('pP'),pR=d.getElementById('pR'),pY=d.getElementById('pY');
+  var windTxt=d.getElementById('windTxt'),barbG=d.getElementById('barbG');
+  var W=0,H=0,DPR=1,SPX=9,D=16,turbines=[],N=0,px,py,pa,pl,pv,obs={x0:0,y0:0,x1:0,y1:0},grid=null;
+  var wind={from:262,speed:11.5,dx:1,dy:0};
+  var sel=-1,heroOn=true,raf=0,t0=performance.now(),lastT=0,simT=0,lastProbe=0,lastWindTxt=0;
+
+  function setWind(t){
+    wind.from=262+9*Math.sin(t/21)+3*Math.sin(t/6.7);
+    wind.speed=11.5+2.2*Math.sin(t/11)+.8*Math.sin(t/3.1);
+    var b=(wind.from+180)*Math.PI/180;
+    wind.dx=Math.sin(b);wind.dy=-Math.cos(b);
+  }
+  function layout(){
+    var narrow=narrowQ.matches;
+    hero.style.minHeight='';
+    if(narrow){var c0=copy.getBoundingClientRect(),h0=hero.getBoundingClientRect();hero.style.minHeight=Math.max(Math.round(c0.bottom-h0.top+470),innerHeight)+'px'}
+    var r=hero.getBoundingClientRect();
+    W=r.width;H=r.height;DPR=Math.min(window.devicePixelRatio||1,2);
+    cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);
+    SPX=narrow?6.5:9;D=narrow?12:16;
+    var cr=copy.getBoundingClientRect();
+    obs={x0:cr.left-r.left-24,y0:cr.top-r.top-10,x1:cr.right-r.left+24,y1:cr.bottom-r.top+10};
+    turbines=[];
+    var rows=narrow?4:6,cols=narrow?6:10;
+    var x0=narrow?W*.1:W*.52,x1=narrow?W*.9:W*.93,y0=narrow?obs.y1+178:H*.2,y1=narrow?H-112:H*.84;
+    var letters='ABCDEF';
+    for(var rI=0;rI<rows;rI++){for(var c=0;c<cols;c++){
+      var fx=cols>1?c/(cols-1):0,fy=rows>1?rI/(rows-1):0;
+      var x=x0+(x1-x0)*fx-fy*(x1-x0)*.06,y=y0+(y1-y0)*fy+fx*(y1-y0)*.08;
+      var yaw=(wind.from+180)*Math.PI/180;
+      turbines.push({x:x,y:y,col:c,id:letters[rI]+(c+1<10?'0':'')+(c+1),yaw:yaw,lag:.6+Math.random()*.5,wx:Math.sin(yaw),wy:-Math.cos(yaw),show:0});
+    }}
+    var n=Math.round(Math.min(2200,Math.max(650,W*H/720)));
+    if(n!==N){N=n;px=new Float32Array(N);py=new Float32Array(N);pa=new Float32Array(N);pl=new Float32Array(N);pv=new Float32Array(N*2);for(var i=0;i<N;i++){spawn(i,true)}}
+    else{for(var j=0;j<N;j++)spawn(j,true)}
+    buildGrid();
+    if(sel<0||sel>=turbines.length)sel=Math.min(turbines.length-1,narrow?Math.round(cols*1.5+1):2*cols+6);
+  }
+  function spawn(i,any){
+    px[i]=Math.random()*(W+80)-40;py[i]=Math.random()*(H+80)-40;
+    pa[i]=any?Math.random()*3:0;pl[i]=2+Math.random()*3.2;
+  }
+  function buildGrid(){
+    grid=d.createElement('canvas');grid.width=cv.width;grid.height=cv.height;
+    var g=grid.getContext('2d');g.setTransform(DPR,0,0,DPR,0,0);
+    var step=narrowQ.matches?96:128;
+    g.strokeStyle='rgba('+INK+',.16)';g.lineWidth=1;g.beginPath();
+    for(var x=step*.5;x<W;x+=step){g.moveTo(Math.round(x)+.5,0);g.lineTo(Math.round(x)+.5,H)}
+    for(var y=step*.5;y<H;y+=step){g.moveTo(0,Math.round(y)+.5);g.lineTo(W,Math.round(y)+.5)}
+    g.stroke();
+    g.fillStyle='rgba('+INK+',.55)';g.font='italic 12px "Source Serif 4", Georgia, serif';
+    var lat=54.32,lon=6.28,k=0;
+    for(var yy=step*.5;yy<H-40;yy+=step){if(yy<70||(W-76<obs.x1&&yy>obs.y0-10&&yy<obs.y1+16)){k++;continue}var la=lat-k*.025;g.fillText(Math.floor(la)+'°'+String(Math.round((la%1)*60)).padStart(2,'0')+'′N',W-70,yy-5);k++}
+    k=0;
+    for(var xx=step*.5;xx<W;xx+=step){var lo=lon+k*.04;if(xx>obs.x1||narrowQ.matches){g.fillText(Math.floor(lo)+'°'+String(Math.round((lo%1)*60)).padStart(2,'0')+'′E',xx+5,H-8)}k++}
+  }
+  var out={x:0,y:0};
+  function field(x,y,t,skip){
+    var u=wind.speed*SPX;
+    var vx=wind.dx*u,vy=wind.dy*u;
+    var s1=Math.sin(.0061*x+.3*t),c1=Math.cos(.0061*x+.3*t),s2=Math.sin(.0047*y-.2*t),c2=Math.cos(.0047*y-.2*t);
+    var c3=Math.cos(.0033*(x-y)+.5*t);
+    var a=u*.2;
+    vx+=a*(-s1*s2-.6*c3);vy+=-a*(c1*c2+.6*c3)*.8;
+    var f=1,R2=(14*D)*(14*D);
+    for(var i=0;i<turbines.length;i++){
+      if(i===skip)continue;
+      var T=turbines[i],rx=x-T.x,ry=y-T.y;
+      if(rx*rx+ry*ry>R2)continue;
+      var al=rx*T.wx+ry*T.wy;if(al<=0)continue;
+      var pe=rx*T.wy-ry*T.wx,sg=.42*D+.07*al,q=1+al/(4*D);
+      f*=1-(.6/(q*q))*Math.exp(-pe*pe/(2*sg*sg));
+    }
+    out.x=vx*f;out.y=vy*f;return out;
+  }
+  function obsFade(x,y){
+    var dx=Math.max(obs.x0-x,0,x-obs.x1),dy=Math.max(obs.y0-y,0,y-obs.y1);
+    var dd=Math.sqrt(dx*dx+dy*dy);
+    if(dx===0&&dy===0)return 0;
+    return clamp(dd/70);
+  }
+  var buckets=[[],[],[],[]],bA=[.16,.3,.46,.62];
+  function step(dt,t,introP){
+    for(var b=0;b<4;b++)buckets[b].length=0;
+    for(var i=0;i<N;i++){
+      var v=field(px[i],py[i],t,-1);
+      px[i]+=v.x*dt;py[i]+=v.y*dt;pa[i]+=dt;pv[i*2]=v.x;pv[i*2+1]=v.y;
+      if(pa[i]>pl[i]||px[i]<-50||px[i]>W+50||py[i]<-50||py[i]>H+50)spawn(i,false);
+      var life=Math.min(pa[i]/.5,1,(pl[i]-pa[i])/.5);
+      var sr=Math.sqrt(v.x*v.x+v.y*v.y)/(wind.speed*SPX);
+      var al=life*obsFade(px[i],py[i])*introP*clamp((sr-.3)/.6);
+      if(al<=.02)continue;
+      var bk=al<.3?0:al<.55?1:al<.8?2:3;
+      buckets[bk].push(i);
+    }
+  }
+  function drawParticles(){
+    cx.lineWidth=1;cx.lineCap='round';
+    for(var b=0;b<4;b++){
+      var L=buckets[b];if(!L.length)continue;
+      cx.strokeStyle='rgba('+INK+','+bA[b]+')';cx.beginPath();
+      for(var k=0;k<L.length;k++){var i=L[k];cx.moveTo(px[i],py[i]);cx.lineTo(px[i]-pv[i*2]*.2,py[i]-pv[i*2+1]*.2)}
+      cx.stroke();
+    }
+  }
+  function drawTurbines(el){
+    for(var i=0;i<turbines.length;i++){
+      var T=turbines[i];
+      if(el<.25+T.col*.035)continue;
+      var nx=-T.wy,ny=T.wx,h=D*.62;
+      var cxr=T.x-T.wx*2,cyr=T.y-T.wy*2;
+      cx.strokeStyle='rgb('+INK+')';cx.lineWidth=2.2;cx.lineCap='round';
+      cx.beginPath();cx.moveTo(cxr-nx*h,cyr-ny*h);cx.lineTo(cxr+nx*h,cyr+ny*h);cx.stroke();
+      cx.lineWidth=3.2;cx.beginPath();cx.moveTo(T.x,T.y);cx.lineTo(T.x+T.wx*6,T.y+T.wy*6);cx.stroke();
+      cx.beginPath();cx.arc(T.x,T.y,4.2,0,6.2832);cx.fillStyle='#F2B400';cx.fill();cx.lineWidth=1.3;cx.stroke();
+    }
+    if(sel>=0&&probe.classList.contains('on')){
+      var S=turbines[sel];
+      cx.strokeStyle='rgb('+INK+')';cx.lineWidth=1.5;
+      cx.beginPath();cx.arc(S.x,S.y,11,0,6.2832);cx.stroke();
+      cx.beginPath();cx.moveTo(S.x+(tip.ax-S.x)*(11/Math.max(1,Math.hypot(tip.ax-S.x,tip.ay-S.y))),S.y+(tip.ay-S.y)*(11/Math.max(1,Math.hypot(tip.ax-S.x,tip.ay-S.y))));cx.lineTo(tip.ax,tip.ay);cx.stroke();
+    }
+  }
+  var tip={w:200,h:150,ax:0,ay:0};
+  function placeProbe(){
+    if(sel<0)return;
+    var S=turbines[sel];
+    tip.w=probe.offsetWidth;tip.h=probe.offsetHeight;
+    var nar=narrowQ.matches,minTop=nar?obs.y1+6:70,minLeft=nar?12:obs.x1,gp=26,left,top,ok=false;
+    var cands=[[S.x-tip.w-gp,S.y-tip.h-gp],[S.x+gp,S.y-tip.h-gp],[S.x-tip.w-gp,S.y+gp],[S.x+gp,S.y+gp]];
+    for(var q=0;q<4;q++){left=cands[q][0];top=cands[q][1];if(left>=minLeft&&left+tip.w<=W-12&&top>=minTop&&top+tip.h<=H-12){ok=true;break}}
+    if(!ok){left=Math.min(Math.max(minLeft,S.x-tip.w/2),W-12-tip.w);top=S.y-tip.h-gp>=minTop?S.y-tip.h-gp:S.y+gp}
+    probe.style.transform='translate3d('+Math.round(left)+'px,'+Math.round(top)+'px,0)';
+    tip.ax=left<S.x?left+tip.w:left;tip.ay=top<S.y?top+tip.h:top;
+  }
+  function power(v){if(v<3||v>25)return 0;if(v>=12.5)return 8;return 8*(v*v*v-27)/(12.5*12.5*12.5-27)}
+  function updateProbe(t){
+    if(sel<0)return;
+    var S=turbines[sel],v=field(S.x-S.wx*2,S.y-S.wy*2,t,sel);
+    var ms=Math.hypot(v.x,v.y)/SPX;
+    pId.textContent='Turbine '+S.id;
+    pW.textContent=ms.toFixed(1)+' m/s';
+    pP.textContent=power(ms).toFixed(1)+' MW';
+    pR.textContent=(ms<3?0:Math.min(10.6,4.4+.5*ms)).toFixed(1)+' rpm';
+    var yd=((Math.atan2(S.wx,-S.wy)*180/Math.PI)+180+360)%360;
+    pY.textContent=Math.round(yd)+'°';
+    placeProbe();
+  }
+  function barb(knots,from){
+    var k=Math.round(knots/5)*5,parts='',y=-26,sp=4.6;
+    parts+='<circle cx="0" cy="0" r="3" class="st"/><path class="st" d="M0 -3V-26"/>';
+    while(k>=50){parts+='<path class="pn" d="M0 '+y+'L13 '+(y+2)+'L0 '+(y+6)+'Z"/>';y+=sp+3;k-=50}
+    while(k>=10){parts+='<path class="st" d="M0 '+y+'L13 '+(y-5)+'"/>';y+=sp;k-=10}
+    if(k>=5){if(y===-26)y+=sp;parts+='<path class="st" d="M0 '+y+'L7 '+(y-2.7)+'"/>'}
+    barbG.innerHTML=parts;barbG.setAttribute('transform','rotate('+from.toFixed(1)+')');
+  }
+  function yawStep(dt){
+    var target=(wind.from+180)*Math.PI/180;
+    for(var i=0;i<turbines.length;i++){
+      var T=turbines[i],diff=Math.atan2(Math.sin(target-T.yaw),Math.cos(target-T.yaw));
+      T.yaw+=diff*(1-Math.exp(-T.lag*dt));T.wx=Math.sin(T.yaw);T.wy=-Math.cos(T.yaw);
+    }
+  }
+  function frame(now){
+    raf=0;
+    var dt=lastT?Math.min((now-lastT)/1000,.05):.016;lastT=now;
+    var el=(now-t0)/1000;simT+=dt;
+    setWind(simT);yawStep(dt);
+    var introP=clamp((el-.45)/.8);
+    step(dt,simT,introP);
+    render(el,introP);
+    if(now-lastProbe>100){lastProbe=now;updateProbe(simT)}
+    if(now-lastWindTxt>500){lastWindTxt=now;var kn=wind.speed*1.944;windTxt.textContent='From '+Math.round(wind.from)+'° at '+Math.round(kn)+' kn';barb(kn,wind.from)}
+    if(el>1.4&&!probe.classList.contains('on')){probe.classList.add('on');placeProbe()}
+    if(heroOn&&!d.hidden)raf=requestAnimationFrame(frame);else lastT=0;
+  }
+  function render(el,introP){
+    cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,cv.width,cv.height);
+    cx.globalAlpha=1-Math.pow(1-clamp(el/.5),3);cx.drawImage(grid,0,0);cx.globalAlpha=1;
+    cx.setTransform(DPR,0,0,DPR,0,0);
+    drawParticles();drawTurbines(el);
+  }
+  function kick(){if(!raf&&!reduce&&grid)raf=requestAnimationFrame(frame)}
+  function staticFrame(){
+    setWind(4);
+    for(var k=0;k<6;k++)step(.05,4,1);
+    render(10,1);updateProbe(4);probe.classList.add('on');placeProbe();render(10,1);
+    var kn=wind.speed*1.944;windTxt.textContent='From '+Math.round(wind.from)+'° at '+Math.round(kn)+' kn';barb(kn,wind.from);
+  }
+  function pick(e,radius){
+    var r=hero.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,best=-1,bd=radius*radius;
+    for(var i=0;i<turbines.length;i++){var T=turbines[i],q=(T.x-x)*(T.x-x)+(T.y-y)*(T.y-y);if(q<bd){bd=q;best=i}}
+    if(best>=0&&best!==sel){sel=best;updateProbe(simT||4);if(reduce)render(10,1)}
+  }
+  hero.addEventListener('pointermove',function(e){if(e.pointerType==='mouse')pick(e,40)});
+  hero.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')pick(e,46)});
+
+  var rt;
+  function onResize(){layout();if(reduce)staticFrame();else kick()}
+  addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(onResize,150)});
+  if('IntersectionObserver' in window){new IntersectionObserver(function(en){heroOn=en[0].isIntersecting;if(heroOn)kick()}).observe(hero)}
+  d.addEventListener('visibilitychange',function(){if(!d.hidden)kick()});
+
+  function startHero(){layout();if(reduce){staticFrame()}else{t0=performance.now();kick()}}
+  if(d.fonts&&d.fonts.ready){d.fonts.ready.then(startHero)}else{startHero()}
+
+  var plateEl=d.getElementById('plate'),pc=plateEl.getContext('2d'),plateWrap=d.getElementById('plateWrap');
+  var steps=[].slice.call(d.querySelectorAll('.how li'));
+  var R=12,C=32,ND=R*C,s0x=new Float32Array(ND),s0y=new Float32Array(ND),s0v=new Float32Array(ND);
+  for(var i=0;i<ND;i++){s0x[i]=Math.random();s0y[i]=Math.random();s0v[i]=.5+Math.random()*.9}
+  var names=['Blade pitch A','Blade pitch B','Blade pitch C','Rotor speed','Generator temp','Gearbox vibration x','Gearbox vibration y','Main bearing temp','Yaw angle','Nacelle wind','Active power','Grid frequency'];
+  var namesShort=['Pitch A','Pitch B','Pitch C','Rotor','Gen temp','Vib x','Vib y','Bearing','Yaw','Wind','Power','Grid Hz'];
+  var PW=0,PH=0,PD=1,G={},pT=0,pN=0,ingOn=false,praf=0,plast=0,ptime=0,curStep=0;
+  function plateLayout(){
+    var r=plateEl.getBoundingClientRect();PW=r.width;PH=r.height;PD=Math.min(window.devicePixelRatio||1,2);
+    plateEl.width=Math.round(PW*PD);plateEl.height=Math.round(PH*PD);
+    var nar=PW<560,dot=nar?3.4:4.2;G.dot=dot;
+    G.lab=nar?62:150;G.gx0=G.lab+(nar?8:14);G.gx1=PW*(nar?.64:.62);G.gy0=nar?30:44;G.gy1=PH-(nar?30:44);
+    G.rowH=(G.gy1-G.gy0)/R;G.colW=(G.gx1-G.gx0)/C;G.comp=(G.gx1-G.gx0)/12.3;
+    G.lx0=PW*(nar?.72:.71);G.lx1=PW-(nar?12:26);G.segW=G.lx1-G.lx0;G.segH=Math.min(G.rowH*R*.16,74);G.gap=nar?5:8;
+    G.slot=5;G.nar=nar;
+  }
+  function slotY(k){return G.gy1-(k+1)*G.segH-k*G.gap}
+  var ranges=[[0,.36],[.36,.68],[.68,1]];
+  function plateProgress(){
+    var nar=narrowQ.matches,line;
+    if(nar){var b=plateWrap.getBoundingClientRect().bottom;line=b+(innerHeight-b)*.4}else line=innerHeight*.56;
+    var p=0,s=0;
+    for(var i=0;i<steps.length;i++){var r=steps[i].getBoundingClientRect();if(r.top<line)s=i;p+=(ranges[i][1]-ranges[i][0])*clamp((line-r.top)/Math.max(r.height,1))}
+    curStep=s;return p;
+  }
+  var lastStep=-1;
+  function drawPlate(p,time){
+    var c=pc;c.setTransform(PD,0,0,PD,0,0);c.clearRect(0,0,PW,PH);
+    var e1=clamp((p-.06)/.26),e2=clamp((p-.42)/.2),e3=clamp((p-.74)/.2);
+    var lab=e1*(1-e3);
+    c.font=(G.nar?'11px':'13px')+' "Source Serif 4", Georgia, serif';c.textBaseline='middle';
+    if(lab>0){
+      c.fillStyle='rgba('+INK+','+(.85*lab).toFixed(3)+')';c.textAlign='right';
+      for(var r=0;r<R;r++)c.fillText((G.nar?namesShort:names)[r],G.lab,G.gy0+(r+.5)*G.rowH);
+      c.textAlign='left';
+    }
+    var ax=e1*(1-e2);
+    if(ax>0){
+      c.strokeStyle='rgba('+INK+','+(.5*ax).toFixed(3)+')';c.lineWidth=1;c.beginPath();
+      c.moveTo(G.gx0,G.gy1+10);c.lineTo(G.gx1,G.gy1+10);
+      for(var s=0;s<=C;s+=10){var tx=G.gx0+s*G.colW;c.moveTo(tx,G.gy1+6);c.lineTo(tx,G.gy1+14)}
+      c.stroke();
+      c.fillStyle='rgba('+INK+','+(.7*ax).toFixed(3)+')';c.textAlign='center';
+      for(var s2=0;s2<=C;s2+=10)c.fillText((s2/10)+' s',G.gx0+s2*G.colW,G.gy1+24);
+      c.textAlign='left';
+    }
+    var la=.35+.65*clamp(e3*2);
+    c.strokeStyle='rgba('+INK+','+la.toFixed(3)+')';c.lineWidth=1.4;
+    for(var k=0;k<G.slot;k++){
+      var sy=slotY(k);c.fillStyle='rgba(227,233,231,'+la.toFixed(3)+')';c.fillRect(G.lx0,sy,G.segW,G.segH);c.strokeRect(G.lx0+.5,sy+.5,G.segW-1,G.segH-1);
+      c.beginPath();for(var q=1;q<R;q+=2){var yy=sy+q*G.segH/R;c.moveTo(G.lx0+6,yy);c.lineTo(G.lx0+6+(G.segW-12)*(.55+.4*((k*7+q*3)%5)/5),yy)}c.stroke();
+    }
+    c.fillStyle='rgba('+INK+','+la.toFixed(3)+')';c.textAlign='left';
+    c.fillText(G.nar?'Log':'Append-only log',G.lx0,slotY(G.slot)-14);
+    if(e2>0&&e3<1){
+      var ba=e2*(1-e3);
+      c.fillStyle='rgba(242,180,0,'+ba.toFixed(3)+')';
+      for(var r2=0;r2<R;r2++)c.fillRect(G.gx0-3,G.gy0+(r2+.5)*G.rowH-G.rowH*.34,G.comp+6,G.rowH*.68);
+      c.strokeStyle='rgba('+INK+','+(.8*ba).toFixed(3)+')';c.lineWidth=1.2;c.beginPath();
+      var by=G.gy0-14;
+      c.moveTo(G.gx0,by);c.lineTo(G.gx0,by-6);c.moveTo(G.gx0,by-3);c.lineTo(G.gx1,by-3);c.moveTo(G.gx1,by);c.lineTo(G.gx1,by-6);
+      c.moveTo(G.gx0+G.comp,by);c.lineTo(G.gx0+G.comp,by-6);
+      c.stroke();
+      c.fillStyle='rgba('+INK+','+ba.toFixed(3)+')';c.textAlign='right';
+      c.fillText(G.nar?'16 B raw':'16 bytes a reading, raw',G.gx1,by-15);
+      c.textAlign='left';c.fillText(G.nar?'1.3 B':'1.3 on disk',G.gx0,by-15);
+    }
+    if(e3>0){
+      var sy2=slotY(G.slot);
+      c.fillStyle='rgba(242,180,0,'+e3.toFixed(3)+')';c.fillRect(G.lx0,sy2,G.segW,G.segH);
+      c.strokeStyle='rgba('+INK+','+e3.toFixed(3)+')';c.lineWidth=1.4;c.strokeRect(G.lx0+.5,sy2+.5,G.segW-1,G.segH-1);
+    }
+    c.fillStyle='rgb('+INK+')';
+    var span=G.gx1-G.gx0;
+    for(var r3=0;r3<R;r3++){
+      for(var cI=0;cI<C;cI++){
+        var i=r3*C+cI;
+        var gx=G.gx0+(cI+.5)*G.colW,gy=G.gy0+(r3+.5)*G.rowH;
+        var x,y,w,h;
+        var t1=clamp((e1-cI/C*.4)/.6),t2=clamp((e2-(1-cI/C)*.3)/.7),t3=clamp((e3-r3/R*.3)/.7);
+        if(t3>0){
+          var cx2=G.gx0+(cI+.5)/C*G.comp,sy3=slotY(G.slot);
+          var tx2=G.lx0+4+(cI+.5)/C*(G.segW-8),ty2=sy3+(r3+.5)*G.segH/R;
+          x=cx2+(tx2-cx2)*t3;y=gy+(ty2-gy)*t3;
+          w=(G.comp/C+1)+((G.segW-8)/C+.3-(G.comp/C+1))*t3;h=G.rowH*.42+(G.segH/R*.62-G.rowH*.42)*t3;
+        }else if(t2>0){
+          var cx3=G.gx0+(cI+.5)/C*G.comp;
+          x=gx+(cx3-gx)*t2;y=gy;
+          w=G.dot+((G.comp/C+1)-G.dot)*t2;h=G.dot+(G.rowH*.42-G.dot)*t2;
+        }else{
+          var sx=G.gx0+((s0x[i]+time*.045*s0v[i])%1)*span,syy=G.gy0+s0y[i]*(G.gy1-G.gy0);
+          x=sx+(gx-sx)*t1;y=syy+(gy-syy)*t1;w=G.dot;h=G.dot;
+        }
+        c.fillRect(x-w/2,y-h/2,w,h);
+      }
+    }
+  }
+  function ptick(now){
+    praf=0;
+    var dt=plast?Math.min((now-plast)/1000,.05):.016;plast=now;
+    pT=plateProgress();
+    if(reduce){pN=[.34,.66,1][curStep]}
+    else{pN+=(pT-pN)*(1-Math.exp(-14*dt));if(Math.abs(pT-pN)<.0004)pN=pT;ptime+=dt}
+    if(curStep!==lastStep){lastStep=curStep;steps.forEach(function(el,j){el.classList.toggle('on',j===curStep)})}
+    drawPlate(pN,ptime);
+    if(ingOn&&!reduce)praf=requestAnimationFrame(ptick);else plast=0;
+  }
+  function pkick(){if(!praf&&PW)praf=requestAnimationFrame(ptick)}
+  var ingBody=d.getElementById('ingBody');
+  if('IntersectionObserver' in window){new IntersectionObserver(function(en){ingOn=en[0].isIntersecting;if(ingOn)pkick()},{rootMargin:'10% 0px'}).observe(ingBody)}else{ingOn=true}
+  if(reduce)addEventListener('scroll',pkick,{passive:true});
+  addEventListener('resize',function(){plateLayout();pkick()});
+  function startPlate(){plateLayout();pT=pN=plateProgress();if(reduce)pN=[.34,.66,1][curStep];drawPlate(pN,0);pkick()}
+  if(d.fonts&&d.fonts.ready){d.fonts.ready.then(startPlate)}else{startPlate()}
+})();
+</script>
+</body>
+</html>

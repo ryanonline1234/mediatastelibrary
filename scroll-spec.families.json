@@ -1,0 +1,77 @@
+{
+  "$schema": "/Users/ryantseng/.claude/skills/awwwards-motion/scripts/scroll-spec.schema.json",
+  "specVersion": 1,
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "dpr": 2,
+    "colorScheme": "light",
+    "reducedMotion": "no-preference"
+  },
+  "scroll": {
+    "totalHeightPx": 31857,
+    "totalHeightTolerancePx": 400,
+    "scrollAccuracyTolerancePx": 4,
+    "sampleMatchWindow": 0.01,
+    "allowSceneOverlap": false,
+    "coverage": {
+      "require": "full",
+      "maxGapProgress": 0.005
+    }
+  },
+  "settleMinMs": 0,
+  "settleMaxMs": 2500,
+  "name": "mediatastelibrary-archive-desktop",
+  "url": "http://localhost:8811/families.html",
+  "description": "The archive: one scene; the header rail reads progress through the 43 families. Per-family reveals are enter-triggered (0.5s power3.out, stagger amount 0.4) and fire once, so they are not scroll-asserted.",
+  "positions": [
+    0,
+    0.3,
+    0.5,
+    0.7,
+    0.9,
+    1
+  ],
+  "targets": {
+    "archive-rail": {
+      "selector": "[data-motion='archive-rail']",
+      "vars": [
+        "--fam"
+      ]
+    }
+  },
+  "scenes": [
+    {
+      "id": "archive",
+      "label": "Archive — reading rail in the header",
+      "selector": "[data-scene='archive']",
+      "range": {
+        "from": 0,
+        "to": 1
+      },
+      "expectations": [
+        {
+          "id": "archive-fam",
+          "target": "archive-rail",
+          "property": "cssVar",
+          "tolerance": 0.06,
+          "monotonic": "increasing",
+          "keys": [
+            {
+              "localProgress": 0,
+              "value": 0,
+              "label": "start"
+            },
+            {
+              "localProgress": 1,
+              "value": 1,
+              "label": "end"
+            }
+          ],
+          "easeRef": "none — scrubbed",
+          "cssVarName": "--fam"
+        }
+      ]
+    }
+  ]
+}

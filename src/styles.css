@@ -1,84 +1,95 @@
-/* mediatastelibrary.page — family: swiss-grid-lab
+/* mediatastelibrary.page — family: swiss-grid-lab (awwwards-taste)
  *
- * Constants below are cited from the awwwards-taste skill. Where the skill
- * carries no prior, the value is marked DECISION and is mine, not a
- * borrowed number — the skill forbids inventing a citation.
- *
- * swiss-grid-lab, verbatim from references/families.md:
- *   Temperature  #F1F1F1 / #010101, accent #FAFF00, ramp #B2B2B2 #606060 #2C2C2C
- *   Type         10px chrome + 14px copy vs 86/264px display, one 31px rank,
- *                no 16px anywhere; tracking ~0 small, -0.04em at display
- *   Motion       stock easings only (510 linear, 101 ease-out, ZERO cubic-bezier)
- *   Vocabulary   8-column overlay, bands rgba(86,86,86,0.1) spanning 960px;
- *                0.8px hairlines at three lengths (960/597/352px);
- *                two rule weights — structural 0.8px lighter than ornamental 1px;
- *                8x8px square markers; sizes are design px on a 1024 artboard.
+ * Constants are cited from the skill by record ID, or marked DECISION.
+ *   Ground / ink        #F1F1F1 / #010101 — swiss-grid-lab#15; dark pages swap the two wholesale
+ *   Overlay bands       rgba(86,86,86,.1) — #2; 8 bands over 960 — #1
+ *   Rules               0.8px structural, 1px ornamental — #3, #7; row box 24px — #14
+ *   Markers             8x8 squares (entry Vocabulary)
+ *   Type ranks          10 / 14 / 31 / 86 / 264 on a 1024 artboard (entry Type line)
+ *   Accent              #FAFF00 — kept as the highlighter only (DECISION; the entry lists it as costume)
+ *   Faces               Host Grotesk + IBM Plex Mono (DECISION, chosen by rendering three grotesks)
  */
 
 :root {
   --paper: #F1F1F1;
   --ink: #010101;
   --accent: #FAFF00;
-  --r1: #B2B2B2;
+  --on-accent: #010101;          /* every accent ships a dark on- partner — swiss-grid-lab#13 */
+  --r1: #B2B2B2;                 /* rules */
+  --r1-text: #8A8A8A;            /* DECISION: #B2B2B2 as text is 1.9:1; lightest text step 3.06:1 */
   --r2: #606060;
   --r3: #2C2C2C;
-  /* DECISION: #B2B2B2 as TEXT on #F1F1F1 is 1.9:1 and failed large-text
-     contrast; the lightest text step is #8A8A8A (3.06:1). #B2B2B2 stays for
-     rules, which is where the family uses it. */
-  --r1-text: #8A8A8A;
   --band: rgba(86, 86, 86, 0.1);
 
-  --rule-structural: 0.8px;   /* lighter than ornamental, per the family */
+  --rule-structural: 0.8px;
   --rule-ornamental: 1px;
 
-  /* 1024 artboard ratios. The family's scale has NO 16px rank; these clamps
-     scale the ratios rather than introducing one. DECISION: the clamp itself
-     (the family gives design px, not a fluid scale). */
-  --t-chrome: clamp(10px, 0.98vw, 12px);   /* 10 / 1024 */
-  --t-copy: clamp(14px, 1.37vw, 17px);     /* 14 / 1024 */
-  --t-rank: clamp(23px, 3.03vw, 31px);     /* 31 / 1024 */
-  --t-display: clamp(38px, 8.4vw, 86px);   /* 86 / 1024 */
-  --t-mega: clamp(64px, 25.8vw, 264px);    /* 264 / 1024 */
+  --t-chrome: clamp(10px, 0.98vw, 12px);
+  --t-copy: clamp(14px, 1.37vw, 17px);
+  --t-rank: clamp(23px, 3.03vw, 31px);
+  --t-display: clamp(38px, 8.4vw, 86px);
+  --t-mega: clamp(64px, 25.8vw, 264px);
 
-  --measure: 960px;  /* the band span the family names */
+  --f-text: "Host Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --measure: 960px;
   --gutter: clamp(16px, 3vw, 30px);
+}
+
+/* The ink ground. An ink chapter carries the tokens itself and paints its
+   ground full-bleed, so it is ink with or without JS; while one is
+   mid-viewport, app.js sets html[data-flip] and the header and grid overlay
+   follow. A token swap on <html> restyled every element on the page —
+   measured 50-220ms per flip, failing the reduced-motion jank floor — so the
+   swap is scoped to the chapter, the header and the overlay. (The flag is
+   html[data-flip], not [data-ground]: a bare [data-ground] selector would
+   match <html> too and re-create the whole-document swap.) */
+.ch--ink, html[data-flip="ink"] .top, html[data-flip="ink"] .grid-overlay {
+  --paper: #010101;
+  --ink: #F1F1F1;
+  --r1: #4A4A4A;
+  --r1-text: #8A8A8A;
+  --r2: #A3A3A3;
+  --r3: #D6D6D6;
+  --band: rgba(210, 210, 210, 0.1);
+}
+.ch--ink {
+  background: var(--paper); color: var(--ink);
+  /* full-bleed ground without extra markup: a spread shadow clipped to the
+     horizontal, so the margins beside the 960px column go ink too */
+  box-shadow: 0 0 0 100vmax var(--paper); clip-path: inset(0 -100vmax);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { background: var(--paper); scroll-padding-top: 64px; /* the sticky header must not cover a focused or linked target */ }
-
+html { background: var(--paper); scroll-padding-top: 64px; }
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  /* Stopgap until the type pass: one named Swiss stack, so every browser on a
-     Mac draws the same face (ui-sans-serif resolved to SF Pro in some). */
-  font: var(--t-copy)/1.55 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: var(--t-copy)/1.55 var(--f-text);
   -webkit-font-smoothing: antialiased;
-  letter-spacing: 0;   /* ~0 at small sizes, per the family */
+  letter-spacing: 0;
 }
-
-/* Flat ink-on-paper: no depth, no gradient, no canvas. */
 img, svg { max-width: 100%; }
+a { color: inherit; }
+code { font-family: var(--f-mono); font-size: 0.86em; background: var(--accent); color: var(--on-accent); padding: 0 4px; }
 
 .u-sr {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip-path: inset(50%); white-space: nowrap;
 }
-
 .skip {
   position: absolute; left: -9999px; top: 0; z-index: 10;
-  background: var(--accent); color: var(--ink);
-  padding: 8px 14px; font-size: var(--t-chrome);
-  text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none;
+  background: var(--accent); color: var(--on-accent);
+  padding: 8px 14px; font: var(--t-chrome) var(--f-mono);
+  text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none;
 }
 .skip:focus { left: 0; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
 /* ------------------------------------------------- the grid, load-bearing */
-/* The family's axis of variation runs from "toggled depiction" to
-   "load-bearing CSS Grid". This is the load-bearing pole: .wrap IS the grid
-   the page lays out on, and .grid-overlay merely reveals it. */
 .hero, .band, .top, .fam {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -87,305 +98,373 @@ img, svg { max-width: 100%; }
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
-
 .grid-overlay {
   position: fixed; inset: 0;
-  max-width: var(--measure);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 0 var(--gutter);
-  pointer-events: none;
-  z-index: 1;
+  max-width: var(--measure); margin-inline: auto; padding-inline: var(--gutter);
+  display: grid; grid-template-columns: repeat(8, 1fr); gap: 0 var(--gutter);
+  pointer-events: none; z-index: 3;
 }
 .grid-overlay[hidden] { display: none; }
 .grid-overlay > i { background: var(--band); }
 
 /* -------------------------------------------------------------- top chrome */
 .top {
-  position: sticky; top: 0; z-index: 2;
-  background: var(--paper);
+  position: sticky; top: 0; z-index: 4;
+  background: var(--paper); color: var(--ink);
+  /* full-bleed like the ink chapters, so a chapter edge never shows beside it */
+  box-shadow: 0 0 0 100vmax var(--paper); clip-path: inset(0 -100vmax);
   border-bottom: var(--rule-structural) solid var(--r1);
-  padding-block: 5px;
-  align-items: center;
+  padding-block: 5px; align-items: center;
+  font: var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.06em;
 }
-.top__mark {
-  grid-column: 1 / 4; margin: 0;
-  font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.1em;
-}
-/* The whole "Grid:" control is the button — label and pill — at the family's
-   41px hit height (swiss-grid-lab#6). Negative line so it spans the last two
-   columns on both the 8- and 4-column grids. */
+.top__mark { grid-column: 1 / 3; text-decoration: none; }
+.top__pos { grid-column: 3 / -3; margin: 0; text-align: center; display: flex; gap: 18px; justify-content: center; }
+.top__pos a { text-decoration: none; border-bottom: var(--rule-structural) solid var(--r1); }
+.top__pos a:hover, .top__pos a:focus-visible { background: var(--accent); color: var(--on-accent); }
+.top__pos [data-readout] { color: var(--r2); font-variant-numeric: tabular-nums; }
 .top__toggle {
-  grid-column: -3 / -1; margin: 0; justify-self: end;
-  display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+  grid-column: -3 / -1; justify-self: end;
+  display: flex; align-items: center; gap: 8px;
   min-block-size: 41px; padding: 0; background: none; border: 0; cursor: pointer; color: inherit;
-  font: inherit; font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.1em;
+  font: inherit; text-transform: inherit; letter-spacing: inherit;
 }
-
-/* two-lozenge ON/OFF pill, from the family vocabulary */
 .pill {
   display: inline-flex; align-items: center; gap: 6px;
-  background: none; border: var(--rule-ornamental) solid var(--ink);
-  padding: 3px 7px 3px 4px;
-  /* stock easing only — the family ships zero cubic-bezier */
+  border: var(--rule-ornamental) solid var(--ink); padding: 3px 7px 3px 4px;
   transition: background-color 120ms ease-out;
 }
 .pill__lz { width: 16px; height: 8px; border: var(--rule-structural) solid var(--ink); display: inline-block; }
 .pill__lz::before { content: ""; display: block; width: 8px; height: 100%; background: var(--ink); }
-.top__toggle[aria-pressed="true"] .pill { background: var(--accent); }
-.top__toggle[aria-pressed="true"] .pill__lz::before { margin-left: 8px; }
-/* hover and focus-visible together — the skill fails a review without it */
-.top__toggle:hover .pill, .top__toggle:focus-visible .pill { background: var(--accent); }
-.top__toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.top__toggle[aria-pressed="true"] .pill { background: var(--accent); color: var(--on-accent); border-color: var(--on-accent); }
+.top__toggle[aria-pressed="true"] .pill__lz { border-color: var(--on-accent); }
+.top__toggle[aria-pressed="true"] .pill__lz::before { margin-left: 8px; background: var(--on-accent); }
+.top__toggle:hover .pill, .top__toggle:focus-visible .pill { background: var(--accent); color: var(--on-accent); }
+.top__rail { position: absolute; left: 0; right: 0; bottom: -1px; height: var(--rule-ornamental); }
+.top__rail > i { display: block; height: 100%; background: var(--ink); transform: scaleX(var(--fam, 0)); transform-origin: left center; }
 
 /* ------------------------------------------------- motion spec labels */
-/* The page prints the constant beside the thing it drives. Generated from
-   the same object the runtime animates from — see src/motion-config.mjs. */
 .mlabel {
-  grid-column: 1 / -1; margin: 0 0 14px;
-  font-size: var(--t-chrome); color: var(--r2);
-  text-transform: uppercase; letter-spacing: 0.09em;
-  font-variant-numeric: tabular-nums;
-  /* (a 1px #FAFF00 left rule sat here: 1.04:1 on #F1F1F1, i.e. invisible) */
+  grid-column: 1 / -1; margin: 0 0 12px;
+  font: var(--t-chrome)/1.5 var(--f-mono); color: var(--r2);
+  text-transform: uppercase; letter-spacing: 0.04em; font-variant-numeric: tabular-nums;
 }
-.mlabel::before { content: "▸ "; color: var(--r1); }
+.mlabel::before { content: "▸ "; color: var(--r1-text); }
 
 /* -------------------------------------------------------------------- hero */
-/* Load guard: set by an inline head script only when motion will run, removed
-   by app.js once every start state is set (3s failsafe in the script). */
-.mtl-wait [data-count-to], .mtl-wait .hero__h .ln__i { visibility: hidden; }
+.mtl-wait [data-count-to], .mtl-wait .hero__h .ln__i, .mtl-wait .mods rect { visibility: hidden; }
+.hero { padding-block: clamp(40px, 9vw, 104px) clamp(32px, 6vw, 72px); }
+.hero__count {
+  grid-column: 1 / -1; grid-row: 1; margin: 0 0 4px;
+  font: 800 var(--t-mega)/0.8 var(--f-text); letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums; will-change: transform;
+}
 .hero__unit {
   grid-column: 1 / -1; margin: 0 0 6px;
-  font-size: var(--t-chrome); color: var(--r2); text-transform: uppercase;
-  letter-spacing: 0.09em; font-variant-numeric: tabular-nums;
+  font: var(--t-chrome) var(--f-mono); color: var(--r2); text-transform: uppercase;
+  letter-spacing: 0.04em; font-variant-numeric: tabular-nums;
 }
-.hero { padding-block: clamp(40px, 9vw, 104px) clamp(32px, 6vw, 72px); }
-
-/* the 264px rank, finally used */
-.hero__count {
-  grid-column: 1 / -1; margin: 0 0 4px;
-  font-size: var(--t-mega); line-height: 0.8; letter-spacing: -0.04em;
-  font-weight: 700; font-variant-numeric: tabular-nums;
-  will-change: transform;
-}
-
-/* Osmo masked-line structure: overflow:clip wrapper, inner rides yPercent.
-   The padding/negative margin pair gives descenders room inside the mask
-   (the g of "award-winning" was clipped). */
+.hero > .hero__unit { grid-row: 2; }
+.hero > .mlabel:nth-of-type(3) { grid-row: 3; }
+.hero > .mlabel:nth-of-type(4) { grid-row: 4; }
 .hero__h .ln { display: block; overflow: clip; padding-bottom: 0.12em; margin-bottom: -0.12em; }
 .hero__h .ln__i { display: block; }
-
-/* The family: "86px headline steps #F1F1F1 -> #B2B2B2 -> #606060 -> #2C2C2C".
-   Read literally that first stop is paper-on-paper; used here from the second
-   stop so line one is legible. DECISION, and a deliberate deviation. */
 .hero__h {
-  grid-column: 1 / -1; margin: 0 0 clamp(24px, 4vw, 44px);
-  font-size: var(--t-display); line-height: 0.94; letter-spacing: -0.04em;
-  font-weight: 700; text-wrap: balance;
+  grid-column: 1 / 6; grid-row: 5; margin: 8px 0 clamp(20px, 3vw, 36px);
+  font: 800 var(--t-display)/0.94 var(--f-text); letter-spacing: -0.04em; text-wrap: balance;
 }
 .hero__h span { display: block; }
 .hero__h .s1 { color: var(--r1-text); }
 .hero__h .s2 { color: var(--r2); }
 .hero__h .s3 { color: var(--r3); }
 .hero__h .s4 { color: var(--ink); }
-
-.hero__lede { grid-column: 1 / 6; }
+.hero > .mlabel:nth-of-type(5) { grid-column: 1 / 6; grid-row: 6; }
+.hero__lede { grid-column: 1 / 6; grid-row: 7; }
 .hero__lede p { margin: 0 0 12px; max-width: 54ch; }
-.hero__sub { color: var(--r2); font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.08em; }
+.hero__sub { color: var(--r2); font: var(--t-chrome)/1.6 var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.hero > .mlabel:last-child { grid-row: 8; }
+.hero__side { grid-column: 6 / -1; grid-row: 5 / 9; align-self: start; padding-top: 12px; }
 
-/* ------------------------------------------------- spec tables as ornament */
-/* "10px spec-table rows as ornament (Grid | 12 Columns)" — here the ornament
-   carries the real generated figures, which is the honest version. */
-.spec { margin: 0; font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.06em; }
-.spec > div {
-  display: grid; grid-template-columns: 1fr auto; gap: 8px;
-  padding: 5px 0; border-top: var(--rule-structural) solid var(--r1);
-}
-.spec dt { color: var(--r2); margin: 0; }
-.spec dd { margin: 0; font-variant-numeric: tabular-nums; }
+/* 131 modules: one square per award row, filled as the count ticks (--n) */
+.mods { display: block; width: 100%; height: auto; }
+.mods rect { fill: var(--ink); opacity: clamp(0, calc(var(--n, 999) - var(--i)), 1); }
+.mods rect.off { fill: none; stroke: var(--ink); stroke-width: 1; }
+.mods__key { margin: 8px 0 18px; font: var(--t-chrome) var(--f-mono); color: var(--r2); text-transform: uppercase; letter-spacing: 0.04em; }
+.k { display: inline-block; width: 8px; height: 8px; border: 1px solid var(--ink); margin: 0 4px 0 0; vertical-align: -1px; }
+.k--on { background: var(--ink); }
+.k:not(:first-child) { margin-left: 8px; }
 
-.spec--hero { grid-column: 6 / -1; align-self: end; }
-.spec--find { grid-column: 6 / -1; }
+/* chapter index: a spec table of anchors, one number each — row box 24px (#14) */
+.chix ol { margin: 0; padding: 0; list-style: none; font: var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.chix li { border-top: var(--rule-structural) solid var(--r1); }
+.chix li:last-child { border-bottom: var(--rule-structural) solid var(--r1); }
+.chix a { display: grid; grid-template-columns: 26px 1fr auto; gap: 8px; min-height: 24px; align-items: center; padding: 4px 0; text-decoration: none; }
+.chix a span:first-child { color: var(--r2); }
+.chix a span:last-child { font-variant-numeric: tabular-nums; }
+.chix a:hover, .chix a:focus-visible { background: var(--accent); color: var(--on-accent); }
+.chix a:hover span, .chix a:focus-visible span { color: var(--on-accent); }
 
-/* ------------------------------------------------------------------- bands */
-.band { padding-block: clamp(36px, 6vw, 72px); border-top: var(--rule-ornamental) solid var(--ink); }
-.band > h2 {
-  grid-column: 1 / -1; margin: 0 0 20px;
-  font-size: var(--t-rank); letter-spacing: -0.02em; font-weight: 700;
-}
-.band__note { grid-column: 1 / 6; margin: 0 0 28px; color: var(--r3); }
+/* ------------------------------------------------------------ bands, chapters */
+.band { padding-block: clamp(44px, 7vw, 96px); border-top: var(--rule-ornamental) solid var(--ink); }
+.band > h2 { grid-column: 1 / -1; margin: 0 0 22px; font: 800 var(--t-rank)/1.1 var(--f-text); letter-spacing: -0.02em; }
+.ch > h2 { font-size: var(--t-display); line-height: 0.94; letter-spacing: -0.04em; margin-bottom: 26px; }
+.ch__no { grid-column: 1 / -1; margin: 0 0 6px; font: 500 var(--t-chrome) var(--f-mono); color: var(--r2); letter-spacing: 0.04em; }
+.band__note { grid-column: 1 / 6; margin: 0 0 24px; color: var(--r3); max-width: 60ch; }
+.inl { text-decoration: none; border-bottom: var(--rule-ornamental) solid var(--ink); white-space: nowrap; }
+.inl:hover, .inl:focus-visible { background: var(--accent); color: var(--on-accent); }
+.ch__spread { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; margin-top: clamp(40px, 6vw, 80px); padding-top: 22px; border-top: var(--rule-structural) solid var(--r1); }
+.ch__h3 { grid-column: 1 / -1; margin: 0 0 14px; font: 800 var(--t-rank)/1.1 var(--f-text); letter-spacing: -0.02em; }
 
-.steps { grid-column: 1 / -1; margin: 0; padding: 0; list-style: none;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0 var(--gutter); }
-.steps li { border-top: var(--rule-structural) solid var(--r1); padding: 10px 0 18px; }
-.steps b {
-  display: block; font-size: var(--t-chrome); text-transform: uppercase;
-  letter-spacing: 0.1em; margin-bottom: 6px;
-}
-/* 8x8px square marker, from the vocabulary */
-.steps b::before {
-  content: ""; display: inline-block; width: 8px; height: 8px;
-  background: var(--ink); margin-right: 7px; vertical-align: baseline;
-}
-.steps span { display: block; color: var(--r3); }
-
-.find { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; }
-.find__txt { grid-column: 1 / 6; }
-.find__txt p { margin: 0 0 12px; max-width: 58ch; }
-.find__side { grid-column: 6 / -1; }
-.find__side .mlabel { grid-column: auto; margin-top: 10px; }
-/* The key finding is highlighted AS you read it: --find (0→1) scrubs the
-   highlighter across the sentence in reading order (box-decoration: slice
-   treats the wrapped lines as one strip). Default 1: no-JS and reduced motion
-   see it fully marked. */
-.band--find b {
-  background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 0 / calc(var(--find, 1) * 100%) 100%;
-}
-.spec--find { grid-column: auto; }
-/* Scrubbed numerals must not reflow the row as digits appear. */
-[data-scrub-to], [data-count-to] { font-variant-numeric: tabular-nums; white-space: pre; }
-
-/* ------------------------------------------------- the offset-path walk */
-/* swiss-grid-lab motion line, verbatim: "travel via offset-path not
-   transform". The 8x8 square is the family's own marker, walking its rule. */
-.walk {
-  grid-column: 1 / -1; position: relative; height: 40px; margin-bottom: 8px;
-  --walk: 0;
-}
-.walk__svg { display: block; width: 100%; height: 40px; }
+/* ------------------------------------------- 01: the walk visits the steps */
+.walk { grid-column: 1 / -1; position: relative; margin-top: 6px; }
+.walk__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .walk__path { stroke: var(--r1); stroke-width: var(--rule-structural); }
 .walk__dot {
-  position: absolute; inset: 0; width: 8px; height: 8px; background: var(--ink);
-  offset-path: path("M4 20 H956");
-  offset-distance: calc(var(--walk) * 100%);
-  offset-rotate: 0deg;
+  position: absolute; left: 0; top: 0; width: 8px; height: 8px; background: var(--ink); z-index: 1;
+  offset-path: path("M0 0"); offset-distance: 0px; offset-rotate: 0deg;   /* swiss-grid-lab#9 */
   will-change: offset-distance;
 }
-/* offset-path is in CSS px while the svg stretches its 960-unit viewBox, so
-   the path above is only right at 960px wide. app.js walkFit() rewrites it
-   to the rule's real width (the old --walk-scale here was never applied). */
+.steps { position: relative; margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px var(--gutter); }
+.steps li { position: relative; padding-top: 18px; border-top: var(--rule-structural) solid var(--r1); }
+/* the 8x8 marker sits ON the step's rule, so the walking square rides the rules */
+.steps li::before { content: ""; position: absolute; left: 0; top: -4.4px; width: 8px; height: 8px; background: var(--paper); border: 1px solid var(--ink); }
+.steps li.is-on::before { background: var(--ink); }
+.steps b { display: block; margin-bottom: 8px; font: 500 var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.steps__y { display: block; font: 800 var(--t-rank)/1.05 var(--f-text); letter-spacing: -0.02em; margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+.steps span:last-child { display: block; color: var(--r3); }
 
-/* ------------------------------------------------------- bezier exhibit */
-.band--exhibit .ex {
-  grid-column: 2 / 7; margin: 0;
-  border-top: var(--rule-structural) solid var(--r1); padding-top: 18px;
-  --t: 0;
+/* ------------------------------------------- 01: the contact sheet (data) */
+.ch__spread .band__note { grid-column: 1 / 6; }
+.sheet { grid-column: 1 / -1; display: grid; gap: 10px; }
+.sheet__row {
+  display: grid; grid-template-columns: 52px 1fr 128px; gap: 12px; align-items: center;
+  padding-top: 10px; border-top: var(--rule-structural) solid var(--r1);
+  --on: clamp(0, calc(var(--sheet, 1) * 10 - var(--r)), 1);
+  opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 10px));
 }
+.sheet__y { font: 500 var(--t-chrome) var(--f-mono); letter-spacing: 0.04em; }
+.sheet__n { font: var(--t-chrome) var(--f-mono); color: var(--r2); text-transform: uppercase; letter-spacing: 0.04em; text-align: right; font-variant-numeric: tabular-nums; }
+.sheet__cells { display: flex; flex-wrap: wrap; gap: 6px; }
+/* a 4:3 frame tinted with the site's first three declared hexes */
+.fr { display: grid; width: 36px; height: 27px; border: var(--rule-structural) solid var(--r1); overflow: hidden; position: relative; }
+.fr i { display: block; }
+.fr--off i { opacity: 0.14; }
+.fr--off { border-style: dashed; border-color: var(--r2); }
+.fr--off::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top right, transparent calc(50% - 0.6px), var(--ink) calc(50% - 0.6px), var(--ink) calc(50% + 0.6px), transparent calc(50% + 0.6px)); }
+
+/* ------------------------------------------------------- 02: what broke (ink) */
+.thesis { grid-column: 1 / -1; margin: 0 0 clamp(28px, 4vw, 48px); font: 500 var(--t-rank)/1.2 var(--f-text); color: var(--r2); }
+.thesis__big { display: block; margin-top: 10px; max-width: 16ch; font: 800 var(--t-display)/1.02 var(--f-text); letter-spacing: -0.035em; }
+/* The highlighter underlines the clause as it is read (--find 0→1). Inline, so
+   with box-decoration-break: slice the wrapped lines form one strip and the
+   underline sweeps them in reading order. */
+.thesis b {
+  color: var(--ink); font-weight: inherit;
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 90% / calc(var(--find, 1) * 100%) 0.12em;
+  -webkit-box-decoration-break: slice; box-decoration-break: slice;
+}
+.broke { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: end; }
+.broke__big { grid-column: 1 / 6; margin: 0; font: 800 var(--t-mega)/0.8 var(--f-text); letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+.broke .hero__unit { grid-column: 1 / 6; margin-top: clamp(16px, 3.4vw, 36px); /* clears the comma's descender at 264px */ }
+.broke .mlabel { grid-column: 1 / 6; }
+.spec { margin: 0; font: var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.spec > div { display: grid; grid-template-columns: 1fr auto; gap: 8px; min-height: 24px; align-items: center; border-top: var(--rule-structural) solid var(--r1); }
+.spec dt { color: var(--r2); margin: 0; }
+.spec dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
+.spec--find { grid-column: 6 / -1; grid-row: 1 / 4; align-self: end; }
+[data-count-once], [data-count-to] { font-variant-numeric: tabular-nums; white-space: pre; }
+.cases { grid-column: 1 / -1; margin: clamp(40px, 6vw, 72px) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 var(--gutter); }
+.cases li { border-top: var(--rule-ornamental) solid var(--ink); padding-top: 12px; }
+.cases__n { font: 800 var(--t-rank)/1 var(--f-text); margin-right: 10px; }
+.cases__d { font: var(--t-chrome) var(--f-mono); color: var(--r2); letter-spacing: 0.04em; }
+.cases p { margin: 10px 0 0; }
+.cases__l { color: var(--r2); font-style: italic; }
+
+/* ------------------------------------------------------------ 03: the test */
+.tests { grid-column: 1 / -1; display: grid; gap: clamp(40px, 6vw, 72px); }
+.tri h3 { margin: 0 0 4px; font: 800 var(--t-rank)/1.1 var(--f-text); letter-spacing: -0.02em; }
+.tri__brief { margin: 0 0 16px; color: var(--r3); max-width: 70ch; }
+.tri__row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+.tri__cell { margin: 0; }
+.tri__cell a { display: block; position: relative; border: var(--rule-structural) solid var(--r1); line-height: 0; }
+.tri__cell img { width: 100%; height: auto; aspect-ratio: 4 / 3; display: block; }
+.tri__open {
+  position: absolute; left: 8px; bottom: 8px; line-height: 1.4; padding: 2px 6px;
+  font: var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em;
+  background: var(--accent); color: var(--on-accent); opacity: 0; transition: opacity 120ms ease-out;
+}
+.tri__cell a:hover .tri__open, .tri__cell a:focus-visible .tri__open { opacity: 1; }
+.tri__cell figcaption { margin-top: 8px; font: var(--t-chrome)/1.5 var(--f-mono); color: var(--r2); text-transform: uppercase; letter-spacing: 0.04em; }
+.tri__cell figcaption b { color: var(--ink); font-weight: 500; }
+.bars { margin-top: 18px; display: grid; gap: 6px; }
+.bars__row { display: grid; grid-template-columns: 130px 1fr 190px 140px; gap: 12px; align-items: center; min-height: 24px; border-top: var(--rule-structural) solid var(--r1); font: var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.bars__k { color: var(--r2); }
+.bars__b { display: grid; gap: 3px; }
+.bars__b i { display: block; height: 5px; transform-origin: left center; transform: scaleX(calc(var(--v) * var(--bars, 1))); }
+.bars__s { background: var(--ink); }
+.bars__o { background: var(--r1-text); }
+.bars__v, .bars__j { font-variant-numeric: tabular-nums; }
+.bars__j { color: var(--r2); text-align: right; }
+.caveat { grid-column: 1 / 6; margin: 28px 0 0; font: var(--t-chrome)/1.7 var(--f-mono); color: var(--r2); text-transform: uppercase; letter-spacing: 0.04em; }
+.caveat b { background: var(--accent); color: var(--on-accent); padding: 0 4px; font-weight: 500; }
+
+/* ------------------------------------------ 04 + archive: the family index */
+.ix { grid-column: 1 / -1; margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 var(--gutter); }
+.ix li { border-top: var(--rule-structural) solid var(--r1); }
+.ix a {
+  display: grid; grid-template-columns: 24px minmax(0, 1fr) 56px; grid-template-rows: auto auto; column-gap: 10px; align-items: center;
+  min-height: 48px; padding: 6px 0; text-decoration: none; font: var(--t-chrome) var(--f-mono); letter-spacing: 0.02em;
+}
+.ix__n { grid-row: 1 / 3; color: var(--r2); align-self: start; }
+.ix__slug { grid-column: 2; color: var(--ink); font-weight: 500; overflow-wrap: anywhere; }
+.ix__meta { grid-column: 2; color: var(--r2); }
+.ix .gl { grid-column: 3; grid-row: 1 / 3; }
+.ix a:hover, .ix a:focus-visible { background: var(--accent); color: var(--on-accent); }
+.ix a:hover > span, .ix a:focus-visible > span { color: var(--on-accent); }
+
+/* a family's own easing curve; the rider moves x linearly and y by the family's ease */
+.gl { position: relative; display: inline-block; width: 56px; height: 32px; line-height: 0; --ride: 1.1s; }
+.gl svg { width: 100%; height: 100%; overflow: visible; }
+.gl__axis { stroke: var(--r1); stroke-width: var(--rule-structural); fill: none; }
+.gl__curve {
+  stroke: currentColor; stroke-width: 1.2; fill: none;
+  stroke-dasharray: 1; stroke-dashoffset: calc(1 - clamp(0, calc(var(--draw, 1) * 1.6 - var(--i, 0) / 43 * 0.6), 1));
+}
+.gl__nil { stroke: var(--r1); stroke-width: var(--rule-structural); stroke-dasharray: 2 3; fill: none; }
+.gl__x { position: absolute; left: 4px; bottom: 4px; width: 0; height: 0; }
+.gl__y { position: absolute; left: -2.5px; top: -2.5px; width: 5px; height: 5px; background: currentColor; }
+.ix a:hover .gl__x, .ix a:focus-visible .gl__x, .fam__gl:hover .gl__x { animation: glx var(--ride) linear both; }
+.ix a:hover .gl__y, .ix a:focus-visible .gl__y, .fam__gl:hover .gl__y { animation: gly var(--ride) var(--ease) both; }
+@keyframes glx { from { transform: translateX(0); } to { transform: translateX(48px); } }
+@keyframes gly { from { transform: translateY(0); } to { transform: translateY(-24px); } }
+.gl--lg { width: 112px; height: 64px; }
+.gl--lg .gl__x { left: 8px; bottom: 8px; }
+.fam__gl:hover .gl--lg .gl__x { animation-name: glx-lg; }
+.fam__gl:hover .gl--lg .gl__y { animation-name: gly-lg; }
+@keyframes glx-lg { from { transform: translateX(0); } to { transform: translateX(96px); } }
+@keyframes gly-lg { from { transform: translateY(0); } to { transform: translateY(-48px); } }
+
+/* ------------------------------------------------------------ 05: this page */
+.ch .ex { grid-column: 1 / 6; margin: 0 0 clamp(32px, 5vw, 56px); border-top: var(--rule-structural) solid var(--r1); padding-top: 18px; --t: 0; }
 .ex__svg { display: block; width: 100%; height: auto; overflow: visible; }
 .ex__grid path { stroke: var(--r1); stroke-width: var(--rule-structural); fill: none; }
-.ex__curve { stroke: var(--ink); stroke-width: var(--rule-ornamental); }
 .ex__guide { stroke-dasharray: 2 4; }
-/* 8x8 square markers pin the curve at t = 0, .25, .5, .75, 1 (family vocabulary) */
+.ex__curve { stroke: var(--ink); stroke-width: var(--rule-ornamental); }
 .ex__marks rect { fill: var(--paper); stroke: var(--ink); stroke-width: var(--rule-structural); }
-/* Positioned by app.js from the same quartic the curve was sampled from: x is
-   linear in scroll, y is the ease. (It used to ride the path by arc length,
-   which follows neither the time axis nor the ease.) */
-.ex__dot { fill: var(--ink); }
-.ex__cap {
-  display: flex; gap: 18px; flex-wrap: wrap; margin-top: 12px;
-  font-size: var(--t-chrome); color: var(--r2);
-  text-transform: uppercase; letter-spacing: 0.08em; font-variant-numeric: tabular-nums;
-}
-.ex__cap span:first-child { color: var(--ink); background: var(--accent); padding: 0 4px; }
+.ex__dot { fill: var(--accent); }
+.ex__cap { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 12px; font: var(--t-chrome) var(--f-mono); color: var(--r2); text-transform: uppercase; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+.ex__cap span:first-child { color: var(--on-accent); background: var(--accent); padding: 0 4px; }
+.audit { grid-column: 1 / -1; border-collapse: collapse; width: 100%; font: var(--t-chrome)/1.5 var(--f-mono); letter-spacing: 0.02em; }
+.audit caption { text-align: left; font: 800 var(--t-rank)/1.1 var(--f-text); letter-spacing: -0.02em; margin-bottom: 12px; }
+.audit th, .audit td { text-align: left; vertical-align: top; padding: 6px 12px 6px 0; border-top: var(--rule-structural) solid var(--r1); }
+.audit thead th { color: var(--r2); text-transform: uppercase; font-weight: 400; }
+.audit tbody th { font-weight: 500; }
+.audit td { color: var(--r3); }
+.st { text-transform: uppercase; white-space: nowrap; }
+.st--dec { background: var(--accent); color: var(--on-accent) !important; }
 
-/* ------------------------------------------------------ families rail */
-.rail {
-  grid-column: 1 / -1; height: var(--rule-ornamental); background: var(--r1);
-  margin-bottom: 22px; --fam: 0;
-}
-/* scaleX, NOT width. width is a layout property — animating it per frame
-   violates the compositor-only rule and was the one real perf defect the
-   jank pass pointed at. transform-origin left makes it read identically. */
-.rail > i {
-  display: block; height: 100%; width: 100%; background: var(--ink);
-  transform: scaleX(var(--fam)); transform-origin: left center;
-  will-change: transform;
-}
-
-/* ---------------------------------------------------------------- families */
-.fam { padding-block: 0 26px; max-width: none; margin: 0; padding-inline: 0; grid-column: 1 / -1;
-  grid-template-columns: subgrid; }
-.fam__rule { grid-column: 1 / -1; height: var(--rule-structural); background: var(--r1); margin-bottom: 14px; }
-.fam__idx {
-  grid-column: 1 / 2; margin: 0; font-size: var(--t-chrome);
-  color: var(--r2); font-variant-numeric: tabular-nums; letter-spacing: 0.06em;
-}
-.fam__name {
-  grid-column: 2 / 6; margin: 0 0 6px; font-size: var(--t-copy);
-  letter-spacing: 0; font-weight: 700;
-}
-.fam__thesis { grid-column: 2 / 6; margin: 0 0 14px; color: var(--r3); max-width: 56ch; }
-/* The spec table sits BESIDE the left column, not under it — removing this
-   span stacked them and grew the page 8226px. The void the contact sheet
-   showed was the left column being shorter than this 419px table, so the fix
-   is to give the left column the member list (below), not to unspan this. */
-.spec--fam { grid-column: 6 / -1; grid-row: 2 / 7; align-self: start; }
+/* ---------------------------------------------------------------- archive */
+.band--first { border-top: 0; }
+.arch__h { grid-column: 1 / -1; margin: 0 0 22px; font: 800 var(--t-display)/0.94 var(--f-text); letter-spacing: -0.04em; }
+.skipfam { grid-column: 1 / -1; margin: 12px 0 40px; font: var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.fam { grid-column: 1 / -1; grid-template-columns: subgrid; max-width: none; margin: 0; padding: 0 0 34px; }
+.fam__rule { grid-column: 1 / -1; height: var(--rule-ornamental); background: var(--ink); margin-bottom: 16px; }
+.fam__idx { grid-column: 1 / 2; margin: 0; font: var(--t-chrome) var(--f-mono); color: var(--r2); font-variant-numeric: tabular-nums; }
+.fam__name { grid-column: 2 / 6; margin: 0 0 8px; font: 800 var(--t-rank)/1.1 var(--f-text); letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.fam__thesis { grid-column: 2 / 6; margin: 0 0 12px; color: var(--r3); max-width: 58ch; }
+.fam__sig { grid-column: 2 / 6; margin: 0 0 14px; max-width: 58ch; }
+.fam__sig b, .fam__use b { font: 500 var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; margin-right: 8px; }
+.fam__side { grid-column: 6 / -1; grid-row: 2 / 7; align-self: start; }
+.fam__gl { margin: 0 0 12px; }
+.fam__gl figcaption { margin-top: 6px; font: var(--t-chrome) var(--f-mono); color: var(--r2); }
+.fam__gl code { background: none; color: var(--ink); padding: 0; }
+.spec--fam > div { grid-template-columns: 1fr; gap: 2px; padding: 4px 0; }
+.spec--fam dd { text-align: left; text-transform: none; letter-spacing: 0; color: var(--r3); }
+.spec--fam > div:first-child dd, .spec--fam > div:nth-child(3) dd { color: var(--ink); text-transform: uppercase; letter-spacing: 0.04em; }
 .fam__sw { grid-column: 2 / 6; margin: 0 0 12px; display: flex; gap: 4px; }
-.sw { width: 14px; height: 14px; background: var(--sw); border: var(--rule-structural) solid rgba(1,1,1,.18); }
-.fam__use { grid-column: 2 / 6; margin: 0 0 14px; font-size: var(--t-chrome); line-height: 1.7; }
-.fam__use p { margin: 0 0 4px; color: var(--r3); }
-.fam__use b { text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); margin-right: 6px; }
-
-.fam__mem { grid-column: 2 / 6; margin: 0; padding: 0; list-style: none; }
+.sw { width: 14px; height: 14px; background: var(--sw); border: var(--rule-structural) solid var(--r1); }
+.fam__use { grid-column: 2 / 6; margin: 0 0 10px; }
+.fam__use p { margin: 0 0 6px; color: var(--r3); max-width: 60ch; }
+.fam__full { grid-column: 2 / 6; margin: 0 0 14px; }
+.fam__full summary { cursor: pointer; font: var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--r2); min-height: 24px; display: flex; align-items: center; gap: 6px; list-style: none; }
+.fam__full summary::-webkit-details-marker { display: none; }
+.fam__full summary::before { content: "+"; display: inline-grid; place-items: center; width: 12px; height: 12px; border: 1px solid var(--r2); line-height: 1; }
+.fam__full[open] summary::before { content: "−"; }
+.fam__full dl { margin: 8px 0 0; }
+.fam__full dt { font: var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--r2); margin-top: 10px; }
+.fam__full dd { margin: 2px 0 0; color: var(--r3); max-width: 62ch; }
+/* member ledger: fixed tracks so columns stop jogging; filled / hollow marker */
+.fam__mem { grid-column: 2 / -1; margin: 0; padding: 0; list-style: none; }
 .m {
-  display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1.6fr) auto auto;
-  gap: 10px; align-items: baseline;
-  padding: 6px 0; border-top: var(--rule-structural) solid var(--r1);
-  font-size: var(--t-chrome); letter-spacing: 0.04em;
+  display: grid; grid-template-columns: 10px minmax(0, 1.2fr) minmax(0, 1.6fr) 84px 60px; gap: 10px; align-items: baseline;
+  min-height: 24px; padding: 4px 0; border-top: var(--rule-structural) solid var(--r1);
+  font: var(--t-chrome) var(--f-mono); letter-spacing: 0.02em;
 }
-.m__site { font-weight: 700; text-transform: uppercase; color: var(--ink); text-decoration: none;
-  border-bottom: var(--rule-ornamental) solid transparent; }
-.m__site:hover, .m__site:focus-visible { border-bottom-color: var(--ink); background: var(--accent); }
+.m__mk { width: 8px; height: 8px; background: var(--ink); align-self: center; }
+.m--dead .m__mk { background: none; border: 1px solid var(--ink); }
+.m__site { font-weight: 500; text-transform: uppercase; text-decoration: none; }
+.m__site:hover, .m__site:focus-visible { background: var(--accent); color: var(--on-accent); }
 .m__award { color: var(--r2); text-transform: uppercase; }
-.m__src { color: var(--r2); text-decoration: none; border-bottom: var(--rule-structural) solid var(--r1); }
+.m__tag { font-weight: 400; color: var(--r2); border: var(--rule-structural) solid var(--r1); padding: 0 3px; }
+.m__src { color: var(--r2); text-decoration: none; border-bottom: var(--rule-structural) solid var(--r1); justify-self: start; }
 .m__src:hover, .m__src:focus-visible { color: var(--ink); border-bottom-color: var(--ink); }
-.m__state { color: var(--r2); text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.m__state { color: var(--r2); text-transform: uppercase; text-align: right; }
 .m--dead .m__site { color: var(--r2); }
-.m--dead .m__state { color: var(--ink); background: var(--accent); padding: 0 4px; }
-a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
 /* ------------------------------------------------------------------ ending */
 .band--end { padding-bottom: clamp(48px, 8vw, 96px); }
 .end { grid-column: 1 / 7; }
 .end p { margin: 0 0 12px; max-width: 60ch; color: var(--r3); }
-.end code { background: var(--accent); padding: 0 4px; font: inherit; }
 .end__links { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 18px; }
-.end__links a { color: var(--ink); text-decoration: none; border-bottom: var(--rule-ornamental) solid var(--ink);
-  font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.1em; }
-.end__links a:hover, .end__links a:focus-visible { background: var(--accent); }
-.end__gen { font-size: var(--t-chrome); color: var(--r2); text-transform: uppercase; letter-spacing: 0.06em; }
+.end__links a { text-decoration: none; border-bottom: var(--rule-ornamental) solid var(--ink); font: var(--t-chrome) var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.end__links a:hover, .end__links a:focus-visible { background: var(--accent); color: var(--on-accent); }
+.end__gen { font: var(--t-chrome)/1.6 var(--f-mono); color: var(--r2); text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* ------------------------------------------------------- between widths */
+@media (max-width: 1100px) {
+  .ix { grid-template-columns: 1fr; }
+  .bars__row { grid-template-columns: 120px 1fr 150px; }
+  .bars__j { grid-column: 2 / -1; text-align: left; }
+}
 
 /* ------------------------------------------------------------- small print */
 @media (max-width: 720px) {
   .hero, .band, .top, .fam, .grid-overlay { grid-template-columns: repeat(4, 1fr); }
   .grid-overlay > i:nth-child(n+5) { display: none; }
-  .hero__h, .hero__lede, .spec--hero, .band > h2, .band__note,
-  .steps, .find, .find__txt, .spec--find, .end, .fam,
-  .fam__name, .fam__thesis, .fam__use, .fam__sw, .fam__mem, .fam__rule,
-  .find__side, .band--exhibit .ex { grid-column: 1 / -1; }
-  .spec--fam { grid-column: 1 / 5; grid-row: auto; }
-  .fam__idx { grid-column: 1 / 5; }
-  .m { grid-template-columns: 1fr auto; row-gap: 2px; }
+  .top__mark { grid-column: 1 / 3; }
+  .top__pos { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; padding-bottom: 4px; }
+  .hero__h, .hero__lede, .hero > .mlabel, .hero__side, .band__note, .ch__spread .band__note,
+  .broke__big, .broke .hero__unit, .broke .mlabel, .spec--find, .caveat, .end,
+  .fam__name, .fam__thesis, .fam__sig, .fam__side, .fam__use, .fam__sw, .fam__full, .fam__mem, .fam__idx,
+  .ch .ex { grid-column: 1 / -1; grid-row: auto; }
+  .hero__side { padding-top: 0; margin-bottom: 18px; }
+  .steps { grid-template-columns: 1fr; gap: 26px; }
+  .steps li { padding-left: 18px; }
+  .cases { grid-template-columns: 1fr; gap: 26px; }
+  .tri__row { grid-template-columns: 1fr; }
+  .sheet__row { grid-template-columns: 1fr auto; }
+  .sheet__y { grid-column: 1; }
+  .sheet__n { grid-column: 2; grid-row: 1; }
+  .sheet__cells { grid-column: 1 / -1; }
+  .bars__row { grid-template-columns: 1fr; gap: 4px; padding: 6px 0; }
+  .bars__j { grid-column: auto; }
+
+  .m { grid-template-columns: 10px minmax(0, 1fr) auto; row-gap: 2px; }
+  .m__award { grid-column: 2 / -1; grid-row: 2; }
+  .m__src { grid-column: 2; }
+  .audit thead { display: none; }
+  .audit tr { display: grid; grid-template-columns: 1fr; border-top: var(--rule-structural) solid var(--r1); padding: 6px 0; }
+  .audit th, .audit td { border: 0; padding: 2px 0; }
 }
 
-/* The skill's honesty gate: reduced motion is a real path, and this page has
-   no rAF loop to gate — the only motion is short stock-eased transitions,
-   which are removed outright here. */
+/* The honesty gate: reduced motion is a real path. app.js returns before any
+   library loads; here every transition and keyframe animation is removed. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
 }
 
-/* Reveal initial state, armed by JS only when motion will actually run
-   (html.mtl-motion). Doing this in CSS instead of a ~215-element gsap.set
-   removed the last chunk of init cost the jank pass flagged. Compositor-only
-   properties, so the reveal never triggers layout. */
+/* Reveal initial state, armed by JS only when motion will run (html.mtl-motion). */
 .mtl-motion .fam[data-rv] .fam__rule,
 .mtl-motion .fam[data-rv] .fam__idx,
 .mtl-motion .fam[data-rv] .fam__name,
 .mtl-motion .fam[data-rv] .fam__thesis,
-.mtl-motion .fam[data-rv] .m {
-  opacity: 0;
-  transform: translateY(12px);
-}
+.mtl-motion .fam[data-rv] .m { opacity: 0; transform: translateY(12px); }

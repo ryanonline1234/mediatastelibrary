@@ -1,36 +1,38 @@
 #!/bin/bash
-# Full motion QA gate. Run from the repo root with the dev server up.
+# Full motion QA gate for both pages. Run from the repo root with dist/ served:
+#   python3 -m http.server 8811 --bind 127.0.0.1 --directory dist
 #
-#   ./verify.sh [url]
+#   ./verify.sh [base-url]
 #
-# ORDER IS LOAD-BEARING and was itself a bug once: build.mjs EMBEDS the scene
-# ranges that sync-spec.mjs measures, so a sync must be followed by a rebuild
-# or the page runs the previous ranges while the assertions use the new ones.
-#   build → sync (measure) → REBUILD (embed) → capture → assert → jank
+# ORDER IS LOAD-BEARING: build.mjs EMBEDS the scene ranges that sync-spec.mjs
+# measures, so both syncs must be followed by a rebuild, or the page runs the
+# previous ranges while the assertions use the new ones.
+#   build → sync (both pages) → REBUILD → share image → capture → assert → jank
 set -e
-URL="${1:-http://127.0.0.1:8811/}"
+BASE="${1:-http://127.0.0.1:8811/}"
 S=~/.claude/skills/awwwards-motion/scripts
 
 echo "── build ────────────────────────────────────────────"
 node build.mjs
 
-echo; echo "── sync spec from the built page ────────────────────"
-node bin/sync-spec.mjs "$URL"
+echo; echo "── sync specs from the built pages ──────────────────"
+node bin/sync-spec.mjs "$BASE" scroll-spec.json
+node bin/sync-spec.mjs "${BASE}families.html" scroll-spec.families.json
 
-echo; echo "── rebuild so the page runs the measured ranges ─────"
+echo; echo "── rebuild so the pages run the measured ranges ─────"
 node build.mjs >/dev/null
 
 echo; echo "── share image ──────────────────────────────────────"
-node bin/og.mjs "$URL"
+node bin/og.mjs "$BASE"
 
-echo; echo "── capture ──────────────────────────────────────────"
-node "$S/capture_motion.mjs" sample "$URL" --spec scroll-spec.json --out samples.json 2>&1 | grep -vE 'hint' | tail -3
-
-echo; echo "── assert (measured vs intended) ────────────────────"
-node "$S/assert_scroll_spec.mjs" scroll-spec.json samples.json | tail -3
-
-echo; echo "── jank ─────────────────────────────────────────────"
-node "$S/capture_motion.mjs" jank "$URL" 2>&1 | grep -E 'budget|dropped|PASS|FAIL'
-
-echo; echo "── reduced-motion floor (must PASS and load no libs) ─"
-node "$S/capture_motion.mjs" jank "$URL" --reduced-motion 2>&1 | grep -E 'dropped|PASS|FAIL'
+for pair in "index|$BASE|scroll-spec.json|samples.json" "families|${BASE}families.html|scroll-spec.families.json|samples.families.json"; do
+  IFS='|' read -r name url spec out <<< "$pair"
+  echo; echo "── $name: capture ─────────────────────────────────"
+  node "$S/capture_motion.mjs" sample "$url" --spec "$spec" --out "$out" 2>&1 | grep -vE 'hint' | tail -2
+  echo "── $name: assert (measured vs intended) ───────────"
+  node "$S/assert_scroll_spec.mjs" "$spec" "$out" | tail -2
+  echo "── $name: jank ────────────────────────────────────"
+  node "$S/capture_motion.mjs" jank "$url" 2>&1 | grep -E 'budget|dropped|PASS|FAIL'
+  echo "── $name: reduced-motion floor ────────────────────"
+  node "$S/capture_motion.mjs" jank "$url" --reduced-motion 2>&1 | grep -E 'dropped|PASS|FAIL'
+done

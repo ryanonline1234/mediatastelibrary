@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiln &amp; Quire — Letterpress &amp; Risograph, Kyoto</title>
+<meta name="description" content="A two-person letterpress and risograph studio in Kyoto. Limited-edition prints and a weekend workshop: two days, three inks, one edition of thirty.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --yellow:#FFE800;
+  --pink:#FF48B0;
+  --blue:#0078BF;
+  --ink:#000;
+  --paper:#F4F0E6;
+  --display:"League Gothic","Oswald","Arial Narrow",sans-serif;
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --ease-quart:cubic-bezier(0.25,1,0.5,1);
+  --ease-cubic:cubic-bezier(0.33,1,0.68,1);
+  --ease-ink:cubic-bezier(0.7,0,0.2,1);
+  --gutter:24px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--yellow);color:var(--ink);font-family:var(--serif);font-size:clamp(18px,1.35vw,21px);line-height:1.42;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background-image:var(--tooth,none);background-size:512px 512px;opacity:.04}
+a{color:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mono{font-family:var(--mono);font-weight:500;font-size:12px;line-height:14px;letter-spacing:.02em;text-transform:uppercase}
+.skip{position:absolute;left:var(--gutter);top:-60px;z-index:60;background:var(--ink);color:var(--yellow);padding:10px 14px;text-decoration:none}
+.skip:focus-visible{top:12px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.chrome{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px var(--gutter);background:var(--yellow);transition:background-color .2s var(--ease-cubic)}
+.chrome.on-pink{background:var(--pink)}
+.chrome nav{display:flex;gap:20px}
+.chrome .mid{position:absolute;left:50%;transform:translateX(-50%)}
+.u{text-decoration:none;position:relative}
+.u::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:0 50%;transition:transform .45s var(--ease-ink)}
+.u:hover::after,.u:focus-visible::after{transform:scaleX(1)}
+
+.hero{position:relative;padding:56px var(--gutter) 64px;display:grid;grid-template-columns:minmax(0,1fr) clamp(260px,26vw,400px);column-gap:var(--gutter);row-gap:10px;align-items:start}
+.wordmark{grid-column:1 / -1;margin:0;transform-origin:50% 0;will-change:transform}
+.wm-line{display:block;height:clamp(118px,27svh,300px);overflow:visible}
+.wm-line svg{display:block;width:100%;height:100%;overflow:visible}
+.wm-2{grid-column:1;margin-top:0}
+.hero-sheet{grid-column:2;grid-row:2 / span 2;margin:0}
+.sheet-svg{display:block;width:100%;height:auto;aspect-ratio:400/566;isolation:isolate}
+.ink{mix-blend-mode:multiply}
+.hero-sheet figcaption{margin-top:10px}
+.intro{grid-column:1;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:var(--gutter);padding-top:22px;border-top:1px solid var(--ink);max-width:980px}
+.intro p{margin:0;text-wrap:pretty}
+.intro dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px}
+.intro dt,.intro dd{margin:0}
+.intro .go{grid-column:1 / -1;margin-top:10px}
+
+.workshop{background:var(--pink);position:relative}
+.ws-head{padding:96px var(--gutter) 40px}
+.ws-kicker{display:flex;justify-content:space-between;gap:16px;margin-bottom:18px}
+.ws-title{margin:0}
+.ws-title .wm-line{height:clamp(96px,22svh,250px)}
+.ws-lead{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:var(--gutter);margin-top:26px;padding-top:22px;border-top:1px solid var(--ink)}
+.ws-lead p{margin:0;max-width:34ch;font-size:1.25em;line-height:1.3;text-wrap:pretty}
+.ledger{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-content:start}
+.ledger dt,.ledger dd{margin:0}
+.ws-wrap{position:relative}
+.ws-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:calc(var(--gutter)*2);align-items:center;padding:24px var(--gutter) 48px}
+.ws-sheet{justify-self:end;width:min(100%,calc((100svh - 150px) * 400 / 566));margin:0}
+.ws-sheet figcaption{margin-top:10px;display:flex;justify-content:space-between}
+.stamp{transform-box:fill-box;transform-origin:50% 50%}
+.steps-col{max-width:520px}
+.rail{position:relative;height:1px;background:rgba(0,0,0,.25);margin-bottom:22px}
+.rail i{position:absolute;inset:-1px 0;background:var(--ink);transform-origin:0 50%;transform:scaleX(1)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:26px}
+.step h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.5em;line-height:1.1;margin:8px 0 6px}
+.step p{margin:0;text-wrap:pretty}
+.chip{display:inline-block;width:10px;height:10px;margin-right:8px;vertical-align:-1px;border:1px solid var(--ink)}
+.ws-foot{padding:40px var(--gutter) 28px;display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:24px;border-top:1px solid var(--ink);margin:0 var(--gutter);padding-left:0;padding-right:0}
+.book{display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:var(--pink);text-decoration:none;font-family:var(--mono);font-weight:500;font-size:14px;letter-spacing:.02em;text-transform:uppercase;padding:18px 22px;transition:transform .12s var(--ease-cubic)}
+.book:active{transform:scale(.97)}
+.book span{display:inline-block;transition:transform .45s var(--ease-ink)}
+.book:hover span,.book:focus-visible span{transform:translateX(6px)}
+.book:focus-visible{outline-color:var(--ink);outline-offset:4px}
+.colophon{padding:22px var(--gutter) 28px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+.motion .wm-line svg{opacity:0;transform:translateY(44px)}
+.motion.in .wm-line svg{opacity:1;transform:none;transition:opacity 1.3s var(--ease-quart),transform 1.3s var(--ease-quart)}
+.motion.in .hero .wm-2 svg{transition-delay:.12s}
+.motion .hero .intro{opacity:0;transform:translateY(24px)}
+.motion.in .hero .intro{opacity:1;transform:none;transition:opacity 1s var(--ease-quart) .3s,transform 1s var(--ease-quart) .3s}
+.motion .hero-sheet .sheet-svg{clip-path:inset(0 0 100% 0)}
+.motion.in .hero-sheet .sheet-svg{clip-path:inset(0 0 0 0);transition:clip-path 1.2s var(--ease-quart) .45s}
+.motion .ws-title .wm-line svg{opacity:1;transform:none}
+.motion .ws-title .wm-line{transform-origin:50% 0}
+
+.motion .ws-wrap{height:420svh}
+.motion .ws-stage{position:sticky;top:0;height:100svh;padding-top:64px;padding-bottom:24px}
+.motion .step{opacity:.28;transition:opacity .2s var(--ease-cubic)}
+.motion .step.is-active{opacity:1}
+.motion .stamp{opacity:0}
+
+@media (max-width:760px){
+  :root{--gutter:16px}
+  .chrome .mid{display:none}
+  .chrome nav{gap:14px}
+  .hero{grid-template-columns:minmax(0,1fr);padding-top:52px}
+  .wm-line{height:clamp(96px,17svh,160px)}
+  .hero-sheet{grid-column:1;grid-row:auto;max-width:420px}
+  .intro{grid-template-columns:minmax(0,1fr)}
+  .ws-head{padding-top:72px}
+  .ws-title .wm-line{height:clamp(84px,14svh,140px)}
+  .ws-lead{grid-template-columns:minmax(0,1fr)}
+  .ws-stage{grid-template-columns:minmax(0,1fr);gap:18px}
+  .ws-sheet{justify-self:center;width:min(100%,calc(50svh * 400 / 566))}
+  .motion .ws-stage{padding-top:56px;align-content:start}
+  .motion .steps{grid-template-areas:"s"}
+  .motion .step{grid-area:s;opacity:0}
+  .rail{margin-bottom:14px}
+  .step h3{font-size:1.3em;margin-top:6px}
+  .ws-foot{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  .u::after,.book,.book span,.chrome{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip mono" href="#workshop">Skip to the workshop</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="2.1" fill="#0078BF"/>
+    </pattern>
+    <g id="art-y">
+      <circle cx="272" cy="150" r="104" fill="#FFE800"/>
+      <rect x="0" y="404" width="400" height="162" fill="#FFE800"/>
+    </g>
+    <g id="art-p" fill="#FF48B0" fill-rule="evenodd">
+      <path d="M28 478V422A29 29 0 0 1 86 422V478ZM48 478V462A9 9 0 0 1 66 462V478Z"/>
+      <path d="M94 442V386A29 29 0 0 1 152 386V442ZM114 442V426A9 9 0 0 1 132 426V442Z"/>
+      <path d="M160 406V350A29 29 0 0 1 218 350V406ZM180 406V390A9 9 0 0 1 198 390V406Z"/>
+      <path d="M226 370V314A29 29 0 0 1 284 314V370ZM246 370V354A9 9 0 0 1 264 354V370Z"/>
+      <path d="M292 334V278A29 29 0 0 1 350 278V334ZM312 334V318A9 9 0 0 1 330 318V334Z"/>
+      <rect x="358" y="176" width="16" height="158"/>
+    </g>
+    <g id="art-b" fill="#0078BF">
+      <polygon points="0,500 400,352 400,566 0,566" fill="url(#dots)"/>
+      <text x="22" y="34" font-family="League Gothic, Arial Narrow, sans-serif" font-size="21" letter-spacing="1.5">NOBORIGAMA · GOJŌ-ZAKA</text>
+      <text x="378" y="34" text-anchor="end" font-family="League Gothic, Arial Narrow, sans-serif" font-size="21" letter-spacing="1.5">ED. 047</text>
+      <text x="18" y="196" font-family="League Gothic, Arial Narrow, sans-serif" font-size="178">1300°</text>
+    </g>
+  </defs>
+</svg>
+
+<header class="chrome mono">
+  <a class="u" href="#top" aria-label="Kiln &amp; Quire, home">Kiln &amp; Quire</a>
+  <span class="mid" aria-hidden="true">Letterpress + Risograph · Kyoto</span>
+  <nav aria-label="Primary">
+    <a class="u" href="#prints">Prints</a>
+    <a class="u" href="#workshop">Workshop</a>
+    <a class="u" href="#visit">Visit</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <h1 class="wordmark" id="hero-title">
+      <span class="sr">Kiln &amp; Quire</span>
+      <span class="wm-line wm-1" aria-hidden="true"><svg viewBox="0 0 1000 300" preserveAspectRatio="none"><text x="0" y="296" font-family="League Gothic, Arial Narrow, sans-serif" font-size="398" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="currentColor">KILN &amp;</text></svg></span>
+    </h1>
+    <span class="wm-line wm-2" aria-hidden="true"><svg viewBox="0 0 1000 300" preserveAspectRatio="none"><text x="0" y="296" font-family="League Gothic, Arial Narrow, sans-serif" font-size="398" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="currentColor">QUIRE</text></svg></span>
+
+    <figure class="hero-sheet" id="prints">
+      <svg class="sheet-svg" viewBox="0 0 400 566" role="img" aria-labelledby="ed47">
+        <title id="ed47">Edition 047, Noborigama: five kiln chambers climbing a hill under a yellow sun, printed in blue, yellow and fluorescent pink.</title>
+        <rect width="400" height="566" fill="#F4F0E6"/>
+        <use class="ink" id="hero-b" href="#art-b" transform="translate(1.5 -1)"/>
+        <use class="ink" href="#art-y"/>
+        <use class="ink" id="hero-p" href="#art-p" transform="translate(-2 1.5)"/>
+      </svg>
+      <figcaption class="mono">Ed. 047 “Noborigama” · 3 inks · 40 sheets · B3 · ¥9,000</figcaption>
+    </figure>
+
+    <div class="intro">
+      <p>Two printers in a former kiln shed below Gojō-zaka. We set wood and lead type by hand, run it through a 1960s Vandercook, then overprint it on the riso in inks that glow. Editions stay small — rarely more than forty — and on weekends we hand you the keys.</p>
+      <dl class="mono">
+        <dt>Now pulling</dt><dd>Ed. 047, 40 sheets</dd>
+        <dt>Shop</dt><dd>Thu–Sun, 11:00–18:00</dd>
+        <dt>Where</dt><dd>Gojō-zaka, Higashiyama-ku</dd>
+        <dd class="go"><a class="u" href="#prints">See the current editions →</a></dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="workshop" id="workshop" aria-labelledby="ws-title">
+    <div class="ws-head">
+      <div class="mono ws-kicker"><span>Weekend workshop</span><span lang="ja">週末ワークショップ</span></div>
+      <h2 class="ws-title" id="ws-title">
+        <span class="sr">The Weekend Press</span>
+        <span class="wm-line" aria-hidden="true"><svg viewBox="0 0 1000 300" preserveAspectRatio="none"><text x="0" y="296" font-family="League Gothic, Arial Narrow, sans-serif" font-size="398" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="currentColor">THE WEEKEND PRESS</text></svg></span>
+      </h2>
+      <div class="ws-lead">
+        <p>Two days, three inks, one edition of thirty — designed, set and printed by you. No experience needed. Ink under the nails guaranteed.</p>
+        <dl class="ledger mono">
+          <dt>Dates</dt><dd>10–11 Oct · 24–25 Oct · 7–8 Nov · 21–22 Nov</dd>
+          <dt>Seats</dt><dd>6 per weekend</dd>
+          <dt>Fee</dt><dd>¥38,000 — paper, ink and lunch included</dd>
+          <dt>Taught in</dt><dd>English / <span lang="ja">日本語</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="ws-wrap" id="ws-wrap">
+      <div class="ws-stage">
+        <figure class="ws-sheet">
+          <svg class="sheet-svg" viewBox="0 0 400 566" role="img" aria-labelledby="wsart">
+            <title id="wsart">The workshop print built up pass by pass: blue letterpress, then yellow, then fluorescent pink, then numbered.</title>
+            <defs>
+              <clipPath id="clip-b"><rect x="-10" y="-10" width="420" height="586"/></clipPath>
+              <clipPath id="clip-y"><rect x="-10" y="-10" width="420" height="586"/></clipPath>
+              <clipPath id="clip-p"><rect x="-10" y="-10" width="420" height="586"/></clipPath>
+            </defs>
+            <rect width="400" height="566" fill="#F4F0E6"/>
+            <g class="ink" clip-path="url(#clip-b)"><use href="#art-b" transform="translate(1.5 -1)"/></g>
+            <g class="ink" clip-path="url(#clip-y)"><use href="#art-y"/></g>
+            <g class="ink" clip-path="url(#clip-p)"><use href="#art-p" transform="translate(-2 1.5)"/></g>
+            <g class="ink stamp" id="stamp">
+              <rect x="258" y="506" width="124" height="38" fill="none" stroke="#111" stroke-width="1.6"/>
+              <text x="320" y="531" text-anchor="middle" font-family="IBM Plex Mono, Menlo, monospace" font-size="15" fill="#111">Nº 012/030</text>
+            </g>
+            <rect id="roller" x="0" y="0" width="400" height="3" fill="#0078BF" opacity="0"/>
+          </svg>
+          <figcaption class="mono"><span id="pass-label">Proof · all passes</span><span>B3 · 364 × 515 mm</span></figcaption>
+        </figure>
+
+        <div class="steps-col">
+          <div class="rail" aria-hidden="true"><i id="rail"></i></div>
+          <ol class="steps">
+            <li class="step is-active">
+              <div class="mono"><span class="chip" style="background:var(--blue)"></span>Sat 10:00–16:00 · Pass 1 · Letterpress</div>
+              <h3>Set it in wood.</h3>
+              <p>Choose a face from the type cabinet, set your line by hand, lock it up and pull it on the Vandercook in blue. Letterpress bites into the sheet — you can read your words with a thumb.</p>
+            </li>
+            <li class="step">
+              <div class="mono"><span class="chip" style="background:var(--yellow)"></span>Sun 10:00–12:30 · Pass 2 · Riso yellow</div>
+              <h3>Split the colours.</h3>
+              <p>Draw every colour as its own black-and-white sheet. The riso burns a stencil master from each and lays down one ink at a time, never quite in register. That wobble is the look.</p>
+            </li>
+            <li class="step">
+              <div class="mono"><span class="chip" style="background:var(--pink)"></span>Sun 13:30–16:00 · Pass 3 · Fluorescent pink</div>
+              <h3>Overprint.</h3>
+              <p>Riso ink is translucent. Pink over yellow prints a red nobody mixed; pink over blue, a violet; blue over yellow, a green. Three inks, seven colours, if you plan the overlaps.</p>
+            </li>
+            <li class="step">
+              <div class="mono"><span class="chip" style="background:var(--ink)"></span>Sun 16:00 · Edition</div>
+              <h3>Number thirty.</h3>
+              <p>Every sheet takes a number from our old numbering machine. You carry the edition home; one print stays in the studio plan chest with your name on it.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="ws-foot">
+      <a class="book" href="#book" id="book">Book 10–11 October <span aria-hidden="true">→</span></a>
+      <p class="mono" style="margin:0">4 of 6 seats left · Next: 24–25 Oct</p>
+    </div>
+    <footer class="colophon mono" id="visit">
+      <span>Kiln &amp; Quire · Gojō-zaka, Higashiyama-ku, Kyoto</span>
+      <span>Shop Thu–Sun 11:00–18:00 · Workshops Sat–Sun</span>
+    </footer>
+  </section>
+</main>
+
+<script>
+(function(){
+  var d=document,html=d.documentElement,w=window;
+  var mqRM=w.matchMedia("(prefers-reduced-motion: reduce)");
+  var mqFine=w.matchMedia("(hover: hover) and (pointer: fine)");
+  var motion=!mqRM.matches;
+  var H=566;
+  function clamp(v,a,b){return v<a?a:v>b?b:v}
+
+  try{
+    var c=d.createElement("canvas");c.width=c.height=512;
+    var x=c.getContext("2d"),img=x.createImageData(512,512),px=img.data;
+    for(var i=0;i<px.length;i+=4){var n=Math.random()*255|0;px[i]=px[i+1]=px[i+2]=n;px[i+3]=255}
+    x.putImageData(img,0,0);
+    d.body.style.setProperty("--tooth","url("+c.toDataURL("image/png")+")");
+  }catch(e){}
+
+  var wordmark=d.querySelector(".hero .wordmark");
+  var wm2=d.querySelector(".hero .wm-2");
+  var wrap=d.getElementById("ws-wrap");
+  var rail=d.getElementById("rail");
+  var roller=d.getElementById("roller");
+  var stamp=d.getElementById("stamp");
+  var passLabel=d.getElementById("pass-label");
+  var steps=[].slice.call(d.querySelectorAll(".step"));
+  var passes=[
+    {rect:d.querySelector("#clip-b rect"),a:.04,b:.27,ink:"#0078BF",name:"Pass 1 · Blue letterpress"},
+    {rect:d.querySelector("#clip-y rect"),a:.33,b:.56,ink:"#FFE800",name:"Pass 2 · Yellow drum"},
+    {rect:d.querySelector("#clip-p rect"),a:.62,b:.85,ink:"#FF48B0",name:"Pass 3 · Pink drum"}
+  ];
+  var stepStarts=[0,.30,.59,.88];
+  var heroSpan=1,wsTop=0,wsLen=1,raf=0,last=0,active=-1,stampOn=null,lastLabel="";
+  var ptr={x:0,y:0,tx:0,ty:0};
+  var heroP=d.getElementById("hero-p"),heroB=d.getElementById("hero-b");
+
+  var backOut=function(p){var n=2.5;p=p-1;return p*p*((n+1)*p+n)+1};
+  var stampEase="cubic-bezier(0.34,1.56,0.64,1)";
+  try{
+    var pts=[];for(var k=0;k<=30;k++)pts.push(backOut(k/30).toFixed(4));
+    var cand="linear("+pts.join(",")+")";
+    if(w.CSS&&CSS.supports("animation-timing-function",cand))stampEase=cand;
+  }catch(e){}
+
+  function docTop(el){var t=0;while(el){t+=el.offsetTop;el=el.offsetParent}return t}
+  var wsTitle=d.querySelector(".ws-title .wm-line"),titleTop=0;
+  function measure(){
+    heroSpan=Math.max(1,docTop(wm2)+wm2.offsetHeight);
+    wm2.style.transformOrigin="50% "+(-(wm2.offsetTop-wordmark.offsetTop))+"px";
+    wsTop=docTop(wrap);
+    wsLen=Math.max(1,wrap.offsetHeight-w.innerHeight);
+    titleTop=docTop(wsTitle);
+  }
+  function request(){if(!raf&&motion)raf=w.requestAnimationFrame(tick)}
+
+  function setStamp(on){
+    if(on===stampOn)return;stampOn=on;
+    if(stamp.getAnimations)stamp.getAnimations().forEach(function(a){a.cancel()});
+    if(on&&stamp.animate){
+      stamp.animate([{transform:"scale(1.35) rotate(-4deg)",opacity:0},{transform:"scale(1) rotate(-4deg)",opacity:1}],{duration:600,easing:stampEase,fill:"forwards"});
+    }else{stamp.style.opacity=on?"1":""}
+  }
+
+  function tick(now){
+    raf=0;
+    var dt=last?Math.min((now-last)/1000,.05):0;last=now;
+    var y=w.scrollY,vh=w.innerHeight;
+
+    var s=clamp(y/heroSpan,0,1);
+    wordmark.style.transform=wm2.style.transform="scaleY("+(1-.5*s).toFixed(4)+")";
+    var u=clamp((y+vh-titleTop)/(vh*.6),0,1);
+    wsTitle.style.transform="scaleY("+(.25+.75*u).toFixed(4)+")";
+
+    var p=clamp((y-wsTop)/wsLen,0,1);
+    var rollerOn=false;
+    for(var i=0;i<passes.length;i++){
+      var ps=passes[i],q=clamp((p-ps.a)/(ps.b-ps.a),0,1);
+      ps.rect.setAttribute("height",(q*(H+20)).toFixed(1));
+      if(q>0&&q<1){rollerOn=true;roller.setAttribute("y",(q*H-1.5).toFixed(1));roller.setAttribute("fill",ps.ink)}
+    }
+    roller.setAttribute("opacity",rollerOn?"1":"0");
+    rail.style.transform="scaleX("+p.toFixed(4)+")";
+    var a=0;for(var j=0;j<stepStarts.length;j++){if(p>=stepStarts[j])a=j}
+    if(a!==active){
+      steps.forEach(function(el,k){el.classList.toggle("is-active",k===a)});active=a;
+    }
+    var label=p<passes[0].a?"Blank sheet · 180 gsm":p>=.9?"Edition · numbered":a<3?passes[a].name:passes[2].name;
+    if(label!==lastLabel){passLabel.textContent=label;lastLabel=label}
+    if(p>=.9)setStamp(true);else if(p<.86)setStamp(false);
+
+    var moving=false;
+    if(heroP&&heroB){
+      var kk=1-Math.exp(-6*dt);
+      ptr.x+=(ptr.tx-ptr.x)*kk;ptr.y+=(ptr.ty-ptr.y)*kk;
+      if(Math.abs(ptr.tx-ptr.x)>.01||Math.abs(ptr.ty-ptr.y)>.01)moving=true;else{ptr.x=ptr.tx;ptr.y=ptr.ty}
+      heroP.setAttribute("transform","translate("+(-2+ptr.x).toFixed(2)+" "+(1.5+ptr.y).toFixed(2)+")");
+      heroB.setAttribute("transform","translate("+(1.5-ptr.x*.6).toFixed(2)+" "+(-1-ptr.y*.6).toFixed(2)+")");
+    }
+    if(moving)request();else last=0;
+  }
+
+  function staticState(){
+    html.classList.remove("motion","in");
+    wordmark.style.transform=wm2.style.transform=wsTitle.style.transform="";
+    passes.forEach(function(ps){ps.rect.setAttribute("height",H+20)});
+    roller.setAttribute("opacity","0");
+    rail.style.transform="scaleX(1)";
+    steps.forEach(function(el){el.classList.remove("is-active")});
+    active=-1;
+    if(stamp.getAnimations)stamp.getAnimations().forEach(function(a){a.cancel()});
+    stamp.style.opacity="1";stampOn=null;
+    passLabel.textContent="Proof · all passes";lastLabel="";
+    ptr.x=ptr.y=ptr.tx=ptr.ty=0;
+    if(heroP)heroP.setAttribute("transform","translate(-2 1.5)");
+    if(heroB)heroB.setAttribute("transform","translate(1.5 -1)");
+  }
+  function motionState(first){
+    html.classList.add("motion");
+    stamp.style.opacity="";
+    if(first){w.requestAnimationFrame(function(){w.requestAnimationFrame(function(){html.classList.add("in")})})}
+    else html.classList.add("in");
+    measure();request();
+  }
+
+  w.addEventListener("scroll",request,{passive:true});
+  w.addEventListener("resize",function(){if(motion){measure();request()}},{passive:true});
+  d.querySelector(".hero").addEventListener("pointermove",function(e){
+    if(!motion||!mqFine.matches)return;
+    ptr.tx=(e.clientX/w.innerWidth-.5)*8;
+    ptr.ty=(e.clientY/w.innerHeight-.5)*6;
+    request();
+  },{passive:true});
+  d.querySelector(".hero").addEventListener("pointerleave",function(){ptr.tx=ptr.ty=0;request()});
+  var onMQ=function(){motion=!mqRM.matches;if(motion)motionState(false);else{if(raf){w.cancelAnimationFrame(raf);raf=0}staticState()}};
+  if(mqRM.addEventListener)mqRM.addEventListener("change",onMQ);else if(mqRM.addListener)mqRM.addListener(onMQ);
+  if(d.fonts&&d.fonts.ready)d.fonts.ready.then(function(){if(motion){measure();request()}});
+
+  var chrome=d.querySelector(".chrome");
+  if("IntersectionObserver" in w){
+    new IntersectionObserver(function(es){es.forEach(function(e){chrome.classList.toggle("on-pink",e.isIntersecting)})},{rootMargin:"0px 0px -94% 0px"}).observe(d.getElementById("workshop"));
+  }
+  if(motion)motionState(true);else staticState();
+})();
+</script>
+</body>
+</html>

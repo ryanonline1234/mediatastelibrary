@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kiln &amp; Quire, letterpress and risograph in Kyoto</title>
+<meta name="description" content="A two-person letterpress and risograph print shop on Gojō-zaka, Kyoto. Limited-edition prints and weekend workshops.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+<script>
+(function(){var h=document.documentElement;h.classList.add('js');var done=false;function go(){if(done)return;done=true;h.classList.add('go')}if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go)}setTimeout(go,1600)})();
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{
+  --paper:#EDEEE8;
+  --sheet:#F6F6F1;
+  --blue:#3255A4;
+  --pink:#FF48B0;
+  --violet:#321871;
+  --knock:#FFFFFF;
+  --ease-ink:cubic-bezier(0.7,0,0.2,1);
+  --ease-out-quart:cubic-bezier(0.25,1,0.5,1);
+  --dur-pass:1150ms;
+  --dur-reveal:1000ms;
+  --dur-hover:450ms;
+  --dur-ui:160ms;
+  --g:clamp(16px,3.4vw,52px);
+  --strip:clamp(40px,6.2vw,100px);
+  --display:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif;
+  --text:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+}
+body{margin:0;background-color:var(--paper);background-image:var(--fibre,none);color:var(--blue);font-family:var(--text);font-size:18px;line-height:1.75;font-weight:400;overflow-x:hidden}
+::selection{background:var(--pink);color:var(--violet)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;z-index:20;left:var(--g);top:-80px;background:var(--blue);color:var(--knock);padding:10px 16px;font-family:var(--display);font-size:14px;text-decoration:none}
+.skip:focus{top:12px}
+
+.bar{position:absolute;z-index:6;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:18px calc(var(--strip) + var(--g)) 0 var(--g);font-size:15px;line-height:1.4}
+.bar .mark{font-family:var(--display);font-size:16px;text-decoration:none;white-space:nowrap}
+.bar nav{display:flex;flex-wrap:wrap;justify-content:flex-end;column-gap:clamp(14px,2.2vw,34px);row-gap:4px}
+.u{position:relative;text-decoration:none}
+.u::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform var(--dur-hover) var(--ease-ink)}
+.u:hover::after,.u:focus-visible::after{transform:scaleX(1);transform-origin:0 50%}
+
+.hero{position:relative}
+.sheet{position:relative;isolation:isolate;overflow:hidden}
+.blue{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto 1fr auto;column-gap:var(--g);min-height:100vh;min-height:100svh;padding:clamp(66px,10vh,100px) calc(var(--strip) + var(--g)) clamp(22px,4.4vh,48px) var(--g)}
+.pink{position:absolute;inset:0;mix-blend-mode:multiply;pointer-events:none;color:var(--pink)}
+.drift{position:absolute;inset:0}
+.js .ink{clip-path:inset(0 0 100% 0)}
+.go .blue{animation:pass var(--dur-pass) var(--ease-ink) 120ms both}
+.go .pink{animation:pass var(--dur-pass) var(--ease-ink) 780ms both}
+@keyframes pass{from{clip-path:inset(0 0 100% 0);transform:translate3d(0,-18px,0)}to{clip-path:inset(0 0 0 0);transform:translate3d(0,0,0)}}
+
+.grain{-webkit-mask-image:var(--grain,none);mask-image:var(--grain,none);-webkit-mask-size:200px 200px;mask-size:200px 200px}
+
+.w{display:block;padding:.16em .04em;margin:-.16em -.04em;font-family:var(--display);font-weight:400;font-size:clamp(88px,min(17.4vw,27vh),300px);line-height:.8;letter-spacing:-.035em;white-space:nowrap}
+.w1{grid-column:1 / -1;grid-row:1;justify-self:start;margin-left:-.085em}
+.w2{grid-column:1 / -1;grid-row:3;justify-self:end;margin-right:calc(var(--strip) * -.72 - .04em)}
+
+.colophon{grid-column:1;grid-row:2;align-self:center;max-width:31rem;padding-block:clamp(18px,3vh,36px)}
+.lede{margin:0 0 22px;font-size:clamp(17px,1.25vw,19px);line-height:1.75;font-weight:600}
+.acts{display:flex;flex-wrap:wrap;gap:12px}
+.btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border:2px solid var(--blue);font-family:var(--display);font-size:15px;letter-spacing:.01em;line-height:1;text-decoration:none;color:var(--blue);background:transparent}
+.btn.fill{background:var(--blue);color:var(--knock)}
+.btn::before{content:"";position:absolute;inset:-2px;z-index:1;background:var(--pink);mix-blend-mode:multiply;transform:translate3d(0,102%,0);transition:transform var(--dur-hover) var(--ease-ink);pointer-events:none}
+.btn:hover::before,.btn:focus-visible::before{transform:translate3d(0,0,0)}
+.btn:active{transform:scale(.97);transition:transform 120ms cubic-bezier(0.23,1,0.32,1)}
+.drum{margin:22px 0 0;font-size:15px;line-height:1.6}
+.drum button{font:inherit;font-weight:600;color:inherit;background:none;border:0;padding:6px 0;cursor:pointer}
+.drum .hint{display:block}
+
+.amp{position:absolute;left:57%;top:51%;font-family:var(--text);font-weight:800;font-size:min(44vw,80vh);line-height:1;transform:translate(-50%,-50%)}
+.flood{position:absolute;top:0;bottom:0;right:0;width:var(--strip);background:var(--pink);display:flex;justify-content:center;padding-top:clamp(70px,11vh,110px)}
+.tate{writing-mode:vertical-rl;font-family:var(--display);color:var(--knock);font-size:clamp(17px,2.3vw,36px);letter-spacing:.14em;line-height:1;white-space:nowrap}
+.reg{position:absolute;width:30px;height:30px;overflow:visible}
+.reg circle,.reg path{fill:none;stroke:currentColor;stroke-width:1.4}
+.reg.t{top:18px;left:calc(50% - 15px)}
+.reg.b{bottom:14px;left:calc(50% - 15px)}
+.crop{position:absolute;width:22px;height:22px}
+.crop path{fill:none;stroke:currentColor;stroke-width:1.2}
+.crop.tl{top:10px;left:10px}
+.crop.bl{bottom:10px;left:10px}
+
+.ws{position:relative;padding:clamp(88px,15vh,170px) var(--g) 0}
+.ws-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);margin-bottom:clamp(48px,9vh,110px)}
+.ws-head h2{grid-column:1 / span 7;margin:0;font-family:var(--display);font-weight:400;font-size:clamp(42px,6.4vw,104px);line-height:.94;letter-spacing:-.025em}
+.ws-head p{grid-column:8 / span 5;align-self:end;margin:0;max-width:40ch;font-size:19px;font-weight:600}
+.rv{opacity:0;transform:translate3d(0,32px,0);transition:opacity var(--dur-reveal) var(--ease-out-quart),transform var(--dur-reveal) var(--ease-out-quart)}
+.rv.d1{transition-delay:120ms}
+.rv.in{opacity:1;transform:none}
+
+.ws-body{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);column-gap:clamp(28px,5.5vw,96px);align-items:start}
+.stage-wrap{position:sticky;top:clamp(70px,11vh,118px);align-self:start}
+.stage{position:relative;width:100%;height:min(76vh,62vw);max-height:720px;overflow:hidden;isolation:isolate}
+.bed{position:absolute;inset:0;border:2px solid var(--blue);background-image:radial-gradient(circle,rgba(50,85,164,.34) 1.1px,transparent 1.5px);background-size:7px 7px}
+.chase{position:absolute;inset:16% 9%;border:2px solid var(--blue);background:var(--paper) repeating-linear-gradient(135deg,rgba(50,85,164,.5) 0 1.2px,transparent 1.2px 8px);display:flex;align-items:center;justify-content:center}
+.forme{display:flex;transform:scaleX(-1);font-family:var(--display);line-height:1}
+.sort{display:inline-flex;align-items:flex-start;justify-content:center;height:1.5em;min-width:.34em;padding:.12em .07em 0;border:1.5px solid var(--blue);margin-left:-1.5px;background:var(--paper);color:var(--blue)}
+.sort.sp{min-width:.42em;background:repeating-linear-gradient(90deg,rgba(50,85,164,.28) 0 1px,transparent 1px 5px),var(--paper)}
+.stack,.proof{position:absolute;inset:7% 5%;border:2px solid var(--blue);background:var(--sheet)}
+.stack{opacity:0}
+.proof{transform:translate3d(0,-120%,0);overflow:hidden}
+.p-ink{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);color:var(--blue);line-height:1;letter-spacing:-.02em;white-space:nowrap;opacity:0;text-shadow:0 1px 0 rgba(255,255,255,.7),0 -1px 0 rgba(50,85,164,.25)}
+.p-pink{position:absolute;inset:0;mix-blend-mode:multiply;clip-path:inset(0 0 100% 0)}
+.p-pink svg{position:absolute;inset:0;width:100%;height:100%}
+.p-pink path{fill:var(--pink)}
+.ed{position:absolute;left:6%;bottom:5%;font-size:15px;font-weight:600;opacity:0;font-variant-numeric:tabular-nums}
+.sig{position:absolute;right:6%;bottom:5%;font-size:15px;font-weight:600;opacity:0}
+
+.steps{padding-bottom:clamp(40px,10vh,120px)}
+.day{position:relative;min-height:80vh;padding:clamp(40px,14vh,150px) 0 0 0;max-width:40ch;opacity:.38;transition:opacity 250ms cubic-bezier(0.23,1,0.32,1)}
+.day.on{opacity:1}
+.day:first-child{padding-top:clamp(10px,16vh,170px)}
+.day:last-child{min-height:0}
+.when{margin:0 0 10px;font-size:15px;font-weight:600}
+.day h3{margin:0 0 14px;font-family:var(--display);font-weight:400;font-size:clamp(28px,2.6vw,40px);line-height:1.05;letter-spacing:-.01em}
+.day p{margin:0 0 16px}
+.try{display:block;margin-top:26px;font-size:15px;font-weight:600}
+.try input{display:block;width:100%;max-width:280px;margin-top:8px;padding:10px 0 8px;border:0;border-bottom:2px solid var(--blue);background:transparent;color:var(--blue);font-family:var(--display);font-size:26px;line-height:1.2;border-radius:0}
+.try input:focus-visible{outline:none;border-bottom-color:var(--pink)}
+.facts{display:grid;grid-template-columns:auto 1fr;column-gap:22px;row-gap:10px;margin:26px 0 30px;font-size:16px;line-height:1.6}
+.facts dt{font-weight:800}
+.facts dd{margin:0}
+
+.foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding:clamp(60px,12vh,130px) var(--g) 40px;margin-top:clamp(40px,8vh,90px);border-top:2px solid var(--blue);font-size:16px;line-height:1.7}
+.foot .big{grid-column:1 / span 5;font-family:var(--display);font-size:clamp(28px,3vw,44px);line-height:1.05;margin:0 0 24px}
+.foot p{margin:0 0 12px}
+.foot .c1{grid-column:7 / span 3}
+.foot .c2{grid-column:10 / span 3}
+
+@media (max-width:760px){
+  :root{--strip:40px}
+  .bar{padding-top:14px;font-size:14px}
+  .long{display:none}
+  .bar .mark{font-size:15px}
+  .blue{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 34vw auto 1fr;padding-top:78px;padding-bottom:56px}
+  .w{font-size:23vw}
+  .w1{grid-row:1}
+  .w2{grid-row:3;margin-right:calc(-26px - .04em)}
+  .colophon{grid-column:1;grid-row:4;align-self:end;padding-block:28px 0}
+  .amp{left:47%;top:calc(78px + 18.4vw + 17vw);font-size:50vw}
+  .tate{font-size:16px}
+  .reg.t{display:none}
+  .reg.b{bottom:12px}
+  .bar nav a[lang]{display:none}
+  .ws-head{display:block}
+  .ws-head h2{margin-bottom:18px}
+  .ws-body{display:block}
+  .stage-wrap{top:0;z-index:4;margin-inline:calc(var(--g) * -1);padding:10px var(--g);background-color:var(--paper);background-image:var(--fibre,none)}
+  .stage{height:44svh;max-height:none}
+  .day,.day:first-child{min-height:72svh;padding-top:9svh}
+  .foot{display:block}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .ink{clip-path:none}
+  .go .blue,.go .pink{animation:none}
+  .rv{opacity:1;transform:none;transition:none}
+  .u::after,.btn::before{transition:none}
+  .day{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#workshop">Skip to the weekend workshop</a>
+<header class="bar">
+  <a class="mark" href="#top">Kiln &amp; Quire</a>
+  <nav aria-label="Main">
+    <a class="u" href="#shop">Prints</a>
+    <a class="u" href="#workshop"><span class="long">Weekend </span>workshop</a>
+    <a class="u" href="#visit">Visit</a>
+    <a class="u" href="#top" lang="ja">日本語</a>
+  </nav>
+</header>
+<main id="top">
+  <section class="hero" aria-labelledby="h1">
+    <h1 class="sr" id="h1">Kiln &amp; Quire, a letterpress and risograph print shop in Kyoto</h1>
+    <div class="sheet" id="sheet">
+      <div class="ink blue">
+        <svg class="crop tl" viewBox="0 0 22 22" aria-hidden="true"><path d="M0 12H10V22M12 0V10H22"/></svg>
+        <svg class="crop bl" viewBox="0 0 22 22" aria-hidden="true"><path d="M0 10H10V0M12 22V12H22"/></svg>
+        <svg class="reg t grain" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="8"/><path d="M15 0V30M0 15H30"/></svg>
+        <svg class="reg b grain" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="8"/><path d="M15 0V30M0 15H30"/></svg>
+        <span class="w w1 grain" aria-hidden="true">Kiln</span>
+        <div class="colophon">
+          <p class="lede">We are a two-person print shop on Gojō-zaka in Kyoto. We print small editions on a 1964 platen press and a two-drum risograph, and on weekends we teach you to do both.</p>
+          <div class="acts">
+            <a class="btn fill" href="#workshop">Book a weekend</a>
+            <a class="btn" href="#shop">See this month’s prints</a>
+          </div>
+          <p class="drum"><button type="button" id="again" class="u">Run the pink drum again</button><span class="hint">Printed in medium blue and fluorescent pink. No two passes land in the same place.</span></p>
+        </div>
+        <span class="w w2 grain" aria-hidden="true">Quire</span>
+      </div>
+      <div class="ink pink" id="pinkLayer" aria-hidden="true">
+        <div class="drift" id="drift">
+          <span class="amp grain">&amp;</span>
+          <div class="flood grain"><span class="tate" lang="ja">京都五条坂　活版と孔版の印刷所</span></div>
+          <svg class="reg t grain" viewBox="0 0 30 30"><circle cx="15" cy="15" r="8"/><path d="M15 0V30M0 15H30"/></svg>
+          <svg class="reg b grain" viewBox="0 0 30 30"><circle cx="15" cy="15" r="8"/><path d="M15 0V30M0 15H30"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ws" id="workshop" aria-labelledby="ws-title">
+    <div class="ws-head">
+      <h2 id="ws-title" class="rv">A weekend at the press</h2>
+      <p class="rv d1">Two days, six people, and an edition of twenty prints you made yourself. No experience needed. Bring a word, a drawing, or nothing at all.</p>
+    </div>
+    <div class="ws-body">
+      <div class="stage-wrap">
+        <div class="stage" id="stage" aria-hidden="true">
+          <div class="bed">
+            <div class="chase"><div class="forme" id="forme"></div></div>
+          </div>
+          <div class="stack" id="st2"></div>
+          <div class="stack" id="st1"></div>
+          <div class="proof" id="proof">
+            <div class="p-ink" id="pInk"><span id="pWord">Kyoto</span></div>
+            <div class="p-pink grain" id="pPink"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M9 57 L21 31 L46 35 L51 17 L87 25 L92 60 L72 67 L75 87 L31 83 L27 71 Z"/></svg></div>
+            <span class="ed" id="ed">1/20</span>
+            <span class="sig" id="sig">Kiln &amp; Quire</span>
+          </div>
+        </div>
+      </div>
+      <div class="steps" id="steps">
+        <article class="day on" data-step="0">
+          <p class="when">Saturday, 10:00</p>
+          <h3>Set it in metal</h3>
+          <p>Choose from our cases of wood and lead type, Japanese and Latin, and set a word or a short line by hand, one letter at a time. Type is set as a mirror image, so it reads backwards until it meets paper.</p>
+          <label class="try" for="word">Set your own word
+            <input id="word" type="text" maxlength="9" value="Kyoto" autocomplete="off" spellcheck="false">
+          </label>
+        </article>
+        <article class="day" data-step="1">
+          <p class="when">Saturday, 14:00</p>
+          <h3>Pull the first proof</h3>
+          <p>Lock the forme into our 1964 platen press, ink the rollers, and pull. The first sheet off the press is the moment everything turns the right way round. You print the whole run of twenty before tea.</p>
+        </article>
+        <article class="day" data-step="2">
+          <p class="when">Sunday, 10:00</p>
+          <h3>Overprint it on the risograph</h3>
+          <p>Cut or draw a second colour, burn it onto a master, and feed your letterpress sheets back through the riso in fluorescent pink. Where pink crosses blue, a violet appears that neither ink has on its own.</p>
+        </article>
+        <article class="day" data-step="3">
+          <p class="when">Sunday, 16:00</p>
+          <h3>Take home twenty</h3>
+          <p>Your edition is trimmed, numbered, signed and wrapped flat for the flight home.</p>
+          <dl class="facts">
+            <dt>When</dt><dd>Every weekend, October to March</dd>
+            <dt>Group</dt><dd>Six people, taught in English and Japanese</dd>
+            <dt>Cost</dt><dd>¥32,000, including paper, ink and lunch</dd>
+            <dt>Where</dt><dd>Our shop on Gojō-zaka, ten minutes on foot from Kiyomizu-Gojō Station</dd>
+          </dl>
+          <a class="btn fill" href="#visit">Book a weekend</a>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot" id="visit">
+  <p class="big">Come and watch the presses run.</p>
+  <div class="c1" id="shop">
+    <p>New editions go on sale on the first Friday of each month, in the shop and by post.</p>
+  </div>
+  <div class="c2">
+    <p>Gojō-zaka, Higashiyama-ku, Kyoto. Open Thursday to Monday, 11:00 to 18:00.</p>
+    <p lang="ja">京都市東山区五条坂<br>木曜から月曜 11時から18時</p>
+  </div>
+</footer>
+<script>
+(function(){
+  var d=document,root=d.documentElement;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  var fine=matchMedia('(hover: hover) and (pointer: fine)');
+  var clamp=function(v){return v<0?0:v>1?1:v};
+
+  function grainURL(size,holes){
+    var c=d.createElement('canvas');c.width=c.height=size;
+    var x=c.getContext('2d');var im=x.createImageData(size,size);var a=im.data;
+    for(var i=0;i<a.length;i+=4){var r=Math.random();a[i]=a[i+1]=a[i+2]=0;a[i+3]=r<holes?(Math.random()*150)|0:255-((Math.random()*30)|0)}
+    x.putImageData(im,0,0);
+    x.globalCompositeOperation='destination-out';
+    for(var k=0;k<size/5;k++){x.globalAlpha=Math.random()*.4;x.beginPath();x.arc(Math.random()*size,Math.random()*size,Math.random()*2.4+.4,0,6.2832);x.fill()}
+    return c.toDataURL('image/png');
+  }
+  function fibreURL(size){
+    var c=d.createElement('canvas');c.width=c.height=size;
+    var x=c.getContext('2d');
+    for(var k=0;k<size*1.4;k++){
+      x.strokeStyle=Math.random()<.5?'rgba(70,72,60,.07)':'rgba(255,255,255,.35)';
+      x.lineWidth=Math.random()*.8+.2;
+      var px=Math.random()*size,py=Math.random()*size,an=Math.random()*6.2832,len=Math.random()*9+2;
+      x.beginPath();x.moveTo(px,py);x.lineTo(px+Math.cos(an)*len,py+Math.sin(an)*len);x.stroke();
+    }
+    return c.toDataURL('image/png');
+  }
+  try{
+    root.style.setProperty('--grain','url("'+grainURL(200,.075)+'")');
+    root.style.setProperty('--fibre','url("'+fibreURL(260)+'")');
+  }catch(e){}
+
+  var sheet=d.getElementById('sheet'),drift=d.getElementById('drift'),pinkLayer=d.getElementById('pinkLayer');
+  var base={x:5,y:-3},tgt={x:0,y:0},cur={x:5,y:-3},last=0,heroVisible=true,raf=0;
+  function newBase(){base.x=(Math.random()*2-1)*7;base.y=(Math.random()*2-1)*4.5}
+  function applyDrift(){drift.style.transform='translate3d('+cur.x.toFixed(2)+'px,'+cur.y.toFixed(2)+'px,0)'}
+  applyDrift();
+  function heroTick(t){
+    raf=0;
+    var dt=last?Math.min((t-last)/1000,.05):.016;last=t;
+    var k=1-Math.exp(-6*dt);
+    var gx=base.x+tgt.x,gy=base.y+tgt.y;
+    var dx=gx-cur.x,dy=gy-cur.y;
+    if(Math.abs(dx)<.02&&Math.abs(dy)<.02){cur.x=gx;cur.y=gy;applyDrift();last=0;return}
+    cur.x+=dx*k;cur.y+=dy*k;applyDrift();
+    if(heroVisible)raf=requestAnimationFrame(heroTick);
+  }
+  function kick(){if(!raf&&heroVisible&&!reduce.matches)raf=requestAnimationFrame(heroTick)}
+  sheet.addEventListener('pointermove',function(e){
+    if(!fine.matches||reduce.matches)return;
+    var r=sheet.getBoundingClientRect();
+    tgt.x=((e.clientX-r.left)/r.width-.5)*18;
+    tgt.y=((e.clientY-r.top)/r.height-.5)*12;
+    kick();
+  });
+  sheet.addEventListener('pointerleave',function(){tgt.x=0;tgt.y=0;kick()});
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){heroVisible=en[0].isIntersecting;if(heroVisible)kick()}).observe(sheet);
+  }
+  function runDrum(){
+    newBase();
+    if(reduce.matches||!pinkLayer.animate){cur.x=base.x;cur.y=base.y;applyDrift();return}
+    pinkLayer.getAnimations().forEach(function(a){if(a instanceof CSSAnimation)return;a.cancel()});
+    pinkLayer.animate([{clipPath:'inset(0 0 100% 0)',transform:'translate3d(0,-18px,0)'},{clipPath:'inset(0 0 0% 0)',transform:'translate3d(0,0,0)'}],{duration:1150,easing:'cubic-bezier(0.7,0,0.2,1)'});
+    kick();
+  }
+  d.getElementById('again').addEventListener('click',runDrum);
+  sheet.addEventListener('click',function(e){
+    if(fine.matches)return;
+    if(e.target.closest('a,button,input'))return;
+    runDrum();
+  });
+
+  var rvs=d.querySelectorAll('.rv');
+  if('IntersectionObserver' in window&&!reduce.matches){
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{rootMargin:'0px 0px -12% 0px'});
+    rvs.forEach(function(el){io.observe(el)});
+  }else{rvs.forEach(function(el){el.classList.add('in')})}
+
+  var stage=d.getElementById('stage'),forme=d.getElementById('forme'),body=d.querySelector('.ws-body');
+  var proof=d.getElementById('proof'),pInk=d.getElementById('pInk'),pWord=d.getElementById('pWord'),pPink=d.getElementById('pPink');
+  var st1=d.getElementById('st1'),st2=d.getElementById('st2'),ed=d.getElementById('ed'),sig=d.getElementById('sig');
+  var days=[].slice.call(d.querySelectorAll('.day')),word=d.getElementById('word');
+  var sorts=[],pTarget=0,pNow=0,wsVisible=false,wsRaf=0,wsLast=0,activeStep=-1,lastEd='';
+
+  function build(){
+    var txt=(word.value||'').replace(/\s+/g,' ').trim().slice(0,9);
+    if(!txt)txt='Kyoto';
+    var chars=Array.from(txt);
+    forme.textContent='';
+    sorts=chars.map(function(ch){
+      var s=d.createElement('span');s.className='sort'+(ch===' '?' sp':'');
+      s.textContent=ch===' '?'':ch;forme.appendChild(s);return s;
+    });
+    pWord.textContent=txt;
+    fit(chars.length);
+    render(pNow,true);
+  }
+  function fit(n){
+    var w=stage.clientWidth,h=stage.clientHeight;
+    var chaseW=w*.82,chaseH=h*.68;
+    var fs=Math.min(chaseW*.86/(n*.98+.2),chaseH*.5,96);
+    forme.style.fontSize=Math.max(fs,14).toFixed(1)+'px';
+    var ps=Math.min(w*.9*.8/(n*.92),h*.86*.42,150);
+    pInk.style.fontSize=Math.max(ps,16).toFixed(1)+'px';
+  }
+  function render(p,force){
+    var A=clamp(p/.28),n=sorts.length,wdt=n>1?.42:1;
+    for(var i=0;i<n;i++){
+      var st=n>1?i/(n-1)*(1-wdt):0;
+      var t=clamp((A-st)/wdt);
+      sorts[i].style.transform='translate3d(0,'+((1-t)*-150).toFixed(1)+'%,0)';
+      sorts[i].style.opacity=t>0?1:0;
+    }
+    var B=clamp((p-.30)/.14);
+    var C=clamp((p-.44)/.08);
+    var press=1-.018*Math.sin(C*Math.PI);
+    proof.style.transform='translate3d(0,'+((1-B)*-120).toFixed(2)+'%,0) scale('+press.toFixed(4)+')';
+    pInk.style.opacity=C.toFixed(3);
+    var D=clamp((p-.58)/.2);
+    pPink.style.clipPath='inset(0 0 '+((1-D)*100).toFixed(2)+'% 0)';
+    var E=clamp((p-.82)/.13);
+    st1.style.opacity=E>0?1:0;st2.style.opacity=E>0?1:0;
+    st1.style.transform='translate3d('+(E*10).toFixed(2)+'px,'+(E*9).toFixed(2)+'px,0) rotate('+(E*1.3).toFixed(3)+'deg)';
+    st2.style.transform='translate3d('+(E*-8).toFixed(2)+'px,'+(E*16).toFixed(2)+'px,0) rotate('+(E*-1.8).toFixed(3)+'deg)';
+    ed.style.opacity=sig.style.opacity=C.toFixed(3);
+    var num=Math.max(1,Math.round(1+E*19))+'/20';
+    if(num!==lastEd){ed.textContent=num;lastEd=num}
+    var step=curStep;
+    if(step!==activeStep||force){activeStep=step;days.forEach(function(el,j){el.classList.toggle('on',j===step)})}
+  }
+  var ranges=[[0,.29],[.29,.56],[.56,.81],[.81,1]],snaps=[.28,.52,.78,1],curStep=0;
+  var narrow=matchMedia('(max-width: 760px)');
+  function readLine(){
+    if(narrow.matches){var sb=stage.getBoundingClientRect().bottom;return sb+(innerHeight-sb)*.42}
+    return innerHeight*.58;
+  }
+  function progress(){
+    var line=readLine(),p=0,step=0;
+    for(var i=0;i<days.length;i++){
+      var r=days[i].getBoundingClientRect();
+      if(r.top<line)step=i;
+      p+=(ranges[i][1]-ranges[i][0])*clamp((line-r.top)/Math.max(r.height,1));
+    }
+    curStep=step;
+    return p;
+  }
+  function wsTick(t){
+    wsRaf=0;
+    var dt=wsLast?Math.min((t-wsLast)/1000,.05):.016;wsLast=t;
+    pTarget=progress();
+    if(reduce.matches){
+      pNow=snaps[curStep];render(pNow);
+    }else{
+      pNow+=(pTarget-pNow)*(1-Math.exp(-6*dt));
+      if(Math.abs(pTarget-pNow)<.0005)pNow=pTarget;
+      render(pNow);
+    }
+    if(wsVisible)wsRaf=requestAnimationFrame(wsTick);else wsLast=0;
+  }
+  function wsKick(){if(!wsRaf)wsRaf=requestAnimationFrame(wsTick)}
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){wsVisible=en[0].isIntersecting;if(wsVisible)wsKick()},{rootMargin:'10% 0px'}).observe(body);
+  }else{wsVisible=true;wsKick()}
+  word.addEventListener('input',build);
+  var rt;
+  addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){fit(sorts.length);wsKick()},120)});
+  build();
+  pNow=pTarget=progress();
+  if(reduce.matches)pNow=snaps[curStep];
+  render(pNow,true);
+  if(d.fonts&&d.fonts.ready)d.fonts.ready.then(function(){fit(sorts.length)});
+})();
+</script>
+</body>
+</html>
