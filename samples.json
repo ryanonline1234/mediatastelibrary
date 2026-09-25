@@ -1,14 +1,14 @@
 {
   "schema": "awwwards-motion/samples@1",
   "url": "http://127.0.0.1:8811/",
-  "capturedAt": "2026-09-25T01:36:42.346Z",
+  "capturedAt": "2026-09-25T04:29:48.603Z",
   "viewport": {
     "width": 1440,
     "height": 900,
     "dpr": 1
   },
-  "scrollHeight": 27611,
-  "maxScroll": 26711,
+  "scrollHeight": 27748,
+  "maxScroll": 26848,
   "scrollDriver": "lenis",
   "lenisVia": "window.lenis",
   "reducedMotion": "no-preference",
@@ -17,7 +17,7 @@
     "$schema": "/Users/ryantseng/.claude/skills/awwwards-motion/scripts/scroll-spec.schema.json",
     "specVersion": 1,
     "name": "mediatastelibrary-home-desktop",
-    "description": "The page performs its own spec. Five scenes; every scrubbed effect is driven from one shared normalized progress var, mapped against THESE ranges — which are the sections' measured document positions, not estimates. The first draft used estimates and the implementation mapped against the same estimates, so the assertions passed while the exhibit fired two sections early. Feel row: snappy/technical. Lenis lerp 0.15, power3.out reveals, monospace counters.",
+    "description": "The page performs its own spec. Five scenes; every scrubbed effect is driven from one scrubbed proxy tween (scrub 0.6, real), mapped against THESE ranges — measured from the built page: a scene starts when its section enters at 85% of the viewport and ends when the next one does. The first draft used estimates and the implementation mapped against the same estimates, so the assertions passed while the exhibit fired two sections early. Feel row: snappy/technical. Lenis lerp 0.15, power3.out reveals, monospace counters.",
     "url": "http://localhost:8811/",
     "viewport": {
       "width": 1440,
@@ -27,7 +27,7 @@
       "reducedMotion": "no-preference"
     },
     "scroll": {
-      "totalHeightPx": 27611,
+      "totalHeightPx": 27748,
       "totalHeightTolerancePx": 400,
       "scrollAccuracyTolerancePx": 4,
       "sampleMatchWindow": 0.01,
@@ -41,28 +41,22 @@
     "settleMaxMs": 2500,
     "positions": [
       0,
-      0.0231,
-      0.0462,
-      0.0591,
-      0.072,
-      0.0811,
-      0.0902,
-      0.104,
-      0.1177,
+      0.0098,
+      0.0196,
+      0.0324,
+      0.0453,
+      0.0543,
+      0.0634,
+      0.0776,
+      0.0917,
       0.3,
       0.5,
-      0.5588,
+      0.5458,
       0.7,
       0.9,
       1
     ],
     "targets": {
-      "root": {
-        "selector": ":root",
-        "vars": [
-          "--scroll-progress"
-        ]
-      },
       "hero-section": "[data-scene='hero']",
       "hero-count": "[data-motion='hero-count']",
       "method-section": "[data-scene='method']",
@@ -73,12 +67,6 @@
         ]
       },
       "findings-section": "[data-scene='findings']",
-      "findings-counter": {
-        "selector": "[data-motion='findings-counter']",
-        "vars": [
-          "--count"
-        ]
-      },
       "exhibit-section": "[data-scene='exhibit']",
       "exhibit-dot": {
         "selector": "[data-motion='exhibit-dot']",
@@ -92,37 +80,14 @@
         "vars": [
           "--fam"
         ]
+      },
+      "findings-mark": {
+        "selector": "[data-motion='findings-mark']",
+        "vars": [
+          "--find"
+        ]
       }
     },
-    "globalExpectations": [
-      {
-        "id": "scroll-progress-var",
-        "target": "root",
-        "property": "cssVar",
-        "cssVarName": "--scroll-progress",
-        "tolerance": 0.03,
-        "monotonic": "increasing",
-        "keys": [
-          {
-            "progress": 0,
-            "value": 0,
-            "label": "top"
-          },
-          {
-            "progress": 0.5,
-            "value": 0.5,
-            "label": "midpoint"
-          },
-          {
-            "progress": 1,
-            "value": 1,
-            "label": "bottom"
-          }
-        ],
-        "easeRef": "linear by construction — raw normalized scroll, never eased",
-        "note": "The one shared value. If this is wrong every scene below is a symptom, not a cause. Read this row first."
-      }
-    ],
     "scenes": [
       {
         "id": "hero",
@@ -130,7 +95,7 @@
         "selector": "[data-scene='hero']",
         "range": {
           "from": 0,
-          "to": 0.0462
+          "to": 0.0196
         },
         "expectations": [
           {
@@ -162,8 +127,8 @@
         "label": "Method — the marker walks the offset-path",
         "selector": "[data-scene='method']",
         "range": {
-          "from": 0.0462,
-          "to": 0.072
+          "from": 0.0196,
+          "to": 0.0453
         },
         "expectations": [
           {
@@ -192,34 +157,34 @@
       },
       {
         "id": "findings",
-        "label": "Findings — the honest numbers count",
+        "label": "Findings — the key sentence is highlighted as it is read",
         "selector": "[data-scene='findings']",
         "range": {
-          "from": 0.072,
-          "to": 0.0902
+          "from": 0.0453,
+          "to": 0.0634
         },
         "expectations": [
           {
-            "id": "findings-count-progress",
-            "target": "findings-counter",
+            "id": "findings-highlight",
+            "target": "findings-mark",
             "property": "cssVar",
-            "cssVarName": "--count",
+            "cssVarName": "--find",
             "tolerance": 0.06,
             "monotonic": "increasing",
             "keys": [
               {
                 "localProgress": 0,
                 "value": 0,
-                "label": "zero"
+                "label": "unmarked"
               },
               {
                 "localProgress": 1,
                 "value": 1,
-                "label": "full figures"
+                "label": "fully marked"
               }
             ],
             "easeRef": "none — scrubbed",
-            "note": "Four stats scrub-count. Width-stable numerals: the pad-preserving formatter, NOT the toLocaleString version, which is a DO-NOT-COPY in the library (it collapses 7 chars to 1 on frame one)."
+            "note": "The four counters beside it count ONCE on enter (time-based, 2s power3.inOut, stagger 0.1), so they are not scroll-asserted; this highlight is the scrubbed effect."
           }
         ]
       },
@@ -228,8 +193,8 @@
         "label": "Bezier exhibit — the page draws its own easing",
         "selector": "[data-scene='exhibit']",
         "range": {
-          "from": 0.0902,
-          "to": 0.1177
+          "from": 0.0634,
+          "to": 0.0917
         },
         "expectations": [
           {
@@ -261,7 +226,7 @@
         "label": "Families — 43 sections, reading rail",
         "selector": "[data-scene='families']",
         "range": {
-          "from": 0.1177,
+          "from": 0.0917,
           "to": 1
         },
         "expectations": [
@@ -305,55 +270,18 @@
       "scrollY": 0,
       "nativeScrollY": 0,
       "settled": true,
-      "settleMs": 31.2,
+      "settleMs": 32.5,
       "measurements": {
-        "root": {
-          "found": true,
-          "rect": {
-            "x": 0,
-            "y": 0,
-            "width": 1440,
-            "height": 27611.203,
-            "top": 0,
-            "right": 1440,
-            "bottom": 27611.203,
-            "left": 0
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.03157,
-          "inView": true,
-          "vars": {
-            "--scroll-progress": "0.000"
-          },
-          "count": 1,
-          "selector": ":root"
-        },
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": 51.594,
+            "y": 52,
             "width": 960,
-            "height": 1181.813,
-            "top": 51.594,
+            "height": 1239,
+            "top": 52,
             "right": 1200,
-            "bottom": 1233.406,
+            "bottom": 1291,
             "left": 240
           },
           "opacity": 1,
@@ -373,7 +301,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.40753,
+          "viewportProgress": 0.39645,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -382,12 +310,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 155.594,
+            "y": 156,
             "width": 900,
             "height": 211.188,
-            "top": 155.594,
+            "top": 156,
             "right": 1170,
-            "bottom": 366.781,
+            "bottom": 367.188,
             "left": 270
           },
           "opacity": 1,
@@ -407,7 +335,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, 0)"
           },
-          "viewportProgress": 0.66992,
+          "viewportProgress": 0.66955,
           "inView": true,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -416,12 +344,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 1233.406,
+            "y": 1291,
             "width": 960,
             "height": 690.609,
-            "top": 1233.406,
+            "top": 1291,
             "right": 1200,
-            "bottom": 1924.016,
+            "bottom": 1981.609,
             "left": 240
           },
           "opacity": 1,
@@ -441,7 +369,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.20961,
+          "viewportProgress": -0.24582,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -450,12 +378,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 1407.047,
+            "y": 1464.641,
             "width": 900,
             "height": 40,
-            "top": 1407.047,
+            "top": 1464.641,
             "right": 1170,
-            "bottom": 1447.047,
+            "bottom": 1504.641,
             "left": 270
           },
           "opacity": 1,
@@ -475,7 +403,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.53941,
+          "viewportProgress": -0.60068,
           "inView": false,
           "vars": {
             "--walk": "0.000"
@@ -487,12 +415,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 1924.016,
+            "y": 1981.609,
             "width": 960,
             "height": 486.141,
-            "top": 1924.016,
+            "top": 1981.609,
             "right": 1200,
-            "bottom": 2410.156,
+            "bottom": 2467.75,
             "left": 240
           },
           "opacity": 1,
@@ -512,58 +440,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.73875,
+          "viewportProgress": -0.7803,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": 2065.063,
-            "width": 318.75,
-            "height": 118.375,
-            "top": 2065.063,
-            "right": 1170,
-            "bottom": 2183.438,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": -1.14404,
-          "inView": false,
-          "vars": {
-            "--count": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": 2410.156,
+            "y": 2467.75,
             "width": 960,
-            "height": 733.016,
-            "top": 2410.156,
+            "height": 759.359,
+            "top": 2467.75,
             "right": 1200,
-            "bottom": 3143.172,
+            "bottom": 3227.109,
             "left": 240
           },
           "opacity": 1,
@@ -583,7 +474,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.92477,
+          "viewportProgress": -0.94479,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -592,12 +483,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": 2690.828,
+            "y": 2774.766,
             "width": 551.25,
             "height": 380.344,
-            "top": 2690.828,
+            "top": 2774.766,
             "right": 937.5,
-            "bottom": 3071.172,
+            "bottom": 3155.109,
             "left": 386.25
           },
           "opacity": 1,
@@ -617,7 +508,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.39871,
+          "viewportProgress": -1.46427,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -629,12 +520,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 3143.172,
+            "y": 3227.109,
             "width": 960,
-            "height": 23830.234,
-            "top": 3143.172,
+            "height": 23882.922,
+            "top": 3227.109,
             "right": 1200,
-            "bottom": 26973.406,
+            "bottom": 27110.031,
             "left": 240
           },
           "opacity": 1,
@@ -654,7 +545,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.09071,
+          "viewportProgress": -0.0939,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -663,12 +554,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 3216.172,
+            "y": 3300.109,
             "width": 900,
             "height": 1,
-            "top": 3216.172,
+            "top": 3300.109,
             "right": 1170,
-            "bottom": 3217.172,
+            "bottom": 3301.109,
             "left": 270
           },
           "opacity": 1,
@@ -688,35 +579,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -2.57067,
+          "viewportProgress": -2.66383,
           "inView": false,
           "vars": {
             "--fam": "0.000"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
-        }
-      }
-    },
-    {
-      "progress": 0.0231,
-      "requestedY": 617,
-      "scrollY": 617,
-      "nativeScrollY": 617,
-      "settled": true,
-      "settleMs": 27,
-      "measurements": {
-        "root": {
+        },
+        "findings-mark": {
           "found": true,
           "rect": {
-            "x": 0,
-            "y": -617,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -617,
-            "right": 1440,
-            "bottom": 26994.203,
-            "left": 0
+            "x": 270,
+            "y": 2122.656,
+            "width": 551.25,
+            "height": 273.094,
+            "top": 2122.656,
+            "right": 821.25,
+            "bottom": 2395.75,
+            "left": 270
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -735,24 +616,34 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.05321,
-          "inView": true,
+          "viewportProgress": -1.04225,
+          "inView": false,
           "vars": {
-            "--scroll-progress": "0.023"
+            "--find": "0.000"
           },
           "count": 1,
-          "selector": ":root"
-        },
+          "selector": "[data-motion='findings-mark']"
+        }
+      }
+    },
+    {
+      "progress": 0.0098,
+      "requestedY": 263,
+      "scrollY": 263,
+      "nativeScrollY": 263,
+      "settled": true,
+      "settleMs": 32.4,
+      "measurements": {
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -565.406,
+            "y": -211,
             "width": 960,
-            "height": 1181.813,
-            "top": -565.406,
+            "height": 1239,
+            "top": -211,
             "right": 1200,
-            "bottom": 616.406,
+            "bottom": 1028,
             "left": 240
           },
           "opacity": 1,
@@ -772,7 +663,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.70391,
+          "viewportProgress": 0.5194,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -781,12 +672,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -491.406,
+            "y": -136.99,
             "width": 900,
             "height": 211.188,
-            "top": -491.406,
+            "top": -136.99,
             "right": 1170,
-            "bottom": -280.219,
+            "bottom": 74.198,
             "left": 270
           },
           "opacity": 1,
@@ -797,17 +688,17 @@
           "pointerEvents": "auto",
           "transform": {
             "translateX": 0,
-            "translateY": -30,
+            "translateY": -29.99,
             "translateZ": 0,
             "scaleX": 1,
             "scaleY": 1,
             "rotate": 0,
             "skewX": 0,
             "is3d": false,
-            "matrix": "matrix(1, 0, 0, 1, 0, -30)"
+            "matrix": "matrix(1, 0, 0, 1, 0, -29.99)"
           },
-          "viewportProgress": 1.25218,
-          "inView": false,
+          "viewportProgress": 0.93323,
+          "inView": true,
           "count": 1,
           "selector": "[data-motion='hero-count']"
         },
@@ -815,12 +706,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 616.406,
+            "y": 1028,
             "width": 960,
             "height": 690.609,
-            "top": 616.406,
+            "top": 1028,
             "right": 1200,
-            "bottom": 1307.016,
+            "bottom": 1718.609,
             "left": 240
           },
           "opacity": 1,
@@ -840,8 +731,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.17829,
-          "inView": true,
+          "viewportProgress": -0.08047,
+          "inView": false,
           "count": 1,
           "selector": "[data-scene='method']"
         },
@@ -849,12 +740,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 790.047,
+            "y": 1201.641,
             "width": 900,
             "height": 40,
-            "top": 790.047,
+            "top": 1201.641,
             "right": 1170,
-            "bottom": 830.047,
+            "bottom": 1241.641,
             "left": 270
           },
           "opacity": 1,
@@ -874,8 +765,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.11697,
-          "inView": true,
+          "viewportProgress": -0.32089,
+          "inView": false,
           "vars": {
             "--walk": "0.000"
           },
@@ -886,12 +777,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 1307.016,
+            "y": 1718.609,
             "width": 960,
             "height": 486.141,
-            "top": 1307.016,
+            "top": 1718.609,
             "right": 1200,
-            "bottom": 1793.156,
+            "bottom": 2204.75,
             "left": 240
           },
           "opacity": 1,
@@ -911,58 +802,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.29363,
+          "viewportProgress": -0.59057,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": 1448.063,
-            "width": 318.75,
-            "height": 118.375,
-            "top": 1448.063,
-            "right": 1170,
-            "bottom": 1566.438,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": -0.53817,
-          "inView": false,
-          "vars": {
-            "--count": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": 1793.156,
+            "y": 2204.75,
             "width": 960,
-            "height": 733.016,
-            "top": 1793.156,
+            "height": 759.359,
+            "top": 2204.75,
             "right": 1200,
-            "bottom": 2526.172,
+            "bottom": 2964.109,
             "left": 240
           },
           "opacity": 1,
@@ -982,7 +836,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.54694,
+          "viewportProgress": -0.7863,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -991,12 +845,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": 2073.828,
+            "y": 2511.766,
             "width": 551.25,
             "height": 380.344,
-            "top": 2073.828,
+            "top": 2511.766,
             "right": 937.5,
-            "bottom": 2454.172,
+            "bottom": 2892.109,
             "left": 386.25
           },
           "opacity": 1,
@@ -1016,7 +870,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.91681,
+          "viewportProgress": -1.25885,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -1028,12 +882,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 2526.172,
+            "y": 2964.109,
             "width": 960,
-            "height": 23830.234,
-            "top": 2526.172,
+            "height": 23882.922,
+            "top": 2964.109,
             "right": 1200,
-            "bottom": 26356.406,
+            "bottom": 26847.031,
             "left": 240
           },
           "opacity": 1,
@@ -1053,7 +907,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.06576,
+          "viewportProgress": -0.08329,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -1062,12 +916,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 2599.172,
+            "y": 3037.109,
             "width": 900,
             "height": 1,
-            "top": 2599.172,
+            "top": 3037.109,
             "right": 1170,
-            "bottom": 2600.172,
+            "bottom": 3038.109,
             "left": 270
           },
           "opacity": 1,
@@ -1087,35 +941,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.88587,
+          "viewportProgress": -2.37193,
           "inView": false,
           "vars": {
             "--fam": "0.000"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
-        }
-      }
-    },
-    {
-      "progress": 0.0462,
-      "requestedY": 1234,
-      "scrollY": 1234,
-      "nativeScrollY": 1234,
-      "settled": true,
-      "settleMs": 26.7,
-      "measurements": {
-        "root": {
+        },
+        "findings-mark": {
           "found": true,
           "rect": {
-            "x": 0,
-            "y": -1234,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -1234,
-            "right": 1440,
-            "bottom": 26377.203,
-            "left": 0
+            "x": 270,
+            "y": 1859.656,
+            "width": 551.25,
+            "height": 273.094,
+            "top": 1859.656,
+            "right": 821.25,
+            "bottom": 2132.75,
+            "left": 270
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1134,24 +978,34 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.07485,
-          "inView": true,
+          "viewportProgress": -0.81806,
+          "inView": false,
           "vars": {
-            "--scroll-progress": "0.046"
+            "--find": "0.000"
           },
           "count": 1,
-          "selector": ":root"
-        },
+          "selector": "[data-motion='findings-mark']"
+        }
+      }
+    },
+    {
+      "progress": 0.0196,
+      "requestedY": 526,
+      "scrollY": 526,
+      "nativeScrollY": 526,
+      "settled": true,
+      "settleMs": 26.2,
+      "measurements": {
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -1182.406,
+            "y": -474,
             "width": 960,
-            "height": 1181.813,
-            "top": -1182.406,
+            "height": 1239,
+            "top": -474,
             "right": 1200,
-            "bottom": -0.594,
+            "bottom": 765,
             "left": 240
           },
           "opacity": 1,
@@ -1171,8 +1025,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.00029,
-          "inView": false,
+          "viewportProgress": 0.64236,
+          "inView": true,
           "count": 1,
           "selector": "[data-scene='hero']"
         },
@@ -1180,12 +1034,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -1138.406,
+            "y": -429.98,
             "width": 900,
             "height": 211.188,
-            "top": -1138.406,
+            "top": -429.98,
             "right": 1170,
-            "bottom": -927.219,
+            "bottom": -218.792,
             "left": 270
           },
           "opacity": 1,
@@ -1196,16 +1050,16 @@
           "pointerEvents": "auto",
           "transform": {
             "translateX": 0,
-            "translateY": -60,
+            "translateY": -59.98,
             "translateZ": 0,
             "scaleX": 1,
             "scaleY": 1,
             "rotate": 0,
             "skewX": 0,
             "is3d": false,
-            "matrix": "matrix(1, 0, 0, 1, 0, -60)"
+            "matrix": "matrix(1, 0, 0, 1, 0, -59.98)"
           },
-          "viewportProgress": 1.83444,
+          "viewportProgress": 1.1969,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -1214,12 +1068,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -0.594,
+            "y": 765,
             "width": 960,
             "height": 690.609,
-            "top": -0.594,
+            "top": 765,
             "right": 1200,
-            "bottom": 690.016,
+            "bottom": 1455.609,
             "left": 240
           },
           "opacity": 1,
@@ -1239,7 +1093,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.56619,
+          "viewportProgress": 0.08487,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -1248,12 +1102,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 173.047,
+            "y": 938.641,
             "width": 900,
             "height": 40,
-            "top": 173.047,
+            "top": 938.641,
             "right": 1170,
-            "bottom": 213.047,
+            "bottom": 978.641,
             "left": 270
           },
           "opacity": 1,
@@ -1273,8 +1127,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.77335,
-          "inView": true,
+          "viewportProgress": -0.04111,
+          "inView": false,
           "vars": {
             "--walk": "0.000"
           },
@@ -1285,12 +1139,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 690.016,
+            "y": 1455.609,
             "width": 960,
             "height": 486.141,
-            "top": 690.016,
+            "top": 1455.609,
             "right": 1200,
-            "bottom": 1176.156,
+            "bottom": 1941.75,
             "left": 240
           },
           "opacity": 1,
@@ -1310,58 +1164,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.15149,
-          "inView": true,
+          "viewportProgress": -0.40083,
+          "inView": false,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": 831.063,
-            "width": 318.75,
-            "height": 118.375,
-            "top": 831.063,
-            "right": 1170,
-            "bottom": 949.438,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.06769,
-          "inView": true,
-          "vars": {
-            "--count": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": 1176.156,
+            "y": 1941.75,
             "width": 960,
-            "height": 733.016,
-            "top": 1176.156,
+            "height": 759.359,
+            "top": 1941.75,
             "right": 1200,
-            "bottom": 1909.172,
+            "bottom": 2701.109,
             "left": 240
           },
           "opacity": 1,
@@ -1381,7 +1198,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.16911,
+          "viewportProgress": -0.6278,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -1390,12 +1207,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": 1456.828,
+            "y": 2248.766,
             "width": 551.25,
             "height": 380.344,
-            "top": 1456.828,
+            "top": 2248.766,
             "right": 937.5,
-            "bottom": 1837.172,
+            "bottom": 2629.109,
             "left": 386.25
           },
           "opacity": 1,
@@ -1415,7 +1232,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.43491,
+          "viewportProgress": -1.05344,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -1427,12 +1244,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 1909.172,
+            "y": 2701.109,
             "width": 960,
-            "height": 23830.234,
-            "top": 1909.172,
+            "height": 23882.922,
+            "top": 2701.109,
             "right": 1200,
-            "bottom": 25739.406,
+            "bottom": 26584.031,
             "left": 240
           },
           "opacity": 1,
@@ -1452,7 +1269,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.04081,
+          "viewportProgress": -0.07268,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -1461,12 +1278,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 1982.172,
+            "y": 2774.109,
             "width": 900,
             "height": 1,
-            "top": 1982.172,
+            "top": 2774.109,
             "right": 1170,
-            "bottom": 1983.172,
+            "bottom": 2775.109,
             "left": 270
           },
           "opacity": 1,
@@ -1486,35 +1303,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.20108,
+          "viewportProgress": -2.08003,
           "inView": false,
           "vars": {
             "--fam": "0.000"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
-        }
-      }
-    },
-    {
-      "progress": 0.0591,
-      "requestedY": 1579,
-      "scrollY": 1579,
-      "nativeScrollY": 1579,
-      "settled": true,
-      "settleMs": 28.7,
-      "measurements": {
-        "root": {
+        },
+        "findings-mark": {
           "found": true,
           "rect": {
-            "x": 0,
-            "y": -1579,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -1579,
-            "right": 1440,
-            "bottom": 26032.203,
-            "left": 0
+            "x": 270,
+            "y": 1596.656,
+            "width": 551.25,
+            "height": 273.094,
+            "top": 1596.656,
+            "right": 821.25,
+            "bottom": 1869.75,
+            "left": 270
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1533,24 +1340,34 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.08695,
-          "inView": true,
+          "viewportProgress": -0.59386,
+          "inView": false,
           "vars": {
-            "--scroll-progress": "0.059"
+            "--find": "0.000"
           },
           "count": 1,
-          "selector": ":root"
-        },
+          "selector": "[data-motion='findings-mark']"
+        }
+      }
+    },
+    {
+      "progress": 0.0324,
+      "requestedY": 870,
+      "scrollY": 870,
+      "nativeScrollY": 870,
+      "settled": true,
+      "settleMs": 28.8,
+      "measurements": {
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -1527.406,
+            "y": -818,
             "width": 960,
-            "height": 1181.813,
-            "top": -1527.406,
+            "height": 1239,
+            "top": -818,
             "right": 1200,
-            "bottom": -345.594,
+            "bottom": 421,
             "left": 240
           },
           "opacity": 1,
@@ -1570,8 +1387,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.16601,
-          "inView": false,
+          "viewportProgress": 0.80318,
+          "inView": true,
           "count": 1,
           "selector": "[data-scene='hero']"
         },
@@ -1579,12 +1396,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -1483.406,
+            "y": -774,
             "width": 900,
             "height": 211.188,
-            "top": -1483.406,
+            "top": -774,
             "right": 1170,
-            "bottom": -1272.219,
+            "bottom": -562.813,
             "left": 270
           },
           "opacity": 1,
@@ -1604,7 +1421,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 2.14492,
+          "viewportProgress": 1.5065,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -1613,12 +1430,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -345.594,
+            "y": 421,
             "width": 960,
             "height": 690.609,
-            "top": -345.594,
+            "top": 421,
             "right": 1200,
-            "bottom": 345.016,
+            "bottom": 1111.609,
             "left": 240
           },
           "opacity": 1,
@@ -1638,7 +1455,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.78309,
+          "viewportProgress": 0.30114,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -1647,12 +1464,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -171.953,
+            "y": 594.641,
             "width": 900,
             "height": 40,
-            "top": -171.953,
+            "top": 594.641,
             "right": 1170,
-            "bottom": -131.953,
+            "bottom": 634.641,
             "left": 270
           },
           "opacity": 1,
@@ -1672,10 +1489,10 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.14038,
-          "inView": false,
+          "viewportProgress": 0.32485,
+          "inView": true,
           "vars": {
-            "--walk": "0.501"
+            "--walk": "0.498"
           },
           "count": 1,
           "selector": "[data-motion='method-walk']"
@@ -1684,12 +1501,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 345.016,
+            "y": 1111.609,
             "width": 960,
             "height": 486.141,
-            "top": 345.016,
+            "top": 1111.609,
             "right": 1200,
-            "bottom": 831.156,
+            "bottom": 1597.75,
             "left": 240
           },
           "opacity": 1,
@@ -1709,58 +1526,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.40038,
-          "inView": true,
+          "viewportProgress": -0.15266,
+          "inView": false,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": 486.063,
-            "width": 318.75,
-            "height": 118.375,
-            "top": 486.063,
-            "right": 1170,
-            "bottom": 604.438,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.40647,
-          "inView": true,
-          "vars": {
-            "--count": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": 831.156,
+            "y": 1597.75,
             "width": 960,
-            "height": 733.016,
-            "top": 831.156,
+            "height": 759.359,
+            "top": 1597.75,
             "right": 1200,
-            "bottom": 1564.172,
+            "bottom": 2357.109,
             "left": 240
           },
           "opacity": 1,
@@ -1780,8 +1560,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.04216,
-          "inView": true,
+          "viewportProgress": -0.42049,
+          "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
         },
@@ -1789,12 +1569,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": 1111.828,
+            "y": 1904.766,
             "width": 551.25,
             "height": 380.344,
-            "top": 1111.828,
+            "top": 1904.766,
             "right": 937.5,
-            "bottom": 1492.172,
+            "bottom": 2285.109,
             "left": 386.25
           },
           "opacity": 1,
@@ -1814,7 +1594,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.16545,
+          "viewportProgress": -0.78476,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -1826,12 +1606,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 1564.172,
+            "y": 2357.109,
             "width": 960,
-            "height": 23830.234,
-            "top": 1564.172,
+            "height": 23882.922,
+            "top": 2357.109,
             "right": 1200,
-            "bottom": 25394.406,
+            "bottom": 26240.031,
             "left": 240
           },
           "opacity": 1,
@@ -1851,7 +1631,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.02686,
+          "viewportProgress": -0.05879,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -1860,12 +1640,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 1637.172,
+            "y": 2430.109,
             "width": 900,
             "height": 1,
-            "top": 1637.172,
+            "top": 2430.109,
             "right": 1170,
-            "bottom": 1638.172,
+            "bottom": 2431.109,
             "left": 270
           },
           "opacity": 1,
@@ -1885,35 +1665,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.81817,
+          "viewportProgress": -1.69823,
           "inView": false,
           "vars": {
             "--fam": "0.000"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
-        }
-      }
-    },
-    {
-      "progress": 0.072,
-      "requestedY": 1923,
-      "scrollY": 1923,
-      "nativeScrollY": 1923,
-      "settled": true,
-      "settleMs": 29.2,
-      "measurements": {
-        "root": {
+        },
+        "findings-mark": {
           "found": true,
           "rect": {
-            "x": 0,
-            "y": -1923,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -1923,
-            "right": 1440,
-            "bottom": 25688.203,
-            "left": 0
+            "x": 270,
+            "y": 1252.656,
+            "width": 551.25,
+            "height": 273.094,
+            "top": 1252.656,
+            "right": 821.25,
+            "bottom": 1525.75,
+            "left": 270
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1932,24 +1702,34 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.09901,
-          "inView": true,
+          "viewportProgress": -0.30062,
+          "inView": false,
           "vars": {
-            "--scroll-progress": "0.072"
+            "--find": "0.000"
           },
           "count": 1,
-          "selector": ":root"
-        },
+          "selector": "[data-motion='findings-mark']"
+        }
+      }
+    },
+    {
+      "progress": 0.0453,
+      "requestedY": 1216,
+      "scrollY": 1216,
+      "nativeScrollY": 1216,
+      "settled": true,
+      "settleMs": 29.9,
+      "measurements": {
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -1871.406,
+            "y": -1164,
             "width": 960,
-            "height": 1181.813,
-            "top": -1871.406,
+            "height": 1239,
+            "top": -1164,
             "right": 1200,
-            "bottom": -689.594,
+            "bottom": 75,
             "left": 240
           },
           "opacity": 1,
@@ -1969,8 +1749,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.33125,
-          "inView": false,
+          "viewportProgress": 0.96494,
+          "inView": true,
           "count": 1,
           "selector": "[data-scene='hero']"
         },
@@ -1978,12 +1758,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -1827.406,
+            "y": -1120,
             "width": 900,
             "height": 211.188,
-            "top": -1827.406,
+            "top": -1120,
             "right": 1170,
-            "bottom": -1616.219,
+            "bottom": -908.813,
             "left": 270
           },
           "opacity": 1,
@@ -2003,7 +1783,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 2.4545,
+          "viewportProgress": 1.81788,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -2012,12 +1792,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -689.594,
+            "y": 75,
             "width": 960,
             "height": 690.609,
-            "top": -689.594,
+            "top": 75,
             "right": 1200,
-            "bottom": 1.016,
+            "bottom": 765.609,
             "left": 240
           },
           "opacity": 1,
@@ -2037,7 +1817,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.99936,
+          "viewportProgress": 0.51867,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -2046,12 +1826,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -515.953,
+            "y": 248.641,
             "width": 900,
             "height": 40,
-            "top": -515.953,
+            "top": 248.641,
             "right": 1170,
-            "bottom": -475.953,
+            "bottom": 288.641,
             "left": 270
           },
           "opacity": 1,
@@ -2071,8 +1851,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.50633,
-          "inView": false,
+          "viewportProgress": 0.69294,
+          "inView": true,
           "vars": {
             "--walk": "1.000"
           },
@@ -2083,12 +1863,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 1.016,
+            "y": 765.609,
             "width": 960,
             "height": 486.141,
-            "top": 1.016,
+            "top": 765.609,
             "right": 1200,
-            "bottom": 487.156,
+            "bottom": 1251.75,
             "left": 240
           },
           "opacity": 1,
@@ -2108,58 +1888,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.64855,
+          "viewportProgress": 0.09695,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": 142.063,
-            "width": 318.75,
-            "height": 118.375,
-            "top": 142.063,
-            "right": 1170,
-            "bottom": 260.438,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.74426,
-          "inView": true,
-          "vars": {
-            "--count": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": 487.156,
+            "y": 1251.75,
             "width": 960,
-            "height": 733.016,
-            "top": 487.156,
+            "height": 759.359,
+            "top": 1251.75,
             "right": 1200,
-            "bottom": 1220.172,
+            "bottom": 2011.109,
             "left": 240
           },
           "opacity": 1,
@@ -2179,8 +1922,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.25281,
-          "inView": true,
+          "viewportProgress": -0.21198,
+          "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
         },
@@ -2188,12 +1931,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": 767.828,
+            "y": 1558.766,
             "width": 551.25,
             "height": 380.344,
-            "top": 767.828,
+            "top": 1558.766,
             "right": 937.5,
-            "bottom": 1148.172,
+            "bottom": 1939.109,
             "left": 386.25
           },
           "opacity": 1,
@@ -2213,8 +1956,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.10323,
-          "inView": true,
+          "viewportProgress": -0.51452,
+          "inView": false,
           "vars": {
             "--t": "0.000"
           },
@@ -2225,12 +1968,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 1220.172,
+            "y": 2011.109,
             "width": 960,
-            "height": 23830.234,
-            "top": 1220.172,
+            "height": 23882.922,
+            "top": 2011.109,
             "right": 1200,
-            "bottom": 25050.406,
+            "bottom": 25894.031,
             "left": 240
           },
           "opacity": 1,
@@ -2250,7 +1993,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.01295,
+          "viewportProgress": -0.04483,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -2259,12 +2002,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 1293.172,
+            "y": 2084.109,
             "width": 900,
             "height": 1,
-            "top": 1293.172,
+            "top": 2084.109,
             "right": 1170,
-            "bottom": 1294.172,
+            "bottom": 2085.109,
             "left": 270
           },
           "opacity": 1,
@@ -2284,35 +2027,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.43637,
+          "viewportProgress": -1.31422,
           "inView": false,
           "vars": {
             "--fam": "0.000"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
-        }
-      }
-    },
-    {
-      "progress": 0.0811,
-      "requestedY": 2166,
-      "scrollY": 2166,
-      "nativeScrollY": 2166,
-      "settled": true,
-      "settleMs": 29.2,
-      "measurements": {
-        "root": {
+        },
+        "findings-mark": {
           "found": true,
           "rect": {
-            "x": 0,
-            "y": -2166,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -2166,
-            "right": 1440,
-            "bottom": 25445.203,
-            "left": 0
+            "x": 270,
+            "y": 906.656,
+            "width": 551.25,
+            "height": 273.094,
+            "top": 906.656,
+            "right": 821.25,
+            "bottom": 1179.75,
+            "left": 270
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2331,24 +2064,34 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.10754,
-          "inView": true,
+          "viewportProgress": -0.00567,
+          "inView": false,
           "vars": {
-            "--scroll-progress": "0.081"
+            "--find": "0.000"
           },
           "count": 1,
-          "selector": ":root"
-        },
+          "selector": "[data-motion='findings-mark']"
+        }
+      }
+    },
+    {
+      "progress": 0.0543,
+      "requestedY": 1458,
+      "scrollY": 1458,
+      "nativeScrollY": 1458,
+      "settled": true,
+      "settleMs": 30,
+      "measurements": {
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -2114.406,
+            "y": -1406,
             "width": 960,
-            "height": 1181.813,
-            "top": -2114.406,
+            "height": 1239,
+            "top": -1406,
             "right": 1200,
-            "bottom": -932.594,
+            "bottom": -167,
             "left": 240
           },
           "opacity": 1,
@@ -2368,7 +2111,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.44797,
+          "viewportProgress": 1.07807,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -2377,12 +2120,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -2070.406,
+            "y": -1362,
             "width": 900,
             "height": 211.188,
-            "top": -2070.406,
+            "top": -1362,
             "right": 1170,
-            "bottom": -1859.219,
+            "bottom": -1150.813,
             "left": 270
           },
           "opacity": 1,
@@ -2402,7 +2145,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 2.67318,
+          "viewportProgress": 2.03566,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -2411,12 +2154,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -932.594,
+            "y": -167,
             "width": 960,
             "height": 690.609,
-            "top": -932.594,
+            "top": -167,
             "right": 1200,
-            "bottom": -241.984,
+            "bottom": 523.609,
             "left": 240
           },
           "opacity": 1,
@@ -2436,8 +2179,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.15213,
-          "inView": false,
+          "viewportProgress": 0.67081,
+          "inView": true,
           "count": 1,
           "selector": "[data-scene='method']"
         },
@@ -2445,12 +2188,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -758.953,
+            "y": 6.641,
             "width": 900,
             "height": 40,
-            "top": -758.953,
+            "top": 6.641,
             "right": 1170,
-            "bottom": -718.953,
+            "bottom": 46.641,
             "left": 270
           },
           "opacity": 1,
@@ -2470,8 +2213,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.76484,
-          "inView": false,
+          "viewportProgress": 0.95038,
+          "inView": true,
           "vars": {
             "--walk": "1.000"
           },
@@ -2482,12 +2225,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -241.984,
+            "y": 523.609,
             "width": 960,
             "height": 486.141,
-            "top": -241.984,
+            "top": 523.609,
             "right": 1200,
-            "bottom": 244.156,
+            "bottom": 1009.75,
             "left": 240
           },
           "opacity": 1,
@@ -2507,58 +2250,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.82386,
+          "viewportProgress": 0.27154,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": -100.938,
-            "width": 318.75,
-            "height": 118.375,
-            "top": -100.938,
-            "right": 1170,
-            "bottom": 17.438,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.98288,
-          "inView": true,
-          "vars": {
-            "--count": "0.499"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": 244.156,
+            "y": 1009.75,
             "width": 960,
-            "height": 733.016,
-            "top": 244.156,
+            "height": 759.359,
+            "top": 1009.75,
             "right": 1200,
-            "bottom": 977.172,
+            "bottom": 1769.109,
             "left": 240
           },
           "opacity": 1,
@@ -2578,8 +2284,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.40162,
-          "inView": true,
+          "viewportProgress": -0.06614,
+          "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
         },
@@ -2587,12 +2293,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": 524.828,
+            "y": 1316.766,
             "width": 551.25,
             "height": 380.344,
-            "top": 524.828,
+            "top": 1316.766,
             "right": 937.5,
-            "bottom": 905.172,
+            "bottom": 1697.109,
             "left": 386.25
           },
           "opacity": 1,
@@ -2612,8 +2318,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.29302,
-          "inView": true,
+          "viewportProgress": -0.32551,
+          "inView": false,
           "vars": {
             "--t": "0.000"
           },
@@ -2624,12 +2330,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 977.172,
+            "y": 1769.109,
             "width": 960,
-            "height": 23830.234,
-            "top": 977.172,
+            "height": 23882.922,
+            "top": 1769.109,
             "right": 1200,
-            "bottom": 24807.406,
+            "bottom": 25652.031,
             "left": 240
           },
           "opacity": 1,
@@ -2649,7 +2355,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.00312,
+          "viewportProgress": -0.03507,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -2658,12 +2364,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 1050.172,
+            "y": 1842.109,
             "width": 900,
             "height": 1,
-            "top": 1050.172,
+            "top": 1842.109,
             "right": 1170,
-            "bottom": 1051.172,
+            "bottom": 1843.109,
             "left": 270
           },
           "opacity": 1,
@@ -2683,35 +2389,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.16667,
+          "viewportProgress": -1.04563,
           "inView": false,
           "vars": {
             "--fam": "0.000"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
-        }
-      }
-    },
-    {
-      "progress": 0.0902,
-      "requestedY": 2409,
-      "scrollY": 2409,
-      "nativeScrollY": 2409,
-      "settled": true,
-      "settleMs": 28.6,
-      "measurements": {
-        "root": {
+        },
+        "findings-mark": {
           "found": true,
           "rect": {
-            "x": 0,
-            "y": -2409,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -2409,
-            "right": 1440,
-            "bottom": 25202.203,
-            "left": 0
+            "x": 270,
+            "y": 664.656,
+            "width": 551.25,
+            "height": 273.094,
+            "top": 664.656,
+            "right": 821.25,
+            "bottom": 937.75,
+            "left": 270
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2730,24 +2426,34 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.11606,
+          "viewportProgress": 0.20062,
           "inView": true,
           "vars": {
-            "--scroll-progress": "0.090"
+            "--find": "0.498"
           },
           "count": 1,
-          "selector": ":root"
-        },
+          "selector": "[data-motion='findings-mark']"
+        }
+      }
+    },
+    {
+      "progress": 0.0634,
+      "requestedY": 1702,
+      "scrollY": 1702,
+      "nativeScrollY": 1702,
+      "settled": true,
+      "settleMs": 30.2,
+      "measurements": {
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -2357.406,
+            "y": -1650,
             "width": 960,
-            "height": 1181.813,
-            "top": -2357.406,
+            "height": 1239,
+            "top": -1650,
             "right": 1200,
-            "bottom": -1175.594,
+            "bottom": -411,
             "left": 240
           },
           "opacity": 1,
@@ -2767,7 +2473,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.5647,
+          "viewportProgress": 1.19215,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -2776,12 +2482,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -2313.406,
+            "y": -1606,
             "width": 900,
             "height": 211.188,
-            "top": -2313.406,
+            "top": -1606,
             "right": 1170,
-            "bottom": -2102.219,
+            "bottom": -1394.813,
             "left": 270
           },
           "opacity": 1,
@@ -2801,7 +2507,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 2.89187,
+          "viewportProgress": 2.25524,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -2810,12 +2516,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -1175.594,
+            "y": -411,
             "width": 960,
             "height": 690.609,
-            "top": -1175.594,
+            "top": -411,
             "right": 1200,
-            "bottom": -484.984,
+            "bottom": 279.609,
             "left": 240
           },
           "opacity": 1,
@@ -2835,8 +2541,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.3049,
-          "inView": false,
+          "viewportProgress": 0.82421,
+          "inView": true,
           "count": 1,
           "selector": "[data-scene='method']"
         },
@@ -2844,12 +2550,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -1001.953,
+            "y": -237.359,
             "width": 900,
             "height": 40,
-            "top": -1001.953,
+            "top": -237.359,
             "right": 1170,
-            "bottom": -961.953,
+            "bottom": -197.359,
             "left": 270
           },
           "opacity": 1,
@@ -2869,7 +2575,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.02335,
+          "viewportProgress": 1.20996,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -2881,12 +2587,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -484.984,
+            "y": 279.609,
             "width": 960,
             "height": 486.141,
-            "top": -484.984,
+            "top": 279.609,
             "right": 1200,
-            "bottom": 1.156,
+            "bottom": 765.75,
             "left": 240
           },
           "opacity": 1,
@@ -2906,58 +2612,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.99917,
+          "viewportProgress": 0.44757,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": -343.938,
-            "width": 318.75,
-            "height": 118.375,
-            "top": -343.938,
-            "right": 1170,
-            "bottom": -225.563,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 1.22149,
-          "inView": false,
-          "vars": {
-            "--count": "0.999"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": 1.156,
+            "y": 765.75,
             "width": 960,
-            "height": 733.016,
-            "top": 1.156,
+            "height": 759.359,
+            "top": 765.75,
             "right": 1200,
-            "bottom": 734.172,
+            "bottom": 1525.109,
             "left": 240
           },
           "opacity": 1,
@@ -2977,7 +2646,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.55042,
+          "viewportProgress": 0.0809,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -2986,12 +2655,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": 281.828,
+            "y": 1072.766,
             "width": 551.25,
             "height": 380.344,
-            "top": 281.828,
+            "top": 1072.766,
             "right": 937.5,
-            "bottom": 662.172,
+            "bottom": 1453.109,
             "left": 386.25
           },
           "opacity": 1,
@@ -3011,8 +2680,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.48282,
-          "inView": true,
+          "viewportProgress": -0.13494,
+          "inView": false,
           "vars": {
             "--t": "0.000"
           },
@@ -3023,12 +2692,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 734.172,
+            "y": 1525.109,
             "width": 960,
-            "height": 23830.234,
-            "top": 734.172,
+            "height": 23882.922,
+            "top": 1525.109,
             "right": 1200,
-            "bottom": 24564.406,
+            "bottom": 25408.031,
             "left": 240
           },
           "opacity": 1,
@@ -3048,8 +2717,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.00671,
-          "inView": true,
+          "viewportProgress": -0.02522,
+          "inView": false,
           "count": 1,
           "selector": "[data-scene='families']"
         },
@@ -3057,12 +2726,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 807.172,
+            "y": 1598.109,
             "width": 900,
             "height": 1,
-            "top": 807.172,
+            "top": 1598.109,
             "right": 1170,
-            "bottom": 808.172,
+            "bottom": 1599.109,
             "left": 270
           },
           "opacity": 1,
@@ -3082,35 +2751,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.10303,
-          "inView": true,
+          "viewportProgress": -0.77482,
+          "inView": false,
           "vars": {
             "--fam": "0.000"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
-        }
-      }
-    },
-    {
-      "progress": 0.104,
-      "requestedY": 2778,
-      "scrollY": 2778,
-      "nativeScrollY": 2778,
-      "settled": true,
-      "settleMs": 30.7,
-      "measurements": {
-        "root": {
+        },
+        "findings-mark": {
           "found": true,
           "rect": {
-            "x": 0,
-            "y": -2778,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -2778,
-            "right": 1440,
-            "bottom": 24833.203,
-            "left": 0
+            "x": 270,
+            "y": 420.656,
+            "width": 551.25,
+            "height": 273.094,
+            "top": 420.656,
+            "right": 821.25,
+            "bottom": 693.75,
+            "left": 270
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3129,24 +2788,34 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.129,
+          "viewportProgress": 0.40862,
           "inView": true,
           "vars": {
-            "--scroll-progress": "0.104"
+            "--find": "1.000"
           },
           "count": 1,
-          "selector": ":root"
-        },
+          "selector": "[data-motion='findings-mark']"
+        }
+      }
+    },
+    {
+      "progress": 0.0776,
+      "requestedY": 2083,
+      "scrollY": 2083,
+      "nativeScrollY": 2083,
+      "settled": true,
+      "settleMs": 29.8,
+      "measurements": {
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -2726.406,
+            "y": -2031,
             "width": 960,
-            "height": 1181.813,
-            "top": -2726.406,
+            "height": 1239,
+            "top": -2031,
             "right": 1200,
-            "bottom": -1544.594,
+            "bottom": -792,
             "left": 240
           },
           "opacity": 1,
@@ -3166,7 +2835,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.74195,
+          "viewportProgress": 1.37027,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -3175,12 +2844,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -2682.406,
+            "y": -1987,
             "width": 900,
             "height": 211.188,
-            "top": -2682.406,
+            "top": -1987,
             "right": 1170,
-            "bottom": -2471.219,
+            "bottom": -1775.813,
             "left": 270
           },
           "opacity": 1,
@@ -3200,7 +2869,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 3.22394,
+          "viewportProgress": 2.59812,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -3209,12 +2878,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -1544.594,
+            "y": -792,
             "width": 960,
             "height": 690.609,
-            "top": -1544.594,
+            "top": -792,
             "right": 1200,
-            "bottom": -853.984,
+            "bottom": -101.391,
             "left": 240
           },
           "opacity": 1,
@@ -3234,7 +2903,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.53689,
+          "viewportProgress": 1.06374,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -3243,12 +2912,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -1370.953,
+            "y": -618.359,
             "width": 900,
             "height": 40,
-            "top": -1370.953,
+            "top": -618.359,
             "right": 1170,
-            "bottom": -1330.953,
+            "bottom": -578.359,
             "left": 270
           },
           "opacity": 1,
@@ -3268,7 +2937,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.41591,
+          "viewportProgress": 1.61528,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -3280,12 +2949,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -853.984,
+            "y": -101.391,
             "width": 960,
             "height": 486.141,
-            "top": -853.984,
+            "top": -101.391,
             "right": 1200,
-            "bottom": -367.844,
+            "bottom": 384.75,
             "left": 240
           },
           "opacity": 1,
@@ -3305,58 +2974,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.26537,
-          "inView": false,
+          "viewportProgress": 0.72243,
+          "inView": true,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": -712.938,
-            "width": 318.75,
-            "height": 118.375,
-            "top": -712.938,
-            "right": 1170,
-            "bottom": -594.563,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 1.58383,
-          "inView": false,
-          "vars": {
-            "--count": "1.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -367.844,
+            "y": 384.75,
             "width": 960,
-            "height": 733.016,
-            "top": -367.844,
+            "height": 759.359,
+            "top": 384.75,
             "right": 1200,
-            "bottom": 365.172,
+            "bottom": 1144.109,
             "left": 240
           },
           "opacity": 1,
@@ -3376,7 +3008,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.77638,
+          "viewportProgress": 0.31051,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -3385,12 +3017,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": -87.172,
+            "y": 691.766,
             "width": 551.25,
             "height": 380.344,
-            "top": -87.172,
+            "top": 691.766,
             "right": 937.5,
-            "bottom": 293.172,
+            "bottom": 1072.109,
             "left": 386.25
           },
           "opacity": 1,
@@ -3410,10 +3042,10 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.77102,
+          "viewportProgress": 0.16264,
           "inView": true,
           "vars": {
-            "--t": "0.502"
+            "--t": "0.501"
           },
           "count": 1,
           "selector": "[data-motion='exhibit-dot']"
@@ -3422,12 +3054,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": 365.172,
+            "y": 1144.109,
             "width": 960,
-            "height": 23830.234,
-            "top": 365.172,
+            "height": 23882.922,
+            "top": 1144.109,
             "right": 1200,
-            "bottom": 24195.406,
+            "bottom": 25027.031,
             "left": 240
           },
           "opacity": 1,
@@ -3447,8 +3079,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.02163,
-          "inView": true,
+          "viewportProgress": -0.00985,
+          "inView": false,
           "count": 1,
           "selector": "[data-scene='families']"
         },
@@ -3456,12 +3088,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 438.172,
+            "y": 1217.109,
             "width": 900,
             "height": 1,
-            "top": 438.172,
+            "top": 1217.109,
             "right": 1170,
-            "bottom": 439.172,
+            "bottom": 1218.109,
             "left": 270
           },
           "opacity": 1,
@@ -3481,35 +3113,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.51257,
-          "inView": true,
+          "viewportProgress": -0.35195,
+          "inView": false,
           "vars": {
             "--fam": "0.000"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
-        }
-      }
-    },
-    {
-      "progress": 0.1177,
-      "requestedY": 3144,
-      "scrollY": 3144,
-      "nativeScrollY": 3144,
-      "settled": true,
-      "settleMs": 29.7,
-      "measurements": {
-        "root": {
+        },
+        "findings-mark": {
           "found": true,
           "rect": {
-            "x": 0,
-            "y": -3144,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -3144,
-            "right": 1440,
-            "bottom": 24467.203,
-            "left": 0
+            "x": 270,
+            "y": 39.656,
+            "width": 551.25,
+            "height": 273.094,
+            "top": 39.656,
+            "right": 821.25,
+            "bottom": 312.75,
+            "left": 270
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3528,24 +3150,34 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.14184,
+          "viewportProgress": 0.7334,
           "inView": true,
           "vars": {
-            "--scroll-progress": "0.118"
+            "--find": "1.000"
           },
           "count": 1,
-          "selector": ":root"
-        },
+          "selector": "[data-motion='findings-mark']"
+        }
+      }
+    },
+    {
+      "progress": 0.0917,
+      "requestedY": 2462,
+      "scrollY": 2462,
+      "nativeScrollY": 2462,
+      "settled": true,
+      "settleMs": 29.9,
+      "measurements": {
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -3092.406,
+            "y": -2410,
             "width": 960,
-            "height": 1181.813,
-            "top": -3092.406,
+            "height": 1239,
+            "top": -2410,
             "right": 1200,
-            "bottom": -1910.594,
+            "bottom": -1171,
             "left": 240
           },
           "opacity": 1,
@@ -3565,7 +3197,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.91775,
+          "viewportProgress": 1.54745,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -3574,12 +3206,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -3048.406,
+            "y": -2366,
             "width": 900,
             "height": 211.188,
-            "top": -3048.406,
+            "top": -2366,
             "right": 1170,
-            "bottom": -2837.219,
+            "bottom": -2154.813,
             "left": 270
           },
           "opacity": 1,
@@ -3599,7 +3231,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 3.55332,
+          "viewportProgress": 2.9392,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -3608,12 +3240,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -1910.594,
+            "y": -1171,
             "width": 960,
             "height": 690.609,
-            "top": -1910.594,
+            "top": -1171,
             "right": 1200,
-            "bottom": -1219.984,
+            "bottom": -480.391,
             "left": 240
           },
           "opacity": 1,
@@ -3633,7 +3265,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.76699,
+          "viewportProgress": 1.30202,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -3642,12 +3274,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -1736.953,
+            "y": -997.359,
             "width": 900,
             "height": 40,
-            "top": -1736.953,
+            "top": -997.359,
             "right": 1170,
-            "bottom": -1696.953,
+            "bottom": -957.359,
             "left": 270
           },
           "opacity": 1,
@@ -3667,7 +3299,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.80527,
+          "viewportProgress": 2.01847,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -3679,12 +3311,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -1219.984,
+            "y": -480.391,
             "width": 960,
             "height": 486.141,
-            "top": -1219.984,
+            "top": -480.391,
             "right": 1200,
-            "bottom": -733.844,
+            "bottom": 5.75,
             "left": 240
           },
           "opacity": 1,
@@ -3704,58 +3336,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.52942,
-          "inView": false,
+          "viewportProgress": 0.99585,
+          "inView": true,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": -1078.938,
-            "width": 318.75,
-            "height": 118.375,
-            "top": -1078.938,
-            "right": 1170,
-            "bottom": -960.563,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 1.94323,
-          "inView": false,
-          "vars": {
-            "--count": "1.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -733.844,
+            "y": 5.75,
             "width": 960,
-            "height": 733.016,
-            "top": -733.844,
+            "height": 759.359,
+            "top": 5.75,
             "right": 1200,
-            "bottom": -0.828,
+            "bottom": 765.109,
             "left": 240
           },
           "opacity": 1,
@@ -3775,8 +3370,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.00051,
-          "inView": false,
+          "viewportProgress": 0.53891,
+          "inView": true,
           "count": 1,
           "selector": "[data-scene='exhibit']"
         },
@@ -3784,12 +3379,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": -453.172,
+            "y": 312.766,
             "width": 551.25,
             "height": 380.344,
-            "top": -453.172,
+            "top": 312.766,
             "right": 937.5,
-            "bottom": -72.828,
+            "bottom": 693.109,
             "left": 386.25
           },
           "opacity": 1,
@@ -3809,8 +3404,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.05688,
-          "inView": false,
+          "viewportProgress": 0.45865,
+          "inView": true,
           "vars": {
             "--t": "1.000"
           },
@@ -3821,12 +3416,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -0.828,
+            "y": 765.109,
             "width": 960,
-            "height": 23830.234,
-            "top": -0.828,
+            "height": 23882.922,
+            "top": 765.109,
             "right": 1200,
-            "bottom": 23829.406,
+            "bottom": 24648.031,
             "left": 240
           },
           "opacity": 1,
@@ -3846,7 +3441,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.03643,
+          "viewportProgress": 0.00544,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -3855,12 +3450,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": 72.172,
+            "y": 838.109,
             "width": 900,
             "height": 1,
-            "top": 72.172,
+            "top": 838.109,
             "right": 1170,
-            "bottom": 73.172,
+            "bottom": 839.109,
             "left": 270
           },
           "opacity": 1,
@@ -3880,71 +3475,71 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.91879,
+          "viewportProgress": 0.06869,
           "inView": true,
           "vars": {
             "--fam": "0.000"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
+        },
+        "findings-mark": {
+          "found": true,
+          "rect": {
+            "x": 270,
+            "y": -339.344,
+            "width": 551.25,
+            "height": 273.094,
+            "top": -339.344,
+            "right": 821.25,
+            "bottom": -66.25,
+            "left": 270
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 1.05647,
+          "inView": false,
+          "vars": {
+            "--find": "1.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='findings-mark']"
         }
       }
     },
     {
       "progress": 0.3,
-      "requestedY": 8013,
-      "scrollY": 8013,
-      "nativeScrollY": 8013,
+      "requestedY": 8054,
+      "scrollY": 8054,
+      "nativeScrollY": 8054,
       "settled": true,
-      "settleMs": 25.6,
+      "settleMs": 352.3,
       "measurements": {
-        "root": {
-          "found": true,
-          "rect": {
-            "x": 0,
-            "y": -8013,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -8013,
-            "right": 1440,
-            "bottom": 19598.203,
-            "left": 0
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.31261,
-          "inView": true,
-          "vars": {
-            "--scroll-progress": "0.300"
-          },
-          "count": 1,
-          "selector": ":root"
-        },
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -7961.406,
+            "y": -8002,
             "width": 960,
-            "height": 1181.813,
-            "top": -7961.406,
+            "height": 1239,
+            "top": -8002,
             "right": 1200,
-            "bottom": -6779.594,
+            "bottom": -6763,
             "left": 240
           },
           "opacity": 1,
@@ -3964,7 +3559,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.25658,
+          "viewportProgress": 4.16176,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -3973,12 +3568,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -7917.406,
+            "y": -7958,
             "width": 900,
             "height": 211.188,
-            "top": -7917.406,
+            "top": -7958,
             "right": 1170,
-            "bottom": -7706.219,
+            "bottom": -7746.813,
             "left": 270
           },
           "opacity": 1,
@@ -3998,7 +3593,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 7.93512,
+          "viewportProgress": 7.97165,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -4007,12 +3602,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -6779.594,
+            "y": -6763,
             "width": 960,
             "height": 690.609,
-            "top": -6779.594,
+            "top": -6763,
             "right": 1200,
-            "bottom": -6088.984,
+            "bottom": -6072.391,
             "left": 240
           },
           "opacity": 1,
@@ -4032,7 +3627,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.82808,
+          "viewportProgress": 4.81765,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -4041,12 +3636,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -6605.953,
+            "y": -6589.359,
             "width": 900,
             "height": 40,
-            "top": -6605.953,
+            "top": -6589.359,
             "right": 1170,
-            "bottom": -6565.953,
+            "bottom": -6549.359,
             "left": 270
           },
           "opacity": 1,
@@ -4066,7 +3661,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 7.98506,
+          "viewportProgress": 7.9674,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -4078,12 +3673,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -6088.984,
+            "y": -6072.391,
             "width": 960,
             "height": 486.141,
-            "top": -6088.984,
+            "top": -6072.391,
             "right": 1200,
-            "bottom": -5602.844,
+            "bottom": -5586.25,
             "left": 240
           },
           "opacity": 1,
@@ -4103,58 +3698,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 5.04205,
+          "viewportProgress": 5.03007,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": -5947.938,
-            "width": 318.75,
-            "height": 118.375,
-            "top": -5947.938,
-            "right": 1170,
-            "bottom": -5829.563,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 6.72438,
-          "inView": false,
-          "vars": {
-            "--count": "1.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -5602.844,
+            "y": -5586.25,
             "width": 960,
-            "height": 733.016,
-            "top": -5602.844,
+            "height": 759.359,
+            "top": -5586.25,
             "right": 1200,
-            "bottom": -4869.828,
+            "bottom": -4826.891,
             "left": 240
           },
           "opacity": 1,
@@ -4174,7 +3732,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 3.98211,
+          "viewportProgress": 3.90889,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -4183,12 +3741,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": -5322.172,
+            "y": -5279.234,
             "width": 551.25,
             "height": 380.344,
-            "top": -5322.172,
+            "top": -5279.234,
             "right": 937.5,
-            "bottom": -4941.828,
+            "bottom": -4898.891,
             "left": 386.25
           },
           "opacity": 1,
@@ -4208,7 +3766,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.85977,
+          "viewportProgress": 4.82623,
           "inView": false,
           "vars": {
             "--t": "1.000"
@@ -4220,12 +3778,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -4869.828,
+            "y": -4826.891,
             "width": 960,
-            "height": 23830.234,
-            "top": -4869.828,
+            "height": 23882.922,
+            "top": -4826.891,
             "right": 1200,
-            "bottom": 18960.406,
+            "bottom": 19056.031,
             "left": 240
           },
           "opacity": 1,
@@ -4245,7 +3803,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.23331,
+          "viewportProgress": 0.23108,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -4254,12 +3812,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -4796.828,
+            "y": -4753.891,
             "width": 900,
             "height": 1,
-            "top": -4796.828,
+            "top": -4753.891,
             "right": 1170,
-            "bottom": -4795.828,
+            "bottom": -4752.891,
             "left": 270
           },
           "opacity": 1,
@@ -4279,71 +3837,71 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 6.32278,
+          "viewportProgress": 6.27513,
           "inView": false,
           "vars": {
-            "--fam": "0.207"
+            "--fam": "0.228"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
+        },
+        "findings-mark": {
+          "found": true,
+          "rect": {
+            "x": 270,
+            "y": -5931.344,
+            "width": 551.25,
+            "height": 273.094,
+            "top": -5931.344,
+            "right": 821.25,
+            "bottom": -5658.25,
+            "left": 270
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 5.82336,
+          "inView": false,
+          "vars": {
+            "--find": "1.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='findings-mark']"
         }
       }
     },
     {
       "progress": 0.5,
-      "requestedY": 13356,
-      "scrollY": 13356,
-      "nativeScrollY": 13356,
+      "requestedY": 13424,
+      "scrollY": 13424,
+      "nativeScrollY": 13424,
       "settled": true,
-      "settleMs": 26,
+      "settleMs": 351.1,
       "measurements": {
-        "root": {
-          "found": true,
-          "rect": {
-            "x": 0,
-            "y": -13356,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -13356,
-            "right": 1440,
-            "bottom": 14255.203,
-            "left": 0
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.50001,
-          "inView": true,
-          "vars": {
-            "--scroll-progress": "0.500"
-          },
-          "count": 1,
-          "selector": ":root"
-        },
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -13304.406,
+            "y": -13372,
             "width": 960,
-            "height": 1181.813,
-            "top": -13304.406,
+            "height": 1239,
+            "top": -13372,
             "right": 1200,
-            "bottom": -12122.594,
+            "bottom": -12133,
             "left": 240
           },
           "opacity": 1,
@@ -4363,7 +3921,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 6.8231,
+          "viewportProgress": 6.67228,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -4372,12 +3930,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -13260.406,
+            "y": -13328,
             "width": 900,
             "height": 211.188,
-            "top": -13260.406,
+            "top": -13328,
             "right": 1170,
-            "bottom": -13049.219,
+            "bottom": -13116.813,
             "left": 270
           },
           "opacity": 1,
@@ -4397,7 +3955,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 12.74349,
+          "viewportProgress": 12.80432,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -4406,12 +3964,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -12122.594,
+            "y": -12133,
             "width": 960,
             "height": 690.609,
-            "top": -12122.594,
+            "top": -12133,
             "right": 1200,
-            "bottom": -11431.984,
+            "bottom": -11442.391,
             "left": 240
           },
           "opacity": 1,
@@ -4431,7 +3989,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 8.18717,
+          "viewportProgress": 8.19372,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -4440,12 +3998,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -11948.953,
+            "y": -11959.359,
             "width": 900,
             "height": 40,
-            "top": -11948.953,
+            "top": -11959.359,
             "right": 1170,
-            "bottom": -11908.953,
+            "bottom": -11919.359,
             "left": 270
           },
           "opacity": 1,
@@ -4465,7 +4023,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 13.6691,
+          "viewportProgress": 13.68017,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -4477,12 +4035,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -11431.984,
+            "y": -11442.391,
             "width": 960,
             "height": 486.141,
-            "top": -11431.984,
+            "top": -11442.391,
             "right": 1200,
-            "bottom": -10945.844,
+            "bottom": -10956.25,
             "left": 240
           },
           "opacity": 1,
@@ -4502,58 +4060,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 8.89663,
+          "viewportProgress": 8.90414,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": -11290.938,
-            "width": 318.75,
-            "height": 118.375,
-            "top": -11290.938,
-            "right": 1170,
-            "bottom": -11172.563,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 11.97097,
-          "inView": false,
-          "vars": {
-            "--count": "1.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -10945.844,
+            "y": -10956.25,
             "width": 960,
-            "height": 733.016,
-            "top": -10945.844,
+            "height": 759.359,
+            "top": -10956.25,
             "right": 1200,
-            "bottom": -10212.828,
+            "bottom": -10196.891,
             "left": 240
           },
           "opacity": 1,
@@ -4573,7 +4094,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 7.25397,
+          "viewportProgress": 7.14508,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -4582,12 +4103,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": -10665.172,
+            "y": -10649.234,
             "width": 551.25,
             "height": 380.344,
-            "top": -10665.172,
+            "top": -10649.234,
             "right": 937.5,
-            "bottom": -10284.828,
+            "bottom": -10268.891,
             "left": 386.25
           },
           "opacity": 1,
@@ -4607,7 +4128,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 9.03286,
+          "viewportProgress": 9.02042,
           "inView": false,
           "vars": {
             "--t": "1.000"
@@ -4619,12 +4140,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -10212.828,
+            "y": -10196.891,
             "width": 960,
-            "height": 23830.234,
-            "top": -10212.828,
+            "height": 23882.922,
+            "top": -10196.891,
             "right": 1200,
-            "bottom": 13617.406,
+            "bottom": 13686.031,
             "left": 240
           },
           "opacity": 1,
@@ -4644,7 +4165,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.44936,
+          "viewportProgress": 0.44776,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -4653,12 +4174,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -10139.828,
+            "y": -10123.891,
             "width": 900,
             "height": 1,
-            "top": -10139.828,
+            "top": -10123.891,
             "right": 1170,
-            "bottom": -10138.828,
+            "bottom": -10122.891,
             "left": 270
           },
           "opacity": 1,
@@ -4678,71 +4199,71 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 12.25286,
+          "viewportProgress": 12.23517,
           "inView": false,
           "vars": {
-            "--fam": "0.433"
+            "--fam": "0.448"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
+        },
+        "findings-mark": {
+          "found": true,
+          "rect": {
+            "x": 270,
+            "y": -11301.344,
+            "width": 551.25,
+            "height": 273.094,
+            "top": -11301.344,
+            "right": 821.25,
+            "bottom": -11028.25,
+            "left": 270
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 10.401,
+          "inView": false,
+          "vars": {
+            "--find": "1.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='findings-mark']"
         }
       }
     },
     {
-      "progress": 0.5588,
-      "requestedY": 14926,
-      "scrollY": 14926,
-      "nativeScrollY": 14926,
+      "progress": 0.5458,
+      "requestedY": 14654,
+      "scrollY": 14654,
+      "nativeScrollY": 14654,
       "settled": true,
-      "settleMs": 25.7,
+      "settleMs": 272.8,
       "measurements": {
-        "root": {
-          "found": true,
-          "rect": {
-            "x": 0,
-            "y": -14926,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -14926,
-            "right": 1440,
-            "bottom": 12685.203,
-            "left": 0
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.55508,
-          "inView": true,
-          "vars": {
-            "--scroll-progress": "0.559"
-          },
-          "count": 1,
-          "selector": ":root"
-        },
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -14874.406,
+            "y": -14602,
             "width": 960,
-            "height": 1181.813,
-            "top": -14874.406,
+            "height": 1239,
+            "top": -14602,
             "right": 1200,
-            "bottom": -13692.594,
+            "bottom": -13363,
             "left": 240
           },
           "opacity": 1,
@@ -4762,7 +4283,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 7.57725,
+          "viewportProgress": 7.24731,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -4771,12 +4292,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -14830.406,
+            "y": -14558,
             "width": 900,
             "height": 211.188,
-            "top": -14830.406,
+            "top": -14558,
             "right": 1170,
-            "bottom": -14619.219,
+            "bottom": -14346.813,
             "left": 270
           },
           "opacity": 1,
@@ -4796,7 +4317,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 14.15639,
+          "viewportProgress": 13.91124,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -4805,12 +4326,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -13692.594,
+            "y": -13363,
             "width": 960,
             "height": 690.609,
-            "top": -13692.594,
+            "top": -13363,
             "right": 1200,
-            "bottom": -13001.984,
+            "bottom": -12672.391,
             "left": 240
           },
           "opacity": 1,
@@ -4830,7 +4351,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 9.17422,
+          "viewportProgress": 8.967,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -4839,12 +4360,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -13518.953,
+            "y": -13189.359,
             "width": 900,
             "height": 40,
-            "top": -13518.953,
+            "top": -13189.359,
             "right": 1170,
-            "bottom": -13478.953,
+            "bottom": -13149.359,
             "left": 270
           },
           "opacity": 1,
@@ -4864,7 +4385,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 15.33931,
+          "viewportProgress": 14.98868,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -4876,12 +4397,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -13001.984,
+            "y": -12672.391,
             "width": 960,
             "height": 486.141,
-            "top": -13001.984,
+            "top": -12672.391,
             "right": 1200,
-            "bottom": -12515.844,
+            "bottom": -12186.25,
             "left": 240
           },
           "opacity": 1,
@@ -4901,58 +4422,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 10.02927,
+          "viewportProgress": 9.7915,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": -12860.938,
-            "width": 318.75,
-            "height": 118.375,
-            "top": -12860.938,
-            "right": 1170,
-            "bottom": -12742.563,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 13.51264,
-          "inView": false,
-          "vars": {
-            "--count": "1.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -12515.844,
+            "y": -12186.25,
             "width": 960,
-            "height": 733.016,
-            "top": -12515.844,
+            "height": 759.359,
+            "top": -12186.25,
             "right": 1200,
-            "bottom": -11782.828,
+            "bottom": -11426.891,
             "left": 240
           },
           "opacity": 1,
@@ -4972,7 +4456,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 8.21538,
+          "viewportProgress": 7.88633,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -4981,12 +4465,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": -12235.172,
+            "y": -11879.234,
             "width": 551.25,
             "height": 380.344,
-            "top": -12235.172,
+            "top": -11879.234,
             "right": 937.5,
-            "bottom": -11854.828,
+            "bottom": -11498.891,
             "left": 386.25
           },
           "opacity": 1,
@@ -5006,7 +4490,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 10.2591,
+          "viewportProgress": 9.9811,
           "inView": false,
           "vars": {
             "--t": "1.000"
@@ -5018,12 +4502,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -11782.828,
+            "y": -11426.891,
             "width": 960,
-            "height": 23830.234,
-            "top": -11782.828,
+            "height": 23882.922,
+            "top": -11426.891,
             "right": 1200,
-            "bottom": 12047.406,
+            "bottom": 12456.031,
             "left": 240
           },
           "opacity": 1,
@@ -5043,7 +4527,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.51285,
+          "viewportProgress": 0.49739,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -5052,12 +4536,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -11709.828,
+            "y": -11353.891,
             "width": 900,
             "height": 1,
-            "top": -11709.828,
+            "top": -11353.891,
             "right": 1170,
-            "bottom": -11708.828,
+            "bottom": -11352.891,
             "left": 270
           },
           "opacity": 1,
@@ -5077,71 +4561,71 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 13.99537,
+          "viewportProgress": 13.60032,
           "inView": false,
           "vars": {
-            "--fam": "0.500"
+            "--fam": "0.498"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
+        },
+        "findings-mark": {
+          "found": true,
+          "rect": {
+            "x": 270,
+            "y": -12531.344,
+            "width": 551.25,
+            "height": 273.094,
+            "top": -12531.344,
+            "right": 821.25,
+            "bottom": -12258.25,
+            "left": 270
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 11.44951,
+          "inView": false,
+          "vars": {
+            "--find": "1.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='findings-mark']"
         }
       }
     },
     {
       "progress": 0.7,
-      "requestedY": 18698,
-      "scrollY": 18698,
-      "nativeScrollY": 18698,
+      "requestedY": 18794,
+      "scrollY": 18794,
+      "nativeScrollY": 18794,
       "settled": true,
-      "settleMs": 35.9,
+      "settleMs": 347.5,
       "measurements": {
-        "root": {
-          "found": true,
-          "rect": {
-            "x": 0,
-            "y": -18698,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -18698,
-            "right": 1440,
-            "bottom": 8913.203,
-            "left": 0
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.68738,
-          "inView": true,
-          "vars": {
-            "--scroll-progress": "0.700"
-          },
-          "count": 1,
-          "selector": ":root"
-        },
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -18646.406,
+            "y": -18742,
             "width": 960,
-            "height": 1181.813,
-            "top": -18646.406,
+            "height": 1239,
+            "top": -18742,
             "right": 1200,
-            "bottom": -17464.594,
+            "bottom": -17503,
             "left": 240
           },
           "opacity": 1,
@@ -5161,7 +4645,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 9.38913,
+          "viewportProgress": 9.1828,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -5170,12 +4654,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -18602.406,
+            "y": -18698,
             "width": 900,
             "height": 211.188,
-            "top": -18602.406,
+            "top": -18698,
             "right": 1170,
-            "bottom": -18391.219,
+            "bottom": -18486.813,
             "left": 270
           },
           "opacity": 1,
@@ -5195,7 +4679,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 17.55096,
+          "viewportProgress": 17.63699,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -5204,12 +4688,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -17464.594,
+            "y": -17503,
             "width": 960,
             "height": 690.609,
-            "top": -17464.594,
+            "top": -17503,
             "right": 1200,
-            "bottom": -16773.984,
+            "bottom": -16812.391,
             "left": 240
           },
           "opacity": 1,
@@ -5229,7 +4713,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 11.54563,
+          "viewportProgress": 11.56978,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -5238,12 +4722,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -17290.953,
+            "y": -17329.359,
             "width": 900,
             "height": 40,
-            "top": -17290.953,
+            "top": -17329.359,
             "right": 1170,
-            "bottom": -17250.953,
+            "bottom": -17289.359,
             "left": 270
           },
           "opacity": 1,
@@ -5263,7 +4747,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 19.35208,
+          "viewportProgress": 19.39294,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -5275,12 +4759,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -16773.984,
+            "y": -16812.391,
             "width": 960,
             "height": 486.141,
-            "top": -16773.984,
+            "top": -16812.391,
             "right": 1200,
-            "bottom": -16287.844,
+            "bottom": -16326.25,
             "left": 240
           },
           "opacity": 1,
@@ -5300,58 +4784,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 12.7505,
+          "viewportProgress": 12.77821,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": -16632.938,
-            "width": 318.75,
-            "height": 118.375,
-            "top": -16632.938,
-            "right": 1170,
-            "bottom": -16514.563,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 17.21658,
-          "inView": false,
-          "vars": {
-            "--count": "1.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -16287.844,
+            "y": -16326.25,
             "width": 960,
-            "height": 733.016,
-            "top": -16287.844,
+            "height": 759.359,
+            "top": -16326.25,
             "right": 1200,
-            "bottom": -15554.828,
+            "bottom": -15566.891,
             "left": 240
           },
           "opacity": 1,
@@ -5371,7 +4818,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 10.52522,
+          "viewportProgress": 10.38127,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -5380,12 +4827,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": -16007.172,
+            "y": -16019.234,
             "width": 551.25,
             "height": 380.344,
-            "top": -16007.172,
+            "top": -16019.234,
             "right": 937.5,
-            "bottom": -15626.828,
+            "bottom": -15638.891,
             "left": 386.25
           },
           "opacity": 1,
@@ -5405,7 +4852,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 13.20518,
+          "viewportProgress": 13.2146,
           "inView": false,
           "vars": {
             "--t": "1.000"
@@ -5417,12 +4864,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -15554.828,
+            "y": -15566.891,
             "width": 960,
-            "height": 23830.234,
-            "top": -15554.828,
+            "height": 23882.922,
+            "top": -15566.891,
             "right": 1200,
-            "bottom": 8275.406,
+            "bottom": 8316.031,
             "left": 240
           },
           "opacity": 1,
@@ -5442,7 +4889,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.66537,
+          "viewportProgress": 0.66445,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -5451,12 +4898,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -15481.828,
+            "y": -15493.891,
             "width": 900,
             "height": 1,
-            "top": -15481.828,
+            "top": -15493.891,
             "right": 1170,
-            "bottom": -15480.828,
+            "bottom": -15492.891,
             "left": 270
           },
           "opacity": 1,
@@ -5476,71 +4923,71 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 18.18183,
+          "viewportProgress": 18.19522,
           "inView": false,
           "vars": {
-            "--fam": "0.660"
+            "--fam": "0.668"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
+        },
+        "findings-mark": {
+          "found": true,
+          "rect": {
+            "x": 270,
+            "y": -16671.344,
+            "width": 551.25,
+            "height": 273.094,
+            "top": -16671.344,
+            "right": 821.25,
+            "bottom": -16398.25,
+            "left": 270
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 14.97864,
+          "inView": false,
+          "vars": {
+            "--find": "1.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='findings-mark']"
         }
       }
     },
     {
       "progress": 0.9,
-      "requestedY": 24040,
-      "scrollY": 24040,
-      "nativeScrollY": 24040,
+      "requestedY": 24163,
+      "scrollY": 24163,
+      "nativeScrollY": 24163,
       "settled": true,
-      "settleMs": 38.4,
+      "settleMs": 382.8,
       "measurements": {
-        "root": {
-          "found": true,
-          "rect": {
-            "x": 0,
-            "y": -24040,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -24040,
-            "right": 1440,
-            "bottom": 3571.203,
-            "left": 0
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.87474,
-          "inView": true,
-          "vars": {
-            "--scroll-progress": "0.900"
-          },
-          "count": 1,
-          "selector": ":root"
-        },
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -23988.406,
+            "y": -24111,
             "width": 960,
-            "height": 1181.813,
-            "top": -23988.406,
+            "height": 1239,
+            "top": -24111,
             "right": 1200,
-            "bottom": -22806.594,
+            "bottom": -22872,
             "left": 240
           },
           "opacity": 1,
@@ -5560,7 +5007,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 11.95516,
+          "viewportProgress": 11.69285,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -5569,12 +5016,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -23944.406,
+            "y": -24067,
             "width": 900,
             "height": 211.188,
-            "top": -23944.406,
+            "top": -24067,
             "right": 1170,
-            "bottom": -23733.219,
+            "bottom": -23855.813,
             "left": 270
           },
           "opacity": 1,
@@ -5594,7 +5041,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 22.35843,
+          "viewportProgress": 22.46876,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -5603,12 +5050,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -22806.594,
+            "y": -22872,
             "width": 960,
             "height": 690.609,
-            "top": -22806.594,
+            "top": -22872,
             "right": 1200,
-            "bottom": -22115.984,
+            "bottom": -22181.391,
             "left": 240
           },
           "opacity": 1,
@@ -5628,7 +5075,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 14.9041,
+          "viewportProgress": 14.94522,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -5637,12 +5084,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -22632.953,
+            "y": -22698.359,
             "width": 900,
             "height": 40,
-            "top": -22632.953,
+            "top": -22698.359,
             "right": 1170,
-            "bottom": -22592.953,
+            "bottom": -22658.359,
             "left": 270
           },
           "opacity": 1,
@@ -5662,7 +5109,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 25.03506,
+          "viewportProgress": 25.10464,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -5674,12 +5121,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -22115.984,
+            "y": -22181.391,
             "width": 960,
             "height": 486.141,
-            "top": -22115.984,
+            "top": -22181.391,
             "right": 1200,
-            "bottom": -21629.844,
+            "bottom": -21695.25,
             "left": 240
           },
           "opacity": 1,
@@ -5699,58 +5146,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 16.60436,
+          "viewportProgress": 16.65155,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": -21974.938,
-            "width": 318.75,
-            "height": 118.375,
-            "top": -21974.938,
-            "right": 1170,
-            "bottom": -21856.563,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 22.46219,
-          "inView": false,
-          "vars": {
-            "--count": "1.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -21629.844,
+            "y": -21695.25,
             "width": 960,
-            "height": 733.016,
-            "top": -21629.844,
+            "height": 759.359,
+            "top": -21695.25,
             "right": 1200,
-            "bottom": -20896.828,
+            "bottom": -20935.891,
             "left": 240
           },
           "opacity": 1,
@@ -5770,7 +5180,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 13.79647,
+          "viewportProgress": 13.61685,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -5779,12 +5189,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": -21349.172,
+            "y": -21388.234,
             "width": 551.25,
             "height": 380.344,
-            "top": -21349.172,
+            "top": -21388.234,
             "right": 937.5,
-            "bottom": -20968.828,
+            "bottom": -21007.891,
             "left": 386.25
           },
           "opacity": 1,
@@ -5804,7 +5214,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 17.3775,
+          "viewportProgress": 17.40801,
           "inView": false,
           "vars": {
             "--t": "1.000"
@@ -5816,12 +5226,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -20896.828,
+            "y": -20935.891,
             "width": 960,
-            "height": 23830.234,
-            "top": -20896.828,
+            "height": 23882.922,
+            "top": -20935.891,
             "right": 1200,
-            "bottom": 2933.406,
+            "bottom": 2947.031,
             "left": 240
           },
           "opacity": 1,
@@ -5841,7 +5251,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.88138,
+          "viewportProgress": 0.88109,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -5850,12 +5260,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -20823.828,
+            "y": -20862.891,
             "width": 900,
             "height": 1,
-            "top": -20823.828,
+            "top": -20862.891,
             "right": 1170,
-            "bottom": -20822.828,
+            "bottom": -20861.891,
             "left": 270
           },
           "opacity": 1,
@@ -5875,71 +5285,71 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 24.1108,
+          "viewportProgress": 24.15415,
           "inView": false,
           "vars": {
-            "--fam": "0.887"
+            "--fam": "0.889"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
+        },
+        "findings-mark": {
+          "found": true,
+          "rect": {
+            "x": 270,
+            "y": -22040.344,
+            "width": 551.25,
+            "height": 273.094,
+            "top": -22040.344,
+            "right": 821.25,
+            "bottom": -21767.25,
+            "left": 270
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 19.55542,
+          "inView": false,
+          "vars": {
+            "--find": "1.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='findings-mark']"
         }
       }
     },
     {
       "progress": 1,
-      "requestedY": 26711,
-      "scrollY": 26711,
-      "nativeScrollY": 26711,
+      "requestedY": 26848,
+      "scrollY": 26848,
+      "nativeScrollY": 26848,
       "settled": true,
-      "settleMs": 40.3,
+      "settleMs": 324.5,
       "measurements": {
-        "root": {
-          "found": true,
-          "rect": {
-            "x": 0,
-            "y": -26711,
-            "width": 1440,
-            "height": 27611.203,
-            "top": -26711,
-            "right": 1440,
-            "bottom": 900.203,
-            "left": 0
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 0.96843,
-          "inView": true,
-          "vars": {
-            "--scroll-progress": "1.000"
-          },
-          "count": 1,
-          "selector": ":root"
-        },
         "hero-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -26659.406,
+            "y": -26796,
             "width": 960,
-            "height": 1181.813,
-            "top": -26659.406,
+            "height": 1239,
+            "top": -26796,
             "right": 1200,
-            "bottom": -25477.594,
+            "bottom": -25557,
             "left": 240
           },
           "opacity": 1,
@@ -5959,7 +5369,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 13.23818,
+          "viewportProgress": 12.94811,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='hero']"
@@ -5968,12 +5378,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -26615.406,
+            "y": -26752,
             "width": 900,
             "height": 211.188,
-            "top": -26615.406,
+            "top": -26752,
             "right": 1170,
-            "bottom": -26404.219,
+            "bottom": -26540.813,
             "left": 270
           },
           "opacity": 1,
@@ -5993,7 +5403,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 24.76216,
+          "viewportProgress": 24.88509,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -6002,12 +5412,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -25477.594,
+            "y": -25557,
             "width": 960,
             "height": 690.609,
-            "top": -25477.594,
+            "top": -25557,
             "right": 1200,
-            "bottom": -24786.984,
+            "bottom": -24866.391,
             "left": 240
           },
           "opacity": 1,
@@ -6027,7 +5437,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 16.58333,
+          "viewportProgress": 16.63325,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='method']"
@@ -6036,12 +5446,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -25303.953,
+            "y": -25383.359,
             "width": 900,
             "height": 40,
-            "top": -25303.953,
+            "top": -25383.359,
             "right": 1170,
-            "bottom": -25263.953,
+            "bottom": -25343.359,
             "left": 270
           },
           "opacity": 1,
@@ -6061,7 +5471,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 27.87655,
+          "viewportProgress": 27.96102,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -6073,12 +5483,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -24786.984,
+            "y": -24866.391,
             "width": 960,
             "height": 486.141,
-            "top": -24786.984,
+            "top": -24866.391,
             "right": 1200,
-            "bottom": -24300.844,
+            "bottom": -24380.25,
             "left": 240
           },
           "opacity": 1,
@@ -6098,58 +5508,21 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 18.5313,
+          "viewportProgress": 18.58858,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='findings']"
-        },
-        "findings-counter": {
-          "found": true,
-          "rect": {
-            "x": 851.25,
-            "y": -24645.938,
-            "width": 318.75,
-            "height": 118.375,
-            "top": -24645.938,
-            "right": 1170,
-            "bottom": -24527.563,
-            "left": 851.25
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": 25.085,
-          "inView": false,
-          "vars": {
-            "--count": "1.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-counter']"
         },
         "exhibit-section": {
           "found": true,
           "rect": {
             "x": 240,
-            "y": -24300.844,
+            "y": -24380.25,
             "width": 960,
-            "height": 733.016,
-            "top": -24300.844,
+            "height": 759.359,
+            "top": -24380.25,
             "right": 1200,
-            "bottom": -23567.828,
+            "bottom": -23620.891,
             "left": 240
           },
           "opacity": 1,
@@ -6169,7 +5542,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 15.43209,
+          "viewportProgress": 15.23495,
           "inView": false,
           "count": 1,
           "selector": "[data-scene='exhibit']"
@@ -6178,12 +5551,12 @@
           "found": true,
           "rect": {
             "x": 386.25,
-            "y": -24020.172,
+            "y": -24073.234,
             "width": 551.25,
             "height": 380.344,
-            "top": -24020.172,
+            "top": -24073.234,
             "right": 937.5,
-            "bottom": -23639.828,
+            "bottom": -23692.891,
             "left": 386.25
           },
           "opacity": 1,
@@ -6203,7 +5576,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 19.46366,
+          "viewportProgress": 19.5051,
           "inView": false,
           "vars": {
             "--t": "1.000"
@@ -6215,12 +5588,12 @@
           "found": true,
           "rect": {
             "x": 240,
-            "y": -23567.828,
+            "y": -23620.891,
             "width": 960,
-            "height": 23830.234,
-            "top": -23567.828,
+            "height": 23882.922,
+            "top": -23620.891,
             "right": 1200,
-            "bottom": 262.406,
+            "bottom": 262.031,
             "left": 240
           },
           "opacity": 1,
@@ -6240,7 +5613,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.98939,
+          "viewportProgress": 0.98943,
           "inView": true,
           "count": 1,
           "selector": "[data-scene='families']"
@@ -6249,12 +5622,12 @@
           "found": true,
           "rect": {
             "x": 270,
-            "y": -23494.828,
+            "y": -23547.891,
             "width": 900,
             "height": 1,
-            "top": -23494.828,
+            "top": -23547.891,
             "right": 1170,
-            "bottom": -23493.828,
+            "bottom": -23546.891,
             "left": 270
           },
           "opacity": 1,
@@ -6274,13 +5647,50 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 27.07528,
+          "viewportProgress": 27.13417,
           "inView": false,
           "vars": {
-            "--fam": "1.000"
+            "--fam": "0.998"
           },
           "count": 1,
           "selector": "[data-motion='families-rail']"
+        },
+        "findings-mark": {
+          "found": true,
+          "rect": {
+            "x": 270,
+            "y": -24725.344,
+            "width": 551.25,
+            "height": 273.094,
+            "top": -24725.344,
+            "right": 821.25,
+            "bottom": -24452.25,
+            "left": 270
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 21.84424,
+          "inView": false,
+          "vars": {
+            "--find": "1.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='findings-mark']"
         }
       }
     }

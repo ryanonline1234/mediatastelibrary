@@ -20,6 +20,9 @@ node bin/sync-spec.mjs "$URL"
 echo; echo "── rebuild so the page runs the measured ranges ─────"
 node build.mjs >/dev/null
 
+echo; echo "── share image ──────────────────────────────────────"
+node bin/og.mjs "$URL"
+
 echo; echo "── capture ──────────────────────────────────────────"
 node "$S/capture_motion.mjs" sample "$URL" --spec scroll-spec.json --out samples.json 2>&1 | grep -vE 'hint' | tail -3
 

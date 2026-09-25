@@ -33,6 +33,15 @@ const spec = (text, cite) => `<p class="mlabel"${cite ? ` title="${esc(cite)}"` 
 const SPEC_FILE = JSON.parse(fs.readFileSync(path.join(ROOT, 'scroll-spec.json'), 'utf8'))
 const SCENES = Object.fromEntries(SPEC_FILE.scenes.map(s => [s.id, [s.range.from, s.range.to]]))
 
+// The exhibit draws the ease the page RUNS. power3.out in GSAP is quartic.
+// One function feeds the drawn path here and (via motion-config) the runtime
+// readout, so the drawing, the label and the dot cannot disagree again.
+const EASE = t => 1 - Math.pow(1 - t, 4)
+const EX = { x0: 40, x1: 360, y0: 200, y1: 40 }
+const exPt = t => [EX.x0 + (EX.x1 - EX.x0) * t, EX.y0 - (EX.y0 - EX.y1) * EASE(t)]
+const exPath = 'M' + Array.from({ length: 65 }, (_, i) => exPt(i / 64).map(v => v.toFixed(2)).join(' ')).join(' L')
+const exMarks = [0, 0.25, 0.5, 0.75, 1].map(exPt)
+
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
 const n = x => Number(x).toLocaleString('en-US')
 
@@ -54,11 +63,12 @@ const SPEC = [
   ['Code priors', n(P.semantic_validation.citable_priors)],
 ]
 
+// Defects last, so the number the section is about lands last.
 const FINDINGS = [
   ['Entries reviewed', n(P.semantic_validation.entries_reviewed)],
-  ['Defects found', n(P.semantic_validation.findings)],
   ['Excluded constants', n(P.semantic_validation.excluded_ledger)],
   ['Citable priors', n(P.semantic_validation.citable_priors)],
+  ['Defects found', n(P.semantic_validation.findings)],
 ]
 
 const awardLabel = a => a
@@ -115,11 +125,22 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Taste Library — ${n(P.award_rows_studied)} Awwwards winners, read as a system</title>
-<meta name="description" content="An experiment: AI agents studied ${n(P.award_rows_studied)} Awwwards award rows from ${P.years_covered}, clustered them into ${n(P.taxonomy_families)} aesthetic families, verified every code constant, and compiled the result into a design skill.">
+<title>The Taste Library — ${n(P.award_rows_studied)} Awwwards award rows across ${n(P.cards.total)} sites, read as a system</title>
+<meta name="description" content="An experiment: AI agents studied ${n(P.award_rows_studied)} Awwwards award rows (${n(P.cards.total)} sites) from ${P.years_covered}, clustered them into ${n(P.taxonomy_families)} aesthetic families, verified every code constant, and compiled the result into a design skill.">
 <meta name="color-scheme" content="light">
 <meta property="og:title" content="The Taste Library">
-<meta property="og:description" content="${n(P.award_rows_studied)} Awwwards winners, ${n(P.taxonomy_families)} aesthetic families, ${n(P.semantic_validation.findings)} defects found in the process.">
+<meta property="og:description" content="${n(P.award_rows_studied)} Awwwards award rows across ${n(P.cards.total)} sites, ${n(P.taxonomy_families)} aesthetic families, ${n(P.semantic_validation.findings)} defects found in the process.">
+<meta property="og:url" content="https://mediatastelibrary.page/">
+<meta property="og:image" content="https://mediatastelibrary.page/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Taste Library: the ${n(P.award_rows_studied)} count over its own 8-column grid.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23F1F1F1'/%3E%3Crect x='4' y='4' width='8' height='8' fill='%23010101'/%3E%3C/svg%3E">
+<!-- Hide the load-animated hero until the motion layer starts, so it can't
+     flash its finished state and then reset. Never gates content: skipped
+     under reduced motion, and a 3s failsafe removes it if the CDN is slow. -->
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('mtl-wait');setTimeout(function(){document.documentElement.classList.remove('mtl-wait')},3000)}</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -131,12 +152,10 @@ const html = `<!doctype html>
 
 <header class="top">
   <p class="top__mark">Taste&nbsp;Library</p>
-  <div class="top__toggle">
-    <span class="lab" id="gridlab">Grid:</span>
-    <button class="pill" type="button" data-grid-toggle aria-pressed="false" aria-labelledby="gridlab">
-      <span class="pill__lz" aria-hidden="true"></span><span class="pill__tx">OFF</span>
-    </button>
-  </div>
+  <button class="top__toggle" type="button" data-grid-toggle aria-pressed="false" aria-label="Grid overlay">
+    <span class="lab" aria-hidden="true">Grid:</span>
+    <span class="pill" aria-hidden="true"><span class="pill__lz"></span><span class="pill__tx">OFF</span></span>
+  </button>
 </header>
 
 <main id="main">
@@ -145,7 +164,9 @@ const html = `<!doctype html>
   <p class="hero__count" data-motion="hero-count">
     <span data-count-to="${P.award_rows_studied}" data-count-pad="${n(P.award_rows_studied).length}">${n(P.award_rows_studied)}</span>
   </p>
-  ${spec(label.count, MOTION.count.cite)}
+  <p class="hero__unit">${n(P.award_rows_studied)} award rows · ${n(P.cards.total)} sites · ${esc(P.years_covered)}</p>
+  ${spec(label.count(P.award_rows_studied), MOTION.count.cite)}
+  ${spec(label.gridBuild, MOTION.gridBuild.cite)}
   <h1 class="hero__h" data-motion="hero-line">
     <span class="ln"><span class="ln__i s1">award-winning</span></span>
     <span class="ln"><span class="ln__i s2">websites, read</span></span>
@@ -185,41 +206,39 @@ const html = `<!doctype html>
 <section class="band band--find" id="findings" data-scene="findings" aria-labelledby="h-find">
   <h2 id="h-find">What the checking found</h2>
   <div class="find">
-    <div class="find__txt">
+    <div class="find__txt" data-motion="findings-mark">
       <p>The interesting part is not the taxonomy. It is that <b>the code we wrote about other people's code was the least reliable thing in the library</b>.</p>
       <p>A late pass re-read every extracted constant asking a question the earlier passes never had: does this value actually do anything? ${n(P.semantic_validation.findings)} defects came back. ${n(P.cards.dead)} of the sites studied are themselves already offline — the awarded design gone, even where the domain still answers.</p>
       <p>Nothing was deleted. Defects are annotated where they sit, because a record of what was wrong is worth more than a clean file that lies.</p>
     </div>
     <div class="find__side">
       <dl class="spec spec--find" data-motion="findings-counter">
-        ${FINDINGS.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd><span data-scrub-to="${String(v).replace(/,/g, '')}" data-count-pad="${String(v).length}">${esc(v)}</span></dd></div>`).join('\n        ')}
+        ${FINDINGS.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd><span data-count-once="${String(v).replace(/,/g, '')}" data-count-pad="${String(v).length}">${esc(v)}</span></dd></div>`).join('\n        ')}
       </dl>
-      ${spec(label.findings, MOTION.ease.scrubCite)}
+      ${spec(label.findings, MOTION.findings.cite)}
     </div>
   </div>
 </section>
 
 <section class="band band--exhibit" id="exhibit" data-scene="exhibit" aria-labelledby="h-exhibit">
   <h2 id="h-exhibit">The easing this page uses, drawn</h2>
-  <p class="band__note">Every reveal above rides this curve. The dot is linear in scroll; the curve is the shape — which is the whole difference between a scrubbed tween that was given an ease and one that was not.</p>
+  <p class="band__note">Every reveal on this page rides this curve. The dot moves across linearly as you scroll; its height is the ease — which is the whole difference between a scrubbed tween that was given an ease and one that was not.</p>
   ${spec(label.exhibit, MOTION.ease.cite)}
   <figure class="ex" data-motion="exhibit-dot">
-    <svg class="ex__svg" viewBox="0 0 400 240" focusable="false" role="img" aria-label="Cubic bezier curve for the power3.out easing used by this page, with its control handles drawn.">
-      <!-- power3.out ≈ cubic-bezier(0.215, 0.61, 0.355, 1) -->
+    <svg class="ex__svg" viewBox="0 0 400 240" focusable="false" role="img" aria-label="The ${esc(MOTION.ease.reveal)} easing curve this page runs, 1 minus (1 minus t) to the fourth, sampled at 65 points, with markers at t 0, 0.25, 0.5, 0.75 and 1.">
       <g class="ex__grid">
-        <path d="M40 200 H360 M40 200 V40" />
+        <path d="M${EX.x0} ${EX.y0} H${EX.x1} M${EX.x0} ${EX.y0} V${EX.y1}" />
+        <path class="ex__guide" d="M${EX.x0} ${EX.y1} H${EX.x1}" />
       </g>
-      <path class="ex__curve" d="M40 200 C 108.8 78.8 153.6 40 360 40" fill="none" />
-      <g class="ex__handles">
-        <path d="M40 200 L108.8 78.8" /><path d="M360 40 L153.6 40" />
-        <rect x="36" y="196" width="8" height="8" /><rect x="104.8" y="74.8" width="8" height="8" />
-        <rect x="149.6" y="36" width="8" height="8" /><rect x="356" y="36" width="8" height="8" />
+      <path class="ex__curve" d="${exPath}" fill="none" />
+      <g class="ex__marks">
+        ${exMarks.map(([x, y]) => `<rect x="${(x - 4).toFixed(2)}" y="${(y - 4).toFixed(2)}" width="8" height="8" />`).join('')}
       </g>
-      <circle class="ex__dot" r="5" cx="0" cy="0" />
+      <circle class="ex__dot" r="5" cx="${EX.x0}" cy="${EX.y0}" data-ex-dot />
     </svg>
     <figcaption class="ex__cap">
       <span>${esc(MOTION.ease.reveal)}</span>
-      <span>cubic-bezier(0.215, 0.61, 0.355, 1)</span>
+      <span>p = ${esc(MOTION.ease.revealFormula.replace('T', 't'))}</span>
       <span data-ex-readout>t 0.00 · p 0.00</span>
     </figcaption>
   </figure>
@@ -228,7 +247,7 @@ const html = `<!doctype html>
 <section class="band" id="families" data-scene="families" aria-labelledby="h-fams">
   <div class="rail" data-motion="families-rail" aria-hidden="true"><i></i></div>
   <h2 id="h-fams">${n(FAMS.length)} families</h2>
-  <p class="band__note">Ordered by member count. Each is a visual system, not a template — the <b>Not for</b> line is the part that keeps it honest.</p>
+  <p class="band__note">Ordered by member count. Each is a visual system, not a template — the <b>Not for</b> line is the part that keeps it honest. The skill carries ${n(P.skill_families)}; ${esc(P.families_without_sweep_cards.join(', '))} is a hand-picked anchor with no sweep cards, so ${n(FAMS.length)} appear here.</p>
   ${spec(label.section, MOTION.section.cite)}
   ${FAMS.map(familySection).join('\n')}
 </section>
@@ -250,7 +269,7 @@ const html = `<!doctype html>
 <!-- The constants the runtime animates from. Identical object to the one that
      printed the spec labels above, so a label cannot describe a value the
      page does not actually use. -->
-<script type="application/json" id="motion-config">${JSON.stringify({ ...MOTION, scenes: SCENES })}</script>
+<script type="application/json" id="motion-config">${JSON.stringify({ ...MOTION, scenes: SCENES, exhibit: EX })}</script>
 <script src="app.js" type="module"></script>
 </body>
 </html>

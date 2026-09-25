@@ -23,6 +23,10 @@ export const MOTION = {
 
   ease: {
     reveal: 'power3.out',
+    // GSAP power3 is the QUARTIC family: power3.out(t) = 1 - (1 - t)^4. The
+    // exhibit used to draw and read out 1-(1-t)^3 (power2.out) under this
+    // label — the one place on the page that says labels can't drift.
+    revealFormula: '1-(1-T)^4',
     cite: 'motion-priors §8 snappy/technical reveal ease',
     scrub: 'none',
     scrubCite: '§8 cross-cutting — scrubbed tweens are ALWAYS ease:"none"',
@@ -46,6 +50,7 @@ export const MOTION = {
     stagger: 0.06,
     duration: 0.4,
     ease: 'none',
+    hold: 0.5,   // DECISION: hold the built grid before handing the toggle back (it vanished at ~0.8s, unreadable)
     cite: 'DECISION — no prior carries a grid-construction timing. Linear because the grid is a measuring instrument drawing itself, not an object arriving.',
   },
 
@@ -56,8 +61,15 @@ export const MOTION = {
     cite: 'motion-priors §8 snappy — sections 0.5s, stagger amount 0.4 clamp (§6.4: budget the cascade, not the item)',
   },
 
+  findings: {
+    stagger: 0.1,
+    start: 'top 75%',
+    cite: 'The evidence numbers count ONCE when the section enters (was scrubbed, so they read 0 beside prose saying 1,118 while the section was readable). Duration and ease are the count prior above.',
+  },
+
   scrub: {
     value: 0.6,
+    enter: 0.85,  // a scene starts when its section's top reaches 85% of the viewport (DECISION; was 0%, so scenes played while leaving)
     cite: 'scroll-architecture §6.1 sticky stage — scrub 0.6',
   },
 
@@ -71,11 +83,12 @@ export const MOTION = {
 // Rendered next to the thing it drives. Short enough for a 10px chrome label.
 export const label = {
   heroLines: `LINES · Y110→0 · ${MOTION.heroLines.ease.toUpperCase()} · ${MOTION.heroLines.duration}S · STAGGER ${MOTION.heroLines.stagger}`,
-  count: `COUNT 0→131 · ${MOTION.count.ease.toUpperCase()} · ${MOTION.count.duration}S`,
-  gridBuild: `GRID BUILD · SCALEY · LINEAR · STAGGER ${MOTION.gridBuild.stagger}`,
+  // the target is data, so the label takes it as an argument (was a typed 131)
+  count: (to) => `COUNT 0→${to} · ${MOTION.count.ease.toUpperCase()} · ${MOTION.count.duration}S`,
+  gridBuild: `GRID BUILD · SCALEY · LINEAR · STAGGER ${MOTION.gridBuild.stagger} · HOLD ${MOTION.gridBuild.hold}S`,
   walk: `OFFSET-PATH · SCRUB ${MOTION.scrub.value} · EASE NONE`,
-  findings: `SCRUB ${MOTION.scrub.value} · EASE NONE · WIDTH-STABLE NUMERALS`,
-  exhibit: `SCRUB ${MOTION.scrub.value} · DOT LINEAR IN SCROLL · CURVE = ${MOTION.ease.reveal.toUpperCase()}`,
+  findings: `COUNT ON ENTER · ${MOTION.count.ease.toUpperCase()} · ${MOTION.count.duration}S · STAGGER ${MOTION.findings.stagger} · WIDTH-STABLE NUMERALS`,
+  exhibit: `SCRUB ${MOTION.scrub.value} · DOT LINEAR IN SCROLL · CURVE = ${MOTION.ease.reveal.toUpperCase()} = ${MOTION.ease.revealFormula}`,
   section: `SECTION · ${MOTION.section.ease.toUpperCase()} · ${MOTION.section.duration}S · STAGGER AMOUNT ${MOTION.section.staggerAmount}`,
   scroll: `LENIS LERP ${MOTION.scroll.lerp} · NO DURATION KEY`,
 }

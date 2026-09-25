@@ -18,6 +18,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { chromium } from '/Users/ryantseng/.claude/skills/awwwards-motion/scripts/node_modules/playwright/index.mjs'
+import { MOTION } from '../src/motion-config.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
 const URL = process.argv[2] || 'http://127.0.0.1:8811/'
@@ -28,17 +29,22 @@ const page = await (await browser.newContext({ viewport: { width: 1440, height: 
 await page.goto(URL, { waitUntil: 'networkidle' })
 await page.waitForTimeout(1500)   // let fonts settle and ScrollTrigger.refresh land
 
-const measured = await page.evaluate(() => {
+// A scene starts when its section's top reaches MOTION.scrub.enter of the
+// viewport (0.85 = entering from below), and ends when the NEXT section does.
+// v1 started scenes when the section top hit the TOP of the viewport, so every
+// scrubbed effect played while its section was leaving (measured: ~2% of the
+// scroll moved a visible scrubbed element). Tiling on entry keeps full
+// coverage with no overlap, and each effect now plays while it is readable.
+const measured = await page.evaluate((enter) => {
   const docH = document.documentElement.scrollHeight
   const max = docH - window.innerHeight
   const scenes = {}
   document.querySelectorAll('[data-scene]').forEach((s) => {
-    const r = s.getBoundingClientRect()
-    const top = r.top + window.scrollY
-    scenes[s.dataset.scene] = [top / max, (top + r.height) / max]
+    const top = s.getBoundingClientRect().top + window.scrollY
+    scenes[s.dataset.scene] = [Math.max(0, (top - enter * window.innerHeight) / max), null]
   })
   return { docH, max, scenes }
-})
+}, MOTION.scrub.enter)
 await browser.close()
 
 const spec = JSON.parse(fs.readFileSync(SPEC, 'utf8'))
@@ -52,7 +58,7 @@ const ordered = ids.map((id) => ({ id, r: measured.scenes[id] })).sort((a, b) =>
 let cursor = 0
 const ranges = {}
 ordered.forEach((s, i) => {
-  const to = i === ordered.length - 1 ? 1 : Math.min(1, Number(s.r[1].toFixed(4)))
+  const to = i === ordered.length - 1 ? 1 : Math.min(1, Number(ordered[i + 1].r[0].toFixed(4)))
   ranges[s.id] = [Number(cursor.toFixed(4)), to]
   cursor = to
 })

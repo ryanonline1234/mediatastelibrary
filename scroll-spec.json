@@ -2,7 +2,7 @@
   "$schema": "/Users/ryantseng/.claude/skills/awwwards-motion/scripts/scroll-spec.schema.json",
   "specVersion": 1,
   "name": "mediatastelibrary-home-desktop",
-  "description": "The page performs its own spec. Five scenes; every scrubbed effect is driven from one shared normalized progress var, mapped against THESE ranges — which are the sections' measured document positions, not estimates. The first draft used estimates and the implementation mapped against the same estimates, so the assertions passed while the exhibit fired two sections early. Feel row: snappy/technical. Lenis lerp 0.15, power3.out reveals, monospace counters.",
+  "description": "The page performs its own spec. Five scenes; every scrubbed effect is driven from one scrubbed proxy tween (scrub 0.6, real), mapped against THESE ranges — measured from the built page: a scene starts when its section enters at 85% of the viewport and ends when the next one does. The first draft used estimates and the implementation mapped against the same estimates, so the assertions passed while the exhibit fired two sections early. Feel row: snappy/technical. Lenis lerp 0.15, power3.out reveals, monospace counters.",
   "url": "http://localhost:8811/",
   "viewport": {
     "width": 1440,
@@ -12,7 +12,7 @@
     "reducedMotion": "no-preference"
   },
   "scroll": {
-    "totalHeightPx": 27611,
+    "totalHeightPx": 27748,
     "totalHeightTolerancePx": 400,
     "scrollAccuracyTolerancePx": 4,
     "sampleMatchWindow": 0.01,
@@ -26,28 +26,22 @@
   "settleMaxMs": 2500,
   "positions": [
     0,
-    0.0231,
-    0.0462,
-    0.0591,
-    0.072,
-    0.0811,
-    0.0902,
-    0.104,
-    0.1177,
+    0.0098,
+    0.0196,
+    0.0324,
+    0.0453,
+    0.0543,
+    0.0634,
+    0.0776,
+    0.0917,
     0.3,
     0.5,
-    0.5588,
+    0.5458,
     0.7,
     0.9,
     1
   ],
   "targets": {
-    "root": {
-      "selector": ":root",
-      "vars": [
-        "--scroll-progress"
-      ]
-    },
     "hero-section": "[data-scene='hero']",
     "hero-count": "[data-motion='hero-count']",
     "method-section": "[data-scene='method']",
@@ -58,12 +52,6 @@
       ]
     },
     "findings-section": "[data-scene='findings']",
-    "findings-counter": {
-      "selector": "[data-motion='findings-counter']",
-      "vars": [
-        "--count"
-      ]
-    },
     "exhibit-section": "[data-scene='exhibit']",
     "exhibit-dot": {
       "selector": "[data-motion='exhibit-dot']",
@@ -77,37 +65,14 @@
       "vars": [
         "--fam"
       ]
+    },
+    "findings-mark": {
+      "selector": "[data-motion='findings-mark']",
+      "vars": [
+        "--find"
+      ]
     }
   },
-  "globalExpectations": [
-    {
-      "id": "scroll-progress-var",
-      "target": "root",
-      "property": "cssVar",
-      "cssVarName": "--scroll-progress",
-      "tolerance": 0.03,
-      "monotonic": "increasing",
-      "keys": [
-        {
-          "progress": 0,
-          "value": 0,
-          "label": "top"
-        },
-        {
-          "progress": 0.5,
-          "value": 0.5,
-          "label": "midpoint"
-        },
-        {
-          "progress": 1,
-          "value": 1,
-          "label": "bottom"
-        }
-      ],
-      "easeRef": "linear by construction — raw normalized scroll, never eased",
-      "note": "The one shared value. If this is wrong every scene below is a symptom, not a cause. Read this row first."
-    }
-  ],
   "scenes": [
     {
       "id": "hero",
@@ -115,7 +80,7 @@
       "selector": "[data-scene='hero']",
       "range": {
         "from": 0,
-        "to": 0.0462
+        "to": 0.0196
       },
       "expectations": [
         {
@@ -147,8 +112,8 @@
       "label": "Method — the marker walks the offset-path",
       "selector": "[data-scene='method']",
       "range": {
-        "from": 0.0462,
-        "to": 0.072
+        "from": 0.0196,
+        "to": 0.0453
       },
       "expectations": [
         {
@@ -177,34 +142,34 @@
     },
     {
       "id": "findings",
-      "label": "Findings — the honest numbers count",
+      "label": "Findings — the key sentence is highlighted as it is read",
       "selector": "[data-scene='findings']",
       "range": {
-        "from": 0.072,
-        "to": 0.0902
+        "from": 0.0453,
+        "to": 0.0634
       },
       "expectations": [
         {
-          "id": "findings-count-progress",
-          "target": "findings-counter",
+          "id": "findings-highlight",
+          "target": "findings-mark",
           "property": "cssVar",
-          "cssVarName": "--count",
+          "cssVarName": "--find",
           "tolerance": 0.06,
           "monotonic": "increasing",
           "keys": [
             {
               "localProgress": 0,
               "value": 0,
-              "label": "zero"
+              "label": "unmarked"
             },
             {
               "localProgress": 1,
               "value": 1,
-              "label": "full figures"
+              "label": "fully marked"
             }
           ],
           "easeRef": "none — scrubbed",
-          "note": "Four stats scrub-count. Width-stable numerals: the pad-preserving formatter, NOT the toLocaleString version, which is a DO-NOT-COPY in the library (it collapses 7 chars to 1 on frame one)."
+          "note": "The four counters beside it count ONCE on enter (time-based, 2s power3.inOut, stagger 0.1), so they are not scroll-asserted; this highlight is the scrubbed effect."
         }
       ]
     },
@@ -213,8 +178,8 @@
       "label": "Bezier exhibit — the page draws its own easing",
       "selector": "[data-scene='exhibit']",
       "range": {
-        "from": 0.0902,
-        "to": 0.1177
+        "from": 0.0634,
+        "to": 0.0917
       },
       "expectations": [
         {
@@ -246,7 +211,7 @@
       "label": "Families — 43 sections, reading rail",
       "selector": "[data-scene='families']",
       "range": {
-        "from": 0.1177,
+        "from": 0.0917,
         "to": 1
       },
       "expectations": [

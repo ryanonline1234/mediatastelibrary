@@ -22,6 +22,10 @@
   --r1: #B2B2B2;
   --r2: #606060;
   --r3: #2C2C2C;
+  /* DECISION: #B2B2B2 as TEXT on #F1F1F1 is 1.9:1 and failed large-text
+     contrast; the lightest text step is #8A8A8A (3.06:1). #B2B2B2 stays for
+     rules, which is where the family uses it. */
+  --r1-text: #8A8A8A;
   --band: rgba(86, 86, 86, 0.1);
 
   --rule-structural: 0.8px;   /* lighter than ornamental, per the family */
@@ -42,13 +46,15 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { background: var(--paper); }
+html { background: var(--paper); scroll-padding-top: 64px; /* the sticky header must not cover a focused or linked target */ }
 
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font: var(--t-copy)/1.55 ui-sans-serif, "Helvetica Neue", Arial, system-ui, sans-serif;
+  /* Stopgap until the type pass: one named Swiss stack, so every browser on a
+     Mac draws the same face (ui-sans-serif resolved to SF Pro in some). */
+  font: var(--t-copy)/1.55 "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0;   /* ~0 at small sizes, per the family */
 }
@@ -101,74 +107,86 @@ img, svg { max-width: 100%; }
   position: sticky; top: 0; z-index: 2;
   background: var(--paper);
   border-bottom: var(--rule-structural) solid var(--r1);
-  padding-block: 12px;
+  padding-block: 5px;
   align-items: center;
 }
 .top__mark {
   grid-column: 1 / 4; margin: 0;
   font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.1em;
 }
+/* The whole "Grid:" control is the button — label and pill — at the family's
+   41px hit height (swiss-grid-lab#6). Negative line so it spans the last two
+   columns on both the 8- and 4-column grids. */
 .top__toggle {
-  grid-column: 7 / 9; margin: 0;
+  grid-column: -3 / -1; margin: 0; justify-self: end;
   display: flex; align-items: center; justify-content: flex-end; gap: 8px;
-  font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.1em;
+  min-block-size: 41px; padding: 0; background: none; border: 0; cursor: pointer; color: inherit;
+  font: inherit; font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.1em;
 }
 
 /* two-lozenge ON/OFF pill, from the family vocabulary */
 .pill {
   display: inline-flex; align-items: center; gap: 6px;
   background: none; border: var(--rule-ornamental) solid var(--ink);
-  padding: 3px 7px 3px 4px; cursor: pointer;
-  font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit;
+  padding: 3px 7px 3px 4px;
   /* stock easing only — the family ships zero cubic-bezier */
   transition: background-color 120ms ease-out;
 }
 .pill__lz { width: 16px; height: 8px; border: var(--rule-structural) solid var(--ink); display: inline-block; }
 .pill__lz::before { content: ""; display: block; width: 8px; height: 100%; background: var(--ink); }
-.pill[aria-pressed="true"] { background: var(--accent); }
-.pill[aria-pressed="true"] .pill__lz::before { margin-left: 8px; }
+.top__toggle[aria-pressed="true"] .pill { background: var(--accent); }
+.top__toggle[aria-pressed="true"] .pill__lz::before { margin-left: 8px; }
 /* hover and focus-visible together — the skill fails a review without it */
-.pill:hover, .pill:focus-visible { background: var(--accent); }
-.pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.top__toggle:hover .pill, .top__toggle:focus-visible .pill { background: var(--accent); }
+.top__toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
 /* ------------------------------------------------- motion spec labels */
 /* The page prints the constant beside the thing it drives. Generated from
    the same object the runtime animates from — see src/motion-config.mjs. */
 .mlabel {
-  grid-column: 1 / 9; margin: 0 0 14px;
+  grid-column: 1 / -1; margin: 0 0 14px;
   font-size: var(--t-chrome); color: var(--r2);
   text-transform: uppercase; letter-spacing: 0.09em;
   font-variant-numeric: tabular-nums;
-  border-left: var(--rule-ornamental) solid var(--accent);
-  padding-left: 8px;
+  /* (a 1px #FAFF00 left rule sat here: 1.04:1 on #F1F1F1, i.e. invisible) */
 }
 .mlabel::before { content: "▸ "; color: var(--r1); }
 
 /* -------------------------------------------------------------------- hero */
+/* Load guard: set by an inline head script only when motion will run, removed
+   by app.js once every start state is set (3s failsafe in the script). */
+.mtl-wait [data-count-to], .mtl-wait .hero__h .ln__i { visibility: hidden; }
+.hero__unit {
+  grid-column: 1 / -1; margin: 0 0 6px;
+  font-size: var(--t-chrome); color: var(--r2); text-transform: uppercase;
+  letter-spacing: 0.09em; font-variant-numeric: tabular-nums;
+}
 .hero { padding-block: clamp(40px, 9vw, 104px) clamp(32px, 6vw, 72px); }
 
 /* the 264px rank, finally used */
 .hero__count {
-  grid-column: 1 / 9; margin: 0 0 4px;
+  grid-column: 1 / -1; margin: 0 0 4px;
   font-size: var(--t-mega); line-height: 0.8; letter-spacing: -0.04em;
   font-weight: 700; font-variant-numeric: tabular-nums;
   will-change: transform;
 }
 
-/* Osmo masked-line structure: overflow:clip wrapper, inner rides yPercent. */
-.hero__h .ln { display: block; overflow: clip; }
+/* Osmo masked-line structure: overflow:clip wrapper, inner rides yPercent.
+   The padding/negative margin pair gives descenders room inside the mask
+   (the g of "award-winning" was clipped). */
+.hero__h .ln { display: block; overflow: clip; padding-bottom: 0.12em; margin-bottom: -0.12em; }
 .hero__h .ln__i { display: block; }
 
 /* The family: "86px headline steps #F1F1F1 -> #B2B2B2 -> #606060 -> #2C2C2C".
    Read literally that first stop is paper-on-paper; used here from the second
    stop so line one is legible. DECISION, and a deliberate deviation. */
 .hero__h {
-  grid-column: 1 / 9; margin: 0 0 clamp(24px, 4vw, 44px);
+  grid-column: 1 / -1; margin: 0 0 clamp(24px, 4vw, 44px);
   font-size: var(--t-display); line-height: 0.94; letter-spacing: -0.04em;
   font-weight: 700; text-wrap: balance;
 }
 .hero__h span { display: block; }
-.hero__h .s1 { color: var(--r1); }
+.hero__h .s1 { color: var(--r1-text); }
 .hero__h .s2 { color: var(--r2); }
 .hero__h .s3 { color: var(--r3); }
 .hero__h .s4 { color: var(--ink); }
@@ -188,18 +206,18 @@ img, svg { max-width: 100%; }
 .spec dt { color: var(--r2); margin: 0; }
 .spec dd { margin: 0; font-variant-numeric: tabular-nums; }
 
-.spec--hero { grid-column: 6 / 9; align-self: end; }
-.spec--find { grid-column: 6 / 9; }
+.spec--hero { grid-column: 6 / -1; align-self: end; }
+.spec--find { grid-column: 6 / -1; }
 
 /* ------------------------------------------------------------------- bands */
 .band { padding-block: clamp(36px, 6vw, 72px); border-top: var(--rule-ornamental) solid var(--ink); }
 .band > h2 {
-  grid-column: 1 / 9; margin: 0 0 20px;
+  grid-column: 1 / -1; margin: 0 0 20px;
   font-size: var(--t-rank); letter-spacing: -0.02em; font-weight: 700;
 }
 .band__note { grid-column: 1 / 6; margin: 0 0 28px; color: var(--r3); }
 
-.steps { grid-column: 1 / 9; margin: 0; padding: 0; list-style: none;
+.steps { grid-column: 1 / -1; margin: 0; padding: 0; list-style: none;
   display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0 var(--gutter); }
 .steps li { border-top: var(--rule-structural) solid var(--r1); padding: 10px 0 18px; }
 .steps b {
@@ -213,12 +231,18 @@ img, svg { max-width: 100%; }
 }
 .steps span { display: block; color: var(--r3); }
 
-.find { grid-column: 1 / 9; display: grid; grid-template-columns: subgrid; }
+.find { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; }
 .find__txt { grid-column: 1 / 6; }
 .find__txt p { margin: 0 0 12px; max-width: 58ch; }
-.find__side { grid-column: 6 / 9; }
+.find__side { grid-column: 6 / -1; }
 .find__side .mlabel { grid-column: auto; margin-top: 10px; }
-.band--find b { background: var(--accent); }
+/* The key finding is highlighted AS you read it: --find (0→1) scrubs the
+   highlighter across the sentence in reading order (box-decoration: slice
+   treats the wrapped lines as one strip). Default 1: no-JS and reduced motion
+   see it fully marked. */
+.band--find b {
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 0 / calc(var(--find, 1) * 100%) 100%;
+}
 .spec--find { grid-column: auto; }
 /* Scrubbed numerals must not reflow the row as digits appear. */
 [data-scrub-to], [data-count-to] { font-variant-numeric: tabular-nums; white-space: pre; }
@@ -227,7 +251,7 @@ img, svg { max-width: 100%; }
 /* swiss-grid-lab motion line, verbatim: "travel via offset-path not
    transform". The 8x8 square is the family's own marker, walking its rule. */
 .walk {
-  grid-column: 1 / 9; position: relative; height: 40px; margin-bottom: 8px;
+  grid-column: 1 / -1; position: relative; height: 40px; margin-bottom: 8px;
   --walk: 0;
 }
 .walk__svg { display: block; width: 100%; height: 40px; }
@@ -252,14 +276,13 @@ img, svg { max-width: 100%; }
 .ex__svg { display: block; width: 100%; height: auto; overflow: visible; }
 .ex__grid path { stroke: var(--r1); stroke-width: var(--rule-structural); fill: none; }
 .ex__curve { stroke: var(--ink); stroke-width: var(--rule-ornamental); }
-.ex__handles path { stroke: var(--r1); stroke-width: var(--rule-structural); }
-.ex__handles rect { fill: var(--paper); stroke: var(--ink); stroke-width: var(--rule-structural); }
-.ex__dot {
-  fill: var(--ink);
-  offset-path: path("M40 200 C 108.8 78.8 153.6 40 360 40");
-  offset-distance: calc(var(--t) * 100%);
-  will-change: offset-distance;
-}
+.ex__guide { stroke-dasharray: 2 4; }
+/* 8x8 square markers pin the curve at t = 0, .25, .5, .75, 1 (family vocabulary) */
+.ex__marks rect { fill: var(--paper); stroke: var(--ink); stroke-width: var(--rule-structural); }
+/* Positioned by app.js from the same quartic the curve was sampled from: x is
+   linear in scroll, y is the ease. (It used to ride the path by arc length,
+   which follows neither the time axis nor the ease.) */
+.ex__dot { fill: var(--ink); }
 .ex__cap {
   display: flex; gap: 18px; flex-wrap: wrap; margin-top: 12px;
   font-size: var(--t-chrome); color: var(--r2);
@@ -269,7 +292,7 @@ img, svg { max-width: 100%; }
 
 /* ------------------------------------------------------ families rail */
 .rail {
-  grid-column: 1 / 9; height: var(--rule-ornamental); background: var(--r1);
+  grid-column: 1 / -1; height: var(--rule-ornamental); background: var(--r1);
   margin-bottom: 22px; --fam: 0;
 }
 /* scaleX, NOT width. width is a layout property — animating it per frame
@@ -282,9 +305,9 @@ img, svg { max-width: 100%; }
 }
 
 /* ---------------------------------------------------------------- families */
-.fam { padding-block: 0 26px; max-width: none; margin: 0; padding-inline: 0; grid-column: 1 / 9;
+.fam { padding-block: 0 26px; max-width: none; margin: 0; padding-inline: 0; grid-column: 1 / -1;
   grid-template-columns: subgrid; }
-.fam__rule { grid-column: 1 / 9; height: var(--rule-structural); background: var(--r1); margin-bottom: 14px; }
+.fam__rule { grid-column: 1 / -1; height: var(--rule-structural); background: var(--r1); margin-bottom: 14px; }
 .fam__idx {
   grid-column: 1 / 2; margin: 0; font-size: var(--t-chrome);
   color: var(--r2); font-variant-numeric: tabular-nums; letter-spacing: 0.06em;
@@ -298,7 +321,7 @@ img, svg { max-width: 100%; }
    span stacked them and grew the page 8226px. The void the contact sheet
    showed was the left column being shorter than this 419px table, so the fix
    is to give the left column the member list (below), not to unspan this. */
-.spec--fam { grid-column: 6 / 9; grid-row: 2 / 7; align-self: start; }
+.spec--fam { grid-column: 6 / -1; grid-row: 2 / 7; align-self: start; }
 .fam__sw { grid-column: 2 / 6; margin: 0 0 12px; display: flex; gap: 4px; }
 .sw { width: 14px; height: 14px; background: var(--sw); border: var(--rule-structural) solid rgba(1,1,1,.18); }
 .fam__use { grid-column: 2 / 6; margin: 0 0 14px; font-size: var(--t-chrome); line-height: 1.7; }
@@ -332,7 +355,7 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .end__links a { color: var(--ink); text-decoration: none; border-bottom: var(--rule-ornamental) solid var(--ink);
   font-size: var(--t-chrome); text-transform: uppercase; letter-spacing: 0.1em; }
 .end__links a:hover, .end__links a:focus-visible { background: var(--accent); }
-.end__gen { font-size: var(--t-chrome); color: var(--r1); text-transform: uppercase; letter-spacing: 0.06em; }
+.end__gen { font-size: var(--t-chrome); color: var(--r2); text-transform: uppercase; letter-spacing: 0.06em; }
 
 /* ------------------------------------------------------------- small print */
 @media (max-width: 720px) {
@@ -340,7 +363,8 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
   .grid-overlay > i:nth-child(n+5) { display: none; }
   .hero__h, .hero__lede, .spec--hero, .band > h2, .band__note,
   .steps, .find, .find__txt, .spec--find, .end, .fam,
-  .fam__name, .fam__thesis, .fam__use, .fam__sw, .fam__mem, .fam__rule { grid-column: 1 / 5; }
+  .fam__name, .fam__thesis, .fam__use, .fam__sw, .fam__mem, .fam__rule,
+  .find__side, .band--exhibit .ex { grid-column: 1 / -1; }
   .spec--fam { grid-column: 1 / 5; grid-row: auto; }
   .fam__idx { grid-column: 1 / 5; }
   .m { grid-template-columns: 1fr auto; row-gap: 2px; }

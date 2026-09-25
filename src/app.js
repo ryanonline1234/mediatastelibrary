@@ -75,13 +75,13 @@ async function boot() {
     // library loads. Zero rAF ticks after this point — which the harness
     // checks, because a guard that freezes the picture while the loop keeps
     // running is the single most common defect in the validated corpus.
-    document.documentElement.style.setProperty('--scroll-progress', '1')
     document.querySelectorAll('[data-motion]').forEach(el => {
       el.style.setProperty('--walk', '1')
-      el.style.setProperty('--count', '1')
+      el.style.setProperty('--find', '1')
       el.style.setProperty('--t', '1')
       el.style.setProperty('--fam', '1')
     })
+    placeExhibitDot(1)
     document.querySelectorAll('[data-count-to]').forEach(el => {
       el.textContent = fmt(Number(el.dataset.countTo), el.dataset.countPad)
     })
@@ -99,6 +99,7 @@ async function boot() {
   } catch (e) {
     // CDN unreachable → the static page stands. Say so rather than failing silent.
     document.body.setAttribute('data-motion-state', 'unavailable')
+    document.documentElement.classList.remove('mtl-wait')
     return
   }
 
@@ -126,8 +127,6 @@ async function boot() {
   // nothing ever assigned. Assign it, and mean it.)
   window.lenis = lenis
 
-  const root = document.documentElement
-
   /* -------------------------------------------------- global progress -- */
   // §2.2 shared-progress pattern, and the ONLY scrub trigger on the page.
   //
@@ -151,63 +150,63 @@ async function boot() {
   const heroCount = document.querySelector('[data-motion="hero-count"]')
   const walkEl = document.querySelector('[data-motion="method-walk"]')
   const countEl = document.querySelector('[data-motion="findings-counter"]')
+  const markEl = document.querySelector('[data-motion="findings-mark"]')
   const dotEl = document.querySelector('[data-motion="exhibit-dot"]')
   const railEl = document.querySelector('[data-motion="families-rail"]')
-  const readout = document.querySelector('[data-ex-readout]')
-  const scrubNums = [...document.querySelectorAll('[data-scrub-to]')].map((el) => ({
-    el, to: Number(el.dataset.scrubTo), pad: el.dataset.countPad, last: null,
-  }))
 
   // Text writes force layout, so only write when the RENDERED string actually
   // changes — a 4-digit counter changes maybe 40 times over a scene, not once
   // per frame.
-  let lastP = -1, lastReadout = ''
+  let lastP = -1
   const setV = (el, name, v, prev) => {
     if (!el) return prev
     const s = v.toFixed(3)
     if (s !== prev) el.style.setProperty(name, s)
     return s
   }
-  let pWalk, pCount, pT, pFam, pProg
+  let pWalk, pFind, pT, pFam
 
+  // No :root write here. A per-frame custom property on <html> invalidated
+  // style for the whole document — measured at ~94% of style-recalc time
+  // during scroll — and nothing read it.
   function applyAll(p) {
     if (p === lastP) return
     lastP = p
-
-    pProg = setV(root, '--scroll-progress', p, pProg)
 
     const hero = local(p, 'hero')
     if (heroCount) heroCount.style.transform = `translateY(${(-60 * hero).toFixed(2)}px)`
 
     pWalk = setV(walkEl, '--walk', local(p, 'method'), pWalk)
 
-    const f = local(p, 'findings')
-    pCount = setV(countEl, '--count', f, pCount)
-    for (const n of scrubNums) {
-      const s = fmt(n.to * f, n.pad)
-      if (s !== n.last) { n.el.textContent = s; n.last = s }
-    }
+    pFind = setV(markEl, '--find', local(p, 'findings'), pFind)
 
     const t = local(p, 'exhibit')
     pT = setV(dotEl, '--t', t, pT)
-    if (readout) {
-      const s = `t ${t.toFixed(2)} · p ${easeOutCubicish(t).toFixed(2)}`
-      if (s !== lastReadout) { readout.textContent = s; lastReadout = s }
-    }
+    placeExhibitDot(t)
 
     pFam = setV(railEl, '--fam', local(p, 'families'), pFam)
   }
 
-  ScrollTrigger.create({
-    start: 0,
-    end: () => ScrollTrigger.maxScroll(window),
-    scrub: M.scrub.value,
-    onUpdate: (self) => applyAll(self.progress),
-    onRefresh: (self) => applyAll(self.progress),
+  // scrub smooths an ANIMATION's playhead, not a trigger's raw progress —
+  // with no tween attached (the old code), 'scrub 0.6' did nothing, which is
+  // the exact dead-constant class the library's stage 4 catalogued. A proxy
+  // tween makes the printed SCRUB 0.6 real.
+  const proxy = { p: 0 }
+  gsap.to(proxy, {
+    p: 1,
+    ease: 'none',
+    scrollTrigger: {
+      start: 0,
+      end: () => ScrollTrigger.maxScroll(window),
+      scrub: M.scrub.value,
+      invalidateOnRefresh: true,
+      onRefresh: () => applyAll(proxy.p),
+    },
+    onUpdate: () => applyAll(proxy.p),
   })
   // Paint the initial state immediately. onUpdate does not fire at rest, so
-  // without this --scroll-progress is unset at p=0 and reads as an empty
-  // string rather than 0 — which the harness flagged, correctly.
+  // without this every scene var is unset at p=0 and reads as an empty string
+  // rather than 0 — which the harness flagged, correctly.
   applyAll(0)
 
   /* --------------------------------------------------- load: the grid -- */
@@ -222,11 +221,15 @@ async function boot() {
       duration: M.gridBuild.duration,
       stagger: M.gridBuild.stagger,
       ease: M.gridBuild.ease,
-      onComplete: () => { if (!wasOn) window.__mtlGrid(false) },
+      // hold the built grid long enough to read, then hand the toggle back
+      onComplete: () => { if (!wasOn) gsap.delayedCall(M.gridBuild.hold, () => window.__mtlGrid(false)) },
     })
   }
 
   /* --------------------------------------------------- load: hero -- */
+  // gsap.from has now set every start state, so the guard can drop without
+  // the finished hero flashing first.
+  requestAnimationFrame(() => document.documentElement.classList.remove('mtl-wait'))
   const heroLines = document.querySelectorAll('[data-motion="hero-line"] .ln__i')
   if (heroLines.length) {
     gsap.from(heroLines, {
@@ -254,6 +257,30 @@ async function boot() {
     })
   })
 
+  /* ------------------------------------ findings: count once, in view -- */
+  // Was scrubbed across a range that began when the heading hit the top of
+  // the viewport, so the four figures read 0 while the section was readable.
+  // Now: zeroed below the fold, counted once as the section enters, and left
+  // on the true value.
+  const once = [...document.querySelectorAll('[data-count-once]')]
+  if (once.length && countEl) {
+    const pad = (el) => el.dataset.countPad
+    once.forEach((el) => { el.textContent = fmt(0, pad(el)) })
+    ScrollTrigger.create({
+      trigger: countEl,
+      start: M.findings.start,
+      once: true,
+      onEnter: () => once.forEach((el, i) => {
+        const o = { v: 0 }, to = Number(el.dataset.countOnce)
+        gsap.to(o, {
+          v: to, duration: M.count.duration, ease: M.count.ease, delay: i * M.findings.stagger,
+          onUpdate: () => { el.textContent = fmt(o.v, pad(el)) },
+          onComplete: () => { el.textContent = fmt(to, pad(el)) },
+        })
+      }),
+    })
+  }
+
   /* ------------------------------------- per-section reveals, once -- */
   // ScrollTrigger.batch, NOT one trigger per family.
   //
@@ -274,9 +301,14 @@ async function boot() {
     batchMax: 3,
     onEnter: (batch) => {
       batch.forEach((section) => {
+        // The 4s failsafe below may already have shown this section; animating
+        // it again made it blink out and back in.
+        if (!section.hasAttribute('data-rv')) return
         section.removeAttribute('data-rv')
         gsap.from(section.querySelectorAll(BITS), {
-          autoAlpha: 0,
+          // opacity, not autoAlpha: autoAlpha sets visibility:hidden, which
+          // dropped keyboard focus to <body> when a link inside was tabbed to.
+          opacity: 0,
           y: 12,
           duration: M.section.duration,
           ease: M.section.ease,
@@ -311,9 +343,23 @@ async function boot() {
 
 }
 
-// The exhibit's readout prints where the curve is, not where the dot is —
-// that difference is the whole point of the exhibit. power3.out ≈ 1-(1-t)^3.
-function easeOutCubicish(t) { return 1 - Math.pow(1 - t, 3) }
+// The exhibit: the dot moves linearly in x (scroll) and its height is the
+// page's reveal ease, the same quartic build.mjs sampled to draw the curve.
+// GSAP power3.out(t) = 1 - (1 - t)^4.
+function revealEase(t) { return 1 - Math.pow(1 - t, 4) }
+let exLast = ''
+function placeExhibitDot(t) {
+  const dot = document.querySelector('[data-ex-dot]')
+  const readout = document.querySelector('[data-ex-readout]')
+  const g = M && M.exhibit
+  if (!dot || !g) return
+  const dx = (g.x1 - g.x0) * t, dy = -(g.y0 - g.y1) * revealEase(t)
+  const key = `${dx.toFixed(1)} ${dy.toFixed(1)}`
+  if (key === exLast) return
+  exLast = key
+  dot.setAttribute('transform', `translate(${key})`)
+  if (readout) readout.textContent = `t ${t.toFixed(2)} · p ${revealEase(t).toFixed(2)}`
+}
 
 // Width-stable integer formatter. Pads with figure-space so the glyph count
 // never changes mid-tween — the whole point of the technique.
