@@ -1,26 +1,45 @@
 {
- "generated": "2026-08-14",
  "generated_by": "taste-library/bin/build-provenance.mjs",
  "source": "https://github.com/ryanonline1234/taste-library (private)",
+ "years_covered": "2018-2026",
+ "coverage": "Awwwards Sites of the Year (2018-2026) and Sites of the Month through SOTM-2026-06; 5 known in-scope winners are not carded",
+ "known_uncarded_winners": [
+  "Lama Lama (SOTM-2026-07)",
+  "ERA Residence (SOTM-2026-08)",
+  "Scout Motors (SOTY-2025 E-commerce of the Year)",
+  "Mr. Pops (SOTY-2022 E-commerce)",
+  "Vulkan Bureau (SOTY-2018 Mobile)"
+ ],
  "award_rows_studied": 131,
  "sites_of_the_year_winners": 8,
  "soty_sibling_category_winners": 21,
  "sites_of_the_month": 102,
- "years_covered": "2018-2026",
  "cards": {
   "total": 117,
-  "alive": 80,
-  "dead": 37,
+  "alive": 76,
+  "dead": 41,
   "lite_depth": 27
  },
+ "dead_rate_by_award_era": {
+  "2018-2019": "70%",
+  "2020-2022": "40%",
+  "2023+": "11%"
+ },
  "dead_rate_note": "live_status tracks the AWARDED design; rebuilds count as dead",
- "aesthetic_families": 43,
+ "taxonomy_families": 43,
+ "families_without_sweep_cards": [
+  "kinetic-type-studio"
+ ],
+ "skill_families": 44,
  "deep_dive_references": 45,
  "code_tier_families": 44,
  "semantic_validation": {
-  "entries_reviewed": 2266,
-  "findings": 1112,
-  "citable_priors": 160,
-  "excluded_ledger": 996
+  "entries_reviewed": 2289,
+  "findings": 1118,
+  "library_authored_blocks_reviewed": 461,
+  "annotations_in_code_tier": 2229,
+  "prior_candidates": 873,
+  "excluded_ledger": 1096,
+  "citable_priors": 730
  }
 }

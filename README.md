@@ -1,12 +1,14 @@
 # mediatastelibrary.page
 
 Source for **The Taste Library** — a page about an experiment: AI agents swept
-every Awwwards Site of the Year and Site of the Month winner from 2018–2026,
+the Awwwards Site of the Year and Site of the Month winners from 2018–2026,
 opened each one, wrote down what it actually does, clustered the results into
 aesthetic families, verified the extracted code constants, and compiled the
 whole thing into a design skill.
 
-The site is a static page. `node build.mjs` generates `dist/` from `data/`.
+The site is a static page. `node build.mjs` generates `dist/` from `data/`;
+`node bin/sync-data.mjs` refreshes `data/` from `~/taste-library` first (run it
+after every skill rebuild there).
 
 ## Every number is generated
 

@@ -91,7 +91,7 @@ marked DECISION. Implementation copies these values, not its memory.
 
 ### 3. Findings band: the honest numbers
 - The four finding stats scrub-count as the band crosses the viewport
-  center. The 1,112-defects figure lands last, and its spec label reads the
+  center. The defects figure lands last, and its spec label reads the
   library's own verdict format: `provenance: verbatim · effect: effective`.
 - The accent-highlighted phrases get the clip-inset reveal chased by an
   accent bar (CITED: acid-scrawl-telemetry, the half-overlap bar-chase

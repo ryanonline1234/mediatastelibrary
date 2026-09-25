@@ -1,20 +1,20 @@
 [
  {
   "name": "matte-toybox-playworld",
-  "thesis": "A full-bleed matte 3D toy world you inhabit \u2014 walk, drive, fly at eye level instead of scrolling \u2014 hue and silhouette separating objects, candy grading per zone, UI shrunk to a white sticker layer.",
+  "thesis": "A full-bleed matte 3D toy world you inhabit — walk, drive, fly at eye level instead of scrolling — hue and silhouette separating objects, candy grading per zone, UI shrunk to a white sticker layer.",
   "temperature": "Candy over cool fog #93a2bf: sky #81BFBC, ink #363a3c, accent #66BDE6, #f3c258 #c25959",
-  "type": "Physical type: extruded 3D letters in-scene; MSDF in-world copy (UglyDave-Alternates dialogue, REM-Medium nametags)",
-  "motion": "Mostly linear \u2014 'none' 69x vs inOut1 11x; physics carries the feel. House eases: inOut1 cubic-bezier(.5,0,.1,1), inOut2 (.56,0,0,1).",
-  "for": "Brief is 'a world exists and you should want to be in it' with a real loop \u2014 play, explore, role-play \u2014 to justify traversal replacing scroll.",
-  "not_for": "Pastiche when content needs SEO/a11y/deep-links/conversion (empty-DOM trade); a game-skin with no playable loop; multiplayer as decoration; real content on a walkable sphere \u2014 no URLs, no back button.",
-  "axis": "Traversal agency vs surviving chrome: Bruno's physics car, zero chrome \u2192 Messenger in-canvas UI \u2192 Kode diorama-menu \u2192 Oat watch-and-choose",
+  "type": "Physical type: extruded 3D letters in-scene; MSDF in-world copy (UglyDave-Alternates dialogue, REM-Medium nametags) — free substitutes: UglyDave-Alternates → Patrick Hand",
+  "motion": "Mostly linear — ease 'none' (linear) 69x vs inOut1 11x; physics carries the feel. House eases: inOut1 cubic-bezier(.5,0,.1,1), inOut2 cubic-bezier(.56,0,0,1).",
+  "for": "Brief is 'a world exists and you should want to be in it' with a real loop — play, explore, role-play — to justify traversal replacing scroll.",
+  "not_for": "Pastiche when content needs SEO/a11y/deep-links/conversion (empty-DOM trade); a game-skin with no playable loop; multiplayer as decoration; real content on a walkable sphere — no URLs, no back button.",
+  "axis": "Traversal agency vs surviving chrome: Bruno's physics car, zero chrome → Messenger in-canvas UI → Kode diorama-menu → Oat watch-and-choose",
   "vocabulary": [
-   "Full-bleed matte 3D toy world you inhabit, not scroll \u2014 walk/drive/tilt; one continuous place (tiny planet: radius ~40 units vs 2-unit character, horizon visibly curves).",
-   "Every surface untextured, colored from one tiny nearest-filtered palette atlas; two tones per hue \u2014 base + derived shadow (HSV value halved, hue \u22120.02); separation by hue and silhouette, never lighting.",
+   "Full-bleed matte 3D toy world you inhabit, not scroll — walk/drive/tilt; one continuous place (tiny planet: radius ~40 units vs 2-unit character, horizon visibly curves).",
+   "Every surface untextured, colored from one tiny nearest-filtered palette atlas; two tones per hue — base + derived shadow (HSV value halved, hue −0.02); separation by hue and silhouette, never lighting.",
    "Specular is a label, not a light: 0.075 on non-up world faces, 0.0 on characters.",
-   "Grading wholesale per zone \u2014 exponential fog #93a2bf\u2192#9ea7b8 + a 3D LUT \u2014 travel reads as a temperature change.",
+   "Grading wholesale per zone — exponential fog #93a2bf→#9ea7b8 + a 3D LUT — travel reads as a temperature change.",
    "Inked branch: one dark-slate line, never black (#363a3c), post-process edge detect broken up by noise so it reads hand-drawn.",
-   "White sticker UI, no chassis \u2014 bubbles, cards, discs, arrows; no bar/tray/backdrop. Wayfinding diegetic: quest arrows, NPCs, road paint, a map you hold. Type physical \u2014 extruded 3D letters in-scene (MSDF)."
+   "White sticker UI, no chassis — bubbles, cards, discs, arrows; no bar/tray/backdrop. Wayfinding diegetic: quest arrows, NPCs, road paint, a map you hold. Type physical — extruded 3D letters in-scene (MSDF)."
   ],
   "members": [
    {
@@ -197,18 +197,18 @@
  {
   "name": "blackbox-keyline-hud",
   "thesis": "No document: a black full-viewport canvas stage where emissive content is the only light, the interface is hairline HUD keylines in tracked micro-caps, and navigation is camera travel.",
-  "temperature": "Cold void: near-black #0e1215 \u2192 blue-green #192a2c edge haze; white .3-alpha chrome",
-  "type": "NB Architekt: tracked micro-caps 9\u201315px / 0.1em for all labels + one 110px hairline display cut; nothing mid-size",
-  "motion": "Camera travel on a waypoint rail, 700ms easeOutCubic into panels; framerate-normalized chase lerps; permanent slow drift; easeOutSine/Cubic",
-  "for": "Briefs where a live WebGL scene IS the content \u2014 immersive showcases, museums, launch experiences; low density, exploration over findability.",
+  "temperature": "Cold void: near-black #0e1215 → blue-green #192a2c edge haze; white .3-alpha chrome",
+  "type": "NB Architekt: tracked micro-caps 9–15px / 0.1em for all labels + one 110px hairline display cut; nothing mid-size — free substitutes: NB Architekt → Space Grotesk",
+  "motion": "Camera travel on a waypoint rail, 700ms easeOutCubic into panels; framerate-normalized chase lerps; permanent slow drift; easeOutSine and easeOutCubic",
+  "for": "Briefs where a live WebGL scene IS the content — immersive showcases, museums, launch experiences; low density, exploration over findability.",
   "not_for": "Pastiche when: HUD chrome over a flat page with no live scene beneath; content-dense or must-be-found material; stock three.js+GSAP rebuilds; hardcoded chrome white (must be per-scene tokens).",
-  "axis": "How much chroma the void allows and what emits: Orano's lone chartreuse pointer \u2192 Xbox's five-hue legend \u2192 V6/V4's dichroic-neon spectra.",
+  "axis": "How much chroma the void allows and what emits: Orano's lone chartreuse pointer → Xbox's five-hue legend → V6/V4's dichroic-neon spectra.",
   "vocabulary": [
-   "Black canvas stage, no document \u2014 emissive content is the only light; materials start vec4(vec3(0.0),1.0) and only add.",
-   "Ground near-black #0e1215 warming to cold blue-green #192a2c at the frame edges \u2014 inverse vignette: additive corner haze, hue drifting on a noise field; wet and unlit.",
-   "Chrome is hairline HUD only: unfilled rects, capsule pills, 2px solid rgba(255,255,255,0.3) rest / .5 hover / .8 focus, width animating 200\u2192330px over 0.8s cubic-bezier(.17,.4,.02,.99); <</>>-steppers, tick rails, [ MOBILE SYNC ] brackets.",
-   "NB Architekt micro-caps 9\u201315px / 0.1em vs one 110px Light display word; nothing mid-size.",
-   "DOM chrome composites as light \u2014 mix-blend-mode: color-dodge / plus-lighter, normal under 768px.",
+   "Black canvas stage, no document — emissive content is the only light; materials start vec4(vec3(0.0),1.0) and only add.",
+   "Ground near-black #0e1215 warming to cold blue-green #192a2c at the frame edges — inverse vignette: additive corner haze, hue drifting on a noise field; wet and unlit.",
+   "Chrome is hairline HUD only: unfilled rects, capsule pills, 2px solid rgba(255,255,255,0.3) rest / .5 hover / .8 focus, width animating 200→330px over 0.8s cubic-bezier(.17,.4,.02,.99); <</>>-steppers, tick rails, [ MOBILE SYNC ] brackets.",
+   "NB Architekt micro-caps 9–15px / 0.1em vs one 110px Light display word; nothing mid-size.",
+   "DOM chrome composites as light — mix-blend-mode: color-dodge / plus-lighter, normal under 768px.",
    "Bloom at luminosityThreshold 0 composited as pow(bloom,1.8) so blacks never fog; chromatic aberration keyed to scroll delta, clean at rest; one focal object per frame."
   ],
   "members": [
@@ -308,7 +308,7 @@
    },
    {
     "slug": "orano",
-    "site": "Orano \u2014 Innovation Experience",
+    "site": "Orano — Innovation Experience",
     "live": "https://www.orano.group/experience/innovation/en",
     "awwwards": "https://www.awwwards.com/sites/orano",
     "award": [
@@ -373,18 +373,18 @@
   "name": "overscale-grotesk-whiteout",
   "thesis": "One grotesk at billboard scale cropped by the viewport, a bimodal scale (display vs ~11px caps), achromatic two-value chrome; photography supplies 100% of the color; sections invert whole grounds.",
   "temperature": "Cold neutral #1c1c1c/#fff to warm bone #fcf6f4/#100f0f (ali-ali); always one pair",
-  "type": "One grotesk sitewide (Neue Montreal variable), 12.5rem/200px lh 1, edge-cropped; heading ramp hollow 3.125\u21928.75rem",
-  "motion": "Per-line mask wipes, asymmetric easing \u2014 enter 1.5s cubic-bezier(.075,.82,.165,1), exit .6s harder; survives with zero animation library",
-  "for": "Sites fronting commissioned campaign photography or a photographed physical object \u2014 foundries, studios, portfolios \u2014 where imagery earns 200px of empty ground.",
+  "type": "One grotesk sitewide (Neue Montreal variable), 12.5rem/200px lh 1, edge-cropped; heading ramp hollow 3.125→8.75rem — free substitutes: Neue Montreal → Inter Tight",
+  "motion": "Per-line mask wipes, asymmetric easing — enter 1.5s cubic-bezier(.075,.82,.165,1), exit .6s cubic-bezier(.65,.05,.36,1); survives with zero animation library",
+  "for": "Sites fronting commissioned campaign photography or a photographed physical object — foundries, studios, portfolios — where imagery earns 200px of empty ground.",
   "not_for": "With stock photography it reads unstyled, not restrained; in product-is-colour categories (food, fashion, cosmetics, paint); anywhere a mid-scale subhead, second face, or accent hue is needed.",
-  "axis": "Motion substrate deforming the billboard word, 2018\u21922024: WebGL displacement \u2192 marquee \u2192 GSAP scroll \u2192 pure CSS transitions (pangram)",
+  "axis": "Motion substrate deforming the billboard word, 2018→2024: WebGL displacement → marquee → GSAP scroll → pure CSS transitions (pangram)",
   "vocabulary": [
-   "Achromatic chrome \u2014 one ground, one ink, nothing between \u2014 one grotesk at billboard scale (12.5rem/200px, line-height 1) over a full-bleed photograph desaturated to zero chroma: 100% of the color is photographed, not painted.",
-   "Display type is cropped by the frame \u2014 it breaks where the viewport makes it break; the cut letterform is the composition.",
+   "Achromatic chrome — one ground, one ink, nothing between — one grotesk at billboard scale (12.5rem/200px, line-height 1) over a full-bleed photograph desaturated to zero chroma: 100% of the color is photographed, not painted.",
+   "Display type is cropped by the frame — it breaks where the viewport makes it break; the cut letterform is the composition.",
    "Bimodal scale: display vs ~11px-to-1rem caption register; the heading ramp's middle is never declared (3.125rem jumps straight to 8.75rem).",
-   "Chrome exiled to the four corners, hairline-thin \u2014 wordmark, nav words, a numeral, a 'Scroll' cue, outlined pagination dots \u2014 in currentColor and 1px rules over the image, never filled panels.",
+   "Chrome exiled to the four corners, hairline-thin — wordmark, nav words, a numeral, a 'Scroll' cue, outlined pagination dots — in currentColor and 1px rules over the image, never filled panels.",
    "Sections invert whole grounds, not dividers: one token pair flips ink and ground; borrowed currentColor follows for free.",
-   "Hero set as a specimen string, not a sentence \u2014 at 200px the letterforms are the subject."
+   "Hero set as a specimen string, not a sentence — at 200px the letterforms are the subject."
   ],
   "members": [
    {
@@ -430,7 +430,7 @@
      "SOTY-2021-ecommerce-winner",
      "SOTD-2021-11-11"
     ],
-    "status": "alive",
+    "status": "dead",
     "palette": [
      "#ffffff",
      "#1c1c1c",
@@ -503,17 +503,17 @@
   "thesis": "Silkscreen-poster logic on scroll: flat saturated colour fields with viewport-scale grotesk in black/white ink, hierarchy from scale and ink discipline alone, and whole-ground hard swaps per section.",
   "temperature": "Flat and printed; #ffa441 #16a147 #4596ff #ff6359 fields, pure #000/#fff ink",
   "type": "Three voices, no mid-sizes: ultra-black grotesk at viewport scale, serif for all prose, mono 500 uppercase at 12/14px.",
-  "motion": "Hard ground cut at the seam, never crossfade; chrome re-inks over .2s; sticky scale-scrub squashes the poster (ease:none); Lenis .6",
+  "motion": "Hard ground cut at the seam, never crossfade; chrome re-inks over .2s; sticky scale-scrub squashes the poster (ease:none); Lenis duration .6s",
   "for": "Editorial, cultural and archive subjects; brand or exhibition sites with real long-form to carry; clients who own strong flat artwork or photography.",
   "not_for": "Poster screens without a reading system say nothing; bracket-mono labels alone = generic 2023 tic; synthetic squiggles = decoration; one shadow/gradient/rounded card collapses the conceit.",
-  "axis": "Ink chroma: achromatic + one red emblem \u2192 near-black/white on colour \u2192 second pigment (brown on amber) \u2192 40%-opacity tinted mono",
+  "axis": "Ink chroma: achromatic + one red emblem → near-black/white on colour → second pigment (brown on amber) → 40%-opacity tinted mono",
   "vocabulary": [
-   "One flat, unmodulated, saturated colour field owns each section edge to edge; the next section arrives in a different colour \u2014 a hard swap at the seam, never a crossfade, never a gradient.",
+   "One flat, unmodulated, saturated colour field owns each section edge to edge; the next section arrives in a different colour — a hard swap at the seam, never a crossfade, never a gradient.",
    "Ink disciplined to near-black or white only; hierarchy comes from scale and how much empty field is left around the words.",
    "Headline is grotesk at viewport scale, bleeding the full measure, often SVG outlines (preserveAspectRatio=\"none\") so it squashes to any box.",
-   "Deadpan apparatus of uppercase mono micro-type \u2014 bracketed labels, counters, index numbers \u2014 pinned to corners at exactly 12/14px.",
+   "Deadpan apparatus of uppercase mono micro-type — bracketed labels, counters, index numbers — pinned to corners at exactly 12/14px.",
    "Photography and drawings arrive as sharp-edged rectangles or as mix-blend-mode:multiply ink laid straight onto the colour: no shadow, no rounding, no card.",
-   "Optional tooth: 512px noise tile at 0.04 alpha over every ground (Getty) \u2014 or none (Frans Hals); nothing else permitted."
+   "Optional tooth: 512px noise tile at 0.04 alpha over every ground (Getty) — or none (Frans Hals); nothing else permitted."
   ],
   "members": [
    {
@@ -616,20 +616,20 @@
  },
  {
   "name": "prop-occluded-grotesk",
-  "thesis": "One flat single-hue field, an oversized uppercase grotesk headline, and matte-or-glassy 3D props layered with the type in depth \u2014 all depth from occlusion, never drop shadows \u2014 plus quiet pill/micro chrome.",
-  "temperature": "Cool pales to hot flats: periwinkle #c9d2e7 / WebGL 0xCAD6EC, vermilion #ff5043, #dbdad9\u2192#fff",
-  "type": "Oversized uppercase grotesk (Neue Machina) on a hard pixel ladder 30\u2013120px, line-height:100%, irregular word gaps",
-  "motion": "Two-speed: idle 3s sine.inOut yoyo (\u00b120\u00b0 yaw/\u00b18\u00b0 pitch) under a lagging 2s pointer tween, riding a scroll-scrubbed camera walk (2090vh track)",
-  "for": "Agency/studio statements, single-product launches, brand monuments \u2014 one idea fills a viewport and the brief has more 3D budget than copy.",
-  "not_for": "Neue Machina + chrome plus-blocks lifted whole is 2022\u201323 period costume; flat props on a flat field without material value-work; 2090vh tracks on pages with copy to read; hidden-h1 depth hacks.",
-  "axis": "Prop meaning: pure volume (noomo) \u2192 gesture/desk objects \u2192 literal SKUs (silencio); hue and occlusion direction vary independently.",
+  "thesis": "One flat single-hue field, an oversized uppercase grotesk headline, and matte-or-glassy 3D props layered with the type in depth — all depth from occlusion, never drop shadows — plus quiet pill/micro chrome.",
+  "temperature": "Cool pales to hot flats: periwinkle #c9d2e7 / WebGL 0xCAD6EC, vermilion #ff5043, #dbdad9→#fff",
+  "type": "Oversized uppercase grotesk (Neue Machina) on a hard pixel ladder 30–120px, line-height:100%, irregular word gaps — free substitutes: Neue Machina → Unbounded",
+  "motion": "Two-speed: idle sine.inOut yoyo, 3s each way (6s period) (±20° yaw/±8° pitch) under a lagging 2s pointer tween, riding a scroll-scrubbed camera walk (2090vh track)",
+  "for": "Agency/studio statements, single-product launches, brand monuments — one idea fills a viewport and the brief has more 3D budget than copy.",
+  "not_for": "Neue Machina + chrome plus-blocks lifted whole is 2022–23 period costume; flat props on a flat field without material value-work; 2090vh tracks on pages with copy to read; hidden-h1 depth hacks.",
+  "axis": "Prop meaning: pure volume (noomo) → gesture/desk objects → literal SKUs (silencio); hue and occlusion direction vary independently.",
   "vocabulary": [
-   "One flat single-hue field edge to edge \u2014 no gradient, photo, card or gutter: periwinkle #c9d2e7 with WebGL clear 0xCAD6EC matched to it; vermilion #ff5043; #dbdad9\u2192#fff wash.",
-   "Oversized uppercase grotesk on a hard pixel ladder \u2014 Neue Machina 30/54/60/90/100/120px, line-height:100%, broken by irregular word gaps, not even tracking.",
-   "3D props layered WITH the type in depth: one glyph passes in front of a block, the next slides behind and blurs \u2014 depth from occlusion, never drop shadows.",
+   "One flat single-hue field edge to edge — no gradient, photo, card or gutter: periwinkle #c9d2e7 with WebGL clear 0xCAD6EC matched to it; vermilion #ff5043; #dbdad9→#fff wash.",
+   "Oversized uppercase grotesk on a hard pixel ladder — Neue Machina 30/54/60/90/100/120px, line-height:100%, broken by irregular word gaps, not even tracking.",
+   "3D props layered WITH the type in depth: one glyph passes in front of a block, the next slides behind and blurs — depth from occlusion, never drop shadows.",
    "Prop material supplies the value range the hue refuses, baked not lit: transmission:1/clearcoat:1 glass off an equirect JPEG, matcap PNGs with zero lights.",
    "Whisper chrome: 12px uppercase nav at .02em in a 96px header over blur(15px) tint, 100px-radius pills, 16px/130% paragraph 128px off the bottom.",
-   "Two-speed drift: 3s sine.inOut yoyo \u00b120\u00b0 yaw/\u00b18\u00b0 pitch under a 2s pointer tween, on a scroll-scrubbed camera; one idea per viewport."
+   "Two-speed drift: 3s sine.inOut yoyo ±20° yaw/±8° pitch under a 2s pointer tween, on a scroll-scrubbed camera; one idea per viewport."
   ],
   "members": [
    {
@@ -641,7 +641,7 @@
      "SOTY-2023-userschoice-winner",
      "SOTD-2023-09-21"
     ],
-    "status": "alive",
+    "status": "dead",
     "palette": [
      "#DEE7F1",
      "#c9d2e7",
@@ -732,19 +732,19 @@
  },
  {
   "name": "flat-mascot-carnival",
-  "thesis": "Flat-vector characters at high density own the page \u2014 cropped by the viewport \u2014 over saturated grounds that hard-swap wholesale per section; chrome whispers in pills, motion bounces, never fades.",
+  "thesis": "Flat-vector characters at high density own the page — cropped by the viewport — over saturated grounds that hard-swap wholesale per section; chrome whispers in pills, motion bounces, never fades.",
   "temperature": "Loud warm childlike: marigold #ffd372, sky #88c1f8, bubblegum #f6b1cf on cream #fef7e6",
-  "type": "One grotesk (Neue Montreal, 3 weights); UI clamp(15px,1.31vw,25px) vs display clamp(80px,23.2vw,446px) \u2014 ~18:1 scale",
-  "motion": "Elastic-only: 27 elastic eases in 11 tunings, zero back/bounce/fades; hovers squash 1.05 then settle 0.96 in 300ms; scrubs ease:\"none\"",
-  "for": "Playful consumer brands with bespoke character art \u2014 beverage/snack e-com, mascot-led products, sites where a detour delights rather than blocks a task.",
-  "not_for": "Without a real illustrator \u2014 stock or generated flat-vector collapses into 2019 corporate-Alegria; on text-heavy layouts (copy stays off color fields); on task-completion flows like checkout.",
-  "axis": "Where the carnival is authored, how ground is addressed: data-attr/token CSS repaints + vector engines \u2192 one field + physics \u2192 raster plates.",
+  "type": "One grotesk (Neue Montreal, 3 weights); UI clamp(15px,1.31vw,25px) vs display clamp(80px,23.2vw,446px) — ~18:1 scale — free substitutes: Neue Montreal → Hanken Grotesk",
+  "motion": "Elastic-only: 27 elastic eases in 11 tuning strings (GSAP clamps amplitude to >=1, so fewer distinct curves), zero back/bounce/fades; hovers squash to scale 1.05 then 0.96, back to 1, in 300ms; scrubs ease:\"none\"",
+  "for": "Playful consumer brands with bespoke character art — beverage/snack e-com, mascot-led products, sites where a detour delights rather than blocks a task.",
+  "not_for": "Without a real illustrator — stock or generated flat-vector collapses into 2019 corporate-Alegria; on text-heavy layouts (copy stays off color fields); on task-completion flows like checkout.",
+  "axis": "Where the carnival is authored, how ground is addressed: data-attr/token CSS repaints + vector engines → one field + physics → raster plates.",
   "vocabulary": [
-   "Flat-vector characters own the page \u2014 noodle-limbed, dot-eyed, unoutlined fills, hairline black only for faces/hair/confetti \u2014 sized 16\u201360vw (130vw on phones), cropped by the frame: a parade pushing past the window.",
-   "Ground hard-swaps wholesale per state \u2014 color IS the navigation: marigold #ffd372 / sky #88c1f8 / bubblegum #f6b1cf / green #acd084 on cream #fef7e6, ink #0e0e0e.",
-   "Literally flat \u2014 zero gradients, blend modes, or box-shadows; only depth: one solid offset under the CTA, which presses into its own shadow.",
+   "Flat-vector characters own the page — noodle-limbed, dot-eyed, unoutlined fills, hairline black only for faces/hair/confetti — sized 16–60vw (130vw on phones), cropped by the frame: a parade pushing past the window.",
+   "Ground hard-swaps wholesale per state — color IS the navigation: marigold #ffd372 / sky #88c1f8 / bubblegum #f6b1cf / green #acd084 on cream #fef7e6, ink #0e0e0e.",
+   "Literally flat — zero gradients, blend modes, or box-shadows; only depth: one solid offset under the CTA, which presses into its own shadow.",
    "Chrome whispers: white pills at radius 2em and 100%, one grotesk (Neue Montreal), ~18:1 type scale.",
-   "Motion bounces, never fades \u2014 elastic.out in many tunings (letter pops, confetti settles, hero drop); zero back/bounce; scrubs ease:\"none\".",
+   "Motion bounces, never fades — elastic.out in many tunings (letter pops, confetti settles, hero drop); zero back/bounce; scrubs ease:\"none\".",
    "A realistic object sits in the flat world only as a sprite (the HDR-lit can), never a background; running text quarantined to cream."
   ],
   "members": [
@@ -826,23 +826,23 @@
   "name": "flavor-swap-colorfield",
   "thesis": "The palette IS the navigation: one flat unmodulated color field bound to the current SKU by data attributes, so switching repaints ground and ink together; one focal object on the field, chrome tiny.",
   "temperature": "Candy, warm-biased: mint #8bd3b9, salmon #f7987c, marigold #ffb700, magenta #e34f7f",
-  "type": "One viewport-scale word drawn through the object: Sailec Regular white, 9.9vw/13.125vw, line-height:1, no kicker",
-  "motion": "Swap repaints all slots in one beat: 1s cubic-bezier(.645,.045,.355,1) + RGBA-lerped canvas clear, restart-from-cur; 2-phase quint nav bar",
-  "for": "Multi-SKU/flavor product lines with a small hand-picked palette set and budget for one commissioned hero object per SKU \u2014 beverages, produce, records.",
-  "not_for": "Without commissioned per-SKU objects \u2014 stock 3D/flat vector collapses it to startup-blob; past a small hand-picked theme set (generated palettes = arbitrary rainbow); multilingual single-script face.",
+  "type": "One viewport-scale word drawn through the object: Sailec Regular white, 9.9vw/13.125vw, line-height:1, no kicker — free substitutes: Sailec → DM Sans",
+  "motion": "Swap repaints all slots in one beat: 1s cubic-bezier(.645,.045,.355,1) + RGBA-lerped canvas clear, restart from current colour; 2-phase quint nav underline (0.5s quint.in, then 0.5s quint.out)",
+  "for": "Multi-SKU/flavor product lines with a small hand-picked palette set and budget for one commissioned hero object per SKU — beverages, produce, records.",
+  "not_for": "Without commissioned per-SKU objects — stock 3D/flat vector collapses it to startup-blob; past a small hand-picked theme set (generated palettes = arbitrary rainbow); multilingual single-script face.",
   "axis": "How many palettes and who authors them: 4-10 hand-picked themes buy a commissioned object each; jams' 91 CMS pairs degrade to photos+blend-mode",
   "vocabulary": [
-   "One flat, unmodulated color field per SKU carries the screen \u2014 no gradient, no noise, no photography; the ground IS the brand while that flavor is selected (10 named [data-th] themes).",
-   "A single commissioned focal object at billboard scale, colorless or hue-locked so it survives every repaint \u2014 faceted low-poly fruit as alpha-PNG on a baked contact shadow.",
+   "One flat, unmodulated color field per SKU carries the screen — no gradient, no noise, no photography; the ground IS the brand while that flavor is selected (10 named [data-th] themes).",
+   "A single commissioned focal object at billboard scale, colorless or hue-locked so it survives every repaint — faceted low-poly fruit as alpha-PNG on a baked contact shadow.",
    "One display word drawn through the object at viewport scale: Sailec Regular, white, 9.9vw/13.125vw, line-height 1, no kicker.",
-   "Switching SKU repaints ground, panel, button, ink and shadow in one gesture \u2014 the palette is the navigation model, no other transition.",
+   "Switching SKU repaints ground, panel, button, ink and shadow in one gesture — the palette is the navigation model, no other transition.",
    "Chrome pinned tiny to the four edges: logotype, hamburger, language rail, low product row whose underline is an autoplay countdown track.",
    "Shadows tinted to each theme's own darkness at constant .15 alpha; interiors invert to #fafafa, hue surviving as a band, card or display ink."
   ],
   "members": [
    {
     "slug": "b-d-r-jams",
-    "site": "B/D\u00ae JAMS",
+    "site": "B/D® JAMS",
     "live": "http://jams.basicagency.com",
     "awwwards": "https://www.awwwards.com/sites/b-d-r-jams",
     "award": [
@@ -925,20 +925,20 @@
  },
  {
   "name": "gilded-monument-walkthrough",
-  "thesis": "A warm monochrome luxury 3D world \u2014 plaster arches, ochre salons, gilded skies \u2014 traversed by a chaptered camera; large display serif set into the scene, hairline chrome in one gold/sand tint.",
+  "thesis": "A warm monochrome luxury 3D world — plaster arches, ochre salons, gilded skies — traversed by a chaptered camera; large display serif set into the scene, hairline chrome in one gold/sand tint.",
   "temperature": "Warm: apricot-over-sandstone, ember-red interiors; chrome #f6cea0 on rgba(37,37,37,.1)",
   "type": "Flared high-contrast display serif at hero scale, capped min(20vh), over one line of small sans; no scrim, tracking 0",
-  "motion": "Chaptered camera: travel, hard stop where the UI speaks, travel; free look at stops recentres at min(|playSpeed|,1); seams hidden in 2s fog",
-  "for": "Heritage, museum, maison and single-hero-product stories \u2014 anywhere the object or place is the argument and you can afford real 3D art direction.",
+  "motion": "Chaptered camera: travel, hard stop where the UI speaks, travel; free look at stops recentres by min(|playSpeed|,1) per frame (playSpeed = clip seconds advanced per frame); seams hidden in fog ramped over each clip's first/last 2s",
+  "for": "Heritage, museum, maison and single-hero-product stories — anywhere the object or place is the argument and you can afford real 3D art direction.",
   "not_for": "Needs an authored world: over stock or generic renders the display serif reads as perfume ad and the family collapses into beige emptiness. No ENTER gate or auto-advance without narration worth it.",
-  "axis": "How much camera the viewer gets, chrome growing with it \u2014 scroll-playhead (bare) \u2192 clicked chapter graph (nav) \u2192 free flight (HUD)",
+  "axis": "How much camera the viewer gets, chrome growing with it — scroll-playhead (bare) → clicked chapter graph (nav) → free flight (HUD)",
   "vocabulary": [
-   "One full-bleed photoreal render of a warm monochrome world \u2014 plaster arches, ochre salons, gilded sky \u2014 no header, no panel, no scrim, no dark mode; the UI has no colour of its own.",
+   "One full-bleed photoreal render of a warm monochrome world — plaster arches, ochre salons, gilded sky — no header, no panel, no scrim, no dark mode; the UI has no colour of its own.",
    "Type sits in the scene, not a layout: flared high-contrast display serif at hero scale, capped min(20vh), over one line of small sans microcopy.",
    "Chrome is ornament: hairline circles and conic-masked arcs (1.1px retina, 1.5px at 1x) in one tint sampled from the imagery (#f6cea0), parked in the corners, one filled accent.",
-   "Ordinal chapter counting does the wayfinding \u2014 a filigree annulus carrying the numeral, spinning only while active.",
-   "Scroll is a playhead: chapter stops in a remap table with dwell gaps \u2014 the camera parks, the interface speaks; seams hidden in 2s neutral-grey fog.",
-   "Gated entry, ambient audio bed with a mute \u2014 a place you enter, not a page. One ease everywhere: cubic-bezier(.2,0,0,1)."
+   "Ordinal chapter counting does the wayfinding — a filigree annulus carrying the numeral, spinning only while active.",
+   "Scroll is a playhead: chapter stops in a remap table with dwell gaps — the camera parks, the interface speaks; seams hidden in 2s neutral-grey fog.",
+   "Gated entry, ambient audio bed with a mute — a place you enter, not a page. One ease everywhere: cubic-bezier(.2,0,0,1)."
   ],
   "members": [
    {
@@ -1025,18 +1025,18 @@
  },
  {
   "name": "keyart-dossier-mono",
-  "thesis": "Full-bleed commissioned media annotated by a filing apparatus in mono/tracked caps \u2014 bracketed indices, sigla, hairline rules, terminal boots \u2014 reads as classified records or a broadcast monitor.",
+  "thesis": "Full-bleed commissioned media annotated by a filing apparatus in mono/tracked caps — bracketed indices, sigla, hairline rules, terminal boots — reads as classified records or a broadcast monitor.",
   "temperature": "Achromatic ink chrome; warmth from imagery. #000/#fff, #080808, hsla(39,67%,94%,.6)",
-  "type": "Tight-not-tracked mono captions (.8\u20131.1rem, -.02em, slashed zero) vs heavy grotesque scaling to -.095em at 50.4rem",
-  "motion": "Instrumentation, not flourish: char decode-in w/ lagging glitch tail, index squares blink hard square wave, irregular 150\u2013400ms boot ticker",
-  "for": "Campaign/key-art sites over commissioned, graded media you control \u2014 game/film/entertainment launches, studio reels \u2014 where UI should read as annotation.",
-  "not_for": "Over media you didn't commission/grade \u2014 stock/generative fill gives the crosshairs nothing to survey. Borrowed diegesis; mono past caption size or letter-spaced; boot replayed to returning users.",
+  "type": "Tight-not-tracked mono captions (.8–1.1rem, -.02em, slashed zero) vs heavy grotesque scaling to -.095em at 50.4rem",
+  "motion": "Instrumentation, not flourish: char decode-in w/ lagging glitch tail, index squares blink hard square wave, irregular 150–400ms boot ticker",
+  "for": "Campaign/key-art sites over commissioned, graded media you control — game/film/entertainment launches, studio reels — where UI should read as annotation.",
+  "not_for": "Over media you didn't commission/grade — stock/generative fill gives the crosshairs nothing to survey. Borrowed diegesis; mono past caption size or letter-spaced; boot replayed to returning users.",
   "axis": "Legibility over media: theme-token swap (kpr) / mix-blend difference (inkfish) / one ink on graded-dark (dark) / corner-pin + veil (MoH)",
   "vocabulary": [
-   "- Full-bleed commissioned media \u2014 painted key art, graded stills, campaign footage \u2014 carries all color and emotion; interface sits on it as annotation, never beside it.",
+   "- Full-bleed commissioned media — painted key art, graded stills, campaign footage — carries all color and emotion; interface sits on it as annotation, never beside it.",
    "- Filing apparatus in small uppercase caps: bracketed indices/sigla ([01], 01K/02P/03R, DOSSIER 02), two-line captions, hairline survey rules, corner ticks, a persistent inset frame.",
-   "- Mono tight, not tracked: -.02em, slashed zero, caption-real .8\u20131.1rem; airy only because a monospace's fitting is wide.",
-   "- Display pole: heavy grotesque set enormous, tightening as it grows (-.02em body \u2192 -.095em at 50.4rem).",
+   "- Mono tight, not tracked: -.02em, slashed zero, caption-real .8–1.1rem; airy only because a monospace's fitting is wide.",
+   "- Display pole: heavy grotesque set enormous, tightening as it grows (-.02em body → -.095em at 50.4rem).",
    "- One registration glyph, never an underline: a .5rem filled square (outlined twin inactive), tick-runs to an arrow, a bracket reticle.",
    "- Chrome achromatic/ink-only; warmth from inside the imagery. Motion as instrumentation: char decode-in with lagging glitch tail, squares blink a hard square wave, black-on-white terminal boot."
   ],
@@ -1125,16 +1125,16 @@
   "thesis": "One hero product as cinema: a full-bleed stage whose camera is scrubbed by scroll (sticky canvas, prerendered video, chaptered stops), one sparse claim per viewport floating over the image.",
   "temperature": "Cold achromatic near-black; #0071e3 pill, #2997ff hover, #111 escapes, #fff flips",
   "type": "Huge tight-tracked grotesk claims (150px/.66667 leading, -.015em, desktop-only) over mono micro-caps spec register",
-  "motion": "Scroll = playhead; chaptered, half the runway frozen hold; image lerps ease .2 (port to damp()), copy raw ease 1; \u00b140px counter-drift",
+  "motion": "Scroll = playhead; chaptered, half the runway frozen hold; image lerps ease .2 per frame (port to damp(), λ≈13.4/s), copy ease 1 (no smoothing); +40px→-40px counter-drift per 100vh block",
   "for": "Exactly one object worth this much attention, and the brief is \"make people believe it is beautifully made.\"",
-  "not_for": "Achromatic void + system blue on non-Apple products = instant Apple pastiche; underweight sequences stutter and read cheap; content-heavy pages can't hold the void \u2014 even Apple escaped to white.",
-  "axis": "Where the camera is computed \u2014 baked JPEGs \u2192 scrubbed alpha video \u2192 cued prerenders \u2192 live three.js; copy chrome varies inversely",
+  "not_for": "Achromatic void + system blue on non-Apple products = instant Apple pastiche; underweight sequences stutter and read cheap; content-heavy pages can't hold the void — even Apple escaped to white.",
+  "axis": "Where the camera is computed — baked JPEGs → scrubbed alpha video → cued prerenders → live three.js; copy chrome varies inversely",
   "vocabulary": [
-   "One hero object shot as cinema: a full-bleed render/footage stage that holds still while the page scrolls past \u2014 a position:sticky frame in a tall runway (41-viewport column or 150vh chapters), every copy block over it background-color:transparent.",
-   "Exactly one claim per viewport \u2014 a two-word headline, a spec line \u2014 floating in front of the render, bare or on a smoked translucent panel, cropping the product, not clearing it.",
-   "Subject lit, not placed: same value as the ground, only specular rim and reflection \u2014 carved out of the void.",
+   "One hero object shot as cinema: a full-bleed render/footage stage that holds still while the page scrolls past — a position:sticky frame in a tall runway (41-viewport column or 150vh chapters), every copy block over it background-color:transparent.",
+   "Exactly one claim per viewport — a two-word headline, a spec line — floating in front of the render, bare or on a smoked translucent panel, cropping the product, not clearing it.",
+   "Subject lit, not placed: same value as the ground, only specular rim and reflection — carved out of the void.",
    "Huge tight-tracked grotesk claims; small letterspaced mono/micro-caps for specs and chapter ticks; ground near-total darkness or one graded field.",
-   "Chroma rationed to affordances \u2014 one saturated pill, one accent \u2014 so color reads 'clickable.'",
+   "Chroma rationed to affordances — one saturated pill, one accent — so color reads 'clickable.'",
    "Motion chaptered, not continuous: the sequence advances, then stops dead and holds a pose while copy plays over it."
   ],
   "members": [
@@ -1147,7 +1147,7 @@
      "SOTM-2020-01",
      "SOTD-2020-01-27"
     ],
-    "status": "alive",
+    "status": "dead",
     "palette": [
      "#000000",
      "#ffffff",
@@ -1214,19 +1214,19 @@
   "name": "void-specimen-stage",
   "thesis": "One sculptural centerpiece in a single-hue near-black void, reframed per section instead of relaid; corner micro-chrome, a two-island type scale, accents only on controls, drag/drift motion.",
   "temperature": "Voids: #121212, #2d4034 sage, #030303, indigo (#0d1224 sampled); accent #4456d8 fills.",
-  "type": "Two islands, no ramp: display serif (Monarch, GT Sectra) at 1.8rem+, sans capped 1.6rem; split by typeface, not size.",
-  "motion": "Drag, not scroll (221:30); 5:1 elliptical scrubber, 70% commit snap; #121212 veil .666s linear; durations on a sixths ladder (381/505).",
-  "for": "Campaigns, institutions, monuments, single-artifact launches \u2014 one object worth staring at, copy short enough to live in corners.",
+  "type": "Two islands, no ramp: display serif (Monarch, GT Sectra) at 1.8rem+, sans capped 1.6rem; split by typeface, not size. — free substitutes: Monarch → Fraunces; GT Sectra → Cormorant",
+  "motion": "Drag, not scroll (221 'drag' vs 30 'wheel' mentions in the bundle); 5:1 elliptical scrubber, release at 70%+ of travel commits, below snaps back; #121212 veil .666s linear; durations on a 1/6-second duration ladder (381 of 505 CSS durations).",
+  "for": "Campaigns, institutions, monuments, single-artifact launches — one object worth staring at, copy short enough to live in corners.",
   "not_for": "No photoreal specimen = just a dark theme; flat vector on #121212 isn't this. Drag-only nav without an ordered journey tanks usability; the display face past a few lines becomes a costume.",
-  "axis": "What drives the reframe \u2014 discrete states+veil, 1-D scrub, scroll+ground flip, overlay dim \u2014 and whether a light counter-state exists.",
+  "axis": "What drives the reframe — discrete states+veil, 1-D scrub, scroll+ground flip, overlay dim — and whether a light counter-state exists.",
   "vocabulary": [
-   "One sculptural specimen owns the viewport in a single-hue near-black void; the only decision is how much to show \u2014 reframed per section, never relaid.",
-   "Ground: one off-black token in every renderer (CSS body #121212 AND Lottie fills) \u2014 not #000, so the render has somewhere to fall.",
+   "One sculptural specimen owns the viewport in a single-hue near-black void; the only decision is how much to show — reframed per section, never relaid.",
+   "Ground: one off-black token in every renderer (CSS body #121212 AND Lottie fills) — not #000, so the render has somewhere to fall.",
    "Chrome is corner micro-furniture: a thin white left column with mark + two text items; no rules, boxes, or rest-state hovers.",
-   "Two type islands: eccentric display serif (Monarch) at 1.8rem+, Poppins capped 1.6rem \u2014 adjacent rungs, split by typeface not size.",
-   "One accent (#4456d8), never ink \u2014 only fills on controls: discs, panels, a checkbox tick.",
+   "Two type islands: eccentric display serif (Monarch) at 1.8rem+, Poppins capped 1.6rem — adjacent rungs, split by typeface not size.",
+   "One accent (#4456d8), never ink — only fills on controls: discs, panels, a checkbox tick.",
    "Motion is drag, not scroll: a puck on a 5:1 flattened arc, grab to grabbing; 75% of durations on one 1/6-s ladder.",
-   "One photoreal object gets the whole render budget, one hue the whole ground; the object supplies the entire value range \u2014 nothing left to decorate."
+   "One photoreal object gets the whole render budget, one hue the whole ground; the object supplies the entire value range — nothing left to decorate."
   ],
   "members": [
    {
@@ -1311,17 +1311,17 @@
  },
  {
   "name": "canvas-native-studio",
-  "thesis": "The page IS a realtime WebGL application: the full-frame canvas does all the voice while a thin, perfectly-synced two-color DOM layer stays out of its way \u2014 extravagant rendering, austere graphics.",
+  "thesis": "The page IS a realtime WebGL application: the full-frame canvas does all the voice while a thin, perfectly-synced two-color DOM layer stays out of its way — extravagant rendering, austere graphics.",
   "temperature": "Cool blue-violet: electric #1A2FFB on paper-white #F0F1FA, near-black #121416 panel fill",
-  "type": "One neutral grotesk (Aeonik) everywhere; mono companions (IBM Plex Mono, LusionMono) as opt-ins; headlines undersized",
-  "motion": "Engineered not choreographed: virtual scroll damped 1\u2212e^(\u221212\u00b7dt), wheel \u00b1200px, overscroll gauge flings to next project; one ease .35,0,0,1",
-  "for": "Agency flagship, product-launch spectacle, interactive labs \u2014 \"the-site-is-the-demo\" briefs where the rendering is the product and content is sparse.",
+  "type": "One neutral grotesk (Aeonik) everywhere; mono companions (IBM Plex Mono, LusionMono) as opt-ins; headlines undersized — free substitutes: Aeonik → Inter Tight; LusionMono → IBM Plex Mono",
+  "motion": "Engineered not choreographed: virtual scroll damped 1−e^(−12·dt) (dt in seconds, framerate-independent), wheel delta clamped to ±200px per event, overscroll gauge flings to next project; one ease cubic-bezier(.35,0,0,1)",
+  "for": "Agency flagship, product-launch spectacle, interactive labs — \"the-site-is-the-demo\" briefs where the rendering is the product and content is sparse.",
   "not_for": "Wholesale imitation without perf discipline is a 5MB main-thread slideshow; no custom geometry formats/GPU FFT bloom outside rendering showcases; conversion pages won't be forgiven the usability tax.",
   "axis": "Where hue lives: blue-on-paper field (lusion-v3); per-scene hue-worlds under white ink (lusion); diegetic brand accents in white void (GCI)",
   "vocabulary": [
-   "The page IS a realtime 3D app \u2014 no native scroll; the DOM is a thin, perfectly-synced text layer over a WebGL2 canvas.",
-   "Extreme restraint: electric blue #1A2FFB on paper-white #F0F1FA, one grotesk (Aeonik) + monos, zero decorative color \u2014 all voice from the rendering: refraction, fluid splashing off headlines, matcap-lit models, pointer-reactive physics.",
-   "DOM/GL contract: getBoundingClientRect feeds shader uniforms; the canvas renders where the document says \u2014 SEO and resize survive. Add keyboard scroll + ARIA yourself; the original shipped neither.",
+   "The page IS a realtime 3D app — no native scroll; the DOM is a thin, perfectly-synced text layer over a WebGL2 canvas.",
+   "Extreme restraint: electric blue #1A2FFB on paper-white #F0F1FA, one grotesk (Aeonik) + monos, zero decorative color — all voice from the rendering: refraction, fluid splashing off headlines, matcap-lit models, pointer-reactive physics.",
+   "DOM/GL contract: getBoundingClientRect feeds shader uniforms; the canvas renders where the document says — SEO and resize survive. Add keyboard scroll + ARIA yourself; the original shipped neither.",
    "Budget the spectacle: DPR cap 1.5 AND max pixel count 2560x1440, SMAA post, half-float RTs, mobile _ld assets.",
    "Overscroll charges a gauge that flings to the next project; webp+depth-map pairs for pseudo-3D cards; one house ease cubic-bezier(.35,0,0,1).",
    "Confident-playful: understated type over technically outrageous rendering. 'SCROLL TO EXPLORE.'"
@@ -1392,18 +1392,18 @@
   "name": "display-serif-hue-flood",
   "thesis": "A playful poster-scale display serif IS the layout on a warm ground, colliding with circular ornaments, while whole sections flood to flat candy hues via token swaps; chrome tiny, entrances long.",
   "temperature": "Warm candy-flat: bone #f3eee8 ground; floods #ffe699 #f8c1ca #a0c0cd #d73234.",
-  "type": "Display serif (Voyage) at 9.5\u201314vw, mixed-case, IS the layout; body a quiet sans (Staff); tiny caps chrome, no tracking on the exemplar.",
-  "motion": "1.4\u20133s Power4.easeOut entrances from +50\u201390px; exits snap back in 0s; ornaments rock -30\u00b0\u2192+30\u00b0 (1.6s alternate), never spin.",
-  "for": "Personality-forward portfolios, illustrators, playful brand sites with short cadenced copy authored line-by-line and low content density \u2014 one idea per screen.",
+  "type": "Display serif (Voyage) at 9.5–14vw, mixed-case, IS the layout; body a quiet sans (Staff); tiny caps chrome, no tracking on the exemplar. — free substitutes: Voyage → Fraunces; Staff → Inter",
+  "motion": "1–1.8s Power4.easeOut entrances (named presets: Power3.easeOut) from +50–90px below (translateY); exits snap back in 0s; ornaments rock -30°→+30° (1.6s ease-in-out, alternate-reverse), never spin.",
+  "for": "Personality-forward portfolios, illustrators, playful brand sites with short cadenced copy authored line-by-line and low content density — one idea per screen.",
   "not_for": "Content-deep sites (the 7.48 usability score is this rhythm's bill); arbitrary-length CMS headlines; the display serif at body size; unclamped vw type; scroll hijack; ungated infinite motion.",
-  "axis": "Flood's authority over the type: serif as watermark ground (2-state flip) \u2192 black figure over 8 banded hues \u2192 loud figure under 6-theme iris.",
+  "axis": "Flood's authority over the type: serif as watermark ground (2-state flip) → black figure over 8 banded hues → loud figure under 6-theme iris.",
   "vocabulary": [
-   "Warm bone ground (#f3eee8); mixed-case display serif so large the type IS the layout \u2014 rows on negative leading (-.3em) at 9.5\u201310.6vw, a flat pastel ghost word behind at 40.8vw, aria-hidden.",
-   "Circular ornaments collide with the type: a 2px SVG ring drawn on around one word, opaque stamps over letters, a 100vw disc as rising-sun ground \u2014 all sized in em off the headline.",
-   "Colour by the band, never the component: sections flood to one flat candy hue (#ffe699 #f8c1ca #a0c0cd #d73234) via named ground classes; slabs get 15\u201320px leading-corner radii, a pill caption straddles the seam.",
+   "Warm bone ground (#f3eee8); mixed-case display serif so large the type IS the layout — rows on negative leading (-.3em) at 9.5–10.6vw, a flat pastel ghost word behind at 40.8vw, aria-hidden.",
+   "Circular ornaments collide with the type: a 2px SVG ring drawn on around one word, opaque stamps over letters, a 100vw disc as rising-sun ground — all sized in em off the headline.",
+   "Colour by the band, never the component: sections flood to one flat candy hue (#ffe699 #f8c1ca #a0c0cd #d73234) via named ground classes; slabs get 15–20px leading-corner radii, a pill caption straddles the seam.",
    "Chrome tiny: parenthetical captions, uppercase micro-labels, an asterisk as nav; display face lent back for one glyph only.",
-   "Motion 1.4\u20133s Power4.easeOut entrances from +50\u201390px; marks rock -30\u00b0\u2192+30\u00b0 (1.6s alternate), never spin; exits snap in 0s.",
-   "One idea per screen, 14\u201326rem vertical padding, no cards or shadows."
+   "Motion 1.4–3s Power4.easeOut entrances from +50–90px; marks rock -30°→+30° (1.6s alternate), never spin; exits snap in 0s.",
+   "One idea per screen, 14–26rem vertical padding, no cards or shadows."
   ],
   "members": [
    {
@@ -1470,24 +1470,24 @@
  },
  {
   "name": "floating-inset-panel",
-  "thesis": "The scrolling document is a sheet over a persistent stage \u2014 an object on a table, not a page \u2014 with a barbell type ratio (7:1\u201321:1) and a two-token ink/ground pair one ancestor switch inverts.",
+  "thesis": "The scrolling document is a sheet over a persistent stage — an object on a table, not a page — with a barbell type ratio (7:1–21:1) and a two-token ink/ground pair one ancestor switch inverts.",
   "temperature": "Achromatic: #000/#FFF, #1a1a1a/#f4f4f4, #0e0e0e/#f1efeb bone; floods #DA382E/#312DFB",
-  "type": "Ratio barbell: hairline didone / scrubbed weight axis / 96\u2013209px grotesk at 7:1\u201321:1 over a stepped-px utility base",
-  "motion": "Decelerate-only, two curves site-wide (easeOutCubic + easeOutQuint); scroll writes --progress, CSS calc() does the rest \u2014 not tweens",
-  "for": "Studio/agency sites, type specimens, brand microsites, annual reports \u2014 curated documents that own photography or motion good enough to be a stage.",
-  "not_for": "Docs, dashboards, commerce need the middle type rungs; stage-pin over a flat gradient is just a slower page; pixel-mosaic censor over stock = privacy blur; don't copy the a11y layer \u2014 there isn't one.",
-  "axis": "How literally the sheet is an object: editorial-new scale(.25) on a visible table \u2192 akaru seams-only; locomotive's stage is media",
+  "type": "Ratio barbell: hairline didone / scrubbed weight axis / 96–209px grotesk at 7:1–21:1 over a stepped-px utility base",
+  "motion": "Decelerate-only, two curves site-wide (easeOutCubic cubic-bezier(.215,.61,.355,1) + easeOutQuint cubic-bezier(.23,1,.32,1)); scroll writes --progress, CSS calc() does the rest — not tweens",
+  "for": "Studio/agency sites, type specimens, brand microsites, annual reports — curated documents that own photography or motion good enough to be a stage.",
+  "not_for": "Docs, dashboards, commerce need the middle type rungs; stage-pin over a flat gradient is just a slower page; pixel-mosaic censor over stock = privacy blur; don't copy the a11y layer — there isn't one.",
+  "axis": "How literally the sheet is an object: editorial-new scale(.25) on a visible table → akaru seams-only; locomotive's stage is media",
   "vocabulary": [
-   "The page is a sheet over a stage it never scrolls with \u2014 two persistent layers, not a background image; the CSS-pinned stage holds; the sheet slides up and clips it away. Square corners \u2014 the rounded inset was awwwards' capture frame.",
+   "The page is a sheet over a stage it never scrolls with — two persistent layers, not a background image; the CSS-pinned stage holds; the sheet slides up and clips it away. Square corners — the rounded inset was awwwards' capture frame.",
    "Two colour tokens, one ink one ground: one ancestor switch inverts a page, section or header; mix-blend-mode:difference chrome inverts free; chroma only as a theme flood or photography, never a third UI colour.",
-   "Barbell type as ratio, not a deleted middle: display voice at 7:1\u201321:1 (PP Locomotive New hairline didone) over a utility base stepped in fixed px (15/17/19/21).",
+   "Barbell type as ratio, not a deleted middle: display voice at 7:1–21:1 (PP Locomotive New hairline didone) over a utility base stepped in fixed px (15/17/19/21).",
    "Spacing in design px at a 1440 reference (/14.4*1vw); motion decelerate-only, two curves site-wide, CSS calc() off a scroll-written --progress.",
-   "Detail: registration mark and lab label \u2014 1\u20132px hairlines, superscript counters, comma-run nav, a thumbnail opening inside a headline word."
+   "Detail: registration mark and lab label — 1–2px hairlines, superscript counters, comma-run nav, a thumbnail opening inside a headline word."
   ],
   "members": [
    {
     "slug": "locomotive-r",
-    "site": "Locomotive\u00ae",
+    "site": "Locomotive®",
     "live": "https://locomotive.ca",
     "awwwards": "https://www.awwwards.com/sites/locomotive-r",
     "award": [
@@ -1550,17 +1550,17 @@
   "thesis": "Full-bleed key art as the stage; ultra-heavy viewport-scale type physically negotiating with the subject (eclipsed or split across corners); hard whole-theme value flips; micro-mono corner chrome.",
   "temperature": "High-heat, no tints: #000000 #DFDFF2 #5542FF #EDFF66; hape #0f0f0f #6a0000 #ffffff",
   "type": "Ultra-fat condensed display ~18vw, lh .8, -.01em, uppercase; micro-caps mono chrome +.02/.04em. Hard tracking polarity.",
-  "motion": "Scroll/state, not hover: scrubbed video, mask reveals, theme tripwires; type rotates in \u2014 rotateX(-40deg) 1.3s power4.out, .1s line stagger.",
-  "for": "Briefs with commissioned hero art \u2014 game launches, film/title promos, character IP \u2014 where one subject per section can carry a full-bleed frame.",
-  "not_for": "Without commissioned art \u2014 18vw type over stock renders is just a big word on an empty field; anywhere calm, institutional, or expensive \u2014 the palette is gaming/web3 heat. No mix-blend-mode depth.",
+  "motion": "Scroll/state, not hover: scrubbed video, mask reveals, theme tripwires; type rotates in — rotateX(-40deg) 1.3s power4.out (quintic, 1-(1-t)^5), .1s line stagger (hape per-line rotate3d flip).",
+  "for": "Briefs with commissioned hero art — game launches, film/title promos, character IP — where one subject per section can carry a full-bleed frame.",
+  "not_for": "Without commissioned art — 18vw type over stock renders is just a big word on an empty field; anywhere calm, institutional, or expensive — the palette is gaming/web3 heat. No mix-blend-mode depth.",
   "axis": "Stage-art register and what type does at the subject (eclipsed vs split); what pulls the theme lever: page turn, toggle, scroll tripwire.",
   "vocabulary": [
    "Full-bleed stage per section: one commissioned key-art field to all four edges at 100lvh, no container, no margin.",
-   "Ultra-fat condensed display at ~18vw, w900, lh .8, -.01em, uppercase, negotiating with the subject \u2014 eclipsed by it, or split across corners so the art is the gap between two words.",
-   "Micro-caps mono chrome in the corners (1\u20131.2rem, +.02\u2013.04em) plus capsule pills; the middle stays empty. Tracking polarity: display negative, mono positive.",
-   "Value flips whole-theme at the root \u2014 ground/ink/inverted-ink/accent rewritten at once; the same pale lavender is ink-on-black one state, the entire ground the next.",
+   "Ultra-fat condensed display at ~18vw, w900, lh .8, -.01em, uppercase, negotiating with the subject — eclipsed by it, or split across corners so the art is the gap between two words.",
+   "Micro-caps mono chrome in the corners (1–1.2rem, +.02–.04em) plus capsule pills; the middle stays empty. Tracking polarity: display negative, mono positive.",
+   "Value flips whole-theme at the root — ground/ink/inverted-ink/accent rewritten at once; the same pale lavender is ink-on-black one state, the entire ground the next.",
    "High-heat, no tints: #000000/#DFDFF2/#5542FF/#EDFF66; hape grounds #0f0f0f/#6a0000/#ffffff with film grain re-weighted per ground.",
-   "Depth is occlusion only \u2014 the subject passes in front of the letterforms, zero mix-blend-mode; one geometry draws crops and pills alike."
+   "Depth is occlusion only — the subject passes in front of the letterforms, zero mix-blend-mode; one geometry draws crops and pills alike."
   ],
   "members": [
    {
@@ -1591,7 +1591,7 @@
      "SOTM-2024-08",
      "SOTD-2024-08-28"
     ],
-    "status": "alive",
+    "status": "dead",
     "palette": [
      "#000000",
      "#080315",
@@ -1627,19 +1627,19 @@
  },
  {
   "name": "single-ink-cinema-poster",
-  "thesis": "Cinema footage unified by flooding it with one saturated ink \u2014 duotones, overprints \u2014 under poster-scale display type and cinema-print furniture on dark stages; one hue is the art direction.",
+  "thesis": "Cinema footage unified by flooding it with one saturated ink — duotones, overprints — under poster-scale display type and cinema-print furniture on dark stages; one hue is the art direction.",
   "temperature": "One hot ink #ff391e on cool near-mono #f8f8f8 / #0b0b0b / #dddee2 grey ground",
   "type": "Poster display: variable grotesk 210px at 1728, line-height .8, -.04em, first glyph optically hung past the 8px margin",
-  "motion": "Panels hinge 4\u201315\u00b0 on named transformOrigin corners, child rotates harder and lags; sticky stages + invisible rails, never pin:true",
-  "for": "Film/animation studio portfolios, festivals, director reels \u2014 heterogeneous cinematic footage that one ink can unify at poster scale",
+  "motion": "Panels hinge 4–15° on named transformOrigin corners, child rotates harder and lags; sticky stages + invisible rails, never pin:true",
+  "for": "Film/animation studio portfolios, festivals, director reels — heterogeneous cinematic footage that one ink can unify at poster scale",
   "not_for": "Breaks with a second accent, multiply over bright busy photos (filter, not print), or keyword red on warm footage; copied crossbar logotype = pastiche; products must clamp() the vw scale",
-  "axis": "Where the ink comes from and how much screen it owns: fixed hex flooded (Line), fixed but spent once (Siena), re-keyed per film (\u00d6JS)",
+  "axis": "Where the ink comes from and how much screen it owns: fixed hex flooded (Line), fixed but spent once (Siena), re-keyed per film (ÖJS)",
   "vocabulary": [
-   "One saturated ink is the entire art direction, as printer's overprint: an aria-hidden div filled flat red, mix-blend-mode:multiply over greyscaled footage \u2014 cels, documentary photos, live video all arrive on one hue (.acetate, after the gel sheet).",
+   "One saturated ink is the entire art direction, as printer's overprint: an aria-hidden div filled flat red, mix-blend-mode:multiply over greyscaled footage — cels, documentary photos, live video all arrive on one hue (.acetate, after the gel sheet).",
    "Poster display: variable grotesk, 210px on a 1728 grid, line-height .8, -.04em, first glyph hung past the 8px margin by a per-glyph negative-margin table.",
-   "Everything is a rectangle of paper: panels and routes enter rotating 4\u201315\u00b0 about a named corner, inner rotating harder and lagging \u2014 sheets sheared on a light table.",
+   "Everything is a rectangle of paper: panels and routes enter rotating 4–15° about a named corner, inner rotating harder and lagging — sheets sheared on a light table.",
    "Cinema-print furniture, working-studio voice: status dots, slash nav, / MICRO / LABELS /, underlined credit tables, a 00/24 fps preloader at headline scale, Roman-numeral year.",
-   "Near-monochrome stage \u2014 paper-white, near-black, cool grey ground \u2014 colour rationed to one hex; a full-bleed takeover of it is an event."
+   "Near-monochrome stage — paper-white, near-black, cool grey ground — colour rationed to one hex; a full-bleed takeover of it is an event."
   ],
   "members": [
    {
@@ -1678,7 +1678,7 @@
    },
    {
     "slug": "onnu-jonu-son",
-    "site": "\u00d6nnu J\u00f3nu Son",
+    "site": "Önnu Jónu Son",
     "live": "https://onnujonuson.com/clip/almost-over-you",
     "awwwards": "https://www.awwwards.com/sites/onnu-jonu-son",
     "award": [
@@ -1706,17 +1706,17 @@
   "thesis": "One lateral strip of tall vh-proportioned media slats on an empty ground; the centered slat enlarges and takes color, travel is sideways scrubbing, chroma lives inside the slats, corner chrome quiet.",
   "temperature": "Neutral, value-compressed: #141414, warm bone #e7e5df, #191919; chroma lives in the slats",
   "type": "Two faces, 2-3 sizes only: compressed display title at 37.5vh; 6-12px uppercase micro-labels tracked 1-2px in corners.",
-  "motion": "Wipes \u00b1101% per letter/line in overflow:hidden; z-push + color reveal + louver swivel all ride damped scroll velocity \u2014 stop, color drains.",
+  "motion": "Wipes translate ±101% per letter/line in overflow:hidden; z-push + color reveal + louver swivel all ride damped scroll velocity — stop, color drains.",
   "for": "Portfolios and reels with a small curated set (10-30 items) of strong imagery, where one lateral strip is the whole site.",
-  "not_for": "Client or content sites needing wayfinding (the no-titles hairline readout cost Usability 7.37); catalogues past ~30 items; weak or stock imagery \u2014 the drained shell leaves nothing else to look at.",
-  "axis": "How much strip is present: 30 GPU planes \u2192 10 draggable DOM columns \u2192 one card + ghost mosaic; ground variable (Aristide) vs constant.",
+  "not_for": "Client or content sites needing wayfinding (the no-titles hairline readout cost Usability 7.37); catalogues past ~30 items; weak or stock imagery — the drained shell leaves nothing else to look at.",
+  "axis": "How much strip is present: 30 GPU planes → 10 draggable DOM columns → one card + ghost mosaic; ground variable (Aristide) vs constant.",
   "vocabulary": [
    "One band of tall narrow slats crosses the vertical middle of an empty ground, full-bleed off both edges; upper and lower thirds carry nothing.",
-   "Slats proportioned off viewport height, never width \u2014 100\u00d7370 in a 1600\u00d71200 space: 8.3vh \u00d7 30.8vh, 10vh pitch, 1:3.7 column.",
+   "Slats proportioned off viewport height, never width — 100×370 in a 1600×1200 space: 8.3vh × 30.8vh, 10vh pitch, 1:3.7 column.",
    "Chroma quarantined in the slats; ground/type/chrome value-compressed: #141414, warm bone #e7e5df, charcoal #191919; at rest slats drain to gray.",
-   "One slat privileged: the centered one enlarges, takes color, gains z \u2014 that is the entire navigation; no menu, no grid, no second view.",
-   "Compressed display face at 37.5vh titles; 6\u201312px uppercase micro-labels tracked 1\u20132px in corners at 40\u201350px margins.",
-   "Sideways scrub, no scrollbar; readout is a hairline \u2014 1px ticks, one per project, widening to 16:9 thumbnails on hover.",
+   "One slat privileged: the centered one enlarges, takes color, gains z — that is the entire navigation; no menu, no grid, no second view.",
+   "Compressed display face at 37.5vh titles; 6–12px uppercase micro-labels tracked 1–2px in corners at 40–50px margins.",
+   "Sideways scrub, no scrollbar; readout is a hairline — 1px ticks, one per project, widening to 16:9 thumbnails on hover.",
    "Wipes in 4 directions inside overflow:hidden, per letter or line; recolors 500ms cubic-bezier(.25,.46,.45,.94)."
   ],
   "members": [
@@ -1741,7 +1741,7 @@
    },
    {
     "slug": "aristide-portfolio-2021",
-    "site": "Aristide \u2013 Portfolio 2021",
+    "site": "Aristide – Portfolio 2021",
     "live": "https://www.aristidebenoist.com",
     "awwwards": "https://www.awwwards.com/sites/aristide-portfolio-2021",
     "award": [
@@ -1772,7 +1772,7 @@
      "#191919 (SAMPLED)",
      "#202020 (SAMPLED)",
      "#ffffff (SAMPLED)",
-     "#f0a9bb (SAMPLED, per-slide photo chroma \u2014 changes with each case study)"
+     "#f0a9bb (SAMPLED, per-slide photo chroma — changes with each case study)"
     ]
    }
   ],
@@ -1783,20 +1783,20 @@
  },
  {
   "name": "webgl-scroll-journey",
-  "thesis": "The page is a scripted camera path through one cinematic 3D scene \u2014 sections are waypoints the camera flies between, with momentum scroll as the scrubber of a weighty, produced film.",
-  "temperature": "Cold: #050310 base, cyan pair #4cc9f0/#7df9ff, off-white #eef2ff; warm only at blast",
-  "type": "Three-role: geometric display (Space Grotesk), neutral body, 10px uppercase mono at 0.2-0.34em tracking for all labels.",
-  "motion": "Everything damps, slerps, breathes \u2014 nothing snaps; camera trails scroll (damp \u03bb3.2), smoothstep-window reveals, asymmetric \u03bb0.7/9 climax.",
+  "thesis": "The page is a scripted camera path through one cinematic 3D scene — sections are waypoints the camera flies between, with momentum scroll as the scrubber of a weighty, produced film.",
+  "temperature": "Palette is per-world, set by the lit scene: Pioneer #000 + green/husk #001c0c #17120f, gold #be8b42; Prometheus #FDF0E1 #E74833 #66B4AD #161616; Bandito #000 + one ink #F4E032",
+  "type": "Bimodal two-face: heavy uppercase display, often MSDF in-canvas (Manifold CF Extra Bold; Mars Condensed 12rem, near-solid leading) vs small geometric sans (Gilroy 200; Futura LT 14-17px). — free substitutes: Manifold CF Extra Bold → Archivo; Gilroy → Urbanist; Mars Condensed → Oswald; Futura LT → Jost",
+  "motion": "Everything damps, slerps, breathes — nothing snaps; camera trails scroll (damp λ3.2 per second), smoothstep-window reveals, asymmetric climax (λ0.7 forward, λ9 reverse).",
   "for": "Portfolio or launch/announcement fan-outs where the experience IS the product; on a SaaS landing only as the deliberate loud-wildcard variant.",
-  "not_for": "Conversion/content pages: 10-page runways bounce users, scroll-jacking fights reading, custom cursor breaks touch; violet/cyan-on-navy is the gen-1 slop palette \u2014 port the rig, re-skin the world.",
-  "axis": "The 3D world flown through (each member's own concept) and where display type lives \u2014 in-canvas MSDF/GL text vs DOM cockpit overlays.",
+  "not_for": "Conversion/content pages: 10-page runways bounce users, scroll-jacking fights reading, custom cursor breaks touch; violet/cyan-on-navy is the gen-1 slop palette — port the rig, re-skin the world.",
+  "axis": "The 3D world flown through (each member's own concept) and where display type lives — in-canvas MSDF/GL text vs DOM cockpit overlays.",
   "vocabulary": [
-   "The page is a camera path, not a document \u2014 scrollbar as film scrubber over a ten-viewport voyage; sections are waypoints the camera flies between with visible mass (damp \u03bb3.2, Lenis 1.35).",
-   "Diegetic cockpit DOM over the canvas: HUD telemetry rail (ALT/VEL/SEC), slash-coded labels ('01 // ABOUT'), corner-bracketed glass panels, blinking status diamonds.",
-   "Hairline geometry: 1px gradient-falloff rules, structure drawn with light strokes on near-black #050310 \u2014 never filled boxes.",
-   "Glow as state: dim at rest, cyan bloom on anything live; base+bright pair #4cc9f0/#7df9ff says 'lit up'; off-white #eef2ff, never pure white.",
-   "Whispered type: 10px uppercase mono at 0.2-0.34em tracking does all labeling; the display face speaks only at headline moments.",
-   "Motion is drift, not snap \u2014 everything damps, slerps, fades through smoothstep windows; brightness idles at 12-22%, earned by scroll."
+   "The page is a camera path, not a document — the scrollbar scrubs one flight through a single 3D world; sections are progress-range waypoints (technique source: non-winner GitHub portfolio — damp λ3.2 per second, Lenis duration 1.35).",
+   "Journey as data: each chapter a scene record (Prometheus {layoutName, height in viewports, bloom}); camera keys {p, pos, tgt, fov} on a centripetal Catmull-Rom path, dwell set by key spacing (technique source: non-winner GitHub portfolio).",
+   "Type lives in the scene: display words are MSDF/SDF meshes in the WebGL pass — Pioneer's hairline outline with a cursor-tracked fill disc; Prometheus's headline depth-sorted behind figures.",
+   "Chrome is small and corner-pinned over the full-bleed render — wordmark, burger, one landing cluster; hairline buttons (Pioneer: 1px white at 0.3 opacity, to 1 on hover/focus in 300ms).",
+   "Bimodal scale, one UI ink: poster display vs micro-caps, nothing between; every non-scene element in one ink (Bandito: all UI in #F4E032 over an achromatic render).",
+   "Motion is drift, not snap — values damp and fade through smoothstep windows; copy on overlapping scroll ranges cross-dissolves (Prometheus .13–.28 / .22–.37) (damping technique source: non-winner GitHub portfolio)."
   ],
   "members": [
    {
@@ -1841,7 +1841,7 @@
    },
    {
     "slug": "twenty-one-pilots-bandito",
-    "site": "twenty \u00f8ne pil\u00f8ts - Bandit\u00f8",
+    "site": "twenty øne piløts - Banditø",
     "live": "https://www.imabandi.to/",
     "awwwards": "https://www.awwwards.com/sites/twenty-one-pilots-bandito",
     "award": [
@@ -1852,7 +1852,7 @@
     "palette": [
      "#000000 (SAMPLED, ~55% of hero frame)",
      "#F4E032 (SAMPLED, sole chromatic ink)",
-     "#FFFFFF (emissive window slits only \u2014 fringe accent, not area-dominant)"
+     "#FFFFFF (emissive window slits only — fringe accent, not area-dominant)"
     ]
    }
   ],
@@ -1863,19 +1863,19 @@
  },
  {
   "name": "atmosphere-as-wayfinding",
-  "thesis": "Place-per-section: each chapter's identity carried entirely by atmosphere and grading of one full-bleed landscape; chrome is a whisper-thin caps constant \u2014 the weather is the navigation.",
+  "thesis": "Place-per-section: each chapter's identity carried entirely by atmosphere and grading of one full-bleed landscape; chrome is a whisper-thin caps constant — the weather is the navigation.",
   "temperature": "Monochrome chrome: #fff + navy #2d628c (tints #81a0bb, #d1dde8); warmth is in the grade.",
-  "type": "Josefin Sans 300 caps display (0.1em h1, 0.32em titles); Century Gothic UI voice \u2014 12px caps nav 0.04em, 1rem/1.6 body.",
+  "type": "Josefin Sans 300 caps display (0.1em h1, 0.32em titles); Century Gothic UI voice — 12px caps nav 0.04em, 1rem/1.6 body. — free substitutes: Century Gothic → Didact Gothic",
   "motion": "One scroll-scrubbed float (uChapter) windowed by smoothsteps; terrain lags type via second lerp; world-space summit dissolve, not crossfade.",
-  "for": "Orgs whose divisions are genuinely different places \u2014 holding companies, expeditions, climate/territory stories, resorts; needs real art-direction budget.",
+  "for": "Orgs whose divisions are genuinely different places — holding companies, expeditions, climate/territory stories, resorts; needs real art-direction budget.",
   "not_for": "Conversion pages (zero-fallback WebGL = blank page), weak imagery (five mediocre skies read as one stock template), body copy at 0.32em caps tracking, or opacity-.4 nav over uncontrolled imagery.",
-  "axis": "How atmosphere is manufactured (computed shader grade \u2194 photographed footage) and how much reaches the chrome (binary ink \u2194 per-place hue).",
+  "axis": "How atmosphere is manufactured (computed shader grade ↔ photographed footage) and how much reaches the chrome (binary ink ↔ per-place hue).",
   "vocabulary": [
-   "One fixed WebGL landscape is the whole ground (fixed canvas, z-index:-1); the document scrolls over it \u2014 weather sections transparent, interior pages opaque #fff or #2d628c over the same canvas; hero 150vh of landscape.",
+   "One fixed WebGL landscape is the whole ground (fixed canvas, z-index:-1); the document scrolls over it — weather sections transparent, interior pages opaque #fff or #2d628c over the same canvas; hero 150vh of landscape.",
    "Chrome is three whispered fragments: five division names, 12px Century Gothic caps at 0.04em, opacity .4 until active; a 2px navy rule under the active one; a bottom-left rail of 4px diamonds beside a 2px bar filling as you read.",
-   "Chrome never moves \u2014 only its ink flips between two hexes (#fff / #2d628c) on .4s linear, from a data-theme attribute sections declare in markup.",
-   "All else is weather: one baked lightmap re-ramped per division \u2014 warm vec3(1.,.5,.2) above altitude 40 to indigo vec3(.35,.34,.5) below 20.",
-   "Josefin Sans 300 caps display \u2014 5rem/0.1em h1, 3.875rem/0.32em titles, 4px diamond separator \u2014 set in the scene; the shader grades the landscape to keep it legible."
+   "Chrome never moves — only its ink flips between two hexes (#fff / #2d628c) on .4s linear, from a data-theme attribute sections declare in markup.",
+   "All else is weather: one baked lightmap re-ramped per division — warm vec3(1.,.5,.2) above altitude 40 to indigo vec3(.35,.34,.5) below 20.",
+   "Josefin Sans 300 caps display — 5rem/0.1em h1, 3.875rem/0.32em titles, 4px diamond separator — set in the scene; the shader grades the landscape to keep it legible."
   ],
   "members": [
    {
@@ -1895,7 +1895,7 @@
    },
    {
     "slug": "2degc-earth",
-    "site": "2\u00b0C EARTH",
+    "site": "2°C EARTH",
     "live": "https://www.2-c.earth/",
     "awwwards": "https://www.awwwards.com/sites/2degc-earth",
     "award": [
@@ -1920,25 +1920,25 @@
  },
  {
   "name": "blend-mode-swiss-poster",
-  "thesis": "Swiss event posters at viewport scale \u2014 giant tight grotesk, hard slabs of saturated color, knockout bars breaking type mid-letterform \u2014 incident supplied by a fixed blend-mode WebGL layer.",
-  "temperature": "Saturated full-strength hues on #f2f2f2/#141414 grounds; #27249c\u2192#177aee cobalt, #0f0 CTA",
-  "type": "Single neo-grotesque, single weight (Neue Montreal 500); h1 17.5rem/1, h2 15rem/.8; edge-anchored, ink white/near-black",
-  "motion": "Single-axis rectangle slides: 1.5\u20131.6s counter-translate wipes on cubic-bezier(.22,1,.36,1); exits fall \u2014 translateY(100vh) rotate(\u00b124deg)",
-  "for": "Loud poster briefs: conferences, festivals, award shows, campaign launches \u2014 big real-text type, hard color, one signature GL incident.",
+  "thesis": "Swiss event posters at viewport scale — giant tight grotesk, hard slabs of saturated color, knockout bars breaking type mid-letterform — incident supplied by a fixed blend-mode WebGL layer.",
+  "temperature": "Saturated full-strength hues on #f2f2f2/#141414 grounds; #27249c→#177aee cobalt, #0f0 CTA",
+  "type": "Single neo-grotesque, single weight (Neue Montreal 500); h1 17.5rem/1, h2 15rem/.8; edge-anchored, ink white/near-black — free substitutes: Neue Montreal → Inter Tight",
+  "motion": "Single-axis rectangle slides: 1.5–1.6s counter-translate wipes on cubic-bezier(.22,1,.36,1); exits fall — translateY(100vh) rotate(±24deg)",
+  "for": "Loud poster briefs: conferences, festivals, award shows, campaign launches — big real-text type, hard color, one signature GL incident.",
   "not_for": "An empty interior with nothing live reads as a failed load; #0f0 plus any second accent is a dev placeholder; blend modes die inside transformed ancestors. Add the reduced-motion guard C2 never had.",
   "axis": "GL ownership: C2 keeps one canvas fixed under real DOM text via blend modes only; Webbys registers every element as a glitching GL tile.",
   "vocabulary": [
-   "One poster per viewport, flush to all four edges \u2014 the whole screen is the artboard, middle left empty, type anchored to an edge.",
-   "Hard full-bleed slabs of one saturated hue \u2014 never a tint \u2014 ink only white or near-black.",
+   "One poster per viewport, flush to all four edges — the whole screen is the artboard, middle left empty, type anchored to an edge.",
+   "Hard full-bleed slabs of one saturated hue — never a tint — ink only white or near-black.",
    "The incident is a rectangle independent of the text: a black slab ending mid-headline so the next line runs onto raw color, or a knockout panel (mix-blend-mode: lighten, #f2f2f2/#141414) making glyphs windows.",
-   "Under it all, one fixed full-viewport WebGL canvas on mix-blend-mode: difference \u2014 inverts against every ground (coral, cobalt, flat grey), zero per-page color logic.",
-   "Closed palette: one dark, one near-white ground, hues only at full strength \u2014 acid green to cobalt to black without scattering.",
-   "Three curves total: expo-out (.19,1,.22,1) arrivals, hard-in (1,0,.25,.995) exits, (.22,1,.36,1) for 1.5\u20131.6s wipes; DOM and WebGL synced on one number."
+   "Under it all, one fixed full-viewport WebGL canvas on mix-blend-mode: difference — inverts against every ground (coral, cobalt, flat grey), zero per-page color logic.",
+   "Closed palette: one dark, one near-white ground, hues only at full strength — acid green to cobalt to black without scattering.",
+   "Three curves total: expo-out (.19,1,.22,1) arrivals, hard-in (1,0,.25,.995) exits, (.22,1,.36,1) for 1.5–1.6s wipes; DOM and WebGL synced on one number."
   ],
   "members": [
    {
     "slug": "c2-montreal",
-    "site": "C2 Montr\u00e9al",
+    "site": "C2 Montréal",
     "live": "https://c2mtl.koki-kiko.com/",
     "awwwards": "https://www.awwwards.com/sites/c2-montreal",
     "award": [
@@ -1982,20 +1982,20 @@
  },
  {
   "name": "contact-sheet-drift",
-  "thesis": "One draggable full-canvas field of photo tiles with momentum \u2014 no vertical scroll \u2014 the wordmark drawn beneath the tiles so identity reads through gutters, chrome achromatic and whispered.",
+  "thesis": "One draggable full-canvas field of photo tiles with momentum — no vertical scroll — the wordmark drawn beneath the tiles so identity reads through gutters, chrome achromatic and whispered.",
   "temperature": "Achromatic: #fff ground, black ink; all colour lives in the photo tiles, none in chrome",
-  "type": "Graphik 200/400/500 + Optima LT Std 500; wordmark an in-scene SVG at 64% width under the tiles, read through gutters",
-  "motion": "Drag-with-lag: pointer delta/64 \u2192 one offset; tiles chase k=0.05 + ring delay, logo k=0.1; 0.0015/frame idle wander; d3-ease only, no GSAP",
-  "for": "Portfolios/catalogues whose inventory is the argument \u2014 architecture studios, photographers, product decks, archives. Needs dozens of strong tiles.",
-  "not_for": "Wayfinding-dependent sites: the work IS the menu (usability 7.68) \u2014 pays only for studio portfolios. Sparse content reads as empty tech demo. As-shipped: no keyboard path, no reduced-motion stop.",
-  "axis": "How far identity is buried in the field \u2014 in-scene wordmark under tiles \u2194 DOM chrome above; 2-axis drag \u2194 1-axis momentum scroll.",
+  "type": "Graphik 200/400/500 + Optima LT Std 500; wordmark an in-scene SVG at 64% width under the tiles, read through gutters — free substitutes: Graphik → Inter; Optima LT Std → Tenor Sans",
+  "motion": "Drag-with-lag: pointer delta/64px (mouse; /32 touch) → one offset; tiles chase k=0.05/frame + 1–2-frame ring delay, logo k=0.1/frame (60 Hz); 0.0015 world-units/frame idle wander; d3-ease only, no GSAP",
+  "for": "Portfolios/catalogues whose inventory is the argument — architecture studios, photographers, product decks, archives. Needs dozens of strong tiles.",
+  "not_for": "Wayfinding-dependent sites: the work IS the menu (usability 7.68) — pays only for studio portfolios. Sparse content reads as empty tech demo. As-shipped: no keyboard path, no reduced-motion stop.",
+  "axis": "How far identity is buried in the field — in-scene wordmark under tiles ↔ DOM chrome above; 2-axis drag ↔ 1-axis momentum scroll.",
   "vocabulary": [
    "The viewport IS the field: a position:fixed 100vw/100vh WebGL canvas, touch-action:none, a cursor:grab sheet; the document never scrolls; only chrome: a four-item nav capsule.",
    "Tiles at three aspects {square:1, portrait:1.5, landscape:0.8}, columns on a 25%-of-tile-width gutter, each centred on its own ragged height so rows never line up.",
-   "Field bleeds past all four edges, stopping only at a rubber-band elastic bound \u2014 a soft limit, not a wall.",
+   "Field bleeds past all four edges, stopping only at a rubber-band elastic bound — a soft limit, not a wall.",
    "Wordmark inside the scene one layer beneath the tiles (SVG at 64% of visible width); tiles lag the logo, so the letters in the gutters shear on every drag and keep drifting at rest under a permanent idle wander.",
    "Chrome achromatic: white ground, black ink; colour is entirely the photography's job.",
-   "One shader uniform is opacity AND desaturate \u2014 filtering drops non-matching tiles to 20% opacity + greyscale in one value; hover buys only a 2% push-in."
+   "One shader uniform is opacity AND desaturate — filtering drops non-matching tiles to 20% opacity + greyscale in one value; hover buys only a 2% push-in."
   ],
   "members": [
    {
@@ -2044,16 +2044,16 @@
   "name": "exploded-blueprint-mono",
   "thesis": "Spec-sheet register: 1px white exploded line-art diagrams on near-black with hairline leader lines to tiny mono labels, two-column ledgers, and color withheld except on the component currently named.",
   "temperature": "Warm neutrals: near-black #252423 inverts to warm bone #DAD5D0 to annotate; hairlines #93908e",
-  "type": "Two faces, ~5:1 span: wide DIN grotesk (DINish wdth 125, wt 800, lh .865em) capped 4rem; all else Berkeley Mono .75\u2013.875rem",
-  "motion": "Cubic, short: out(3)/inOut(3) eases, 250ms reveals, 10ms staggers; labels lead the self-drawing leader lines by 50ms; section-height scroll scrub",
-  "for": "A single product with real, nameable parts and real measured numbers \u2014 hardware teardowns, dev tools/libraries, spec-driven product pages that can file claims as units.",
-  "not_for": "Services, agencies, apps without real parts \u2014 the hairlines become costume and the tell is labels degrading into adjectives. Outside dev-tool audiences the 18-hue chip strip reads as an unthemed color picker; no fake LCD numerals without a live metric.",
-  "axis": "Is the drawing alive? Living instrument (anime-js: real 3D, scroll-scrubbed explode, lines re-solved per frame) \u2192 printed datasheet (opal: fixed vector axonometric + hairline ledgers + buy card)",
+  "type": "Two faces, ~5:1 span: wide DIN grotesk (DINish wdth 125, wt 800, lh .865em) capped 4rem; all else Berkeley Mono .75–.875rem — free substitutes: DINish → Archivo; Berkeley Mono → IBM Plex Mono",
+  "motion": "Cubic, short: anime.js out(3)/inOut(3) (cubic-out / cubic-in-out) eases, 250ms reveals, 10ms-per-item staggers from the last item; labels lead the self-drawing leader lines by 50ms; scroll scrub where each section's pixel height is its timeline duration",
+  "for": "A single product with real, nameable parts and real measured numbers — hardware teardowns, dev tools/libraries, spec-driven product pages that can file claims as units.",
+  "not_for": "Services, agencies, apps without real parts — the hairlines become costume and the tell is labels degrading into adjectives. Outside dev-tool audiences the 18-hue chip strip reads as an unthemed color picker; no fake LCD numerals without a live metric.",
+  "axis": "Is the drawing alive? Living instrument (anime-js: real 3D, scroll-scrubbed explode, lines re-solved per frame) → printed datasheet (opal: fixed vector axonometric + hairline ledgers + buy card)",
   "vocabulary": [
    "A product page in the register of a patent drawing or service manual: one warm near-black ground (#252423) that inverts to warm bone #DAD5D0 for the chapters that annotate.",
-   "One exploded assembly laid on a diagonal, drawn as hairline contours with no fills; tiny monospace part names parked hard against the page margins, each tethered by a 1px #93908e polyline \u2014 horizontal run, one break, diagonal exactly 45\u00b0 whenever there is room, landing on the part.",
+   "One exploded assembly laid on a diagonal, drawn as hairline contours with no fills; tiny monospace part names parked hard against the page margins, each tethered by a 1px #93908e polyline — horizontal run, one break, diagonal exactly 45° whenever there is room, landing on the part.",
    "Color withheld by default and spent only on the component being named: each accent is an 8-step ramp composited over the ground (alphas 1/.80/.46/.36/.25/.17/.10/.03), so a hue sits at full strength on one label and vanishes into the background on the next.",
-   "Density deliberately starved \u2014 one object, one sentence, a constellation of annotations; every annotation carries a real measured number with a unit (6.41 KB, Length / 55 cm), never a marketing word."
+   "Density deliberately starved — one object, one sentence, a constellation of annotations; every annotation carries a real measured number with a unit (6.41 KB, Length / 55 cm), never a marketing word."
   ],
   "members": [
    {
@@ -2098,18 +2098,18 @@
   "name": "flat-sticker-pop",
   "thesis": "Dead-flat sticker-sheet: zero shadows or gradients, saturated single-hue grounds, chunky rounded primitives each dealt one candy hue, one loud reserved action color; a play surface, not a mascot cast.",
   "temperature": "Saturated candy: #ff6d38 #7a78ff #c7ff69 #ffc412 over cream #fdf9f0 / near-black #141414",
-  "type": "OldschoolGrotesk 900 -.04em lh .8 vs Aeonik body +.01em; ~7:1 jump; ratio is the portable part (both faces commercial)",
-  "motion": "Scroll-scrubbed Rive timelines; svh sections overlap via negative margins; CSS+JS share n-out/n-in-out eases; hover un-rounds pill to 1rem",
-  "for": "Consumer products that must read as playable \u2014 gamified apps, kids/education, community/loyalty programs; \"make the boring thing feel like a toy\".",
+  "type": "OldschoolGrotesk 900 -.04em lh .8 vs Aeonik body +.01em; ~7:1 jump; ratio is the portable part (both faces commercial) — free substitutes: OldschoolGrotesk → Archivo; Aeonik → Figtree",
+  "motion": "Scroll-scrubbed Rive timelines; svh sections overlap via negative margins; CSS+JS share n-out cubic-bezier(0.22,1,0.36,1) / n-in-out cubic-bezier(0.84,0,0.16,1) eases; hover un-rounds pill (radius 2.3rem on 4.6rem height) to 1rem over .3s",
+  "for": "Consumer products that must read as playable — gamified apps, kids/education, community/loyalty programs; \"make the boring thing feel like a toy\".",
   "not_for": "Dies the moment a ninth hue or one gradient arrives. Don't copy the 4K-video layer, hover-only states, or site-wide user-select:none; hand-set tilt belongs to Astrology Club, not Navigate.",
   "axis": "Black keyline (licenses clashing hues; life in interaction) vs value-cut, no outline (one hue family; life in 11 hand-set tilts).",
   "vocabulary": [
-   "Every surface is one flat fill plus a hairline black keyline \u2014 zero gradients, shadows, blend modes or backdrop-filters; panels read as die-cut vinyl on a stage.",
+   "Every surface is one flat fill plus a hairline black keyline — zero gradients, shadows, blend modes or backdrop-filters; panels read as die-cut vinyl on a stage.",
    "Closed :root palette of 8 hues + 5 tints: orange #ff6d38, purple #7a78ff, lime #c7ff69, cream #fdf9f0, near-black #141414, yellow #ffc412, green #00a652, blue #478bff.",
-   "A panel never picks its color \u2014 it receives style=\"--color:var(--cl-purple)\" and consumes var(--color); a tile row is a dealt list of hue tokens.",
-   "Lime is reserved: the only fill in nav and CTAs; CTA variants are a strict inversion pair (black/lime \u2194 lime/black).",
-   "Corners are the interaction: 4.6rem capsule at radius 2.3rem un-rounds to 1rem on hover, .3s cubic-bezier(0.22,1,0.36,1) \u2014 nothing scales or shadows.",
-   "Grounds flip black\u2192orange on a 0.3s scroll class; headline emphasis = a --cl-purple block behind one word, ink flipped black."
+   "A panel never picks its color — it receives style=\"--color:var(--cl-purple)\" and consumes var(--color); a tile row is a dealt list of hue tokens.",
+   "Lime is reserved: the only fill in nav and CTAs; CTA variants are a strict inversion pair (black/lime ↔ lime/black).",
+   "Corners are the interaction: 4.6rem capsule at radius 2.3rem un-rounds to 1rem on hover, .3s cubic-bezier(0.22,1,0.36,1) — nothing scales or shadows.",
+   "Grounds flip black→orange on a 0.3s scroll class; headline emphasis = a --cl-purple block behind one word, ink flipped black."
   ],
   "members": [
    {
@@ -2162,15 +2162,15 @@
   "temperature": "Cold blue-grey slate #466383; one accent per build: #ffb702 amber or #f56905 orange",
   "type": "Uppercase by default, .1em tracking, self-hosted grotesque; rem rebased to viewport (html{font-size:.52083vw})",
   "motion": "One curve per layer: cubic-bezier(.19,1,.22,1) sole CSS bezier; Expo.easeOut dominant JS ease; duration varies far more than curve.",
-  "for": "Subjects where conditions are the story \u2014 expedition, field research, launch/telemetry, climate, logistics \u2014 with real measurements and real photography.",
+  "for": "Subjects where conditions are the story — expedition, field research, launch/telemetry, climate, logistics — with real measurements and real photography.",
   "not_for": "Strip the photography and hairlines become a dashboard skin; strip real numbers and gauges become decoration. Gesture-per-beat nav on task-bearing UI; military grotesque off-subject reads as costume.",
   "axis": "Whether the telemetry describes the photograph (Mammut: inert SVG, native scroll) or controls it (Storm: the gauge is a dial you turn).",
   "vocabulary": [
-   "Full-bleed cold expedition photography is the entire ground; one blue-grey grade moved in value, never hue \u2014 glacial near-white to bruised slate \u2014 via split gamma (blue lifted, red dropped), multiplicative grain so blacks stay black.",
-   "Structure is rules, never boxes: open hairline frames from 1px white spans \u2014 three edges, never four, verticals cut to 80% \u2014 uppercase corner labels at .1em tracking, one Black + one Regular as heading + value.",
-   "Real measured data as instruments: stroke-dashoffset arc gauges, a rotary dial with dashed target sweep under solid amber fill, hsla(0,0%,100%,.2) rails, a meter parked at -40 \u00b0c.",
+   "Full-bleed cold expedition photography is the entire ground; one blue-grey grade moved in value, never hue — glacial near-white to bruised slate — via split gamma (blue lifted, red dropped), multiplicative grain so blacks stay black.",
+   "Structure is rules, never boxes: open hairline frames from 1px white spans — three edges, never four, verticals cut to 80% — uppercase corner labels at .1em tracking, one Black + one Regular as heading + value.",
+   "Real measured data as instruments: stroke-dashoffset arc gauges, a rotary dial with dashed target sweep under solid amber fill, hsla(0,0%,100%,.2) rails, a meter parked at -40 °c.",
    "Everything else hard rectangles (border-radius:0); the only circles are gauges.",
-   "One saturated hue \u2014 #ffb702 amber / #f56905 orange \u2014 only on things you can act on, restated as a GLSL constant so scene amber = DOM amber.",
+   "One saturated hue — #ffb702 amber / #f56905 orange — only on things you can act on, restated as a GLSL constant so scene amber = DOM amber.",
    "Legibility via text-shadow, zero blend modes."
   ],
   "members": [
@@ -2222,16 +2222,16 @@
   "name": "hazed-relic-runes",
   "thesis": "Mythic stone monuments sunk in volumetric haze, desaturated to near-neutrals; one acid accent spent as light and glyphs; an invented alphabet cross-fades beside Latin; tracked-caps corner chrome.",
   "temperature": "Warm olive-khaki/cool grey neutrals on near-black #08080c; ink #f8ffed; accent #ebfc53",
-  "type": "Wide-thin PP Rader caps at 8.4vw/lh .83 composited inside the render; chrome Space Grotesk 300 tracked .1em.",
-  "motion": "House easing cubic-bezier(.4,0,.1,1); page changes are 1.2s/1.7s linear dissolves, not cuts; synthetic scroll lerps baked world states.",
+  "type": "Wide-thin PP Rader caps at 8.4vw/lh .83 composited inside the render; chrome Space Grotesk 300 tracked .1em. — free substitutes: PP Rader → Lexend Exa",
+  "motion": "House easing cubic-bezier(.4,0,.1,1); page changes are 1.2s-in / 1.7s-out linear dissolves (after a .3s delay), not cuts; synthetic scroll lerps baked world states.",
   "for": "Immersive world-building sites: mythic/cinematic brand chapters, game or film tie-ins, WebGL scroll experiences where the render is the page ground.",
   "not_for": "Pastiche without real depth (flat art + CSS blur reads as smudge), on light content pages, with runes in wayfinding/body copy, or without budget for a preloader and a keyboard path.",
   "axis": "Exterior fog-space you orbit vs discrete interior rooms you teleport between; accent shifts from motion transient to state marker.",
   "vocabulary": [
-   "Colossal mythic stone architecture \u2014 arched pillar-trees, terraced platforms \u2014 sunk in volumetric haze under one blown-out backlight; fog.near pushed negative so even the foreground is part-veiled.",
-   "Ground near-black (radial #181a18\u2192#09090c over a #08080c canvas); ink warm off-white #f8ffed; exactly one saturated hue \u2014 acid #ebfc53 \u2014 spent as light and glyphs, never as a surface.",
+   "Colossal mythic stone architecture — arched pillar-trees, terraced platforms — sunk in volumetric haze under one blown-out backlight; fog.near pushed negative so even the foreground is part-veiled.",
+   "Ground near-black (radial #181a18→#09090c over a #08080c canvas); ink warm off-white #f8ffed; exactly one saturated hue — acid #ebfc53 — spent as light and glyphs, never as a surface.",
    "Display type enormous, uppercase, wide and thin (PP Rader at 8.4vw, line-height .83), composited inside the render so chromatic aberration, bloom and vignette sit on the letterforms.",
-   "An invented alphabet (SpaceGrotesk-Toom, keyed 1:1 to A\u2013Z) cross-fades against Latin glyph by glyph \u2014 a per-character opacity race, not a rotation trick.",
+   "An invented alphabet (SpaceGrotesk-Toom, keyed 1:1 to A–Z) cross-fades against Latin glyph by glyph — a per-character opacity race, not a rotation trick.",
    "Chrome at the edges: Space Grotesk 300 caps at .1em, opacity ladder 1/.4/.3/.25/.2, hairlines rgba(248,255,237,.1), circular rune buttons; the HUD sits inside the world's own fog."
   ],
   "members": [
@@ -2282,18 +2282,18 @@
  {
   "name": "iridescent-plaster-gallery",
   "thesis": "Pale warm plaster/marble architecture carries the frame under huge high-contrast serif; two declared colors (cream/charcoal), all saturation in one iridescent token spent only on state and progress.",
-  "temperature": "Warm: ground #EDC1CB/#F6F3E4, ink #212121, fog #E0CFCF; chroma one #EECFFF\u2192#B5BBFF ramp",
-  "type": "Two families, three files \u2014 Neue Montreal + Saol Display Light; huge serif sized to the frame, colliding with the plate",
+  "temperature": "Warm: ground #EDC1CB/#F6F3E4, ink #212121, fog #E0CFCF; chroma one #EECFFF→#B5BBFF ramp",
+  "type": "Two families, three files — Neue Montreal + Saol Display Light; huge serif sized to the frame, colliding with the plate — free substitutes: Neue Montreal → Inter Tight; Saol Display Light → Playfair Display",
   "motion": "Expo-dominated, unhurried; frame never still (brownian camera rig); capsule border travels on ease:none constant-speed middles",
-  "for": "Studios, cultural institutions, exhibitions \u2014 anything arguing atmosphere plus one name; needs one genuinely strong plate and a headline worth that size.",
+  "for": "Studios, cultural institutions, exhibitions — anything arguing atmosphere plus one name; needs one genuinely strong plate and a headline worth that size.",
   "not_for": "Weak imagery leaves corner-cluster chrome on nothing; a primitives/MatCap plate reads as Blender tutorial; one full-chroma photo shatters the blush set; ramp past ~12 uses kills it; no gated canvas H1.",
   "axis": "Manufactured vs captured plate: rendered room bakes type in, ink wears the ramp; photo forces DOM type + scrims, ramp goes to UI.",
   "vocabulary": [
-   "One pale warm architectural plate \u2014 plaster arches and standing water, or a marble gallery hall \u2014 owns the frame; the interface is corner clusters over it, not a layout.",
+   "One pale warm architectural plate — plaster arches and standing water, or a marble gallery hall — owns the frame; the interface is corner clusters over it, not a layout.",
    "Display serif is enormous, sized against the frame, and allowed to collide: letters run behind columns, through doorways, past floating plates.",
-   "Base is exactly two declared colors \u2014 warm ground (blush #EDC1CB / cream #F6F3E4) and #212121 charcoal ink \u2014 enforced as CSS tokens.",
-   "All chroma is one pink\u2192violet\u2192blue iridescent ramp rationed to state and progress only (hover, scroll fill, drag); never a page ground, never body copy. No focus rule exists \u2014 that gap is the family's built-in a11y bug, not part of the look.",
-   "Craft concentrates on one 1.5rem capsule: hover is a geometric event \u2014 a border drawing itself, a gradient sheet rotating 605deg \u2014 plus a cloned label swap.",
+   "Base is exactly two declared colors — warm ground (blush #EDC1CB / cream #F6F3E4) and #212121 charcoal ink — enforced as CSS tokens.",
+   "All chroma is one pink→violet→blue iridescent ramp rationed to state and progress only (hover, scroll fill, drag); never a page ground, never body copy. No focus rule exists — that gap is the family's built-in a11y bug, not part of the look.",
+   "Craft concentrates on one 1.5rem capsule: hover is a geometric event — a border drawing itself, a gradient sheet rotating 605deg — plus a cloned label swap.",
    "Warm fog #E0CFCF desaturates everything else; nothing in the frame is ever perfectly still."
   ],
   "members": [
@@ -2342,19 +2342,19 @@
  },
  {
   "name": "old-master-remix",
-  "thesis": "A full-bleed period oil carries the whole surface; every modern element sits in one graphically pure layer \u2014 one quarantined accent, hairline rules, one numeral system \u2014 painting and UI never blend.",
+  "thesis": "A full-bleed period oil carries the whole surface; every modern element sits in one graphically pure layer — one quarantined accent, hairline rules, one numeral system — painting and UI never blend.",
   "temperature": "Warm olive: parchment #f7f7ee on #292919; pink quarantined to imagery (CANALS: #D14836)",
   "type": "Three roles, never traded: bold grotesque (lh .9, -.03em), old-style serif (-.05em), script rationed to ::first-letter",
-  "motion": "Survey lines drawn on via pathLength=1 (3s, cubic-bezier(.34,.22,.47,.84)); chrome choreographed by root data-attributes, no timeline lib",
-  "for": "Campaign or seasonal microsites and editorial releases where the anachronism has a reason \u2014 the conceit must close (commerce props in a 'Renaissance' edition).",
-  "not_for": "Pastiche when the joke doesn't close (Old Master + random modern prop), when genAI paint artefacts show, when the script face sets words, or in persistent product UI \u2014 Roman numerals alone cost you.",
+  "motion": "Survey lines drawn on via pathLength=1 (duration 3s, ease cubic-bezier(.34,.22,.47,.84)); chrome choreographed by root data-attributes, no timeline lib",
+  "for": "Campaign or seasonal microsites and editorial releases where the anachronism has a reason — the conceit must close (commerce props in a 'Renaissance' edition).",
+  "not_for": "Pastiche when the joke doesn't close (Old Master + random modern prop), when genAI paint artefacts show, when the script face sets words, or in persistent product UI — Roman numerals alone cost you.",
   "axis": "How far the modern layer enters the picture plane: CANALS protects a flat scan, all on top; Renaissance re-renders it 3D and goes inside.",
   "vocabulary": [
    "One period oil fills the frame edge to edge, never cropped into collage; the modern world enters only as discrete props or as chrome laid over the picture.",
-   "Parchment #f7f7ee on olive-black #292919, every intermediate grey olive-shifted (#dcdcd0 / #909083 / #5c5c4e); the shock-pink lives inside the imagery \u2014 not one pink hex in the CSS.",
-   "A compass-and-straightedge survey \u2014 centre cross, canvas frame, golden-rectangle spirals \u2014 at 0.4px rgba(255,255,255,.15), drawn on line by line, never faded in.",
+   "Parchment #f7f7ee on olive-black #292919, every intermediate grey olive-shifted (#dcdcd0 / #909083 / #5c5c4e); the shock-pink lives inside the imagery — not one pink hex in the CSS.",
+   "A compass-and-straightedge survey — centre cross, canvas frame, golden-rectangle spirals — at 0.4px rgba(255,255,255,.15), drawn on line by line, never faded in.",
    "Three type roles that never trade jobs: bold grotesque for structure (line-height .9, -.03em), old-style serif for narrative (-.05em), script only as a ::first-letter drop cap.",
-   "Upper-Roman numerals generated by CSS counters wherever a number occurs \u2014 chapters and prices alike.",
+   "Upper-Roman numerals generated by CSS counters wherever a number occurs — chapters and prices alike.",
    "Nothing of the interface inherited from the painting except warmth; nothing of the painting except geometry."
   ],
   "members": [
@@ -2397,18 +2397,18 @@
  },
  {
   "name": "orrery-chart-vellum",
-  "thesis": "Navigation drawn as an antique chart: orbital rings, waypoint nodes, year-rails as hairline apparatus over cinematic plates, readable face vs hard-tracked micro-caps \u2014 the IA is a diagram you travel.",
-  "temperature": "Warm bone #f5f1eb / plum-black #2f2425 ink; vermilion #f93c04 rules; dark #122330\u2192#431e2e",
-  "type": "Two faces, two jobs, zero overlap: Roobert 300 carries every readable size; Rogan quarantined to 9\u201312px caps at .24em.",
-  "motion": "Iris from scale3d(12,12,1) at origin 0 0, 1s; easeOutQuint open / easeInOutQuint close; rings 150s linear; scroll-velocity skew \u00b190\u00b0",
-  "for": "Cinematic world-building \u2014 game universes, lore launches, atmospheric brand chapters \u2014 with a pre-rendered art budget and nav that can afford to be a diagram.",
-  "not_for": "Anything with a task behind it \u2014 the jury docked usability to 7.36. The atmosphere is bought with studio-grade pre-rendered art (no WebGL) and collapses without it. Never scale vermilion into fills.",
+  "thesis": "Navigation drawn as an antique chart: orbital rings, waypoint nodes, year-rails as hairline apparatus over cinematic plates, readable face vs hard-tracked micro-caps — the IA is a diagram you travel.",
+  "temperature": "Warm bone #f5f1eb / plum-black #2f2425 ink; vermilion #f93c04 rules; dark #122330→#431e2e",
+  "type": "Two faces, two jobs, zero overlap: Roobert 300 carries every readable size; Rogan quarantined to 9–12px caps at .24em. — free substitutes: Roobert → Albert Sans; Rogan → Space Grotesk",
+  "motion": "Iris from scale3d(12,12,1) at transform-origin 0 0, 1s; easeOutQuint open / easeInOutQuint close; rings 150s per turn, linear; scroll-velocity skew clamp ±90 (target: skew or rotation, unverified)",
+  "for": "Cinematic world-building — game universes, lore launches, atmospheric brand chapters — with a pre-rendered art budget and nav that can afford to be a diagram.",
+  "not_for": "Anything with a task behind it — the jury docked usability to 7.36. The atmosphere is bought with studio-grade pre-rendered art (no WebGL) and collapses without it. Never scale vermilion into fills.",
   "axis": "What the chart charts + drawn vs computed apparatus: system/drawn SVG rings (star-atlas) vs territory/WebGL map, 49 shader pairs (continent)",
   "vocabulary": [
-   "Warm bone #f5f1eb page, plum-black #2f2425 ink; dark only as a place you go \u2014 a menu overlay of -55deg navy-teal #122330 into aubergine #431e2e under a black vignette, irising in from scale3d(12,12,1) at transform-origin:0 0.",
+   "Warm bone #f5f1eb page, plum-black #2f2425 ink; dark only as a place you go — a menu overlay of -55deg navy-teal #122330 into aubergine #431e2e under a black vignette, irising in from scale3d(12,12,1) at transform-origin:0 0.",
    "The IA is an orrery: six nav items in vw resolving to four exact radii (24.6/44.5/64.1/84.8vw, two pairs sharing rings); SVG ring art spun 150s linear; the dismiss glyph sits at the origin.",
-   "All structure is 1\u20132px hairline; 6px diamonds at 45\u00b0 mark everything \u2014 hollow inactive, filled active. Vermilion #f93c04 never fills an area: rules, borders, bullets, progress lines only.",
-   "Roobert 300 carries every readable size; Rogan quarantined to 9\u201312px micro-caps at .24em tracking.",
+   "All structure is 1–2px hairline; 6px diamonds at 45° mark everything — hollow inactive, filled active. Vermilion #f93c04 never fills an area: rules, borders, bullets, progress lines only.",
+   "Roobert 300 carries every readable size; Rogan quarantined to 9–12px micro-caps at .24em tracking.",
    "Fixed 2px left rail: tiled inline-SVG dots (r=1, #78746D, 6px pitch), vermilion scaleY progress fill, diamond terminals; chapter numerals on a 44px disc inside a 52px ring at 20%, tabular-nums."
   ],
   "members": [
@@ -2458,18 +2458,18 @@
  },
  {
   "name": "rounded-frame-diorama",
-  "thesis": "A rounded screen or scene-object on a soft pastel field; one crafted 3D diorama carries the whole story \u2014 the camera moves through it, room-scoped theming retints the quiet chrome, two accents only.",
+  "thesis": "A rounded screen or scene-object on a soft pastel field; one crafted 3D diorama carries the whole story — the camera moves through it, room-scoped theming retints the quiet chrome, two accents only.",
   "temperature": "Warm: bone #f2efea ground, ink #241f21, chartreuse #e9e778 + persimmon #f76c46 accents",
   "type": "One variable grotesk, connection axis pinned max on every style (\"cnct\" 1000), titles tracked -.04em; vw scale >2000px.",
   "motion": "Expo-out only (cubic-bezier(.19,1,.22,1)), .5s chrome / .8s copy; 150vh-per-slide sticky deck; heavy 3D in a Worker on OffscreenCanvas.",
-  "for": "Products whose value is a place or system you'd have to be shown \u2014 a clinic, a public-space furniture catalogue, a physical service with rooms and stages.",
-  "not_for": "Needs one genuinely crafted asset; without it, a stock isometric illustration with pastel labels \u2014 a 2021 SaaS page. Transplanted moss/kingfisher content is pastiche; flat cutouts read as clip art.",
-  "axis": "Is the region a place or a moment \u2014 Kriss: rooms w/ coordinates, quads named for architecture; Floema: scroll ranges, quads named for mood.",
+  "for": "Products whose value is a place or system you'd have to be shown — a clinic, a public-space furniture catalogue, a physical service with rooms and stages.",
+  "not_for": "Needs one genuinely crafted asset; without it, a stock isometric illustration with pastel labels — a 2021 SaaS page. Transplanted moss/kingfisher content is pastiche; flat cutouts read as clip art.",
+  "axis": "Is the region a place or a moment — Kriss: rooms w/ coordinates, quads named for architecture; Floema: scroll ranges, quads named for mood.",
   "vocabulary": [
-   "One warm bone ground (#f2efea) carries everything; the only overlay is shade \u2014 dappled leaf-shadow in pure black alpha, multiply, never a tint, so the ground darkens toward its own hue and nothing goes grey.",
-   "Colour is delegated: photography and one crafted scene hold all of it; chrome borrows \u2014 a named token quad (text/background/background-hover/border/border-hover, 4\u20136 per theme) re-points per region, so a nav pill reads chartreuse over the fluor section, near-black ink over the light one.",
-   "Two saturation notes against a twelve-step neutral ramp (bone\u2192putty\u2192stone\u2192#241f21): chartreuse #e9e778 as a whole panel plus a 12px transition hairline, persimmon #f76c46 at chip size.",
-   "One idea per viewport, 150vh scroll per slide; above 2000px the scale re-declares in vw \u2014 a big display zooms the design, one scaled object.",
+   "One warm bone ground (#f2efea) carries everything; the only overlay is shade — dappled leaf-shadow in pure black alpha, multiply, never a tint, so the ground darkens toward its own hue and nothing goes grey.",
+   "Colour is delegated: photography and one crafted scene hold all of it; chrome borrows — a named token quad (text/background/background-hover/border/border-hover, 4–6 per theme) re-points per region, so a nav pill reads chartreuse over the fluor section, near-black ink over the light one.",
+   "Two saturation notes against a twelve-step neutral ramp (bone→putty→stone→#241f21): chartreuse #e9e778 as a whole panel plus a 12px transition hairline, persimmon #f76c46 at chip size.",
+   "One idea per viewport, 150vh scroll per slide; above 2000px the scale re-declares in vw — a big display zooms the design, one scaled object.",
    "The moment the interface picks its own colour, the family is gone."
   ],
   "members": [
@@ -2513,21 +2513,21 @@
  },
  {
   "name": "swiss-grid-lab",
-  "thesis": "The page's own construction is the subject \u2014 grid overlays, spec tables, bezier handles and keyframe markers drawn as content on flat ink-and-paper grounds: a design system demonstrating itself.",
-  "temperature": "Flat ink-on-paper: #F1F1F1/#010101, accent #FAFF00, ramp #B2B2B2\u2192#606060\u2192#2C2C2C",
-  "type": "10px chrome + 14px copy vs 86/264px display, one 31px rank, no 16px anywhere; tracking ~0 small, \u22120.04em at display.",
-  "motion": "Stock easings only (510 linear, 101 ease-out, zero cubic-bezier); travel via offset-path not transform; delay = held first keyframe stop.",
-  "for": "Documentation, design systems, brand guidelines, editorial explainers, teaching projects \u2014 where the method is the content and the reader agreed to be taught.",
-  "not_for": "Pastiche when the page documents nothing \u2014 apparatus is honest only describing what it decorates. No #FAFF00 off-black, no signature curves, no zoomed fixed artboard.",
+  "thesis": "The page's own construction is the subject — grid overlays, spec tables, bezier handles and keyframe markers drawn as content on flat ink-and-paper grounds: a design system demonstrating itself.",
+  "temperature": "Flat ink-on-paper: #F1F1F1/#010101, accent #FAFF00, ramp #B2B2B2→#606060→#2C2C2C",
+  "type": "10px chrome + 14px copy vs 86/264px display, one 31px rank, no 16px anywhere; tracking ~0 small, −0.04em at display.",
+  "motion": "Stock easing curves only, not low volume (510 linear + 101 ease-out declarations, zero cubic-bezier; 578 keyframe blocks); travel via offset-path not transform; delay = held first keyframe stop.",
+  "for": "Documentation, design systems, brand guidelines, editorial explainers, teaching projects — where the method is the content and the reader agreed to be taught.",
+  "not_for": "Pastiche when the page documents nothing — apparatus is honest only describing what it decorates. No #FAFF00 off-black, no signature curves, no zoomed fixed artboard.",
   "axis": "How optional the apparatus is + whether the drawn grid is actually in force: toggled depiction (grids) vs load-bearing CSS Grid (dropbox).",
   "vocabulary": [
-   "Layout apparatus drawn as content on a flat ink-and-paper ground \u2014 no depth, no gradient, no canvas.",
-   "Hero: a visible 8-column overlay \u2014 translucent bands rgba(86,86,86,0.1) spanning 960px \u2014 behind a 10px `Grid:` toggle with a two-lozenge ON/OFF pill.",
-   "Structure drawn, never implied: 0.8px SVG hairlines at three lengths only (960/597/352px); 10px spec-table rows as ornament (`Grid | 12 Columns`, `Margins | 30 px`, `Gutters | 20 px`); curves pinned by 8\u00d78px square markers.",
-   "Sibling's drafting kit: grabbable bezier handles, 10px keyframe diamonds rotated 45\u00b0 in #c5dbff.",
-   "Two rule weights \u2014 the structural one lighter than the ornamental (0.8px vs 1px).",
-   "Sentence and diagram share one ramp: 86px headline steps #F1F1F1\u2192#B2B2B2\u2192#606060\u2192#2C2C2C, matched by the block modules beside it.",
-   "Imagery only as measured exhibits; all sizes are design px on a 1024 artboard \u2014 steal the ratios."
+   "Layout apparatus drawn as content on a flat ink-and-paper ground — no depth, no gradient, no canvas.",
+   "Hero: a visible 8-column overlay — translucent bands rgba(86,86,86,0.1) spanning 960px — behind a 10px `Grid:` toggle with a two-lozenge ON/OFF pill.",
+   "Structure drawn, never implied: 0.8px SVG hairlines at three lengths only (960/597/352px); 10px spec-table rows as ornament (`Grid | 12 Columns`, `Margins | 30 px`, `Gutters | 20 px`); curves pinned by 8×8px square markers.",
+   "Sibling's drafting kit: grabbable bezier handles, 10px keyframe diamonds rotated 45° in #c5dbff.",
+   "Two rule weights — the structural one lighter than the ornamental (0.8px vs 1px).",
+   "Sentence and diagram share one ramp: 86px headline steps #F1F1F1→#B2B2B2→#606060→#2C2C2C, matched by the block modules beside it.",
+   "Imagery only as measured exhibits; all sizes are design px on a 1024 artboard — steal the ratios."
   ],
   "members": [
    {
@@ -2576,18 +2576,18 @@
  },
  {
   "name": "torn-paper-editorial",
-  "thesis": "The page as physical printed stock: warm paper grounds, torn scanned scraps occluding a giant masthead, serif editorial furniture, and motion that only does what a sheet could \u2014 tear, slip, clip.",
+  "thesis": "The page as physical printed stock: warm paper grounds, torn scanned scraps occluding a giant masthead, serif editorial furniture, and motion that only does what a sheet could — tear, slip, clip.",
   "temperature": "Warm off-white stocks: #f3efe3 #fefefe #f4e8e0 (Watson), #CDC6BE (Miranda); never cool",
-  "type": "One display word at 20\u201337vw, physically occluded; serif copy with drop caps, footnote numerals, hairline swept rules",
-  "motion": "State changes tear, slip, or clip a sheet \u2014 never crossfade; house 1000ms cubic-bezier(.19,1,.22,1), damping 0.09, clip-path inset wipes",
-  "for": "Studio, portfolio, or manifesto sites with few short routes, print-grade scanned assets, and an editorial voice \u2014 art-book or broadsheet briefs",
-  "not_for": "No-scroll on long/docs/shop sites; four-multiply duotone on dense grids; per-glyph rig on long headlines; ripped-edge PNGs over stock photos = 2011 Photoshop pastiche \u2014 90% asset quality, 10% code",
-  "axis": "Where paper lives: geometry+normal maps in three.js, modern print (Watson) \u2192 texture overlay + shader tear, 19th-c broadsheet (Miranda)",
+  "type": "One display word at 20–37vw, physically occluded; serif copy with drop caps, footnote numerals, hairline swept rules",
+  "motion": "State changes tear, slip, or clip a sheet — never crossfade; house 1000ms cubic-bezier(.19,1,.22,1), damping 0.09 (fraction of the gap closed per 60 fps frame, dt-normalised), clip-path inset(100% 0 0 0) wipes opening upward",
+  "for": "Studio, portfolio, or manifesto sites with few short routes, print-grade scanned assets, and an editorial voice — art-book or broadsheet briefs",
+  "not_for": "No-scroll on long/docs/shop sites; four-multiply duotone on dense grids; per-glyph rig on long headlines; ripped-edge PNGs over stock photos = 2011 Photoshop pastiche — 90% asset quality, 10% code",
+  "axis": "Where paper lives: geometry+normal maps in three.js, modern print (Watson) → texture overlay + shader tear, 19th-c broadsheet (Miranda)",
   "vocabulary": [
    "Warm bone paper ground (#f3efe3 / #f4e8e0), declared once per route as a sheet of stock, never gradient-shaded.",
-   "One display word at absurd scale \u2014 Watson's masthead 22.3vw, line-height 0.91, every glyph hand-kerned \u2014 torn scraps of scanned stock interleaved genuinely in front of some letters, behind others.",
-   "Running copy: transitional serif manifesto at ~1.35vw, hairline swept underlines, italic parentheticals, superscript footnote numerals doubling as nav \u2014 (1) Partnerships, (2) Capabilities.",
-   "Photography arrives pre-printed: grayscale(1) multiplied onto #f4e8e0, ink veil rgba(28,27,32,.1), paper bloom rgba(255,255,255,.25) \u2014 duotone by blend mode, never asset editing.",
+   "One display word at absurd scale — Watson's masthead 22.3vw, line-height 0.91, every glyph hand-kerned — torn scraps of scanned stock interleaved genuinely in front of some letters, behind others.",
+   "Running copy: transitional serif manifesto at ~1.35vw, hairline swept underlines, italic parentheticals, superscript footnote numerals doubling as nav — (1) Partnerships, (2) Capabilities.",
+   "Photography arrives pre-printed: grayscale(1) multiplied onto #f4e8e0, ink veil rgba(28,27,32,.1), paper bloom rgba(255,255,255,.25) — duotone by blend mode, never asset editing.",
    "Motion is paper motion: damping 0.09, 1000ms on cubic-bezier(.19,1,.22,1); clippings wipe in with clip-path:inset(100% 0 0 0); page change = one sheet lifts and clips away, the next slides up from the bottom edge."
   ],
   "members": [
@@ -2611,7 +2611,7 @@
    },
    {
     "slug": "miranda-paper-portfolio",
-    "site": "Miranda \u2013 Paper Portfolio",
+    "site": "Miranda – Paper Portfolio",
     "live": "https://niccolomiranda.com",
     "awwwards": "https://www.awwwards.com/sites/miranda-paper-portfolio",
     "award": [
@@ -2636,18 +2636,18 @@
  },
  {
   "name": "two-face-splice-editorial",
-  "thesis": "Gallery-white ground with whisper corner chrome and a display headline splicing two typefaces inside one block \u2014 per glyph or per line \u2014 imagery as floating cropped fragments, one tiny accent.",
+  "thesis": "Gallery-white ground with whisper corner chrome and a display headline splicing two typefaces inside one block — per glyph or per line — imagery as floating cropped fragments, one tiny accent.",
   "temperature": "Paper-neutral: #f0f0f0 ground, never pure white, two greys; one accent #fe4249 (cursor)",
   "type": "One h1, two faces: hairline display serif vs neutral grotesque, display 16% larger; 13.5:1 over support; vw-root scale",
-  "motion": "One-way data-shown latch + data-d delay ladders in CSS: 25ms/char, 100/50ms word in/out, 75ms/block; four custom cubic-beziers total",
-  "for": "Studios, photographers, editorial and cultural clients \u2014 where the headline IS the identity and the budget is typographic, not 3D; the library's type-only pole",
+  "motion": "One-way data-shown latch + data-d delay ladders in CSS: 25ms/char, 100ms per word entering, 50ms per word leaving, 75ms/block; four custom cubic-beziers total",
+  "for": "Studios, photographers, editorial and cultural clients — where the headline IS the identity and the budget is typographic, not 3D; the library's type-only pole",
   "not_for": "Pastiche when: hairline face scaled small; clock/counter chrome with no place or sequence to report; era-default second face (Saol); axis change without cursor coaching",
   "axis": "Grain of the splice, glyph to line: coarser grain earns its own size and metrics, louder chrome; accent moves from content to interface",
   "vocabulary": [
-   "Gallery-white #f0f0f0 ground, never pure white; one enormous headline whose typeface changes inside the block \u2014 hairline display serif on some lines or glyphs, plain grotesque on the rest, reading hand-set.",
+   "Gallery-white #f0f0f0 ground, never pure white; one enormous headline whose typeface changes inside the block — hairline display serif on some lines or glyphs, plain grotesque on the rest, reading hand-set.",
    "Line grain: 11.277vw Gallery centered vs 9.722vw Everett flush left; per-face height .68em/.75em, margin-bottom .15em/.165em pack mismatched slabs into contact, leaving a ragged notch.",
    "All else whispers: .833vw all-caps support in the notch (13.5:1), corner clock, (03/06) counter, hairline nav on fixed column offsets.",
-   "Imagery only as floating cropped fragments, capsule/arch-masked (border-radius >= half the width), bled off-frame \u2014 never a card grid.",
+   "Imagery only as floating cropped fragments, capsule/arch-masked (border-radius >= half the width), bled off-frame — never a card grid.",
    "One column unit --gw:4.16666667vw declared once runs radii, bleeds, nav, cursor; breakpoints change the multiplier.",
    "Two papers, two greys, one accent #fe4249 on the cursor disc and one button fill; root font-size is a vw (1.041vw)."
   ],
@@ -2700,16 +2700,16 @@
   "name": "acid-scrawl-telemetry",
   "thesis": "Acid lime on soot black alternating with sage-bone editorial, broadcast stat cards with giant ordinals and circuit traces, and a neon marker scrawl replacing one word of a three-register headline.",
   "temperature": "Acid-hot single accent: lime #D2FF00 on soot #111112/#282c20 <-> sage-bone #efefe5/#f4f4ed",
-  "type": "Mona Sans Variable (wdth 75 = telemetry, 660/93 display) + Brier swash on one <strong> word, larger than the grotesk",
-  "motion": "Two grammars: clip-inset chased by an accent bar (half-overlap) and edge-anchored ellipse clips; 4 GSAP defaults, ease:'none' scrubbed",
-  "for": "Athlete/team/personal sports brands, hype product drops \u2014 broadcast-telemetry energy plus an editorial second register and a real hand-made mark.",
-  "not_for": "Anything needing calm, trust, or expense \u2014 the acid palette is hype-only. Reads as pastiche the instant the scrawl isn't a real person's hand, or a generic 3D object fills the hero slot.",
-  "axis": "Where the hand-made mark comes from (real vs synthesised hand) and how hot the accent runs \u2014 stated as prediction; single-member family.",
+  "type": "Mona Sans Variable (wdth 75 = telemetry, 660/93 display) + Brier swash on one <strong> word, larger than the grotesk — free substitutes: Brier → Fraunces",
+  "motion": "Two grammars: clip-inset chased by an accent bar (bar starts 0.3s into the 0.6s reveal) and edge-anchored ellipse clips; 4 stock GSAP eases (power2.out, power2.inOut, power3.out, expo.inOut), ease:'none' scrubbed",
+  "for": "Athlete/team/personal sports brands, hype product drops — broadcast-telemetry energy plus an editorial second register and a real hand-made mark.",
+  "not_for": "Anything needing calm, trust, or expense — the acid palette is hype-only. Reads as pastiche the instant the scrawl isn't a real person's hand, or a generic 3D object fills the hero slot.",
+  "axis": "(predicted, n=1) Where the hand-made mark comes from (real vs synthesised hand) and how hot the accent runs — stated as prediction; single-member family.",
   "vocabulary": [
-   "Two grounds, one surface: acid lime #D2FF00 on soot #111112 <-> sage-bone editorial (cream #efefe5, bone #f4f4ed, olive-black #282c20), joined by one full-viewport WebGL contour field \u2014 near-invisible hairlines (#363B25 on #282c20), scroll-lerped with body background on the same frame.",
-   "Three registers per headline: all-caps Mona Sans Variable (wght 660/wdth 93, line-height 90.6%), Brier swash serif on one <strong> word \u2014 larger than the grotesk it interrupts \u2014 and a neon marker scrawl: scroll-scrubbed Rive drawing itself.",
+   "Two grounds, one surface: acid lime #D2FF00 on soot #111112 <-> sage-bone editorial (cream #efefe5, bone #f4f4ed, olive-black #282c20), joined by one full-viewport WebGL contour field — near-invisible hairlines (#363B25 on #282c20), scroll-lerped with body background on the same frame.",
+   "Three registers per headline: all-caps Mona Sans Variable (wght 660/wdth 93, line-height 90.6%), Brier swash serif on one <strong> word — larger than the grotesk it interrupts — and a neon marker scrawl: scroll-scrubbed Rive drawing itself.",
    "Numerals as broadcast graphics: giant stats at wdth 75, ordinals auto-wrapped, lime only at P1, zero-padded width-preserving count-ups, a circuit ribbon.",
-   "Two reveals: clip-inset chased by an accent bar, or an edge-anchored ellipse \u2014 the oval is the masking shape (--radius--large 6.25rem).",
+   "Two reveals: clip-inset chased by an accent bar, or an edge-anchored ellipse — the oval is the masking shape (--radius--large 6.25rem).",
    "Gradients end in transparent lime (--color--lime-zero #d2ff0000), never grey."
   ],
   "members": [
@@ -2735,18 +2735,18 @@
  },
  {
   "name": "archival-particle-editorial",
-  "thesis": "Real artwork thumbnails as the particles of scroll-choreographed data-viz formations \u2014 ribbons, rings, timelines \u2014 on a white museum field with a bookish serif; violent density alternation as pacing.",
+  "thesis": "Real artwork thumbnails as the particles of scroll-choreographed data-viz formations — ribbons, rings, timelines — on a white museum field with a bookish serif; violent density alternation as pacing.",
   "temperature": "Warm-neutral: white stage, putty #c3b8ac tint, frosted #bababa33; fog keeps warmth.",
-  "type": "Bradford serif = all narration/headlines; Graphik sans = every label, credit, footnote; tracking always \u2212.01\u2026\u2212.03em.",
-  "motion": "Scroll-scrubbed, paced in screens not seconds (89.5 total); power2.inOut throughout; hover dims .1s in, 1s out; velocity drift on the ring.",
-  "for": "Collections, archives, catalogues raisonn\u00e9s, provenance/citation indexes \u2014 hundreds of good images + real per-item records; the argument is the corpus's shape.",
+  "type": "Bradford serif = all narration/headlines; Graphik sans = every label, credit, footnote; tracking always −.01…−.03em. — free substitutes: Bradford → Newsreader; Graphik → Inter",
+  "motion": "Scroll-scrubbed, paced in screens not seconds (89.5 screens total); power2.inOut (GSAP = easeInOutCubic) throughout; hover dims .1s in, 1s out; velocity drift on the ring.",
+  "for": "Collections, archives, catalogues raisonnés, provenance/citation indexes — hundreds of good images + real per-item records; the argument is the corpus's shape.",
   "not_for": "SaaS/consumer products (white field + bookish serif = borrowed gravitas); stock photos (swarm becomes confetti, museum register a costume); real DOM content under 90 screens (scrolljacked document).",
-  "axis": "Latent (1 member): how literally the formation is a chart \u2014 texture (ribbon) \u2192 notation (wedges + DOM labels at computed coords).",
+  "axis": "(predicted, n=1) Latent (1 member): how literally the formation is a chart — texture (ribbon) → notation (wedges + DOM labels at computed coords).",
   "vocabulary": [
-   "A white full-height stage that never scrolls \u2014 one 89.5-viewport spacer, one fixed layer \u2014 all colour arriving as content.",
-   "~1500 artwork thumbnails (102-sprite atlas, 128px cells, ~266 KB WebP) swarm into readable formations: a fanned sine ribbon, a polar scatter with 10\u00b0 wedge gutters, a timeline.",
-   "Every thumbnail drained to one archival putty tint (#c3b8ac, 10% mix then 50% overlay) so a Delacroix tiger and a Vig\u00e9e Le Brun portrait become one population; depth-fog toward white mixed from each particle's own colour.",
-   "Copy gets a halo, not a plate: rgba(255,255,255,.8) 60% \u2192 transparent 90% ellipse, 120lvh \u00d7 70lvh \u2014 the field drains, never covered.",
+   "A white full-height stage that never scrolls — one 89.5-viewport spacer, one fixed layer — all colour arriving as content.",
+   "~1500 artwork thumbnails (102-sprite atlas, 128px cells, ~266 KB WebP) swarm into readable formations: a fanned sine ribbon, a polar scatter with 10° wedge gutters, a timeline.",
+   "Every thumbnail drained to one archival putty tint (#c3b8ac, 10% mix then 50% overlay) so a Delacroix tiger and a Vigée Le Brun portrait become one population; depth-fog toward white mixed from each particle's own colour.",
+   "Copy gets a halo, not a plate: rgba(255,255,255,.8) 60% → transparent 90% ellipse, 120lvh × 70lvh — the field drains, never covered.",
    "Chrome is two objects: a frosted grey panel (blur(2rem) over #bababa33) and a 0.5rem dot stretching to a 3rem pill over 800ms.",
    "Paced in screens: one serif sentence holds four empty viewports before 1500 paintings land in a third of a screen."
   ],
@@ -2775,18 +2775,18 @@
   "name": "botanical-wallpaper-mono",
   "thesis": "A wallpapered panel inset in a pure-white margin: white paper printed with a tonal tile in the section's ink, forest-green bookmark tabs bleed off the edges, one typewriter cut carries all hierarchy.",
   "temperature": "Cool paper white + forest green #215732; base #EEEEEE; shades #F45923/#3B7F83/#FAC8B1",
-  "type": "Rational TW typewriter cut (Display+Text) for all hierarchy; Sailec geometric sans for body copy + scroll cue.",
-  "motion": "Five hand-set CSS curves, all decelerating to a dead stop; 0.8s cubic-bezier(.43,.195,.02,1) tab slides; underline wipes scaleX(0)\u21921.",
-  "for": "Restaurant/caf\u00e9 or artisanal-brand sites wanting a printed, illustrated, wallpapered feel \u2014 one brand green, flat cut-out art, scale-only hierarchy.",
+  "type": "Rational TW typewriter cut (Display+Text) for all hierarchy; Sailec geometric sans for body copy + scroll cue. — free substitutes: Rational TW → DM Mono; Sailec → DM Sans",
+  "motion": "Five CSS cubic-beziers (two hand-drawn, three stock Penner ease-outs), all decelerating to a dead stop; 0.8s cubic-bezier(.43,.195,.02,1) tab slides; underline wipes scaleX(0)→1 (.5s cubic-bezier(.49,.01,.27,1)).",
+  "for": "Restaurant/café or artisanal-brand sites wanting a printed, illustrated, wallpapered feel — one brand green, flat cut-out art, scale-only hierarchy.",
   "not_for": "Grainy botanicals on sage with coral accents is now the default artisanal-cafe template; without per-object chromatic shading, dithered-band lighting, and the 45px module it reads as stock pastiche.",
-  "axis": "None measured (singleton). Code-exposed knobs: frame thickness (90/30px), ground ink (pattern and tint are one vec3), per-sprite shade hue.",
+  "axis": "(predicted, n=1) None measured (singleton). Code-exposed knobs: frame thickness (90/30px), ground ink (pattern and tint are one vec3), per-sprite shade hue.",
   "vocabulary": [
    "White-bordered panel: 90px pure white on all four sides (30px mobile), two units of the 45px module that sizes every chrome element.",
-   "Ground printed, not filled: white paper + a 256px tonal tile in the section's ink \u2014 mix(white, themeColor, tile.r); pattern and tint are one variable.",
-   "Flat cut-outs lit by one light, quantised to four dithered bands (0.05/0.125/0.2/0.3), each stippling through its own noise tile at 128 device px \u2014 printed halftone, not smooth lambert.",
-   "Every object shades to its own hue \u2014 apple orange #F45923, leaf teal #3B7F83, hand peach #FAC8B1 \u2014 never black.",
-   "Chrome one forest green #215732 on white: solid tabs parked off the left/right edges (translateX(\u2213100%)) slide in like bookmarks; 4px progress bar; 90x90 losange buttons.",
-   "Rational TW typewriter cut for everything with hierarchy; Sailec geometric sans for everything that is just reading \u2014 a voice face, a neutral face."
+   "Ground printed, not filled: white paper + a 256px tonal tile in the section's ink — mix(white, themeColor, tile.r); pattern and tint are one variable.",
+   "Flat cut-outs lit by one light, quantised to four dithered bands (0.05/0.125/0.2/0.3), each stippling through its own noise tile at 128 device px — printed halftone, not smooth lambert.",
+   "Every object shades to its own hue — apple orange #F45923, leaf teal #3B7F83, hand peach #FAC8B1 — never black.",
+   "Chrome one forest green #215732 on white: solid tabs parked off the left/right edges (translateX(∓100%)) slide in like bookmarks; 4px progress bar; 90x90 losange buttons.",
+   "Rational TW typewriter cut for everything with hierarchy; Sailec geometric sans for everything that is just reading — a voice face, a neutral face."
   ],
   "members": [
    {
@@ -2814,19 +2814,19 @@
  },
  {
   "name": "carved-ice-mono",
-  "thesis": "An arctic monochrome canvas world you descend into, not a page you scroll \u2014 chunky sculpted ice with light glowing from the seams, all UI rendered inside the 3D scene as expedition-HUD telemetry.",
-  "temperature": "Cold, fog-narrow blue-grey: #B6BAC5/#383E4E, fog #6A6F7D\u2192#E1E6F1, rim accent #83A1C5",
+  "thesis": "An arctic monochrome canvas world you descend into, not a page you scroll — chunky sculpted ice with light glowing from the seams, all UI rendered inside the 3D scene as expedition-HUD telemetry.",
+  "temperature": "Cold, fog-narrow blue-grey: #B6BAC5/#383E4E, fog #6A6F7D→#E1E6F1, rim accent #83A1C5",
   "type": "IBM Plex Mono only, MSDF-rendered in-canvas with glyph-scramble decode reveals; reads as expedition-HUD telemetry.",
-  "motion": "Virtual scroll: wheel\u00d70.1, friction 0.97, double-lerp .075\u2192.15, 1.4s inOut3 auto-snap, modulo wrap; exp/log framerate-independent damp.",
-  "for": "Brand monuments, product-universe launches, \"we are a world\" statements; the maximal-immersion pole of the DOM\u2194canvas spectrum in a Phase-1 fan-out.",
-  "not_for": "SEO/a11y/conversion pages (empty-DOM scored 6.4\u20136.6 on its own card); WebGL2-only with no reduced-motion path must be re-authored; expedition-HUD crypto styling as costume on an unrelated brand.",
-  "axis": "Singleton; the free axis is fidelity of light-from-within \u2014 full spectral-IOR WebGL ice down to CSS glow through gaps \u2014 not the palette.",
+  "motion": "Virtual scroll: wheel velocity×0.1, friction 0.97 per 60fps frame, double-lerp .075→.15 per 60fps frame, auto-snap after 1.4s idle (ease inOut3), modulo wrap; exp/log framerate-independent damp.",
+  "for": "Brand monuments, product-universe launches, \"we are a world\" statements; the maximal-immersion pole of the DOM↔canvas spectrum in a Phase-1 fan-out.",
+  "not_for": "SEO/a11y/conversion pages (empty-DOM scored 6.4–6.6 on its own card); WebGL2-only with no reduced-motion path must be re-authored; expedition-HUD crypto styling as costume on an unrelated brand.",
+  "axis": "(predicted, n=1) Singleton; the free axis is fidelity of light-from-within — full spectral-IOR WebGL ice down to CSS glow through gaps — not the palette.",
   "vocabulary": [
-   "An arctic monochrome world you descend into, not a page you scroll: chunky sculpted ice with light glowing from the seams \u2014 light-from-within is the motif (igloo core, ice-embedded specimens, lit pedestals).",
-   "Fog-narrow palette: #B6BAC5 / #383E4E; the fog gradient #6A6F7D\u2192#E1E6F1 is what actually reads as the background; one cool rim accent #83A1C5.",
-   "All type IBM Plex Mono rendered inside the 3D scene with scramble-decode reveals; UI as expedition HUD \u2014 `////// Manifesto`, coordinate readouts, leader-line annotations.",
+   "An arctic monochrome world you descend into, not a page you scroll: chunky sculpted ice with light glowing from the seams — light-from-within is the motif (igloo core, ice-embedded specimens, lit pedestals).",
+   "Fog-narrow palette: #B6BAC5 / #383E4E; the fog gradient #6A6F7D→#E1E6F1 is what actually reads as the background; one cool rim accent #83A1C5.",
+   "All type IBM Plex Mono rendered inside the 3D scene with scramble-decode reveals; UI as expedition HUD — `////// Manifesto`, coordinate readouts, leader-line annotations.",
    "Portfolio items as museum specimens: a Pudgy Penguin frozen in a carved crystal with technical callouts.",
-   "Infinite virtual scroll (modulo wrap), camera dives inside the igloo; sound first-class \u2014 crossfaded wind + music, rate-limited beeps, visible Sound: Off toggle.",
+   "Infinite virtual scroll (modulo wrap), camera dives inside the igloo; sound first-class — crossfaded wind + music, rate-limited beeps, visible Sound: Off toggle.",
    "Pure-CSS ASCII loader (content: keyframes); film-look via a no-tone-mapping 3D-LUT grade, not curves."
   ],
   "members": [
@@ -2856,19 +2856,19 @@
  {
   "name": "cg-diorama-poster",
   "thesis": "A photoreal period CG room explored by camera pan; a flat single-hue poster type layer that refuses to belong to the render, hairline affordances at scene depth, treasure count as the whole HUD.",
-  "temperature": "Warm \u2014 cream plaster, apricot tile, honey wood \u2014 under one saturated red #ec3030",
+  "temperature": "Warm — cream plaster, apricot tile, honey wood — under one saturated red #ec3030",
   "type": "Huge uppercase display (155px @1920), tracked -0.035em, leaded 0.77; three mixins, no scale: display, caps, body=caps.",
-  "motion": "Camera pan replaces scroll (twin Catmull-Rom splines); GSAP power3.out/expo.out; affordances resolve fill\u21922px hairline via one lineWidth.",
-  "for": "Briefs pairing a fully art-directed 3D interior with a bold campaign identity \u2014 exhibition/anniversary microsites, explorable scene + poster-grade type.",
+  "motion": "Camera pan replaces scroll (twin Catmull-Rom splines (position + look-at at one progress)); GSAP power3.out/expo.out; affordances resolve fill (lineWidth 0.25×width)→2px hairline via one lineWidth.",
+  "for": "Briefs pairing a fully art-directed 3D interior with a bold campaign identity — exhibition/anniversary microsites, explorable scene + poster-grade type.",
   "not_for": "Stock 360 photo under the type collapses into real-estate tour; low-contrast red hairline chrome scored 5.80 accessibility; period props without an earning subject read as hidden-object asset pack.",
-  "axis": "Predicted (1 member): how far the type acknowledges the render \u2014 exemplar at zero (no scrim/blend); a #ed3030 flood ships gated off.",
+  "axis": "(predicted, n=1) Predicted (1 member): how far the type acknowledges the render — exemplar at zero (no scrim/blend); a #ed3030 flood ships gated off.",
   "vocabulary": [
    "Photoreal period CG interior, lit pale and low-contrast on purpose, explored by camera, not scroll.",
-   "One saturated red (#ec3030) does headline, eyebrow, body, lockup and footer alike, laid flat on the render \u2014 no scrim, no plate, no text-shadow; the render was baked to lose to the type.",
+   "One saturated red (#ec3030) does headline, eyebrow, body, lockup and footer alike, laid flat on the render — no scrim, no plate, no text-shadow; the render was baked to lose to the type.",
    "Display 155px at 1920, uppercase, tracked -0.035em, leaded 0.77; body set into the notch beside the last headline line; one root font-size (10/1920*100vw), all rem.",
-   "Chrome hairline and unfilled; only the two tappables fill solid white \u2014 filled is the affordance. Hint rings drawn in the post pass inherit grain, aberration, lens dirt.",
+   "Chrome hairline and unfilled; only the two tappables fill solid white — filled is the affordance. Hint rings drawn in the post pass inherit grain, aberration, lens dirt.",
    "Warm set: cream plaster, apricot tile wallpaper, honey wood, a transistor radio; near-empty corridor flips to hoarder-dense vanity.",
-   "The entire HUD is one line \u2014 N OF 9 TREASURES. Bake the room, don't light it: two lightmaps per surface, nothing shades under camera motion."
+   "The entire HUD is one line — N OF 9 TREASURES. Bake the room, don't light it: two lightmaps per surface, nothing shades under camera motion."
   ],
   "members": [
    {
@@ -2899,23 +2899,23 @@
   "name": "constructivist-bone-grid",
   "thesis": "Warm bone ground, flat near-black furniture: a constructivist monogram masthead terminated by a full-measure slab, one 1px-ruled utility strip as the chrome, chroma quarantined in matte art plates.",
   "temperature": "Warm two-token: bone #E7E4DF / ink #141414; --grey declared but referenced 0 times.",
-  "type": "One face, two weights (KH Teka 400/500); body font-size:1vw scale-locks the poster; display step: 5.69em / 9.5em.",
-  "motion": "Masked line reveals; rule-divs scale 0\u21921; stock new Lenis() smooth scroll; hard-cut page swap under a full-viewport veil on a 700ms hold.",
-  "for": "Archives, exhibitions, editorial indexes, type foundries \u2014 a fixed catalogue of real images that disagree about colour and must read as one collection.",
+  "type": "One face, two weights (KH Teka 400/500); body font-size:1vw scale-locks the poster; display step: 5.69em / 9.5em. — free substitutes: KH Teka → Hanken Grotesk",
+  "motion": "Masked line reveals; rule-divs scale 0→1; new Lenis() with zero options (lerp 0.1) smooth scroll; hard-cut page swap under a full-viewport veil on a 700ms hold.",
+  "for": "Archives, exhibitions, editorial indexes, type foundries — a fixed catalogue of real images that disagree about colour and must read as one collection.",
   "not_for": "When the brand owns a colour (swiss-grid-lab's side); one accent in the chrome kills the quarantine. Spelling words with the monogram = 1920s pastiche. Mobile gets a different, simpler design.",
-  "axis": "PROPOSED, n=1: (a) display work the drawn mark absorbs (AIM: all); (b) quarantine airtightness (AIM: zero hue in chrome).",
+  "axis": "(predicted, n=1) PROPOSED, n=1: (a) display work the drawn mark absorbs (AIM: all); (b) quarantine airtightness (AIM: zero hue in chrome).",
   "vocabulary": [
-   "Warm bone ground (#E7E4DF), every piece of interface furniture one flat near-black (#141414) \u2014 two colours, no third, no greys; a --grey declared and referenced zero times.",
+   "Warm bone ground (#E7E4DF), every piece of interface furniture one flat near-black (#141414) — two colours, no third, no greys; a --grey declared and referenced zero times.",
    "All chroma quarantined inside matte art plates: each image on its own hand-matched opaque fill (72 selectors, 58 hexes); burnt brick / signal orange / chalky cornflower never leak into the chrome.",
    "Chrome is two objects: one 1px hairline and one solid slab (3.19em) terminating the monogram like a masthead rule; rules are bare divs a timeline can scale from nothing.",
-   "Utility strip on four tab stops \u2014 gutter, a third, two thirds, right gutter \u2014 from nested space-between rows, no explicit coordinates.",
+   "Utility strip on four tab stops — gutter, a third, two thirds, right gutter — from nested space-between rows, no explicit coordinates.",
    "Poster-scaled, not responsive: body { font-size:1vw }, everything downstream in em; one spacing atom .97em used 63 times.",
    "Density bottom-loaded: columns hang content off the baseline, upper field empty bone."
   ],
   "members": [
    {
     "slug": "aim-ai-modernism-of-kharkiv",
-    "site": "AIM \u2014 AI Modernism of Kharkiv",
+    "site": "AIM — AI Modernism of Kharkiv",
     "live": "https://aim.obys.agency/",
     "awwwards": "https://www.awwwards.com/sites/aim-ai-modernism-of-kharkiv",
     "award": [
@@ -2939,20 +2939,20 @@
  },
  {
   "name": "ink-scrawl-white-cube",
-  "thesis": "A photoreal white-cube gallery on a rail whose entire graphic voice is one commissioned hand-lettered face used as a system \u2014 signage, marginalia, inked rules, even the visitor's form input.",
+  "thesis": "A photoreal white-cube gallery on a rail whose entire graphic voice is one commissioned hand-lettered face used as a system — signage, marginalia, inked rules, even the visitor's form input.",
   "temperature": "Warm: bone #f4f1ef/#fff ground, near-black ink #231f20, tan #c1ab8e rationed (5 uses)",
-  "type": "Hand-lettered face bound to 5 classes + form inputs; Georgia artwork titles; Open Sans body; tracking grows with size.",
-  "motion": "Two speeds: 0.85s quint.out (weight), 0.35s cubic-bezier(.22,1,.36,1) (state); text written on via snap:{opacity:1}; 12fps brush wipes.",
-  "for": "Artist collaborations, museum/exhibition microsites, luxury carte-blanche commissions \u2014 anywhere a named individual's hand is the asset being sold.",
-  "not_for": "On stock content it's pastiche \u2014 strip the commissioned artwork and it's an empty room with a novelty font. Check hand-face glyph coverage before inputs; the taught walkthrough cost Usability 7.49.",
-  "axis": "How much of the hand is baked into the 3D world vs the DOM \u2014 and how far past titles it goes (form fields = extreme); rail vs room.",
+  "type": "Hand-lettered face bound to 5 classes + form inputs; Georgia artwork titles; Open Sans body; tracking grows with size. — free substitutes: Georgia → Gelasio",
+  "motion": "Two speeds: 0.85s quint.out (weight), 0.35s cubic-bezier(.22,1,.36,1) (state); text written on via snap:{opacity:1}; 12-frame brush-PNG wipes over 1s (12fps).",
+  "for": "Artist collaborations, museum/exhibition microsites, luxury carte-blanche commissions — anywhere a named individual's hand is the asset being sold.",
+  "not_for": "On stock content it's pastiche — strip the commissioned artwork and it's an empty room with a novelty font. Check hand-face glyph coverage before inputs; the taught walkthrough cost Usability 7.49.",
+  "axis": "(predicted, n=1) How much of the hand is baked into the 3D world vs the DOM — and how far past titles it goes (form fields = extreme); rail vs room.",
   "vocabulary": [
-   "Photoreal white-cube gallery on a rail \u2014 matte-white walls, polished grey concrete, hard raking daylight baked into lightmaps \u2014 whose whole voice is one commissioned hand-lettered face: 3D concrete signage (DO NOT WALK THE LINE), display type, and what the visitor types into the form.",
+   "Photoreal white-cube gallery on a rail — matte-white walls, polished grey concrete, hard raking daylight baked into lightmaps — whose whole voice is one commissioned hand-lettered face: 3D concrete signage (DO NOT WALK THE LINE), display type, and what the visitor types into the form.",
    "Ground bone #f4f1ef + pure white; ink warm near-black #231f20 (never #000 as paint); one tan #c1ab8e rationed to five uses.",
-   "No hairlines: every rule is one inked-stroke PNG (1920:19), flipped 4 ways and tilted 6.43/-6.43/2.22\u00b0 with 1/cos \u03b8 width correction.",
-   "Nothing at exactly 0\u00b0: drawn things 10-16\u00b0, structural 0.3-0.5\u00b0, hybrids 2-3\u00b0.",
+   "No hairlines: every rule is one inked-stroke PNG (1920:19), flipped 4 ways and tilted 6.43/-6.43/2.22° with 1/cos θ width correction.",
+   "Nothing at exactly 0°: drawn things 10-16°, structural 0.3-0.5°, hybrids 2-3°.",
    "Text is written on at hard binary opacity (snap:{opacity:1}); pages wipe with a 12-frame flipbook of a painted brush stroke.",
-   "Marginalia parked in the literal margin at -5.45\u00b0/+15.98\u00b0; a gamma-corrected low-pass muffles the room as the camera moves into a drawing."
+   "Marginalia parked in the literal margin at -5.45°/+15.98°; a gamma-corrected low-pass muffles the room as the camera moves into a drawing."
   ],
   "members": [
    {
@@ -2981,20 +2981,20 @@
  },
  {
   "name": "split-specimen-cinema",
-  "thesis": "A hard vertical split of two temperatures \u2014 a warm bone paper field holding one product specimen against full-bleed near-black cinema of its raw material \u2014 one giant display face bridging the seam.",
+  "thesis": "A hard vertical split of two temperatures — a warm bone paper field holding one product specimen against full-bleed near-black cinema of its raw material — one giant display face bridging the seam.",
   "temperature": "Warm bone #f1eee9 vs near-black #0f0b04 ink; one dust-rose #a68676 hairline accent",
-  "type": "One \u221290\u00b0 display word at 90\u2013110px; all else 10\u201313px micro-caps (Gill Sans +2px, Miller caps +6px) \u2014 two-island scale",
-  "motion": "All expo ease-out; every transition is a CSS filter \u2014 blur rack-focus, brightness/contrast film burn \u2014 never opacity; open 0.5s, close 1.0s",
-  "for": "Materials, manufacturing, automotive interiors, leather/textile suppliers \u2014 the product is a substance and there is real process footage to spend.",
+  "type": "One −90° display word at 90–110px; all else 10–13px micro-caps (Gill Sans +2px, Miller caps +6px) — two-island scale — free substitutes: Gill Sans → Cabin; Miller → Old Standard TT",
+  "motion": "Expo/quartic ease-out, in-out only for the seam, travel and colour swaps; image and type transitions are CSS filters — blur rack-focus, brightness/contrast film burn — never a plain opacity crossfade; seam open 0.5s (+0.1s delay), close 1.0s, both Expo.easeInOut",
+  "for": "Materials, manufacturing, automotive interiors, leather/textile suppliers — the product is a substance and there is real process footage to spend.",
   "not_for": "Without genuinely cinematic footage the 40% band is a stock-video hole; the rotated serif Welcome verbatim is 2018 period costume; micro-caps cannot carry body copy; no autoplay ambient audio.",
-  "axis": "How much the split is layout vs scroll state, and which side carries the ink; secondary dial: 60/40 ratio (invert flips who quotes whom).",
+  "axis": "(predicted, n=1) How much the split is layout vs scroll state, and which side carries the ink; secondary dial: 60/40 ratio (invert flips who quotes whom).",
   "vocabulary": [
-   "Warm bone paper field (#f1eee9, never white) holding one product specimen \u2014 a steering wheel, a dyed hide \u2014 over a baked-in shadow, no card or frame, hard against a near-black full-bleed cinema band of the same material being made; the off-centre 60/40 seam is the composition.",
-   "The split is a scroll state: one 100vw cinema layer slides +60vw, footage counter-translates \u221230vw so the shot reframes, not crops.",
-   "One giant display serif rotated \u221290\u00b0 in white at 90\u2013110px, the only type above 15px; all else 10\u201313px micro-caps (Gill Sans +2px, Miller caps +6px).",
-   "Achromatic chrome \u2014 bone, #0f0b04 ink, white; all saturation from the dyed material, one dust-rose #a68676 for hairlines and scroll ticks.",
-   "5%-alpha animated film grain over both halves \u2014 bone CSS becomes paper.",
-   "Transitions are CSS filters \u2014 blur(15px) rack-focus, brightness(0) contrast(4) film burn \u2014 never opacity; all expo ease-out."
+   "Warm bone paper field (#f1eee9, never white) holding one product specimen — a steering wheel, a dyed hide — over a baked-in shadow, no card or frame, hard against a near-black full-bleed cinema band of the same material being made; the off-centre 60/40 seam is the composition.",
+   "The split is a scroll state: one 100vw cinema layer slides +60vw, footage counter-translates −30vw so the shot reframes, not crops.",
+   "One giant display serif rotated −90° in white at 90–110px, the only type above 15px; all else 10–13px micro-caps (Gill Sans +2px, Miller caps +6px).",
+   "Achromatic chrome — bone, #0f0b04 ink, white; all saturation from the dyed material, one dust-rose #a68676 for hairlines and scroll ticks.",
+   "5%-alpha animated film grain over both halves — bone CSS becomes paper.",
+   "Transitions are CSS filters — blur(15px) rack-focus, brightness(0) contrast(4) film burn — never opacity; all expo ease-out."
   ],
   "members": [
    {
@@ -3025,17 +3025,17 @@
   "name": "sumi-e-paper",
   "thesis": "Sumi-e ink-wash atelier on warm paper: one generated ink-wash asset family, a single serif at every scale, and one vermillion accent under hanko-seal discipline, voiced in koans.",
   "temperature": "Warm: paper #F2ECDF, ink #211B15, vermillion #A4342C (INDEX variant: cooler stock)",
-  "type": "One serif everywhere: Cormorant Garamond 300\u2013500, clamp(4rem,15vw,12.5rem) hero\u2192caption; Shippori Mincho vertical rails",
-  "motion": "Lenis .09 + ScrollTrigger reveals (top 58\u201388%), 2 pins, scroll-scrubbed video via 0.18/frame currentTime lerp, scroll-stirred petal canvas",
+  "type": "One serif everywhere: Cormorant Garamond 300–500, clamp(4rem,15vw,12.5rem) hero→caption; Shippori Mincho vertical rails",
+  "motion": "Lenis lerp .09 (about the stock .1) + ScrollTrigger reveals (start 'top 58%' to 'top 88%'), 2 pins, scroll-scrubbed video via 0.18/frame at 60Hz (about λ 11.9/s) currentTime lerp, scroll-stirred petal canvas",
   "for": "Brand/atelier/gallery/editorial one-pagers where the brief allows an artisanal register; mood pieces selling atmosphere; warm cousin of vast-quiet.",
-  "not_for": "Ink-wash Kyoto atelier on an unrelated SaaS reads as costume \u2014 steal the discipline, not the kimono. 11 viewports of pacing on a conversion page; its reduced-motion guards are fake \u2014 write your own.",
-  "axis": "Paper temperature: warm flat #F2ECDF vs cooler in-shader paper scan; scroll-scrub cinema vs dissolve-and-drift with ambient sound.",
+  "not_for": "Ink-wash Kyoto atelier on an unrelated SaaS reads as costume — steal the discipline, not the kimono. 11 viewports of pacing on a conversion page; its reduced-motion guards are fake — write your own.",
+  "axis": "(predicted, n=1) Paper temperature: warm flat #F2ECDF vs cooler in-shader paper scan; scroll-scrub cinema vs dissolve-and-drift with ambient sound.",
   "vocabulary": [
-   "Sumi-e ink-wash atelier on warm paper: paper #F2ECDF, ink #211B15, one vermillion #A4342C under hanko-seal discipline \u2014 whitelist: nav mark, kanji numerals \u4e00 \u4e8c \u4e09, 3px caption rule, hover underlines, rotated hanko blocks; nothing wider than ~4rem, never type at reading size.",
-   "One serif does everything: Cormorant Garamond 300\u2013500 from a clamp(4rem,15vw,12.5rem) hero at 0.08em tracking down to captions; Shippori Mincho vertical Japanese rails (\u6625\u306e\u5922\u3001\u58a8\u306b\u54b2\u304f / \u82b1\u5439\u96ea) as ornament and wayfinding.",
-   "One generated ink-wash family: a painting growing onto the paper in the hero, scroll-scrubbed petal and cat videos, misty watercolor landscapes; giant 10%-opacity \u82b1\u5439\u96ea watermark behind ink text.",
+   "Sumi-e ink-wash atelier on warm paper: paper #F2ECDF, ink #211B15, one vermillion #A4342C under hanko-seal discipline — whitelist: nav mark, kanji numerals 一 二 三, 3px caption rule, hover underlines, rotated hanko blocks; nothing wider than ~4rem, never type at reading size.",
+   "One serif does everything: Cormorant Garamond 300–500 from a clamp(4rem,15vw,12.5rem) hero at 0.08em tracking down to captions; Shippori Mincho vertical Japanese rails (春の夢、墨に咲く / 花吹雪) as ornament and wayfinding.",
+   "One generated ink-wash family: a painting growing onto the paper in the hero, scroll-scrubbed petal and cat videos, misty watercolor landscapes; giant 10%-opacity 花吹雪 watermark behind ink text.",
    "Animated grain (SVG feTurbulence + grain keyframe) over everything.",
-   "Koan-voiced copy \u2014 'Petals fall, the tree does not grieve.' \u2014 zero product language; CTAs 'WALK THE GARDEN \u2192', 'BEGIN AGAIN'."
+   "Koan-voiced copy — 'Petals fall, the tree does not grieve.' — zero product language; CTAs 'WALK THE GARDEN →', 'BEGIN AGAIN'."
   ],
   "members": [
    {
@@ -3066,17 +3066,17 @@
   "name": "warped-serif-noir",
   "thesis": "Near-black near-zero-sat stage; a monumental wedge-terminal serif dimmed by opacity so ground reads through; headline sheared into stacked clipped copies along drawn seams; warp only under a gesture.",
   "temperature": "Cold noir: #151515 ground, #000 sections, #979797 hairlines; one pale celadon #deebc8.",
-  "type": "Wedge-terminal display serif at 16vw, opacity .75, vs .6vw all-caps neo-grotesque \u2014 26.7:1 ratio is the whole hierarchy.",
-  "motion": "Gestural, never idle: filters park at 0 \u2014 displacement 0\u219250 on 180ms hold, 1s in/2s out; SVG turbulence shreds underlines 600ms, RoughEase.",
-  "for": "Studios, film, fashion, showreel-first portfolios \u2014 the client is the work, the imagery is dark, the page can afford a full screen on a wordmark.",
-  "not_for": "Content sites \u2014 a viewport on four words dented Usability (7.50); warp on running copy reads as a broken shader; don't lift the trial-licence Klim/RLT faces or hover-only keyboard-dead interactions.",
-  "axis": "How far damage travels from wordmark into page: case view (shear off, inverted) \u2192 hero (4 shards, drawn seams, filters); provisional.",
+  "type": "Wedge-terminal display serif at 16vw, opacity .75, vs .6vw all-caps neo-grotesque — 26.7:1 ratio is the whole hierarchy.",
+  "motion": "Gestural, still when idle: filters park at 0 — Pixi displacement-filter scale 0→50 on 180ms hold, 1s in/2s out; SVG turbulence shreds underlines 600ms, RoughEase.",
+  "for": "Studios, film, fashion, showreel-first portfolios — the client is the work, the imagery is dark, the page can afford a full screen on a wordmark.",
+  "not_for": "Content sites — a viewport on four words dented Usability (7.50); warp on running copy reads as a broken shader; don't lift the trial-licence Klim/RLT faces or hover-only keyboard-dead interactions.",
+  "axis": "(predicted, n=1) How far damage travels from wordmark into page: case view (shear off, inverted) → hero (4 shards, drawn seams, filters); provisional.",
   "vocabulary": [
-   "Near-black stage: #151515 ground, #000 sections, hero 85.8% in #000000\u2013#1a1a1a; one monumental wedge-terminal serif at 16vw dimmed to opacity:.75 \u2014 a pale grey plane, not a white shout.",
-   "Headline = four stacked clip-path copies along diagonal seams, rows nudged .1\u2013.35em off register; three 1px #979797 hairlines at opacity:.52, unequal (33/80/100%), pinned on the seams \u2014 construction, not error.",
-   "All else minute: all-caps neo-grotesque at .6vw, secondary copy opacity:.5 \u2014 a 26.7:1 ratio is the entire hierarchy, no boxes, no second colour.",
+   "Near-black stage: #151515 ground, #000 sections, hero 85.8% in #000000–#1a1a1a; one monumental wedge-terminal serif at 16vw dimmed to opacity:.75 — a pale grey plane, not a white shout.",
+   "Headline = four stacked clip-path copies along diagonal seams, rows nudged .1–.35em off register; three 1px #979797 hairlines at opacity:.52, unequal (33/80/100%), pinned on the seams — construction, not error.",
+   "All else minute: all-caps neo-grotesque at .6vw, secondary copy opacity:.5 — a 26.7:1 ratio is the entire hierarchy, no boxes, no second colour.",
    "One chroma, pale celadon #deebc8: link hover + a 10s rotating sunburst, never a background.",
-   "Motion gestural, never idle: imagery liquefies under a rotating displacement map on grab (0\u219250, 1s in/2s out); underlines shred via SVG turbulence 600ms on hover.",
+   "Motion gestural, never idle: imagery liquefies under a rotating displacement map on grab (0→50, 1s in/2s out); underlines shred via SVG turbulence 600ms on hover.",
    "Case views invert: mid-grey ground, black type, greyscale photography, same serif as numeral index."
   ],
   "members": [
@@ -3106,19 +3106,19 @@
  },
  {
   "name": "woven-scanline-duotone",
-  "thesis": "A strict two-hex world where imagery, wordmark and page transition are all rasterized into one vertical-thread loom halftone \u2014 glitch-textile material against a formal Roman serif voice.",
+  "thesis": "A strict two-hex world where imagery, wordmark and page transition are all rasterized into one vertical-thread loom halftone — glitch-textile material against a formal Roman serif voice.",
   "temperature": "Swapping earth pair: wool khaki #a89474 <-> near-black umber #2c2824; no third hue.",
-  "type": "KTF Metro Roman display (-.064em, 83.333% leading) vs Blueline body (+.08em) \u2014 two styles of one superfamily, all-caps",
-  "motion": "Lenis 1.2s expo; images dissolve by scrubbing blackPoint/whitePoint, never opacity; 20x12 grid of scaleX 0->1 cells wipes page transitions",
-  "for": "Place/heritage/estate brands with commissioned imagery and a two-colour identity \u2014 one shader makes even stock-quality source look commissioned. Desktop-first.",
-  "not_for": "Never a third hue (every cell is already binary; the weave becomes noise). Never rasterize body copy \u2014 display-only. Never below 992px. Borrowed Hutsul motifs read as folk cosplay.",
-  "axis": "INFERRED (single member): how much of the page the weave owns \u2014 all imagery (Son Daven's max) vs one hero texture vs transition-only.",
+  "type": "KTF Metro Roman display (-.064em, 83.333% leading) vs Blueline body (+.08em) — two styles of one superfamily, all-caps — free substitutes: KTF Metro Roman → Playfair Display; KTF Metro Blueline → Saira",
+  "motion": "Lenis duration 1.2s (stock expo easing); images dissolve by scrubbing blackPoint/whitePoint (0-255 levels), never opacity; 20-column x 12-row grid of scaleX 0->1 cells wipes page transitions",
+  "for": "Place/heritage/estate brands with commissioned imagery and a two-colour identity — one shader makes even stock-quality source look commissioned. Desktop-first.",
+  "not_for": "Never a third hue (every cell is already binary; the weave becomes noise). Never rasterize body copy — display-only. Never below 992px. Borrowed Hutsul motifs read as folk cosplay.",
+  "axis": "(predicted, n=1) INFERRED (single member): how much of the page the weave owns — all imagery (Son Daven's max) vs one hero texture vs transition-only.",
   "vocabulary": [
-   "Two hexes carry everything and swap roles: wool khaki #a89474 / near-black umber #2c2824 \u2014 dark theme is the same pair permuted; scroll flips sections.",
-   "Every image and video runs through one halftone: each loom-grid cell draws a vertical bar whose width encodes tone \u2014 dark thickens to cloth, light thins out.",
-   "Cells non-square so threads read as woven runs not pixels: 150x50 sheep, 200x150 hero flock, 125x150 prologue \u2014 ratio per subject.",
+   "Two hexes carry everything and swap roles: wool khaki #a89474 / near-black umber #2c2824 — dark theme is the same pair permuted; scroll flips sections.",
+   "Every image and video runs through one halftone: each loom-grid cell draws a vertical bar whose width encodes tone — dark thickens to cloth, light thins out.",
+   "Cells non-square so threads read as woven runs not pixels: 150x50 sheep, 200x150 hero flock, 125x150 prologue — ratio per subject.",
    "Dissolve by re-exposing: scrub blackPoint/whitePoint so threads thin one by one; blackPoint > whitePoint flips polarity.",
-   "Grid escapes the canvas \u2014 240 DOM divs on a 20x12 grid each scaleX 0->1 for page transitions; SVG wordmark staircases on an 11-row grid.",
+   "Grid escapes the canvas — 240 DOM divs on a 20x12 grid each scaleX 0->1 for page transitions; SVG wordmark staircases on an 11-row grid.",
    "Uppercase everywhere, two voices never mixed: KTF Metro Roman -0.064em/83.333% leading headlines, Blueline +0.08em body labels.",
    "The clock picks the plate: hour >= 7 = light hero sequence, else dark."
   ],

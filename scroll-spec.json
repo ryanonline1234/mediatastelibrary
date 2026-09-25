@@ -12,7 +12,7 @@
     "reducedMotion": "no-preference"
   },
   "scroll": {
-    "totalHeightPx": 26110,
+    "totalHeightPx": 27611,
     "totalHeightTolerancePx": 400,
     "scrollAccuracyTolerancePx": 4,
     "sampleMatchWindow": 0.01,
@@ -26,17 +26,17 @@
   "settleMaxMs": 2500,
   "positions": [
     0,
-    0.0239,
-    0.0478,
-    0.0615,
-    0.0751,
-    0.0847,
-    0.0944,
-    0.1089,
-    0.1235,
+    0.0231,
+    0.0462,
+    0.0591,
+    0.072,
+    0.0811,
+    0.0902,
+    0.104,
+    0.1177,
     0.3,
     0.5,
-    0.5617,
+    0.5588,
     0.7,
     0.9,
     1
@@ -115,7 +115,7 @@
       "selector": "[data-scene='hero']",
       "range": {
         "from": 0,
-        "to": 0.0478
+        "to": 0.0462
       },
       "expectations": [
         {
@@ -147,8 +147,8 @@
       "label": "Method — the marker walks the offset-path",
       "selector": "[data-scene='method']",
       "range": {
-        "from": 0.0478,
-        "to": 0.0751
+        "from": 0.0462,
+        "to": 0.072
       },
       "expectations": [
         {
@@ -180,8 +180,8 @@
       "label": "Findings — the honest numbers count",
       "selector": "[data-scene='findings']",
       "range": {
-        "from": 0.0751,
-        "to": 0.0944
+        "from": 0.072,
+        "to": 0.0902
       },
       "expectations": [
         {
@@ -213,8 +213,8 @@
       "label": "Bezier exhibit — the page draws its own easing",
       "selector": "[data-scene='exhibit']",
       "range": {
-        "from": 0.0944,
-        "to": 0.1235
+        "from": 0.0902,
+        "to": 0.1177
       },
       "expectations": [
         {
@@ -246,7 +246,7 @@
       "label": "Families — 43 sections, reading rail",
       "selector": "[data-scene='families']",
       "range": {
-        "from": 0.1235,
+        "from": 0.1177,
         "to": 1
       },
       "expectations": [
