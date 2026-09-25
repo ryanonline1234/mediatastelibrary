@@ -35,6 +35,7 @@ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   try { stored = localStorage.getItem(KEY) } catch (e) {}
   paint(stored === '1')
   btn.addEventListener('click', function () {
+    window.__mtlGridTouched = true   // the load sequence must not override a reader's choice
     var on = btn.getAttribute('aria-pressed') !== 'true'
     paint(on)
     try { localStorage.setItem(KEY, on ? '1' : '0') } catch (e) {}
@@ -52,17 +53,29 @@ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 ;(function groundFlip() {
   const inks = [...document.querySelectorAll('[data-ground="ink"]')]
   if (!inks.length || !('IntersectionObserver' in window)) return
-  const on = new Set()
-  // a one-pixel line across the middle of the viewport: no flicker, no hysteresis needed
-  const io = new IntersectionObserver((entries) => {
-    for (const e of entries) e.isIntersecting ? on.add(e.target) : on.delete(e.target)
-    const want = on.size ? 'ink' : null
-    if ((document.documentElement.dataset.flip || null) !== want) {
-      if (want) document.documentElement.dataset.flip = want
-      else delete document.documentElement.dataset.flip
-    }
-  }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 })
-  inks.forEach((el) => io.observe(el))
+  const top = document.querySelector('.top')
+  let io = null
+  // A one-pixel line just under the header: the header takes the ground that
+  // is directly beneath it, on the frame the chapter edge passes under it.
+  // (A mid-viewport line showed an ink header over paper on the way in and a
+  // paper header over ink on the way out — review.)
+  function watch() {
+    if (io) io.disconnect()
+    const on = new Set()
+    const h = top ? Math.round(top.getBoundingClientRect().height) : 0
+    io = new IntersectionObserver((entries) => {
+      for (const e of entries) e.isIntersecting ? on.add(e.target) : on.delete(e.target)
+      const want = on.size ? 'ink' : null
+      if ((document.documentElement.dataset.flip || null) !== want) {
+        if (want) document.documentElement.dataset.flip = want
+        else delete document.documentElement.dataset.flip
+      }
+    }, { rootMargin: `-${h}px 0px -${Math.max(0, window.innerHeight - h - 1)}px 0px`, threshold: 0 })
+    inks.forEach((el) => io.observe(el))
+  }
+  watch()
+  let rt
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(watch, 150) })
 })()
 
 /* ------------------------------------------------------------------ */
@@ -76,6 +89,7 @@ const walk = (function walkGeometry() {
   if (!box) return null
   const dot = box.querySelector('.walk__dot')
   const path = box.querySelector('.walk__path')
+  const jump = box.querySelector('.walk__jump')
   const steps = [...box.querySelectorAll('.steps li')]
   const state = { L: [0], reached: -1 }
   function measure() {
@@ -89,7 +103,7 @@ const walk = (function walkGeometry() {
     const gap = parseFloat(getComputedStyle(box.querySelector('.steps')).columnGap) || 24
     // a new row: step back into the gutter, go down it, then along the next
     // row's rule — never through a column of text
-    let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`
+    let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`, jd = ''
     const L = [0]
     for (let i = 1; i < pts.length; i++) {
       const [ax, ay] = pts[i - 1], [bx, by] = pts[i]
@@ -97,12 +111,16 @@ const walk = (function walkGeometry() {
       if (Math.abs(ay - by) < 4 || Math.abs(ax - bx) < 4) { d += ` L${bx.toFixed(1)} ${by.toFixed(1)}`; len = Math.hypot(bx - ax, by - ay) }
       else {
         const gx = ax - 4 - gap / 2
-        d += ` L${gx.toFixed(1)} ${ay.toFixed(1)} L${gx.toFixed(1)} ${by.toFixed(1)} L${bx.toFixed(1)} ${by.toFixed(1)}`
+        const seg = ` L${gx.toFixed(1)} ${ay.toFixed(1)} L${gx.toFixed(1)} ${by.toFixed(1)} L${bx.toFixed(1)} ${by.toFixed(1)}`
+        d += seg
+        // the carriage return is drawn dashed, so it reads as a path, not a table border
+        jd += `M${ax.toFixed(1)} ${ay.toFixed(1)}${seg}`
         len = Math.abs(ax - gx) + Math.abs(by - ay) + Math.abs(bx - gx)
       }
       L.push(L[i - 1] + len)
     }
     path.setAttribute('d', d)
+    if (jump) jump.setAttribute('d', jd)
     dot.style.offsetPath = `path("${d}")`
     state.L = L
     place(state.p ?? 0, true)
@@ -157,7 +175,7 @@ async function boot() {
     // The real reduced-motion path: no Lenis, no ScrollTrigger, nothing
     // scheduled. Every scrubbed variable goes to its END state so the static
     // page is COMPLETE, and we return before any library loads.
-    document.querySelectorAll('[data-motion]').forEach((el) => {
+    document.querySelectorAll('[data-motion], [data-bars]').forEach((el) => {
       for (const v of ['--walk', '--sheet', '--find', '--bars', '--draw', '--t', '--fam']) el.style.setProperty(v, '1')
     })
     if (walk) walk.place(1)
@@ -183,7 +201,6 @@ async function boot() {
 
   gsap.registerPlugin(ScrollTrigger)
   document.documentElement.classList.add('mtl-motion')
-  document.querySelectorAll('.fam').forEach((s) => s.setAttribute('data-rv', ''))
 
   /* -- scroll-architecture §1.1, the whole integration -- */
   const lenis = new Lenis({ autoRaf: false, lerp: M.scroll.lerp })
@@ -204,12 +221,8 @@ async function boot() {
   const q = (s) => document.querySelector(s)
   const heroCount = q('[data-motion="hero-count"]')
   const sheetEl = q('[data-motion="sheet"]')
-  const markEl = q('[data-motion="findings-mark"]')
-  const barsEl = q('[data-motion="test-bars"]')
-  const drawEl = q('[data-motion="glyphs"]')
   const dotEl = q('[data-motion="exhibit-dot"]')
   const railEl = q('[data-motion="archive-rail"]')
-  const walkEl = q('[data-motion="method-walk"]')
 
   let lastP = -1
   const setV = (el, name, v, prev) => {
@@ -218,7 +231,7 @@ async function boot() {
     if (s !== prev) el.style.setProperty(name, s)
     return s
   }
-  let pWalk, pSheet, pFind, pBars, pDraw, pT, pFam
+  let pSheet, pT, pFam
 
   // No :root write: a per-frame custom property on <html> invalidated style
   // for the whole document (~94% of style-recalc time during scroll).
@@ -226,13 +239,7 @@ async function boot() {
     if (p === lastP) return
     lastP = p
     if (heroCount) heroCount.style.transform = `translateY(${(-60 * local(p, 'hero')).toFixed(2)}px)`
-    const w = local(p, 'sweep')
-    pWalk = setV(walkEl, '--walk', w, pWalk)
-    if (walk) walk.place(w)
     pSheet = setV(sheetEl, '--sheet', local(p, 'sheet'), pSheet)
-    pFind = setV(markEl, '--find', local(p, 'broke'), pFind)
-    pBars = setV(barsEl, '--bars', local(p, 'test'), pBars)
-    pDraw = setV(drawEl, '--draw', local(p, 'fams'), pDraw)
     const t = local(p, 'self')
     pT = setV(dotEl, '--t', t, pT)
     placeExhibitDot(t)
@@ -252,17 +259,45 @@ async function boot() {
   })
   applyAll(0)
 
+  /* ------------------------------------------- element-level scrubs -- */
+  // Each effect runs from its own element's entry to where it is done, with
+  // a real scrubbed proxy (scrub smooths an animation's playhead).
+  const elementScrub = (el, name, range, each) => {
+    if (!el) return
+    const o = { v: 0 }
+    let prev
+    el.style.setProperty(name, '0')
+    gsap.to(o, {
+      v: 1, ease: 'none',
+      scrollTrigger: { trigger: el, start: range.start, end: range.end, scrub: M.scrub.value, invalidateOnRefresh: true },
+      onUpdate: () => { prev = setV(el, name, o.v, prev); if (each) each(o.v) },
+    })
+  }
+  elementScrub(q('[data-motion="method-walk"]'), '--walk', M.scrubs.walk, (v) => walk && walk.place(v))
+  elementScrub(q('[data-motion="findings-mark"]'), '--find', M.scrubs.find)
+  document.querySelectorAll('[data-bars]').forEach((el) => elementScrub(el, '--bars', M.scrubs.bars))
+  elementScrub(q('[data-motion="atlas"]'), '--draw', M.scrubs.atlas)
+
+  // the atlas riders play once as each plot arrives; hover or focus replays
+  if ('IntersectionObserver' in window) {
+    const aio = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); aio.unobserve(e.target) }
+    }), { threshold: 0.6 })
+    document.querySelectorAll('.atl').forEach((el) => aio.observe(el))
+  }
+
   /* --------------------------------------------------- load: the grid -- */
   const cols = document.querySelectorAll('[data-grid] > i')
   const heroPage = !!heroCount
+  const gridWasOn = q('[data-grid-toggle]') && q('[data-grid-toggle]').getAttribute('aria-pressed') === 'true'
   if (cols.length && heroPage) {
-    const wasOn = q('[data-grid-toggle]').getAttribute('aria-pressed') === 'true'
-    if (!wasOn) window.__mtlGrid(true)
-    gsap.from(cols, {
-      scaleY: 0, transformOrigin: 'top',
-      duration: M.gridBuild.duration, stagger: M.gridBuild.stagger, ease: M.gridBuild.ease,
-      onComplete: () => { if (!wasOn) gsap.delayedCall(M.gridBuild.hold, () => window.__mtlGrid(false)) },
-    })
+    if (!gridWasOn) window.__mtlGrid(true)
+    gsap.from(cols, { scaleY: 0, transformOrigin: 'top', duration: M.gridBuild.duration, stagger: M.gridBuild.stagger, ease: M.gridBuild.ease })
+  }
+  // grid, count and modules land together: the overlay comes off
+  // M.gridBuild.hold after the COUNT lands (it used to leave ~0.65s early)
+  const releaseGrid = () => {
+    if (heroPage && !gridWasOn) gsap.delayedCall(M.gridBuild.hold, () => { if (!window.__mtlGridTouched) window.__mtlGrid(false) })
   }
 
   /* --------------------------------------------------- load: hero -- */
@@ -280,7 +315,7 @@ async function boot() {
     gsap.to(o, {
       v: to, duration: M.count.duration, ease: M.count.ease,
       onUpdate: () => { el.textContent = fmt(o.v, pad); if (mods) mods.style.setProperty('--n', o.v.toFixed(2)) },
-      onComplete: () => { el.textContent = fmt(to, pad); if (mods) mods.style.setProperty('--n', String(to + 1)) },
+      onComplete: () => { el.textContent = fmt(to, pad); if (mods) mods.style.setProperty('--n', String(to + 1)); releaseGrid() },
     })
   })
 
@@ -289,7 +324,18 @@ async function boot() {
   const countEl = q('[data-motion="findings-counter"]')
   if (once.length && countEl) {
     const pad = (el) => el.dataset.countPad
-    once.forEach((el) => { el.textContent = fmt(0, pad(el)) })
+    // Already on screen at load: show the true values, don't count.
+    if (countEl.getBoundingClientRect().top < window.innerHeight) { /* keep final values */ }
+    else once.forEach((el) => {
+      // the true value stays in the accessibility tree while the visible
+      // numeral counts (it read "0 defects" to a screen reader — review)
+      const sr = document.createElement('span')
+      sr.className = 'u-sr'
+      sr.textContent = el.textContent.trim()
+      el.after(sr)
+      el.setAttribute('aria-hidden', 'true')
+      el.textContent = fmt(0, pad(el))
+    })
     ScrollTrigger.create({
       trigger: countEl, start: M.findings.start, once: true,
       onEnter: () => once.forEach((el, i) => {
@@ -303,29 +349,8 @@ async function boot() {
     })
   }
 
-  /* ------------------------------ archive: per-family reveals, once -- */
-  // ScrollTrigger.batch, not one trigger per family (43 triggers measured a
-  // 327ms long frame at init). opacity, not autoAlpha: autoAlpha's
-  // visibility:hidden dropped keyboard focus to <body>.
-  const BITS = '.fam__rule, .fam__idx, .fam__name, .fam__thesis, .m'
-  if (document.querySelector('.fam')) {
-    ScrollTrigger.batch('.fam', {
-      start: 'top 85%', once: true, batchMax: 3,
-      onEnter: (batch) => batch.forEach((section) => {
-        if (!section.hasAttribute('data-rv')) return   // the failsafe already showed it
-        section.removeAttribute('data-rv')
-        gsap.from(section.querySelectorAll(BITS), { opacity: 0, y: 12, duration: M.section.duration, ease: M.section.ease, stagger: { amount: M.section.staggerAmount } })
-      }),
-    })
-    // FAILSAFE: content is never gated behind decorative motion.
-    setTimeout(() => {
-      document.querySelectorAll('.fam[data-rv]').forEach((s) => {
-        if (s.getBoundingClientRect().top < window.innerHeight * 2) return
-        s.removeAttribute('data-rv')
-        s.querySelectorAll(BITS).forEach((el) => { el.style.opacity = ''; el.style.transform = '' })
-      })
-    }, 4000)
-  }
+  // (The archive's 289 generic fade-ups were deleted, as the design critique
+  // asked: the header readout, reading rail and drawn curves carry its motion.)
 
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh())
   window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true })

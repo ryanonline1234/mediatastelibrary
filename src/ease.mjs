@@ -73,13 +73,37 @@ function svgPathEase(d) {
   }
 }
 
+// GSAP's configurable eases, with their parameters kept (the first version
+// dropped them, drawing elastic.out(2, 0.5) as the default elastic).
+function elasticOut(a = 1, p = 0.3) {
+  const p1 = Math.max(a, 1), p2 = p / Math.min(a, 1), p3 = (p2 / (2 * Math.PI)) * (Math.asin(1 / p1) || 0)
+  return (t) => (t === 0 || t === 1 ? t : p1 * Math.pow(2, -10 * t) * Math.sin((t - p3) * (2 * Math.PI) / p2) + 1)
+}
+const backIn = (o = 1.70158) => (t) => t * t * ((o + 1) * t - o)
+
 // → { fn, label, kind } or null
 export function parseEase(value) {
   const v = String(value || '')
+  // ease: "none" / ease: 'linear' — a GSAP option, not the CSS keyword `ease`.
+  // The first version matched the property NAME here and drew three linear
+  // records as CSS ease (caught by the pre-deploy honesty review).
+  if (/\bease\s*:\s*["'`]?(none|linear)\b/.test(v)) return { fn: (t) => t, label: 'linear', kind: 'linear' }
   let m = v.match(/cubic-bezier\(\s*([-\d.]+)\s*,\s*([-\d.]+)\s*,\s*([-\d.]+)\s*,\s*([-\d.]+)\s*\)/)
   if (m) return { fn: cubicBezier(+m[1], +m[2], +m[3], +m[4]), label: m[0].replace(/\s+/g, ''), kind: 'bezier' }
+  m = v.match(/\belastic\.(inOut|in|out)\(\s*([\d.]+)\s*(?:,\s*([\d.]+)\s*)?\)/)
+  if (m) {
+    const out = elasticOut(+m[2], m[3] ? +m[3] : 0.3)
+    return { fn: variant((t) => 1 - out(1 - t), m[1]), label: m[0].replace(/\s+/g, ''), kind: 'gsap' }
+  }
+  m = v.match(/\bback\.(inOut|in|out)\(\s*([\d.]+)\s*\)/)
+  if (m) return { fn: variant(backIn(+m[2]), m[1]), label: m[0].replace(/\s+/g, ''), kind: 'gsap' }
   m = v.match(/\b(power[0-4]|expo|circ|sine|quad|cubic|quart|quint|back|elastic|bounce)\.(inOut|in|out)\b/)
   if (m) return { fn: variant(IN[m[1]], m[2]), label: `${m[1]}.${m[2]}`, kind: 'gsap' }
+  // power curves written as code: 1-(1-t)^N, 1 - Math.pow(1 - t, N), t^N, Math.pow(t, N)
+  m = v.match(/1\s*-\s*\(\s*1\s*-\s*t\s*\)\s*(?:\^|\*\*)\s*(\d+(?:\.\d+)?)|1\s*-\s*Math\.pow\(\s*1\s*-\s*t\s*,\s*(\d+(?:\.\d+)?)\s*\)/)
+  if (m) { const k = +(m[1] || m[2]); return { fn: (t) => 1 - Math.pow(1 - t, k), label: `1-(1-t)^${k}`, kind: 'code' } }
+  m = v.match(/(?:^|[^\w.])t\s*(?:\^|\*\*)\s*(\d+(?:\.\d+)?)|Math\.pow\(\s*t\s*,\s*(\d+(?:\.\d+)?)\s*\)/)
+  if (m) { const k = +(m[1] || m[2]); return { fn: (t) => Math.pow(t, k), label: `t^${k}`, kind: 'code' } }
   m = v.match(/\bM0,0 C[\d.,\s-C]+/)
   if (m) { const fn = svgPathEase(m[0]); if (fn) return { fn, label: 'custom path', kind: 'path' } }
   m = v.match(/\bease(In|Out|InOut)?(Quad|Cubic|Quart|Quint|Sine|Expo|Circ|Back|Elastic|Bounce)\b|\bease(Sin|Quad|Cubic|Quart|Quint|Expo|Circ)(In|Out|InOut)\b/)
@@ -88,7 +112,7 @@ export function parseEase(value) {
     const kind = (m[1] || m[4] || 'InOut').replace(/^./, (c) => c.toLowerCase())
     return { fn: variant(IN[fam], kind), label: m[0], kind: 'penner' }
   }
-  m = v.match(/\b(ease-in-out|ease-out|ease-in|ease)\b/)
+  m = v.match(/\b(ease-in-out|ease-out|ease-in|ease)\b(?!\s*[:=])/)
   if (m) return { fn: cubicBezier(...CSS_KEYWORDS[m[1]]), label: m[1], kind: 'keyword' }
   if (/\b(linear|none)\b/.test(v)) return { fn: (t) => t, label: 'linear', kind: 'linear' }
   return null
@@ -97,7 +121,7 @@ export function parseEase(value) {
 // Pick a family's glyph ease from its records: prefer a real curve over a
 // keyword, and a keyword over linear. Records are in source order.
 export function pickEase(records) {
-  const rank = { bezier: 0, gsap: 1, path: 2, penner: 3, keyword: 4, linear: 5 }
+  const rank = { bezier: 0, gsap: 1, path: 2, penner: 3, code: 4, keyword: 5, linear: 6 }
   let best = null
   for (const r of records.filter((r) => r.role === 'easing')) {
     const e = parseEase(r.value)
@@ -106,10 +130,19 @@ export function pickEase(records) {
   return best
 }
 
-export function samplePath(fn, { w = 64, h = 40, pad = 4, n = 48 } = {}) {
+// The value range a curve covers: [0, 1] unless it overshoots (elastic, back).
+export function rangeOf(fn, n = 400) {
+  let lo = 0, hi = 1
+  for (let i = 0; i <= n; i++) { const y = fn(i / n); if (y < lo) lo = y; if (y > hi) hi = y }
+  return { lo, hi }
+}
+
+// y is mapped over [lo, hi] so an overshooting curve stays inside its plot
+// (elastic.out(2,0.5) peaks at 1.73 and drew far outside it — render check).
+export function samplePath(fn, { w = 64, h = 40, pad = 4, n = 48, lo = 0, hi = 1 } = {}) {
   const pts = Array.from({ length: n + 1 }, (_, i) => {
     const t = i / n
-    return [pad + (w - 2 * pad) * t, h - pad - (h - 2 * pad) * fn(t)]
+    return [pad + (w - 2 * pad) * t, h - pad - (h - 2 * pad) * (fn(t) - lo) / (hi - lo)]
   })
   return 'M' + pts.map(([x, y]) => `${x.toFixed(2)} ${y.toFixed(2)}`).join(' L')
 }

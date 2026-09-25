@@ -1,14 +1,14 @@
 {
   "schema": "awwwards-motion/samples@1",
   "url": "http://127.0.0.1:8811/families.html",
-  "capturedAt": "2026-09-25T04:56:33.290Z",
+  "capturedAt": "2026-09-25T05:47:44.621Z",
   "viewport": {
     "width": 1440,
     "height": 900,
     "dpr": 1
   },
-  "scrollHeight": 31857,
-  "maxScroll": 30957,
+  "scrollHeight": 29830,
+  "maxScroll": 28930,
   "scrollDriver": "lenis",
   "lenisVia": "window.lenis",
   "reducedMotion": "no-preference",
@@ -24,7 +24,7 @@
       "reducedMotion": "no-preference"
     },
     "scroll": {
-      "totalHeightPx": 31857,
+      "totalHeightPx": 29830,
       "totalHeightTolerancePx": 400,
       "scrollAccuracyTolerancePx": 4,
       "sampleMatchWindow": 0.01,
@@ -104,19 +104,19 @@
       "scrollY": 0,
       "nativeScrollY": 0,
       "settled": true,
-      "settleMs": 32.2,
+      "settleMs": 25,
       "measurements": {
         "archive-rail": {
           "found": true,
           "rect": {
-            "x": 240,
+            "x": 45,
             "y": 51,
-            "width": 960,
+            "width": 1350,
             "height": 1,
             "top": 51,
-            "right": 1200,
+            "right": 1395,
             "bottom": 52,
-            "left": 240
+            "left": 45
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -147,23 +147,23 @@
     },
     {
       "progress": 0.3,
-      "requestedY": 9287,
-      "scrollY": 9287,
-      "nativeScrollY": 9287,
+      "requestedY": 8679,
+      "scrollY": 8679,
+      "nativeScrollY": 8679,
       "settled": true,
-      "settleMs": 343.2,
+      "settleMs": 28.5,
       "measurements": {
         "archive-rail": {
           "found": true,
           "rect": {
-            "x": 240,
+            "x": 45,
             "y": 51,
-            "width": 960,
+            "width": 1350,
             "height": 1,
             "top": 51,
-            "right": 1200,
+            "right": 1395,
             "bottom": 52,
-            "left": 240
+            "left": 45
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -185,7 +185,7 @@
           "viewportProgress": 0.94229,
           "inView": true,
           "vars": {
-            "--fam": "0.299"
+            "--fam": "0.300"
           },
           "count": 1,
           "selector": "[data-motion='archive-rail']"
@@ -194,23 +194,23 @@
     },
     {
       "progress": 0.5,
-      "requestedY": 15479,
-      "scrollY": 15479,
-      "nativeScrollY": 15479,
+      "requestedY": 14465,
+      "scrollY": 14465,
+      "nativeScrollY": 14465,
       "settled": true,
-      "settleMs": 337.3,
+      "settleMs": 32.8,
       "measurements": {
         "archive-rail": {
           "found": true,
           "rect": {
-            "x": 240,
+            "x": 45,
             "y": 51,
-            "width": 960,
+            "width": 1350,
             "height": 1,
             "top": 51,
-            "right": 1200,
+            "right": 1395,
             "bottom": 52,
-            "left": 240
+            "left": 45
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -232,7 +232,7 @@
           "viewportProgress": 0.94229,
           "inView": true,
           "vars": {
-            "--fam": "0.498"
+            "--fam": "0.500"
           },
           "count": 1,
           "selector": "[data-motion='archive-rail']"
@@ -241,23 +241,23 @@
     },
     {
       "progress": 0.7,
-      "requestedY": 21670,
-      "scrollY": 21670,
-      "nativeScrollY": 21670,
+      "requestedY": 20251,
+      "scrollY": 20251,
+      "nativeScrollY": 20251,
       "settled": true,
-      "settleMs": 339.1,
+      "settleMs": 364.9,
       "measurements": {
         "archive-rail": {
           "found": true,
           "rect": {
-            "x": 240,
+            "x": 45,
             "y": 51,
-            "width": 960,
+            "width": 1350,
             "height": 1,
             "top": 51,
-            "right": 1200,
+            "right": 1395,
             "bottom": 52,
-            "left": 240
+            "left": 45
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -288,23 +288,23 @@
     },
     {
       "progress": 0.9,
-      "requestedY": 27861,
-      "scrollY": 27861,
-      "nativeScrollY": 27861,
+      "requestedY": 26037,
+      "scrollY": 26037,
+      "nativeScrollY": 26037,
       "settled": true,
-      "settleMs": 342.5,
+      "settleMs": 386.6,
       "measurements": {
         "archive-rail": {
           "found": true,
           "rect": {
-            "x": 240,
+            "x": 45,
             "y": 51,
-            "width": 960,
+            "width": 1350,
             "height": 1,
             "top": 51,
-            "right": 1200,
+            "right": 1395,
             "bottom": 52,
-            "left": 240
+            "left": 45
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -326,7 +326,7 @@
           "viewportProgress": 0.94229,
           "inView": true,
           "vars": {
-            "--fam": "0.898"
+            "--fam": "0.899"
           },
           "count": 1,
           "selector": "[data-motion='archive-rail']"
@@ -335,23 +335,23 @@
     },
     {
       "progress": 1,
-      "requestedY": 30957,
-      "scrollY": 30957,
-      "nativeScrollY": 30957,
+      "requestedY": 28930,
+      "scrollY": 28930,
+      "nativeScrollY": 28930,
       "settled": true,
-      "settleMs": 314.6,
+      "settleMs": 318.2,
       "measurements": {
         "archive-rail": {
           "found": true,
           "rect": {
-            "x": 240,
+            "x": 45,
             "y": 51,
-            "width": 960,
+            "width": 1350,
             "height": 1,
             "top": 51,
-            "right": 1200,
+            "right": 1395,
             "bottom": 52,
-            "left": 240
+            "left": 45
           },
           "opacity": 1,
           "effectiveOpacity": 1,

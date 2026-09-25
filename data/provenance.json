@@ -2,7 +2,7 @@
  "generated_by": "taste-library/bin/build-provenance.mjs",
  "source": "https://github.com/ryanonline1234/taste-library (private)",
  "years_covered": "2018-2026",
- "coverage": "Awwwards Sites of the Year (2018-2026) and Sites of the Month through SOTM-2026-06; 5 known in-scope winners are not carded",
+ "coverage": "Awwwards Sites of the Year (2018-2025) and Sites of the Month through SOTM-2026-06; 5 known in-scope winners are not carded",
  "known_uncarded_winners": [
   "Lama Lama (SOTM-2026-07)",
   "ERA Residence (SOTM-2026-08)",
@@ -36,6 +36,23 @@
  "semantic_validation": {
   "entries_reviewed": 2289,
   "findings": 1118,
+  "findings_by_advice": {
+   "bug": 403,
+   "hazard": 685,
+   "deprecated": 19,
+   "technique": 11
+  },
+  "findings_by_effect": {
+   "dead": 271,
+   "effective": 476,
+   "conditional": 249,
+   "unverified": 122
+  },
+  "findings_by_provenance": {
+   "authored": 505,
+   "verbatim": 556,
+   "inferred": 57
+  },
   "library_authored_blocks_reviewed": 461,
   "annotations_in_code_tier": 2229,
   "prior_candidates": 873,

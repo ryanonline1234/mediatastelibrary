@@ -1,0 +1,9 @@
+{
+ "_about": "Alt text for the six blind-test stills (chapter 03): what each page looks like, written from the captured stills. These pages were built by this project; the businesses in the briefs are fictional.",
+ "kiln-quire-baseline": "Cream page: 'Kiln' in blue grotesk capitals, a large pink serif ampersand, 'Quire' below, and a pink vertical rail of Japanese text on the right.",
+ "kiln-quire-v1": "Yellow poster: 'KILN & QUIRE' in huge black condensed capitals over a pink band, with a small kiln-temperature chart reading 1300°.",
+ "kiln-quire-v2": "Riso overprint: 'KILN' in blue on a yellow slab, a blue halftone ampersand, 'QUIRE' in blue capitals, registration marks in the corners.",
+ "gale-baseline": "Pale nautical chart of an offshore wind farm: turbine marks in a field of wind streaks, headline 'Every turbine, every sensor, ten times a second.'",
+ "gale-v1": "Dark page: an exploded line drawing of a turbine nacelle with live sensor labels, headline 'A time-series database for wind-farm telemetry.'",
+ "gale-v2": "Pale engineering drawing sheet: an exploded nacelle with numbered callouts, headline 'Stop averaging the wind.'"
+}

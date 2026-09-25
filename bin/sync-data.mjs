@@ -57,8 +57,11 @@ const out = current.filter(f => names.has(f.name)).map(f => {
     signature_move: a.signature_move, sequencing: a.sequencing, nearest: a.nearest || '',
     requires: a.requires, motion_budget: a.motion_budget,
     records: records(f.name).length,
-    // the family's own validated easing record, or null (drawn as "no easing record")
-    ease: ease ? { id: ease.id, value: ease.value, label: ease.ease.label, kind: ease.ease.kind } : null,
+    // how many easing records exist at all — "no easing record" is only true when 0
+    easeRecords: records(f.name).filter(r => r.role === 'easing').length,
+    // the one drawn: the best-ranked parseable easing record (not "the house
+    // ease" — most records are single uses), with what it drove and its provenance
+    ease: ease ? (() => { const r = records(f.name).find(x => x.id === ease.id); return { id: ease.id, value: ease.value, label: ease.ease.label, kind: ease.ease.kind, applies_to: r.applies_to, provenance: r.provenance } })() : null,
     members: f.members.map(mem => ({ ...mem, status: cardStatus(mem.slug), disputed: disputed.has(mem.slug) })),
   }
   for (const k of ['thesis', 'temperature', 'type', 'motion', 'for', 'not_for', 'axis']) if (f[k] !== next[k]) changes.push(`${f.name}.${k}`)

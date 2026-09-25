@@ -9,7 +9,7 @@
     "reducedMotion": "no-preference"
   },
   "scroll": {
-    "totalHeightPx": 9504,
+    "totalHeightPx": 11083,
     "totalHeightTolerancePx": 400,
     "scrollAccuracyTolerancePx": 4,
     "sampleMatchWindow": 0.01,
@@ -23,25 +23,25 @@
   "settleMaxMs": 2500,
   "name": "mediatastelibrary-argument-desktop",
   "url": "http://localhost:8811/",
-  "description": "The argument, in chapters. Every scrubbed effect derives from one scrubbed proxy tween (scrub 0.6) mapped against these ranges, measured from the built page: a scene starts when its section enters at 85% of the viewport and ends when the next one does. Two signature moments (the load: grid, count and 131 modules; the ink flip into 'What broke') are time/state-based and checked in verify.sh, not here.",
+  "description": "The argument, in chapters. Scene ranges are measured from the built page: a scene starts when its section enters at 85% of the viewport and ends when the next one does. Within a scene each effect is scrubbed (a proxy tween, scrub 0.6) from its OWN element's entry to where it is done, so it is never half-drawn while readable. Two signature moments (the load: grid, count and 131 modules; the ink flip into 'What broke') are time/state-based and checked in verify.sh, not here.",
   "positions": [
     0,
-    0.0217,
-    0.0434,
-    0.0874,
-    0.1314,
-    0.1749,
-    0.2184,
+    0.0319,
+    0.0638,
+    0.1103,
+    0.1567,
+    0.1963,
+    0.236,
     0.3,
-    0.3091,
-    0.3998,
-    0.492,
+    0.3146,
+    0.3932,
+    0.4903,
     0.5,
-    0.5843,
-    0.6858,
+    0.5874,
+    0.6884,
     0.7,
-    0.7873,
-    0.8937,
+    0.7894,
+    0.8947,
     0.9,
     1
   ],
@@ -71,8 +71,8 @@
         "--bars"
       ]
     },
-    "glyphs": {
-      "selector": "[data-motion='glyphs']",
+    "atlas": {
+      "selector": "[data-motion='atlas']",
       "vars": [
         "--draw"
       ]
@@ -91,7 +91,7 @@
       "selector": "[data-scene='hero']",
       "range": {
         "from": 0,
-        "to": 0.0434
+        "to": 0.0638
       },
       "expectations": [
         {
@@ -122,8 +122,8 @@
       "label": "01 — the walk visits the six steps (held stops)",
       "selector": "[data-scene='sweep']",
       "range": {
-        "from": 0.0434,
-        "to": 0.1314
+        "from": 0.0638,
+        "to": 0.1567
       },
       "expectations": [
         {
@@ -146,7 +146,7 @@
           ],
           "easeRef": "none — scrubbed",
           "cssVarName": "--walk",
-          "note": "--walk drives offset-distance through measured marker positions; 60% travel / 40% hold per leg; markers fill as reached."
+          "note": "--walk scrubs from the walk's own entry (top 85%) to its bottom at 75%, driving offset-distance through measured marker positions; 60% travel / 40% hold per leg; markers fill as reached."
         }
       ]
     },
@@ -155,8 +155,8 @@
       "label": "01 — the contact sheet, rows in award order",
       "selector": "[data-scene='sheet']",
       "range": {
-        "from": 0.1314,
-        "to": 0.2184
+        "from": 0.1567,
+        "to": 0.236
       },
       "expectations": [
         {
@@ -187,8 +187,8 @@
       "label": "02 — the thesis is underlined as it is read (ink ground)",
       "selector": "[data-scene='broke']",
       "range": {
-        "from": 0.2184,
-        "to": 0.3998
+        "from": 0.236,
+        "to": 0.3932
       },
       "expectations": [
         {
@@ -211,7 +211,7 @@
           ],
           "easeRef": "none — scrubbed",
           "cssVarName": "--find",
-          "note": "The 1,118 and the spec figures count ONCE on enter (time-based), so they are not scroll-asserted."
+          "note": "--find scrubs from the thesis's own entry (top 85%) to its bottom at mid-viewport, so the clause is underlined while it is read. The 1,118 and the spec figures count ONCE on enter (time-based), so they are not scroll-asserted."
         }
       ]
     },
@@ -220,8 +220,8 @@
       "label": "03 — score bars drawn to scale",
       "selector": "[data-scene='test']",
       "range": {
-        "from": 0.3998,
-        "to": 0.5843
+        "from": 0.3932,
+        "to": 0.5874
       },
       "expectations": [
         {
@@ -243,22 +243,23 @@
             }
           ],
           "easeRef": "none — scrubbed",
-          "cssVarName": "--bars"
+          "cssVarName": "--bars",
+          "note": "Each [data-bars] block scrubs --bars from its own top at 90% to 55%; this asserts the first."
         }
       ]
     },
     {
       "id": "fams",
-      "label": "04 — each family's own curve draws",
+      "label": "04 — the ease atlas draws, row by row",
       "selector": "[data-scene='fams']",
       "range": {
-        "from": 0.5843,
-        "to": 0.7873
+        "from": 0.5874,
+        "to": 0.7894
       },
       "expectations": [
         {
           "id": "fams-draw",
-          "target": "glyphs",
+          "target": "atlas",
           "property": "cssVar",
           "tolerance": 0.06,
           "monotonic": "increasing",
@@ -275,7 +276,8 @@
             }
           ],
           "easeRef": "none — scrubbed",
-          "cssVarName": "--draw"
+          "cssVarName": "--draw",
+          "note": "--draw scrubs from the atlas's own entry (top 85%) to its bottom at 85%; each plot draws over a quarter of that, offset by its place (--f)."
         }
       ]
     },
@@ -284,7 +286,7 @@
       "label": "05 — the exhibit dot rides the page's own ease",
       "selector": "[data-scene='self']",
       "range": {
-        "from": 0.7873,
+        "from": 0.7894,
         "to": 1
       },
       "expectations": [

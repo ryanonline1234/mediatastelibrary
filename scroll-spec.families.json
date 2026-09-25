@@ -9,7 +9,7 @@
     "reducedMotion": "no-preference"
   },
   "scroll": {
-    "totalHeightPx": 31857,
+    "totalHeightPx": 29830,
     "totalHeightTolerancePx": 400,
     "scrollAccuracyTolerancePx": 4,
     "sampleMatchWindow": 0.01,

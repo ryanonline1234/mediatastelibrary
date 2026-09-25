@@ -1,14 +1,14 @@
 {
   "schema": "awwwards-motion/samples@1",
   "url": "http://127.0.0.1:8811/",
-  "capturedAt": "2026-09-25T04:56:15.127Z",
+  "capturedAt": "2026-09-25T05:47:28.012Z",
   "viewport": {
     "width": 1440,
     "height": 900,
     "dpr": 1
   },
-  "scrollHeight": 9504,
-  "maxScroll": 8604,
+  "scrollHeight": 11083,
+  "maxScroll": 10183,
   "scrollDriver": "lenis",
   "lenisVia": "window.lenis",
   "reducedMotion": "no-preference",
@@ -24,7 +24,7 @@
       "reducedMotion": "no-preference"
     },
     "scroll": {
-      "totalHeightPx": 9504,
+      "totalHeightPx": 11083,
       "totalHeightTolerancePx": 400,
       "scrollAccuracyTolerancePx": 4,
       "sampleMatchWindow": 0.01,
@@ -38,25 +38,25 @@
     "settleMaxMs": 2500,
     "name": "mediatastelibrary-argument-desktop",
     "url": "http://localhost:8811/",
-    "description": "The argument, in chapters. Every scrubbed effect derives from one scrubbed proxy tween (scrub 0.6) mapped against these ranges, measured from the built page: a scene starts when its section enters at 85% of the viewport and ends when the next one does. Two signature moments (the load: grid, count and 131 modules; the ink flip into 'What broke') are time/state-based and checked in verify.sh, not here.",
+    "description": "The argument, in chapters. Scene ranges are measured from the built page: a scene starts when its section enters at 85% of the viewport and ends when the next one does. Within a scene each effect is scrubbed (a proxy tween, scrub 0.6) from its OWN element's entry to where it is done, so it is never half-drawn while readable. Two signature moments (the load: grid, count and 131 modules; the ink flip into 'What broke') are time/state-based and checked in verify.sh, not here.",
     "positions": [
       0,
-      0.0217,
-      0.0434,
-      0.0874,
-      0.1314,
-      0.1749,
-      0.2184,
+      0.0319,
+      0.0638,
+      0.1103,
+      0.1567,
+      0.1963,
+      0.236,
       0.3,
-      0.3091,
-      0.3998,
-      0.492,
+      0.3146,
+      0.3932,
+      0.4903,
       0.5,
-      0.5843,
-      0.6858,
+      0.5874,
+      0.6884,
       0.7,
-      0.7873,
-      0.8937,
+      0.7894,
+      0.8947,
       0.9,
       1
     ],
@@ -86,8 +86,8 @@
           "--bars"
         ]
       },
-      "glyphs": {
-        "selector": "[data-motion='glyphs']",
+      "atlas": {
+        "selector": "[data-motion='atlas']",
         "vars": [
           "--draw"
         ]
@@ -106,7 +106,7 @@
         "selector": "[data-scene='hero']",
         "range": {
           "from": 0,
-          "to": 0.0434
+          "to": 0.0638
         },
         "expectations": [
           {
@@ -137,8 +137,8 @@
         "label": "01 — the walk visits the six steps (held stops)",
         "selector": "[data-scene='sweep']",
         "range": {
-          "from": 0.0434,
-          "to": 0.1314
+          "from": 0.0638,
+          "to": 0.1567
         },
         "expectations": [
           {
@@ -161,7 +161,7 @@
             ],
             "easeRef": "none — scrubbed",
             "cssVarName": "--walk",
-            "note": "--walk drives offset-distance through measured marker positions; 60% travel / 40% hold per leg; markers fill as reached."
+            "note": "--walk scrubs from the walk's own entry (top 85%) to its bottom at 75%, driving offset-distance through measured marker positions; 60% travel / 40% hold per leg; markers fill as reached."
           }
         ]
       },
@@ -170,8 +170,8 @@
         "label": "01 — the contact sheet, rows in award order",
         "selector": "[data-scene='sheet']",
         "range": {
-          "from": 0.1314,
-          "to": 0.2184
+          "from": 0.1567,
+          "to": 0.236
         },
         "expectations": [
           {
@@ -202,8 +202,8 @@
         "label": "02 — the thesis is underlined as it is read (ink ground)",
         "selector": "[data-scene='broke']",
         "range": {
-          "from": 0.2184,
-          "to": 0.3998
+          "from": 0.236,
+          "to": 0.3932
         },
         "expectations": [
           {
@@ -226,7 +226,7 @@
             ],
             "easeRef": "none — scrubbed",
             "cssVarName": "--find",
-            "note": "The 1,118 and the spec figures count ONCE on enter (time-based), so they are not scroll-asserted."
+            "note": "--find scrubs from the thesis's own entry (top 85%) to its bottom at mid-viewport, so the clause is underlined while it is read. The 1,118 and the spec figures count ONCE on enter (time-based), so they are not scroll-asserted."
           }
         ]
       },
@@ -235,8 +235,8 @@
         "label": "03 — score bars drawn to scale",
         "selector": "[data-scene='test']",
         "range": {
-          "from": 0.3998,
-          "to": 0.5843
+          "from": 0.3932,
+          "to": 0.5874
         },
         "expectations": [
           {
@@ -258,22 +258,23 @@
               }
             ],
             "easeRef": "none — scrubbed",
-            "cssVarName": "--bars"
+            "cssVarName": "--bars",
+            "note": "Each [data-bars] block scrubs --bars from its own top at 90% to 55%; this asserts the first."
           }
         ]
       },
       {
         "id": "fams",
-        "label": "04 — each family's own curve draws",
+        "label": "04 — the ease atlas draws, row by row",
         "selector": "[data-scene='fams']",
         "range": {
-          "from": 0.5843,
-          "to": 0.7873
+          "from": 0.5874,
+          "to": 0.7894
         },
         "expectations": [
           {
             "id": "fams-draw",
-            "target": "glyphs",
+            "target": "atlas",
             "property": "cssVar",
             "tolerance": 0.06,
             "monotonic": "increasing",
@@ -290,7 +291,8 @@
               }
             ],
             "easeRef": "none — scrubbed",
-            "cssVarName": "--draw"
+            "cssVarName": "--draw",
+            "note": "--draw scrubs from the atlas's own entry (top 85%) to its bottom at 85%; each plot draws over a quarter of that, offset by its place (--f)."
           }
         ]
       },
@@ -299,7 +301,7 @@
         "label": "05 — the exhibit dot rides the page's own ease",
         "selector": "[data-scene='self']",
         "range": {
-          "from": 0.7873,
+          "from": 0.7894,
           "to": 1
         },
         "expectations": [
@@ -342,19 +344,19 @@
       "scrollY": 0,
       "nativeScrollY": 0,
       "settled": true,
-      "settleMs": 30.1,
+      "settleMs": 28.7,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
+            "x": 75,
             "y": 156,
-            "width": 900,
-            "height": 211.188,
+            "width": 1290,
+            "height": 296.797,
             "top": 156,
-            "right": 1170,
-            "bottom": 367.188,
-            "left": 270
+            "right": 1365,
+            "bottom": 452.797,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -373,7 +375,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, 0)"
           },
-          "viewportProgress": 0.66955,
+          "viewportProgress": 0.62166,
           "inView": true,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -381,14 +383,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1399.266,
-            "width": 900,
-            "height": 416.047,
-            "top": 1399.266,
-            "right": 1170,
-            "bottom": 1815.313,
-            "left": 270
+            "x": 75,
+            "y": 1826.859,
+            "width": 1290,
+            "height": 454.016,
+            "top": 1826.859,
+            "right": 1365,
+            "bottom": 2280.875,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -407,7 +409,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.37937,
+          "viewportProgress": -0.68453,
           "inView": false,
           "vars": {
             "--walk": "0.000"
@@ -418,14 +420,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 2125.781,
-            "width": 900,
+            "x": 75,
+            "y": 2650.047,
+            "width": 1290,
             "height": 422,
-            "top": 2125.781,
-            "right": 1170,
-            "bottom": 2547.781,
-            "left": 270
+            "top": 2650.047,
+            "right": 1365,
+            "bottom": 3072.047,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -444,7 +446,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.92722,
+          "viewportProgress": -1.32379,
           "inView": false,
           "vars": {
             "--sheet": "0.000"
@@ -455,14 +457,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 2868.609,
-            "width": 900,
-            "height": 485.781,
-            "top": 2868.609,
-            "right": 1170,
-            "bottom": 3354.391,
-            "left": 270
+            "x": 75,
+            "y": 3428.734,
+            "width": 1290,
+            "height": 432.422,
+            "top": 3428.734,
+            "right": 1365,
+            "bottom": 3861.156,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -481,7 +483,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.42058,
+          "viewportProgress": -1.89785,
           "inView": false,
           "vars": {
             "--find": "0.000"
@@ -492,14 +494,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 4589.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 4589.219,
-            "right": 1170,
-            "bottom": 5606.813,
-            "left": 270
+            "x": 75,
+            "y": 5765.625,
+            "width": 1290,
+            "height": 97,
+            "top": 5765.625,
+            "right": 1365,
+            "bottom": 5862.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -518,7 +520,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.92388,
+          "viewportProgress": -4.88027,
           "inView": false,
           "vars": {
             "--bars": "0.000"
@@ -526,17 +528,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 6176.188,
-            "width": 900,
-            "height": 1267,
-            "top": 6176.188,
-            "right": 1170,
-            "bottom": 7443.188,
-            "left": 270
+            "x": 75,
+            "y": 7181.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 7181.75,
+            "right": 1365,
+            "bottom": 8528.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -555,25 +557,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -2.43479,
+          "viewportProgress": -2.79562,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 7897.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 7897.047,
-            "right": 821.25,
-            "bottom": 8273.797,
-            "left": 270
+            "x": 75,
+            "y": 9209.5,
+            "width": 795,
+            "height": 526,
+            "top": 9209.5,
+            "right": 870,
+            "bottom": 9735.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -592,7 +594,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -5.48036,
+          "viewportProgress": -5.82714,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -603,24 +605,24 @@
       }
     },
     {
-      "progress": 0.0217,
-      "requestedY": 187,
-      "scrollY": 187,
-      "nativeScrollY": 187,
+      "progress": 0.0319,
+      "requestedY": 325,
+      "scrollY": 325,
+      "nativeScrollY": 325,
       "settled": true,
-      "settleMs": 28.4,
+      "settleMs": 28.2,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -61.05,
-            "width": 900,
-            "height": 211.188,
-            "top": -61.05,
-            "right": 1170,
-            "bottom": 150.138,
-            "left": 270
+            "x": 75,
+            "y": -199.02,
+            "width": 1290,
+            "height": 296.797,
+            "top": -199.02,
+            "right": 1365,
+            "bottom": 97.777,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -630,16 +632,16 @@
           "pointerEvents": "auto",
           "transform": {
             "translateX": 0,
-            "translateY": -30.05,
+            "translateY": -30.02,
             "translateZ": 0,
             "scaleX": 1,
             "scaleY": 1,
             "rotate": 0,
             "skewX": 0,
             "is3d": false,
-            "matrix": "matrix(1, 0, 0, 1, 0, -30.05)"
+            "matrix": "matrix(1, 0, 0, 1, 0, -30.02)"
           },
-          "viewportProgress": 0.86489,
+          "viewportProgress": 0.9183,
           "inView": true,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -647,14 +649,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1212.266,
-            "width": 900,
-            "height": 416.047,
-            "top": 1212.266,
-            "right": 1170,
-            "bottom": 1628.313,
-            "left": 270
+            "x": 75,
+            "y": 1501.859,
+            "width": 1290,
+            "height": 454.016,
+            "top": 1501.859,
+            "right": 1365,
+            "bottom": 1955.875,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -673,7 +675,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.23728,
+          "viewportProgress": -0.4445,
           "inView": false,
           "vars": {
             "--walk": "0.000"
@@ -684,14 +686,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1938.781,
-            "width": 900,
+            "x": 75,
+            "y": 2325.047,
+            "width": 1290,
             "height": 422,
-            "top": 1938.781,
-            "right": 1170,
-            "bottom": 2360.781,
-            "left": 270
+            "top": 2325.047,
+            "right": 1365,
+            "bottom": 2747.047,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -710,7 +712,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.78576,
+          "viewportProgress": -1.07795,
           "inView": false,
           "vars": {
             "--sheet": "0.000"
@@ -721,14 +723,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 2681.609,
-            "width": 900,
-            "height": 485.781,
-            "top": 2681.609,
-            "right": 1170,
-            "bottom": 3167.391,
-            "left": 270
+            "x": 75,
+            "y": 3103.734,
+            "width": 1290,
+            "height": 432.422,
+            "top": 3103.734,
+            "right": 1365,
+            "bottom": 3536.156,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -747,7 +749,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.28564,
+          "viewportProgress": -1.65393,
           "inView": false,
           "vars": {
             "--find": "0.000"
@@ -758,14 +760,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 4402.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 4402.219,
-            "right": 1170,
-            "bottom": 5419.813,
-            "left": 270
+            "x": 75,
+            "y": 5440.625,
+            "width": 1290,
+            "height": 97,
+            "top": 5440.625,
+            "right": 1365,
+            "bottom": 5537.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -784,7 +786,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.82636,
+          "viewportProgress": -4.55429,
           "inView": false,
           "vars": {
             "--bars": "0.000"
@@ -792,17 +794,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 5989.188,
-            "width": 900,
-            "height": 1267,
-            "top": 5989.188,
-            "right": 1170,
-            "bottom": 7256.188,
-            "left": 270
+            "x": 75,
+            "y": 6856.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 6856.75,
+            "right": 1365,
+            "bottom": 8203.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -821,25 +823,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -2.34849,
+          "viewportProgress": -2.65098,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 7710.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 7710.047,
-            "right": 821.25,
-            "bottom": 8086.797,
-            "left": 270
+            "x": 75,
+            "y": 8884.5,
+            "width": 795,
+            "height": 526,
+            "top": 8884.5,
+            "right": 870,
+            "bottom": 9410.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -858,7 +860,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -5.33389,
+          "viewportProgress": -5.59923,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -869,290 +871,24 @@
       }
     },
     {
-      "progress": 0.0434,
-      "requestedY": 373,
-      "scrollY": 373,
-      "nativeScrollY": 373,
+      "progress": 0.0638,
+      "requestedY": 650,
+      "scrollY": 650,
+      "nativeScrollY": 650,
       "settled": true,
-      "settleMs": 544.2,
+      "settleMs": 27.4,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -276.93,
-            "width": 900,
-            "height": 211.188,
-            "top": -276.93,
-            "right": 1170,
-            "bottom": -65.742,
-            "left": 270
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": -59.93,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "matrix(1, 0, 0, 1, 0, -59.93)"
-          },
-          "viewportProgress": 1.05916,
-          "inView": false,
-          "count": 1,
-          "selector": "[data-motion='hero-count']"
-        },
-        "method-walk": {
-          "found": true,
-          "rect": {
-            "x": 270,
-            "y": 1026.266,
-            "width": 900,
-            "height": 416.047,
-            "top": 1026.266,
-            "right": 1170,
-            "bottom": 1442.313,
-            "left": 270
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "relative",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": -0.09594,
-          "inView": false,
-          "vars": {
-            "--walk": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='method-walk']"
-        },
-        "sheet": {
-          "found": true,
-          "rect": {
-            "x": 270,
-            "y": 1752.781,
-            "width": 900,
-            "height": 422,
-            "top": 1752.781,
-            "right": 1170,
-            "bottom": 2174.781,
-            "left": 270
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "grid",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": -0.64507,
-          "inView": false,
-          "vars": {
-            "--sheet": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='sheet']"
-        },
-        "findings-mark": {
-          "found": true,
-          "rect": {
-            "x": 270,
-            "y": 2495.609,
-            "width": 900,
-            "height": 485.781,
-            "top": 2495.609,
-            "right": 1170,
-            "bottom": 2981.391,
-            "left": 270
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": -1.15142,
-          "inView": false,
-          "vars": {
-            "--find": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='findings-mark']"
-        },
-        "test-bars": {
-          "found": true,
-          "rect": {
-            "x": 270,
-            "y": 4216.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 4216.219,
-            "right": 1170,
-            "bottom": 5233.813,
-            "left": 270
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "grid",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": -1.72936,
-          "inView": false,
-          "vars": {
-            "--bars": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='test-bars']"
-        },
-        "glyphs": {
-          "found": true,
-          "rect": {
-            "x": 270,
-            "y": 5803.188,
-            "width": 900,
-            "height": 1267,
-            "top": 5803.188,
-            "right": 1170,
-            "bottom": 7070.188,
-            "left": 270
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "grid",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": -2.26266,
-          "inView": false,
-          "vars": {
-            "--draw": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='glyphs']"
-        },
-        "exhibit-dot": {
-          "found": true,
-          "rect": {
-            "x": 270,
-            "y": 7524.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 7524.047,
-            "right": 821.25,
-            "bottom": 7900.797,
-            "left": 270
-          },
-          "opacity": 1,
-          "effectiveOpacity": 1,
-          "visibility": "visible",
-          "display": "block",
-          "position": "static",
-          "pointerEvents": "auto",
-          "transform": {
-            "translateX": 0,
-            "translateY": 0,
-            "translateZ": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "rotate": 0,
-            "skewX": 0,
-            "is3d": false,
-            "matrix": "none"
-          },
-          "viewportProgress": -5.18821,
-          "inView": false,
-          "vars": {
-            "--t": "0.000"
-          },
-          "count": 1,
-          "selector": "[data-motion='exhibit-dot']"
-        }
-      }
-    },
-    {
-      "progress": 0.0874,
-      "requestedY": 752,
-      "scrollY": 752,
-      "nativeScrollY": 752,
-      "settled": true,
-      "settleMs": 413,
-      "measurements": {
-        "hero-count": {
-          "found": true,
-          "rect": {
-            "x": 270,
-            "y": -656,
-            "width": 900,
-            "height": 211.188,
-            "top": -656,
-            "right": 1170,
-            "bottom": -444.813,
-            "left": 270
+            "x": 75,
+            "y": -554,
+            "width": 1290,
+            "height": 296.797,
+            "top": -554,
+            "right": 1365,
+            "bottom": -257.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1171,7 +907,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 1.4003,
+          "viewportProgress": 1.21491,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -1179,14 +915,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 647.266,
-            "width": 900,
-            "height": 416.047,
-            "top": 647.266,
-            "right": 1170,
-            "bottom": 1063.313,
-            "left": 270
+            "x": 75,
+            "y": 1176.859,
+            "width": 1290,
+            "height": 454.016,
+            "top": 1176.859,
+            "right": 1365,
+            "bottom": 1630.875,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1205,10 +941,10 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.19204,
-          "inView": true,
+          "viewportProgress": -0.20447,
+          "inView": false,
           "vars": {
-            "--walk": "0.498"
+            "--walk": "0.000"
           },
           "count": 1,
           "selector": "[data-motion='method-walk']"
@@ -1216,14 +952,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1373.781,
-            "width": 900,
+            "x": 75,
+            "y": 2000.047,
+            "width": 1290,
             "height": 422,
-            "top": 1373.781,
-            "right": 1170,
-            "bottom": 1795.781,
-            "left": 270
+            "top": 2000.047,
+            "right": 1365,
+            "bottom": 2422.047,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1242,7 +978,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.35838,
+          "viewportProgress": -0.83211,
           "inView": false,
           "vars": {
             "--sheet": "0.000"
@@ -1253,14 +989,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 2116.609,
-            "width": 900,
-            "height": 485.781,
-            "top": 2116.609,
-            "right": 1170,
-            "bottom": 2602.391,
-            "left": 270
+            "x": 75,
+            "y": 2778.734,
+            "width": 1290,
+            "height": 432.422,
+            "top": 2778.734,
+            "right": 1365,
+            "bottom": 3211.156,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1279,7 +1015,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.87792,
+          "viewportProgress": -1.41001,
           "inView": false,
           "vars": {
             "--find": "0.000"
@@ -1290,14 +1026,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 3837.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 3837.219,
-            "right": 1170,
-            "bottom": 4854.813,
-            "left": 270
+            "x": 75,
+            "y": 5115.625,
+            "width": 1290,
+            "height": 97,
+            "top": 5115.625,
+            "right": 1365,
+            "bottom": 5212.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1316,7 +1052,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.53172,
+          "viewportProgress": -4.22831,
           "inView": false,
           "vars": {
             "--bars": "0.000"
@@ -1324,17 +1060,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 5424.188,
-            "width": 900,
-            "height": 1267,
-            "top": 5424.188,
-            "right": 1170,
-            "bottom": 6691.188,
-            "left": 270
+            "x": 75,
+            "y": 6531.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 6531.75,
+            "right": 1365,
+            "bottom": 7878.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1353,25 +1089,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -2.08777,
+          "viewportProgress": -2.50634,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 7145.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 7145.047,
-            "right": 821.25,
-            "bottom": 7521.797,
-            "left": 270
+            "x": 75,
+            "y": 8559.5,
+            "width": 795,
+            "height": 526,
+            "top": 8559.5,
+            "right": 870,
+            "bottom": 9085.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1390,7 +1126,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -4.89136,
+          "viewportProgress": -5.37132,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -1401,24 +1137,24 @@
       }
     },
     {
-      "progress": 0.1314,
-      "requestedY": 1131,
-      "scrollY": 1131,
-      "nativeScrollY": 1131,
+      "progress": 0.1103,
+      "requestedY": 1123,
+      "scrollY": 1123,
+      "nativeScrollY": 1123,
       "settled": true,
-      "settleMs": 432.6,
+      "settleMs": 322.2,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1035,
-            "width": 900,
-            "height": 211.188,
-            "top": -1035,
-            "right": 1170,
-            "bottom": -823.813,
-            "left": 270
+            "x": 75,
+            "y": -1027,
+            "width": 1290,
+            "height": 296.797,
+            "top": -1027,
+            "right": 1365,
+            "bottom": -730.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1437,7 +1173,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 1.74138,
+          "viewportProgress": 1.61013,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -1445,14 +1181,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 268.266,
-            "width": 900,
-            "height": 416.047,
-            "top": 268.266,
-            "right": 1170,
-            "bottom": 684.313,
-            "left": 270
+            "x": 75,
+            "y": 703.859,
+            "width": 1290,
+            "height": 454.016,
+            "top": 703.859,
+            "right": 1365,
+            "bottom": 1157.875,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1471,10 +1207,10 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.48002,
+          "viewportProgress": 0.14486,
           "inView": true,
           "vars": {
-            "--walk": "0.999"
+            "--walk": "0.110"
           },
           "count": 1,
           "selector": "[data-motion='method-walk']"
@@ -1482,14 +1218,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 994.781,
-            "width": 900,
+            "x": 75,
+            "y": 1527.047,
+            "width": 1290,
             "height": 422,
-            "top": 994.781,
-            "right": 1170,
-            "bottom": 1416.781,
-            "left": 270
+            "top": 1527.047,
+            "right": 1365,
+            "bottom": 1949.047,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1508,7 +1244,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.0717,
+          "viewportProgress": -0.47432,
           "inView": false,
           "vars": {
             "--sheet": "0.000"
@@ -1519,14 +1255,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1737.609,
-            "width": 900,
-            "height": 485.781,
-            "top": 1737.609,
-            "right": 1170,
-            "bottom": 2223.391,
-            "left": 270
+            "x": 75,
+            "y": 2305.734,
+            "width": 1290,
+            "height": 432.422,
+            "top": 2305.734,
+            "right": 1365,
+            "bottom": 2738.156,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1545,7 +1281,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.60443,
+          "viewportProgress": -1.05502,
           "inView": false,
           "vars": {
             "--find": "0.000"
@@ -1556,14 +1292,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 3458.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 3458.219,
-            "right": 1170,
-            "bottom": 4475.813,
-            "left": 270
+            "x": 75,
+            "y": 4642.625,
+            "width": 1290,
+            "height": 97,
+            "top": 4642.625,
+            "right": 1365,
+            "bottom": 4739.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1582,7 +1318,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.33408,
+          "viewportProgress": -3.75389,
           "inView": false,
           "vars": {
             "--bars": "0.000"
@@ -1590,17 +1326,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 5045.188,
-            "width": 900,
-            "height": 1267,
-            "top": 5045.188,
-            "right": 1170,
-            "bottom": 6312.188,
-            "left": 270
+            "x": 75,
+            "y": 6058.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 6058.75,
+            "right": 1365,
+            "bottom": 7405.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1619,25 +1355,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.91287,
+          "viewportProgress": -2.29584,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 6766.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 6766.047,
-            "right": 821.25,
-            "bottom": 7142.797,
-            "left": 270
+            "x": 75,
+            "y": 8086.5,
+            "width": 795,
+            "height": 526,
+            "top": 8086.5,
+            "right": 870,
+            "bottom": 8612.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1656,7 +1392,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -4.59451,
+          "viewportProgress": -5.03962,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -1667,24 +1403,24 @@
       }
     },
     {
-      "progress": 0.1749,
-      "requestedY": 1505,
-      "scrollY": 1505,
-      "nativeScrollY": 1505,
+      "progress": 0.1567,
+      "requestedY": 1596,
+      "scrollY": 1596,
+      "nativeScrollY": 1596,
       "settled": true,
-      "settleMs": 435.1,
+      "settleMs": 452,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1409,
-            "width": 900,
-            "height": 211.188,
-            "top": -1409,
-            "right": 1170,
-            "bottom": -1197.813,
-            "left": 270
+            "x": 75,
+            "y": -1500,
+            "width": 1290,
+            "height": 296.797,
+            "top": -1500,
+            "right": 1365,
+            "bottom": -1203.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1703,7 +1439,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 2.07796,
+          "viewportProgress": 2.00535,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -1711,14 +1447,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -105.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -105.734,
-            "right": 1170,
-            "bottom": 310.313,
-            "left": 270
+            "x": 75,
+            "y": 230.859,
+            "width": 1290,
+            "height": 454.016,
+            "top": 230.859,
+            "right": 1365,
+            "bottom": 684.875,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1737,7 +1473,273 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.76421,
+          "viewportProgress": 0.49419,
+          "inView": true,
+          "vars": {
+            "--walk": "0.980"
+          },
+          "count": 1,
+          "selector": "[data-motion='method-walk']"
+        },
+        "sheet": {
+          "found": true,
+          "rect": {
+            "x": 75,
+            "y": 1054.047,
+            "width": 1290,
+            "height": 422,
+            "top": 1054.047,
+            "right": 1365,
+            "bottom": 1476.047,
+            "left": 75
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "grid",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": -0.11653,
+          "inView": false,
+          "vars": {
+            "--sheet": "0.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='sheet']"
+        },
+        "findings-mark": {
+          "found": true,
+          "rect": {
+            "x": 75,
+            "y": 1832.734,
+            "width": 1290,
+            "height": 432.422,
+            "top": 1832.734,
+            "right": 1365,
+            "bottom": 2265.156,
+            "left": 75
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": -0.70003,
+          "inView": false,
+          "vars": {
+            "--find": "0.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='findings-mark']"
+        },
+        "test-bars": {
+          "found": true,
+          "rect": {
+            "x": 75,
+            "y": 4169.625,
+            "width": 1290,
+            "height": 97,
+            "top": 4169.625,
+            "right": 1365,
+            "bottom": 4266.625,
+            "left": 75
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "grid",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": -3.27946,
+          "inView": false,
+          "vars": {
+            "--bars": "0.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='test-bars']"
+        },
+        "atlas": {
+          "found": true,
+          "rect": {
+            "x": 75,
+            "y": 5585.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 5585.75,
+            "right": 1365,
+            "bottom": 6932.75,
+            "left": 75
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "grid",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": -2.08534,
+          "inView": false,
+          "vars": {
+            "--draw": "0.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='atlas']"
+        },
+        "exhibit-dot": {
+          "found": true,
+          "rect": {
+            "x": 75,
+            "y": 7613.5,
+            "width": 795,
+            "height": 526,
+            "top": 7613.5,
+            "right": 870,
+            "bottom": 8139.5,
+            "left": 75
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": -4.70792,
+          "inView": false,
+          "vars": {
+            "--t": "0.000"
+          },
+          "count": 1,
+          "selector": "[data-motion='exhibit-dot']"
+        }
+      }
+    },
+    {
+      "progress": 0.1963,
+      "requestedY": 1999,
+      "scrollY": 1999,
+      "nativeScrollY": 1999,
+      "settled": true,
+      "settleMs": 427.3,
+      "measurements": {
+        "hero-count": {
+          "found": true,
+          "rect": {
+            "x": 75,
+            "y": -1903,
+            "width": 1290,
+            "height": 296.797,
+            "top": -1903,
+            "right": 1365,
+            "bottom": -1606.203,
+            "left": 75
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "static",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": -60,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "matrix(1, 0, 0, 1, 0, -60)"
+          },
+          "viewportProgress": 2.34208,
+          "inView": false,
+          "count": 1,
+          "selector": "[data-motion='hero-count']"
+        },
+        "method-walk": {
+          "found": true,
+          "rect": {
+            "x": 75,
+            "y": -172.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -172.141,
+            "right": 1365,
+            "bottom": 281.875,
+            "left": 75
+          },
+          "opacity": 1,
+          "effectiveOpacity": 1,
+          "visibility": "visible",
+          "display": "block",
+          "position": "relative",
+          "pointerEvents": "auto",
+          "transform": {
+            "translateX": 0,
+            "translateY": 0,
+            "translateZ": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotate": 0,
+            "skewX": 0,
+            "is3d": false,
+            "matrix": "none"
+          },
+          "viewportProgress": 0.79182,
           "inView": true,
           "vars": {
             "--walk": "1.000"
@@ -1748,14 +1750,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 620.781,
-            "width": 900,
+            "x": 75,
+            "y": 651.047,
+            "width": 1290,
             "height": 422,
-            "top": 620.781,
-            "right": 1170,
-            "bottom": 1042.781,
-            "left": 270
+            "top": 651.047,
+            "right": 1365,
+            "bottom": 1073.047,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1774,10 +1776,10 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.21121,
+          "viewportProgress": 0.18832,
           "inView": true,
           "vars": {
-            "--sheet": "0.499"
+            "--sheet": "0.498"
           },
           "count": 1,
           "selector": "[data-motion='sheet']"
@@ -1785,14 +1787,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1363.609,
-            "width": 900,
-            "height": 485.781,
-            "top": 1363.609,
-            "right": 1170,
-            "bottom": 1849.391,
-            "left": 270
+            "x": 75,
+            "y": 1429.734,
+            "width": 1290,
+            "height": 432.422,
+            "top": 1429.734,
+            "right": 1365,
+            "bottom": 1862.156,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1811,7 +1813,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.33455,
+          "viewportProgress": -0.39757,
           "inView": false,
           "vars": {
             "--find": "0.000"
@@ -1822,14 +1824,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 3084.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 3084.219,
-            "right": 1170,
-            "bottom": 4101.813,
-            "left": 270
+            "x": 75,
+            "y": 3766.625,
+            "width": 1290,
+            "height": 97,
+            "top": 3766.625,
+            "right": 1365,
+            "bottom": 3863.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1848,7 +1850,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.13904,
+          "viewportProgress": -2.87525,
           "inView": false,
           "vars": {
             "--bars": "0.000"
@@ -1856,17 +1858,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 4671.188,
-            "width": 900,
-            "height": 1267,
-            "top": 4671.188,
-            "right": 1170,
-            "bottom": 5938.188,
-            "left": 270
+            "x": 75,
+            "y": 5182.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 5182.75,
+            "right": 1365,
+            "bottom": 6529.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1885,25 +1887,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.74028,
+          "viewportProgress": -1.90599,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 6392.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 6392.047,
-            "right": 821.25,
-            "bottom": 6768.797,
-            "left": 270
+            "x": 75,
+            "y": 7210.5,
+            "width": 795,
+            "height": 526,
+            "top": 7210.5,
+            "right": 870,
+            "bottom": 7736.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1922,7 +1924,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -4.30158,
+          "viewportProgress": -4.42532,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -1933,24 +1935,24 @@
       }
     },
     {
-      "progress": 0.2184,
-      "requestedY": 1879,
-      "scrollY": 1879,
-      "nativeScrollY": 1879,
+      "progress": 0.236,
+      "requestedY": 2403,
+      "scrollY": 2403,
+      "nativeScrollY": 2403,
       "settled": true,
-      "settleMs": 446.9,
+      "settleMs": 421.2,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1783,
-            "width": 900,
-            "height": 211.188,
-            "top": -1783,
-            "right": 1170,
-            "bottom": -1571.813,
-            "left": 270
+            "x": 75,
+            "y": -2307,
+            "width": 1290,
+            "height": 296.797,
+            "top": -2307,
+            "right": 1365,
+            "bottom": -2010.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -1969,7 +1971,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 2.41453,
+          "viewportProgress": 2.67965,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -1977,14 +1979,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -479.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -479.734,
-            "right": 1170,
-            "bottom": -63.688,
-            "left": 270
+            "x": 75,
+            "y": -576.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -576.141,
+            "right": 1365,
+            "bottom": -122.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2003,7 +2005,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.04839,
+          "viewportProgress": 1.09019,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -2014,14 +2016,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 246.781,
-            "width": 900,
+            "x": 75,
+            "y": 247.047,
+            "width": 1290,
             "height": 422,
-            "top": 246.781,
-            "right": 1170,
-            "bottom": 668.781,
-            "left": 270
+            "top": 247.047,
+            "right": 1365,
+            "bottom": 669.047,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2040,10 +2042,10 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.49411,
+          "viewportProgress": 0.49391,
           "inView": true,
           "vars": {
-            "--sheet": "0.999"
+            "--sheet": "0.998"
           },
           "count": 1,
           "selector": "[data-motion='sheet']"
@@ -2051,14 +2053,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 989.609,
-            "width": 900,
-            "height": 485.781,
-            "top": 989.609,
-            "right": 1170,
-            "bottom": 1475.391,
-            "left": 270
+            "x": 75,
+            "y": 1025.734,
+            "width": 1290,
+            "height": 432.422,
+            "top": 1025.734,
+            "right": 1365,
+            "bottom": 1458.156,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2077,7 +2079,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.06466,
+          "viewportProgress": -0.09437,
           "inView": false,
           "vars": {
             "--find": "0.000"
@@ -2088,14 +2090,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 2710.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 2710.219,
-            "right": 1170,
-            "bottom": 3727.813,
-            "left": 270
+            "x": 75,
+            "y": 3362.625,
+            "width": 1290,
+            "height": 97,
+            "top": 3362.625,
+            "right": 1365,
+            "bottom": 3459.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2114,7 +2116,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.94401,
+          "viewportProgress": -2.47004,
           "inView": false,
           "vars": {
             "--bars": "0.000"
@@ -2122,17 +2124,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 4297.188,
-            "width": 900,
-            "height": 1267,
-            "top": 4297.188,
-            "right": 1170,
-            "bottom": 5564.188,
-            "left": 270
+            "x": 75,
+            "y": 4778.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 4778.75,
+            "right": 1365,
+            "bottom": 6125.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2151,25 +2153,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.56769,
+          "viewportProgress": -1.72619,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 6018.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 6018.047,
-            "right": 821.25,
-            "bottom": 6394.797,
-            "left": 270
+            "x": 75,
+            "y": 6806.5,
+            "width": 795,
+            "height": 526,
+            "top": 6806.5,
+            "right": 870,
+            "bottom": 7332.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2188,7 +2190,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -4.00865,
+          "viewportProgress": -4.14201,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -2200,23 +2202,23 @@
     },
     {
       "progress": 0.3,
-      "requestedY": 2581,
-      "scrollY": 2581,
-      "nativeScrollY": 2581,
+      "requestedY": 3055,
+      "scrollY": 3055,
+      "nativeScrollY": 3055,
       "settled": true,
-      "settleMs": 413.7,
+      "settleMs": 431,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2485,
-            "width": 900,
-            "height": 211.188,
-            "top": -2485,
-            "right": 1170,
-            "bottom": -2273.813,
-            "left": 270
+            "x": 75,
+            "y": -2959,
+            "width": 1290,
+            "height": 296.797,
+            "top": -2959,
+            "right": 1365,
+            "bottom": -2662.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2235,7 +2237,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 3.04629,
+          "viewportProgress": 3.22444,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -2243,14 +2245,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1181.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -1181.734,
-            "right": 1170,
-            "bottom": -765.688,
-            "left": 270
+            "x": 75,
+            "y": -1228.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -1228.141,
+            "right": 1365,
+            "bottom": -774.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2269,7 +2271,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.58181,
+          "viewportProgress": 1.57173,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -2280,14 +2282,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -455.219,
-            "width": 900,
+            "x": 75,
+            "y": -404.953,
+            "width": 1290,
             "height": 422,
-            "top": -455.219,
-            "right": 1170,
-            "bottom": -33.219,
-            "left": 270
+            "top": -404.953,
+            "right": 1365,
+            "bottom": 17.047,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2306,8 +2308,8 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.02513,
-          "inView": false,
+          "viewportProgress": 0.98711,
+          "inView": true,
           "vars": {
             "--sheet": "1.000"
           },
@@ -2317,14 +2319,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 287.609,
-            "width": 900,
-            "height": 485.781,
-            "top": 287.609,
-            "right": 1170,
-            "bottom": 773.391,
-            "left": 270
+            "x": 75,
+            "y": 373.734,
+            "width": 1290,
+            "height": 432.422,
+            "top": 373.734,
+            "right": 1365,
+            "bottom": 806.156,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2343,10 +2345,10 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.44191,
+          "viewportProgress": 0.39497,
           "inView": true,
           "vars": {
-            "--find": "0.448"
+            "--find": "0.522"
           },
           "count": 1,
           "selector": "[data-motion='findings-mark']"
@@ -2354,14 +2356,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 2008.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 2008.219,
-            "right": 1170,
-            "bottom": 3025.813,
-            "left": 270
+            "x": 75,
+            "y": 2710.625,
+            "width": 1290,
+            "height": 97,
+            "top": 2710.625,
+            "right": 1365,
+            "bottom": 2807.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2380,7 +2382,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.57792,
+          "viewportProgress": -1.81607,
           "inView": false,
           "vars": {
             "--bars": "0.000"
@@ -2388,17 +2390,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 3595.188,
-            "width": 900,
-            "height": 1267,
-            "top": 3595.188,
-            "right": 1170,
-            "bottom": 4862.188,
-            "left": 270
+            "x": 75,
+            "y": 4126.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 4126.75,
+            "right": 1365,
+            "bottom": 5473.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2417,25 +2419,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.24374,
+          "viewportProgress": -1.43603,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 5316.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 5316.047,
-            "right": 821.25,
-            "bottom": 5692.797,
-            "left": 270
+            "x": 75,
+            "y": 6154.5,
+            "width": 795,
+            "height": 526,
+            "top": 6154.5,
+            "right": 870,
+            "bottom": 6680.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2454,7 +2456,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -3.45882,
+          "viewportProgress": -3.68478,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -2465,24 +2467,24 @@
       }
     },
     {
-      "progress": 0.3091,
-      "requestedY": 2659,
-      "scrollY": 2659,
-      "nativeScrollY": 2659,
+      "progress": 0.3146,
+      "requestedY": 3204,
+      "scrollY": 3204,
+      "nativeScrollY": 3204,
       "settled": true,
-      "settleMs": 255.2,
+      "settleMs": 361.4,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2563,
-            "width": 900,
-            "height": 211.188,
-            "top": -2563,
-            "right": 1170,
-            "bottom": -2351.813,
-            "left": 270
+            "x": 75,
+            "y": -3108,
+            "width": 1290,
+            "height": 296.797,
+            "top": -3108,
+            "right": 1365,
+            "bottom": -2811.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2501,7 +2503,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 3.11649,
+          "viewportProgress": 3.34894,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -2509,14 +2511,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1259.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -1259.734,
-            "right": 1170,
-            "bottom": -843.688,
-            "left": 270
+            "x": 75,
+            "y": -1377.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -1377.141,
+            "right": 1365,
+            "bottom": -923.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2535,7 +2537,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.64108,
+          "viewportProgress": 1.68177,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -2546,14 +2548,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -533.219,
-            "width": 900,
+            "x": 75,
+            "y": -553.953,
+            "width": 1290,
             "height": 422,
-            "top": -533.219,
-            "right": 1170,
-            "bottom": -111.219,
-            "left": 270
+            "top": -553.953,
+            "right": 1365,
+            "bottom": -131.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2572,7 +2574,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.08413,
+          "viewportProgress": 1.09981,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -2583,14 +2585,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 209.609,
-            "width": 900,
-            "height": 485.781,
-            "top": 209.609,
-            "right": 1170,
-            "bottom": 695.391,
-            "left": 270
+            "x": 75,
+            "y": 224.734,
+            "width": 1290,
+            "height": 432.422,
+            "top": 224.734,
+            "right": 1365,
+            "bottom": 657.156,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2609,10 +2611,10 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.4982,
+          "viewportProgress": 0.5068,
           "inView": true,
           "vars": {
-            "--find": "0.497"
+            "--find": "0.721"
           },
           "count": 1,
           "selector": "[data-motion='findings-mark']"
@@ -2620,14 +2622,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1930.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 1930.219,
-            "right": 1170,
-            "bottom": 2947.813,
-            "left": 270
+            "x": 75,
+            "y": 2561.625,
+            "width": 1290,
+            "height": 97,
+            "top": 2561.625,
+            "right": 1365,
+            "bottom": 2658.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2646,7 +2648,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.53725,
+          "viewportProgress": -1.66662,
           "inView": false,
           "vars": {
             "--bars": "0.000"
@@ -2654,17 +2656,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 3517.188,
-            "width": 900,
-            "height": 1267,
-            "top": 3517.188,
-            "right": 1170,
-            "bottom": 4784.188,
-            "left": 270
+            "x": 75,
+            "y": 3977.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 3977.75,
+            "right": 1365,
+            "bottom": 5324.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2683,25 +2685,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.20775,
+          "viewportProgress": -1.36972,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 5238.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 5238.047,
-            "right": 821.25,
-            "bottom": 5614.797,
-            "left": 270
+            "x": 75,
+            "y": 6005.5,
+            "width": 795,
+            "height": 526,
+            "top": 6005.5,
+            "right": 870,
+            "bottom": 6531.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2720,7 +2722,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -3.39773,
+          "viewportProgress": -3.58029,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -2731,24 +2733,24 @@
       }
     },
     {
-      "progress": 0.3998,
-      "requestedY": 3440,
-      "scrollY": 3440,
-      "nativeScrollY": 3440,
+      "progress": 0.3932,
+      "requestedY": 4004,
+      "scrollY": 4004,
+      "nativeScrollY": 4004,
       "settled": true,
-      "settleMs": 437.9,
+      "settleMs": 411.9,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -3344,
-            "width": 900,
-            "height": 211.188,
-            "top": -3344,
-            "right": 1170,
-            "bottom": -3132.813,
-            "left": 270
+            "x": 75,
+            "y": -3908,
+            "width": 1290,
+            "height": 296.797,
+            "top": -3908,
+            "right": 1365,
+            "bottom": -3611.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2767,7 +2769,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 3.81934,
+          "viewportProgress": 4.01739,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -2775,14 +2777,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2040.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -2040.734,
-            "right": 1170,
-            "bottom": -1624.688,
-            "left": 270
+            "x": 75,
+            "y": -2177.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -2177.141,
+            "right": 1365,
+            "bottom": -1723.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2801,7 +2803,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.23452,
+          "viewportProgress": 2.2726,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -2812,14 +2814,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1314.219,
-            "width": 900,
+            "x": 75,
+            "y": -1353.953,
+            "width": 1290,
             "height": 422,
-            "top": -1314.219,
-            "right": 1170,
-            "bottom": -892.219,
-            "left": 270
+            "top": -1353.953,
+            "right": 1365,
+            "bottom": -931.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2838,7 +2840,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.6749,
+          "viewportProgress": 1.70496,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -2849,14 +2851,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -571.391,
-            "width": 900,
-            "height": 485.781,
-            "top": -571.391,
-            "right": 1170,
-            "bottom": -85.609,
-            "left": 270
+            "x": 75,
+            "y": -575.266,
+            "width": 1290,
+            "height": 432.422,
+            "top": -575.266,
+            "right": 1365,
+            "bottom": -142.844,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2875,7 +2877,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.06178,
+          "viewportProgress": 1.10721,
           "inView": false,
           "vars": {
             "--find": "0.999"
@@ -2886,14 +2888,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1149.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 1149.219,
-            "right": 1170,
-            "bottom": 2166.813,
-            "left": 270
+            "x": 75,
+            "y": 1761.625,
+            "width": 1290,
+            "height": 97,
+            "top": 1761.625,
+            "right": 1365,
+            "bottom": 1858.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2912,7 +2914,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.12996,
+          "viewportProgress": -0.86422,
           "inView": false,
           "vars": {
             "--bars": "0.000"
@@ -2920,17 +2922,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 2736.188,
-            "width": 900,
-            "height": 1267,
-            "top": 2736.188,
-            "right": 1170,
-            "bottom": 4003.188,
-            "left": 270
+            "x": 75,
+            "y": 3177.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 3177.75,
+            "right": 1365,
+            "bottom": 4524.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2949,25 +2951,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.84734,
+          "viewportProgress": -1.01368,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 4457.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 4457.047,
-            "right": 821.25,
-            "bottom": 4833.797,
-            "left": 270
+            "x": 75,
+            "y": 5205.5,
+            "width": 795,
+            "height": 526,
+            "top": 5205.5,
+            "right": 870,
+            "bottom": 5731.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -2986,7 +2988,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -2.78602,
+          "viewportProgress": -3.01928,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -2997,24 +2999,24 @@
       }
     },
     {
-      "progress": 0.492,
-      "requestedY": 4233,
-      "scrollY": 4233,
-      "nativeScrollY": 4233,
+      "progress": 0.4903,
+      "requestedY": 4993,
+      "scrollY": 4993,
+      "nativeScrollY": 4993,
       "settled": true,
-      "settleMs": 421.7,
+      "settleMs": 348.1,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -4137,
-            "width": 900,
-            "height": 211.188,
-            "top": -4137,
-            "right": 1170,
-            "bottom": -3925.813,
-            "left": 270
+            "x": 75,
+            "y": -4897,
+            "width": 1290,
+            "height": 296.797,
+            "top": -4897,
+            "right": 1365,
+            "bottom": -4600.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3033,7 +3035,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 4.53299,
+          "viewportProgress": 4.84376,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -3041,14 +3043,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2833.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -2833.734,
-            "right": 1170,
-            "bottom": -2417.688,
-            "left": 270
+            "x": 75,
+            "y": -3166.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -3166.141,
+            "right": 1365,
+            "bottom": -2712.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3067,7 +3069,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.83708,
+          "viewportProgress": 3.00302,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -3078,14 +3080,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2107.219,
-            "width": 900,
+            "x": 75,
+            "y": -2342.953,
+            "width": 1290,
             "height": 422,
-            "top": -2107.219,
-            "right": 1170,
-            "bottom": -1685.219,
-            "left": 270
+            "top": -2342.953,
+            "right": 1365,
+            "bottom": -1920.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3104,7 +3106,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.27475,
+          "viewportProgress": 2.45307,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -3115,14 +3117,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1364.391,
-            "width": 900,
-            "height": 485.781,
-            "top": -1364.391,
-            "right": 1170,
-            "bottom": -878.609,
-            "left": 270
+            "x": 75,
+            "y": -1564.266,
+            "width": 1290,
+            "height": 432.422,
+            "top": -1564.266,
+            "right": 1365,
+            "bottom": -1131.844,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3141,7 +3143,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.63402,
+          "viewportProgress": 1.84946,
           "inView": false,
           "vars": {
             "--find": "1.000"
@@ -3152,14 +3154,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 356.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 356.219,
-            "right": 1170,
-            "bottom": 1373.813,
-            "left": 270
+            "x": 75,
+            "y": 772.625,
+            "width": 1290,
+            "height": 97,
+            "top": 772.625,
+            "right": 1365,
+            "bottom": 869.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3178,25 +3180,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.28357,
+          "viewportProgress": 0.12776,
           "inView": true,
           "vars": {
-            "--bars": "0.498"
+            "--bars": "0.116"
           },
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1943.188,
-            "width": 900,
-            "height": 1267,
-            "top": 1943.188,
-            "right": 1170,
-            "bottom": 3210.188,
-            "left": 270
+            "x": 75,
+            "y": 2188.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 2188.75,
+            "right": 1365,
+            "bottom": 3535.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3215,25 +3217,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.4814,
+          "viewportProgress": -0.57354,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 3664.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 3664.047,
-            "right": 821.25,
-            "bottom": 4040.797,
-            "left": 270
+            "x": 75,
+            "y": 4216.5,
+            "width": 795,
+            "height": 526,
+            "top": 4216.5,
+            "right": 870,
+            "bottom": 4742.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3252,7 +3254,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -2.16491,
+          "viewportProgress": -2.32574,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -3264,23 +3266,23 @@
     },
     {
       "progress": 0.5,
-      "requestedY": 4302,
-      "scrollY": 4302,
-      "nativeScrollY": 4302,
+      "requestedY": 5092,
+      "scrollY": 5092,
+      "nativeScrollY": 5092,
       "settled": true,
-      "settleMs": 263,
+      "settleMs": 395.5,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -4206,
-            "width": 900,
-            "height": 211.188,
-            "top": -4206,
-            "right": 1170,
-            "bottom": -3994.813,
-            "left": 270
+            "x": 75,
+            "y": -4996,
+            "width": 1290,
+            "height": 296.797,
+            "top": -4996,
+            "right": 1365,
+            "bottom": -4699.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3299,7 +3301,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 4.59508,
+          "viewportProgress": 4.92648,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -3307,14 +3309,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2902.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -2902.734,
-            "right": 1170,
-            "bottom": -2486.688,
-            "left": 270
+            "x": 75,
+            "y": -3265.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -3265.141,
+            "right": 1365,
+            "bottom": -2811.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3333,7 +3335,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.88951,
+          "viewportProgress": 3.07614,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -3344,14 +3346,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2176.219,
-            "width": 900,
+            "x": 75,
+            "y": -2441.953,
+            "width": 1290,
             "height": 422,
-            "top": -2176.219,
-            "right": 1170,
-            "bottom": -1754.219,
-            "left": 270
+            "top": -2441.953,
+            "right": 1365,
+            "bottom": -2019.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3370,7 +3372,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.32694,
+          "viewportProgress": 2.52795,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -3381,14 +3383,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1433.391,
-            "width": 900,
-            "height": 485.781,
-            "top": -1433.391,
-            "right": 1170,
-            "bottom": -947.609,
-            "left": 270
+            "x": 75,
+            "y": -1663.266,
+            "width": 1290,
+            "height": 432.422,
+            "top": -1663.266,
+            "right": 1365,
+            "bottom": -1230.844,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3407,7 +3409,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.68381,
+          "viewportProgress": 1.92376,
           "inView": false,
           "vars": {
             "--find": "1.000"
@@ -3418,14 +3420,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 287.219,
-            "width": 900,
-            "height": 1017.594,
-            "top": 287.219,
-            "right": 1170,
-            "bottom": 1304.813,
-            "left": 270
+            "x": 75,
+            "y": 673.625,
+            "width": 1290,
+            "height": 97,
+            "top": 673.625,
+            "right": 1365,
+            "bottom": 770.625,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3444,25 +3446,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.31956,
+          "viewportProgress": 0.22706,
           "inView": true,
           "vars": {
-            "--bars": "0.541"
+            "--bars": "0.430"
           },
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1874.188,
-            "width": 900,
-            "height": 1267,
-            "top": 1874.188,
-            "right": 1170,
-            "bottom": 3141.188,
-            "left": 270
+            "x": 75,
+            "y": 2089.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 2089.75,
+            "right": 1365,
+            "bottom": 3436.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3481,25 +3483,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.44956,
+          "viewportProgress": -0.52948,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 3595.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 3595.047,
-            "right": 821.25,
-            "bottom": 3971.797,
-            "left": 270
+            "x": 75,
+            "y": 4117.5,
+            "width": 795,
+            "height": 526,
+            "top": 4117.5,
+            "right": 870,
+            "bottom": 4643.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3518,7 +3520,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -2.11086,
+          "viewportProgress": -2.25631,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -3529,24 +3531,24 @@
       }
     },
     {
-      "progress": 0.5843,
-      "requestedY": 5027,
-      "scrollY": 5027,
-      "nativeScrollY": 5027,
+      "progress": 0.5874,
+      "requestedY": 5981,
+      "scrollY": 5981,
+      "nativeScrollY": 5981,
       "settled": true,
-      "settleMs": 413.8,
+      "settleMs": 446.8,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -4931,
-            "width": 900,
-            "height": 211.188,
-            "top": -4931,
-            "right": 1170,
-            "bottom": -4719.813,
-            "left": 270
+            "x": 75,
+            "y": -5885,
+            "width": 1290,
+            "height": 296.797,
+            "top": -5885,
+            "right": 1365,
+            "bottom": -5588.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3565,7 +3567,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 5.24754,
+          "viewportProgress": 5.6693,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -3573,14 +3575,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -3627.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -3627.734,
-            "right": 1170,
-            "bottom": -3211.688,
-            "left": 270
+            "x": 75,
+            "y": -4154.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -4154.141,
+            "right": 1365,
+            "bottom": -3700.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3599,7 +3601,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 3.44041,
+          "viewportProgress": 3.7327,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -3610,14 +3612,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2901.219,
-            "width": 900,
+            "x": 75,
+            "y": -3330.953,
+            "width": 1290,
             "height": 422,
-            "top": -2901.219,
-            "right": 1170,
-            "bottom": -2479.219,
-            "left": 270
+            "top": -3330.953,
+            "right": 1365,
+            "bottom": -2908.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3636,7 +3638,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.87535,
+          "viewportProgress": 3.20042,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -3647,14 +3649,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2158.391,
-            "width": 900,
-            "height": 485.781,
-            "top": -2158.391,
-            "right": 1170,
-            "bottom": -1672.609,
-            "left": 270
+            "x": 75,
+            "y": -2552.266,
+            "width": 1290,
+            "height": 432.422,
+            "top": -2552.266,
+            "right": 1365,
+            "bottom": -2119.844,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3673,7 +3675,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.20698,
+          "viewportProgress": 2.59097,
           "inView": false,
           "vars": {
             "--find": "1.000"
@@ -3684,14 +3686,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -437.781,
-            "width": 900,
-            "height": 1017.594,
-            "top": -437.781,
-            "right": 1170,
-            "bottom": 579.813,
-            "left": 270
+            "x": 75,
+            "y": -215.375,
+            "width": 1290,
+            "height": 97,
+            "top": -215.375,
+            "right": 1365,
+            "bottom": -118.375,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3710,25 +3712,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.69764,
-          "inView": true,
+          "viewportProgress": 1.11873,
+          "inView": false,
           "vars": {
-            "--bars": "0.998"
+            "--bars": "0.999"
           },
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1149.188,
-            "width": 900,
-            "height": 1267,
-            "top": 1149.188,
-            "right": 1170,
-            "bottom": 2416.188,
-            "left": 270
+            "x": 75,
+            "y": 1200.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 1200.75,
+            "right": 1365,
+            "bottom": 2547.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3747,25 +3749,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.11499,
+          "viewportProgress": -0.13385,
           "inView": false,
           "vars": {
             "--draw": "0.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 2870.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 2870.047,
-            "right": 821.25,
-            "bottom": 3246.797,
-            "left": 270
+            "x": 75,
+            "y": 3228.5,
+            "width": 795,
+            "height": 526,
+            "top": 3228.5,
+            "right": 870,
+            "bottom": 3754.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3784,7 +3786,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -1.54302,
+          "viewportProgress": -1.63289,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -3795,24 +3797,24 @@
       }
     },
     {
-      "progress": 0.6858,
-      "requestedY": 5901,
-      "scrollY": 5901,
-      "nativeScrollY": 5901,
+      "progress": 0.6884,
+      "requestedY": 7010,
+      "scrollY": 7010,
+      "nativeScrollY": 7010,
       "settled": true,
-      "settleMs": 439.7,
+      "settleMs": 427.5,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -5805,
-            "width": 900,
-            "height": 211.188,
-            "top": -5805,
-            "right": 1170,
-            "bottom": -5593.813,
-            "left": 270
+            "x": 75,
+            "y": -6914,
+            "width": 1290,
+            "height": 296.797,
+            "top": -6914,
+            "right": 1365,
+            "bottom": -6617.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3831,7 +3833,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 6.03409,
+          "viewportProgress": 6.52909,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -3839,14 +3841,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -4501.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -4501.734,
-            "right": 1170,
-            "bottom": -4085.688,
-            "left": 270
+            "x": 75,
+            "y": -5183.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -5183.141,
+            "right": 1365,
+            "bottom": -4729.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3865,7 +3867,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.10452,
+          "viewportProgress": 4.49267,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -3876,14 +3878,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -3775.219,
-            "width": 900,
+            "x": 75,
+            "y": -4359.953,
+            "width": 1290,
             "height": 422,
-            "top": -3775.219,
-            "right": 1170,
-            "bottom": -3353.219,
-            "left": 270
+            "top": -4359.953,
+            "right": 1365,
+            "bottom": -3937.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3902,7 +3904,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 3.53647,
+          "viewportProgress": 3.97878,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -3913,14 +3915,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -3032.391,
-            "width": 900,
-            "height": 485.781,
-            "top": -3032.391,
-            "right": 1170,
-            "bottom": -2546.609,
-            "left": 270
+            "x": 75,
+            "y": -3581.266,
+            "width": 1290,
+            "height": 432.422,
+            "top": -3581.266,
+            "right": 1365,
+            "bottom": -3148.844,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3939,7 +3941,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.83767,
+          "viewportProgress": 3.36325,
           "inView": false,
           "vars": {
             "--find": "1.000"
@@ -3950,14 +3952,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1311.781,
-            "width": 900,
-            "height": 1017.594,
-            "top": -1311.781,
-            "right": 1170,
-            "bottom": -294.188,
-            "left": 270
+            "x": 75,
+            "y": -1244.375,
+            "width": 1290,
+            "height": 97,
+            "top": -1244.375,
+            "right": 1365,
+            "bottom": -1147.375,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -3976,7 +3978,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.15341,
+          "viewportProgress": 2.15083,
           "inView": false,
           "vars": {
             "--bars": "1.000"
@@ -3984,17 +3986,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 275.188,
-            "width": 900,
-            "height": 1267,
-            "top": 275.188,
-            "right": 1170,
-            "bottom": 1542.188,
-            "left": 270
+            "x": 75,
+            "y": 171.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 171.75,
+            "right": 1365,
+            "bottom": 1518.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4013,25 +4015,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.28833,
+          "viewportProgress": 0.3241,
           "inView": true,
           "vars": {
-            "--draw": "0.499"
+            "--draw": "0.439"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1996.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 1996.047,
-            "right": 821.25,
-            "bottom": 2372.797,
-            "left": 270
+            "x": 75,
+            "y": 2199.5,
+            "width": 795,
+            "height": 526,
+            "top": 2199.5,
+            "right": 870,
+            "bottom": 2725.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4050,7 +4052,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.85847,
+          "viewportProgress": -0.91129,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -4062,23 +4064,23 @@
     },
     {
       "progress": 0.7,
-      "requestedY": 6023,
-      "scrollY": 6023,
-      "nativeScrollY": 6023,
+      "requestedY": 7128,
+      "scrollY": 7128,
+      "nativeScrollY": 7128,
       "settled": true,
-      "settleMs": 295.2,
+      "settleMs": 318.9,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -5927,
-            "width": 900,
-            "height": 211.188,
-            "top": -5927,
-            "right": 1170,
-            "bottom": -5715.813,
-            "left": 270
+            "x": 75,
+            "y": -7032,
+            "width": 1290,
+            "height": 296.797,
+            "top": -7032,
+            "right": 1365,
+            "bottom": -6735.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4097,7 +4099,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 6.14388,
+          "viewportProgress": 6.62769,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -4105,14 +4107,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -4623.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -4623.734,
-            "right": 1170,
-            "bottom": -4207.688,
-            "left": 270
+            "x": 75,
+            "y": -5301.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -5301.141,
+            "right": 1365,
+            "bottom": -4847.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4131,7 +4133,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.19722,
+          "viewportProgress": 4.57981,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -4142,14 +4144,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -3897.219,
-            "width": 900,
+            "x": 75,
+            "y": -4477.953,
+            "width": 1290,
             "height": 422,
-            "top": -3897.219,
-            "right": 1170,
-            "bottom": -3475.219,
-            "left": 270
+            "top": -4477.953,
+            "right": 1365,
+            "bottom": -4055.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4168,7 +4170,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 3.62876,
+          "viewportProgress": 4.06804,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -4179,14 +4181,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -3154.391,
-            "width": 900,
-            "height": 485.781,
-            "top": -3154.391,
-            "right": 1170,
-            "bottom": -2668.609,
-            "left": 270
+            "x": 75,
+            "y": -3699.266,
+            "width": 1290,
+            "height": 432.422,
+            "top": -3699.266,
+            "right": 1365,
+            "bottom": -3266.844,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4205,7 +4207,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.92571,
+          "viewportProgress": 3.45181,
           "inView": false,
           "vars": {
             "--find": "1.000"
@@ -4216,14 +4218,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1433.781,
-            "width": 900,
-            "height": 1017.594,
-            "top": -1433.781,
-            "right": 1170,
-            "bottom": -416.188,
-            "left": 270
+            "x": 75,
+            "y": -1362.375,
+            "width": 1290,
+            "height": 97,
+            "top": -1362.375,
+            "right": 1365,
+            "bottom": -1265.375,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4242,7 +4244,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.21704,
+          "viewportProgress": 2.26918,
           "inView": false,
           "vars": {
             "--bars": "1.000"
@@ -4250,17 +4252,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 153.188,
-            "width": 900,
-            "height": 1267,
-            "top": 153.188,
-            "right": 1170,
-            "bottom": 1420.188,
-            "left": 270
+            "x": 75,
+            "y": 53.75,
+            "width": 1290,
+            "height": 1347,
+            "top": 53.75,
+            "right": 1365,
+            "bottom": 1400.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4279,25 +4281,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.34463,
+          "viewportProgress": 0.37661,
           "inView": true,
           "vars": {
-            "--draw": "0.568"
+            "--draw": "0.526"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1874.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 1874.047,
-            "right": 821.25,
-            "bottom": 2250.797,
-            "left": 270
+            "x": 75,
+            "y": 2081.5,
+            "width": 795,
+            "height": 526,
+            "top": 2081.5,
+            "right": 870,
+            "bottom": 2607.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4316,7 +4318,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.76291,
+          "viewportProgress": -0.82854,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -4327,24 +4329,24 @@
       }
     },
     {
-      "progress": 0.7873,
-      "requestedY": 6774,
-      "scrollY": 6774,
-      "nativeScrollY": 6774,
+      "progress": 0.7894,
+      "requestedY": 8038,
+      "scrollY": 8038,
+      "nativeScrollY": 8038,
       "settled": true,
-      "settleMs": 430.8,
+      "settleMs": 435,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -6678,
-            "width": 900,
-            "height": 211.188,
-            "top": -6678,
-            "right": 1170,
-            "bottom": -6466.813,
-            "left": 270
+            "x": 75,
+            "y": -7942,
+            "width": 1290,
+            "height": 296.797,
+            "top": -7942,
+            "right": 1365,
+            "bottom": -7645.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4363,7 +4365,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 6.81973,
+          "viewportProgress": 7.38805,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -4371,14 +4373,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -5374.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -5374.734,
-            "right": 1170,
-            "bottom": -4958.688,
-            "left": 270
+            "x": 75,
+            "y": -6211.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -6211.141,
+            "right": 1365,
+            "bottom": -5757.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4397,7 +4399,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.76787,
+          "viewportProgress": 5.25189,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -4408,14 +4410,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -4648.219,
-            "width": 900,
+            "x": 75,
+            "y": -5387.953,
+            "width": 1290,
             "height": 422,
-            "top": -4648.219,
-            "right": 1170,
-            "bottom": -4226.219,
-            "left": 270
+            "top": -5387.953,
+            "right": 1365,
+            "bottom": -4965.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4434,7 +4436,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.19684,
+          "viewportProgress": 4.75639,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -4445,14 +4447,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -3905.391,
-            "width": 900,
-            "height": 485.781,
-            "top": -3905.391,
-            "right": 1170,
-            "bottom": -3419.609,
-            "left": 270
+            "x": 75,
+            "y": -4609.266,
+            "width": 1290,
+            "height": 432.422,
+            "top": -4609.266,
+            "right": 1365,
+            "bottom": -4176.844,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4471,7 +4473,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 3.46764,
+          "viewportProgress": 4.13478,
           "inView": false,
           "vars": {
             "--find": "1.000"
@@ -4482,14 +4484,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2184.781,
-            "width": 900,
-            "height": 1017.594,
-            "top": -2184.781,
-            "right": 1170,
-            "bottom": -1167.188,
-            "left": 270
+            "x": 75,
+            "y": -2272.375,
+            "width": 1290,
+            "height": 97,
+            "top": -2272.375,
+            "right": 1365,
+            "bottom": -2175.375,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4508,7 +4510,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.60867,
+          "viewportProgress": 3.18192,
           "inView": false,
           "vars": {
             "--bars": "1.000"
@@ -4516,17 +4518,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -597.813,
-            "width": 900,
-            "height": 1267,
-            "top": -597.813,
-            "right": 1170,
-            "bottom": 669.188,
-            "left": 270
+            "x": 75,
+            "y": -856.25,
+            "width": 1290,
+            "height": 1347,
+            "top": -856.25,
+            "right": 1365,
+            "bottom": 490.75,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4545,25 +4547,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.69119,
+          "viewportProgress": 0.7816,
           "inView": true,
           "vars": {
             "--draw": "0.999"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 1123.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 1123.047,
-            "right": 821.25,
-            "bottom": 1499.797,
-            "left": 270
+            "x": 75,
+            "y": 1171.5,
+            "width": 795,
+            "height": 526,
+            "top": 1171.5,
+            "right": 870,
+            "bottom": 1697.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4582,7 +4584,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": -0.1747,
+          "viewportProgress": -0.19039,
           "inView": false,
           "vars": {
             "--t": "0.000"
@@ -4593,24 +4595,24 @@
       }
     },
     {
-      "progress": 0.8937,
-      "requestedY": 7689,
-      "scrollY": 7689,
-      "nativeScrollY": 7689,
+      "progress": 0.8947,
+      "requestedY": 9111,
+      "scrollY": 9111,
+      "nativeScrollY": 9111,
       "settled": true,
-      "settleMs": 438.1,
+      "settleMs": 436.8,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -7593,
-            "width": 900,
-            "height": 211.188,
-            "top": -7593,
-            "right": 1170,
-            "bottom": -7381.813,
-            "left": 270
+            "x": 75,
+            "y": -9015,
+            "width": 1290,
+            "height": 296.797,
+            "top": -9015,
+            "right": 1365,
+            "bottom": -8718.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4629,7 +4631,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 7.64317,
+          "viewportProgress": 8.28461,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -4637,14 +4639,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -6289.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -6289.734,
-            "right": 1170,
-            "bottom": -5873.688,
-            "left": 270
+            "x": 75,
+            "y": -7284.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -7284.141,
+            "right": 1365,
+            "bottom": -6830.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4663,7 +4665,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 5.46313,
+          "viewportProgress": 6.04435,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -4674,14 +4676,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -5563.219,
-            "width": 900,
+            "x": 75,
+            "y": -6460.953,
+            "width": 1290,
             "height": 422,
-            "top": -5563.219,
-            "right": 1170,
-            "bottom": -5141.219,
-            "left": 270
+            "top": -6460.953,
+            "right": 1365,
+            "bottom": -6038.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4700,7 +4702,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.88897,
+          "viewportProgress": 5.56804,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -4711,14 +4713,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -4820.391,
-            "width": 900,
-            "height": 485.781,
-            "top": -4820.391,
-            "right": 1170,
-            "bottom": -4334.609,
-            "left": 270
+            "x": 75,
+            "y": -5682.266,
+            "width": 1290,
+            "height": 432.422,
+            "top": -5682.266,
+            "right": 1365,
+            "bottom": -5249.844,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4737,7 +4739,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.12792,
+          "viewportProgress": 4.94008,
           "inView": false,
           "vars": {
             "--find": "1.000"
@@ -4748,14 +4750,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -3099.781,
-            "width": 900,
-            "height": 1017.594,
-            "top": -3099.781,
-            "right": 1170,
-            "bottom": -2082.188,
-            "left": 270
+            "x": 75,
+            "y": -3345.375,
+            "width": 1290,
+            "height": 97,
+            "top": -3345.375,
+            "right": 1365,
+            "bottom": -3248.375,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4774,7 +4776,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.08583,
+          "viewportProgress": 4.25815,
           "inView": false,
           "vars": {
             "--bars": "1.000"
@@ -4782,17 +4784,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1512.813,
-            "width": 900,
-            "height": 1267,
-            "top": -1512.813,
-            "right": 1170,
-            "bottom": -245.813,
-            "left": 270
+            "x": 75,
+            "y": -1929.25,
+            "width": 1290,
+            "height": 1347,
+            "top": -1929.25,
+            "right": 1365,
+            "bottom": -582.25,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4811,25 +4813,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.11343,
+          "viewportProgress": 1.25912,
           "inView": false,
           "vars": {
             "--draw": "1.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 208.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 208.047,
-            "right": 821.25,
-            "bottom": 584.797,
-            "left": 270
+            "x": 75,
+            "y": 98.5,
+            "width": 795,
+            "height": 526,
+            "top": 98.5,
+            "right": 870,
+            "bottom": 624.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4848,7 +4850,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.54196,
+          "viewportProgress": 0.56206,
           "inView": true,
           "vars": {
             "--t": "0.499"
@@ -4860,23 +4862,23 @@
     },
     {
       "progress": 0.9,
-      "requestedY": 7744,
-      "scrollY": 7744,
-      "nativeScrollY": 7744,
+      "requestedY": 9165,
+      "scrollY": 9165,
+      "nativeScrollY": 9165,
       "settled": true,
-      "settleMs": 239.4,
+      "settleMs": 209.7,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -7648,
-            "width": 900,
-            "height": 211.188,
-            "top": -7648,
-            "right": 1170,
-            "bottom": -7436.813,
-            "left": 270
+            "x": 75,
+            "y": -9069,
+            "width": 1290,
+            "height": 296.797,
+            "top": -9069,
+            "right": 1365,
+            "bottom": -8772.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4895,7 +4897,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 7.69267,
+          "viewportProgress": 8.32973,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -4903,14 +4905,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -6344.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -6344.734,
-            "right": 1170,
-            "bottom": -5928.688,
-            "left": 270
+            "x": 75,
+            "y": -7338.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -7338.141,
+            "right": 1365,
+            "bottom": -6884.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4929,7 +4931,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 5.50492,
+          "viewportProgress": 6.08423,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -4940,14 +4942,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -5618.219,
-            "width": 900,
+            "x": 75,
+            "y": -6514.953,
+            "width": 1290,
             "height": 422,
-            "top": -5618.219,
-            "right": 1170,
-            "bottom": -5196.219,
-            "left": 270
+            "top": -6514.953,
+            "right": 1365,
+            "bottom": -6092.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -4966,7 +4968,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.93057,
+          "viewportProgress": 5.60889,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -4977,14 +4979,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -4875.391,
-            "width": 900,
-            "height": 485.781,
-            "top": -4875.391,
-            "right": 1170,
-            "bottom": -4389.609,
-            "left": 270
+            "x": 75,
+            "y": -5736.266,
+            "width": 1290,
+            "height": 432.422,
+            "top": -5736.266,
+            "right": 1365,
+            "bottom": -5303.844,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5003,7 +5005,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.16761,
+          "viewportProgress": 4.9806,
           "inView": false,
           "vars": {
             "--find": "1.000"
@@ -5014,14 +5016,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -3154.781,
-            "width": 900,
-            "height": 1017.594,
-            "top": -3154.781,
-            "right": 1170,
-            "bottom": -2137.188,
-            "left": 270
+            "x": 75,
+            "y": -3399.375,
+            "width": 1290,
+            "height": 97,
+            "top": -3399.375,
+            "right": 1365,
+            "bottom": -3302.375,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5040,7 +5042,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.11452,
+          "viewportProgress": 4.31231,
           "inView": false,
           "vars": {
             "--bars": "1.000"
@@ -5048,17 +5050,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -1567.813,
-            "width": 900,
-            "height": 1267,
-            "top": -1567.813,
-            "right": 1170,
-            "bottom": -300.813,
-            "left": 270
+            "x": 75,
+            "y": -1983.25,
+            "width": 1290,
+            "height": 1347,
+            "top": -1983.25,
+            "right": 1365,
+            "bottom": -636.25,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5077,25 +5079,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.13882,
+          "viewportProgress": 1.28316,
           "inView": false,
           "vars": {
             "--draw": "1.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": 153.047,
-            "width": 551.25,
-            "height": 376.75,
-            "top": 153.047,
-            "right": 821.25,
-            "bottom": 529.797,
-            "left": 270
+            "x": 75,
+            "y": 44.5,
+            "width": 795,
+            "height": 526,
+            "top": 44.5,
+            "right": 870,
+            "bottom": 570.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5114,10 +5116,10 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 0.58504,
+          "viewportProgress": 0.59993,
           "inView": true,
           "vars": {
-            "--t": "0.528"
+            "--t": "0.523"
           },
           "count": 1,
           "selector": "[data-motion='exhibit-dot']"
@@ -5126,23 +5128,23 @@
     },
     {
       "progress": 1,
-      "requestedY": 8604,
-      "scrollY": 8604,
-      "nativeScrollY": 8604,
+      "requestedY": 10183,
+      "scrollY": 10183,
+      "nativeScrollY": 10183,
       "settled": true,
-      "settleMs": 436.8,
+      "settleMs": 434.4,
       "measurements": {
         "hero-count": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -8508,
-            "width": 900,
-            "height": 211.188,
-            "top": -8508,
-            "right": 1170,
-            "bottom": -8296.813,
-            "left": 270
+            "x": 75,
+            "y": -10087,
+            "width": 1290,
+            "height": 296.797,
+            "top": -10087,
+            "right": 1365,
+            "bottom": -9790.203,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5161,7 +5163,7 @@
             "is3d": false,
             "matrix": "matrix(1, 0, 0, 1, 0, -60)"
           },
-          "viewportProgress": 8.46662,
+          "viewportProgress": 9.18034,
           "inView": false,
           "count": 1,
           "selector": "[data-motion='hero-count']"
@@ -5169,14 +5171,14 @@
         "method-walk": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -7204.734,
-            "width": 900,
-            "height": 416.047,
-            "top": -7204.734,
-            "right": 1170,
-            "bottom": -6788.688,
-            "left": 270
+            "x": 75,
+            "y": -8356.141,
+            "width": 1290,
+            "height": 454.016,
+            "top": -8356.141,
+            "right": 1365,
+            "bottom": -7902.125,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5195,7 +5197,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 6.15839,
+          "viewportProgress": 6.83607,
           "inView": false,
           "vars": {
             "--walk": "1.000"
@@ -5206,14 +5208,14 @@
         "sheet": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -6478.219,
-            "width": 900,
+            "x": 75,
+            "y": -7532.953,
+            "width": 1290,
             "height": 422,
-            "top": -6478.219,
-            "right": 1170,
-            "bottom": -6056.219,
-            "left": 270
+            "top": -7532.953,
+            "right": 1365,
+            "bottom": -7110.953,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5232,7 +5234,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 5.5811,
+          "viewportProgress": 6.37894,
           "inView": false,
           "vars": {
             "--sheet": "1.000"
@@ -5243,14 +5245,14 @@
         "findings-mark": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -5735.391,
-            "width": 900,
-            "height": 485.781,
-            "top": -5735.391,
-            "right": 1170,
-            "bottom": -5249.609,
-            "left": 270
+            "x": 75,
+            "y": -6754.266,
+            "width": 1290,
+            "height": 432.422,
+            "top": -6754.266,
+            "right": 1365,
+            "bottom": -6321.844,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5269,7 +5271,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 4.78819,
+          "viewportProgress": 5.74463,
           "inView": false,
           "vars": {
             "--find": "1.000"
@@ -5280,14 +5282,14 @@
         "test-bars": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -4014.781,
-            "width": 900,
-            "height": 1017.594,
-            "top": -4014.781,
-            "right": 1170,
-            "bottom": -2997.188,
-            "left": 270
+            "x": 75,
+            "y": -4417.375,
+            "width": 1290,
+            "height": 97,
+            "top": -4417.375,
+            "right": 1365,
+            "bottom": -4320.375,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5306,7 +5308,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 2.56299,
+          "viewportProgress": 5.33338,
           "inView": false,
           "vars": {
             "--bars": "1.000"
@@ -5314,17 +5316,17 @@
           "count": 1,
           "selector": "[data-motion='test-bars']"
         },
-        "glyphs": {
+        "atlas": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -2427.813,
-            "width": 900,
-            "height": 1267,
-            "top": -2427.813,
-            "right": 1170,
-            "bottom": -1160.813,
-            "left": 270
+            "x": 75,
+            "y": -3001.25,
+            "width": 1290,
+            "height": 1347,
+            "top": -3001.25,
+            "right": 1365,
+            "bottom": -1654.25,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5343,25 +5345,25 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.53568,
+          "viewportProgress": 1.7362,
           "inView": false,
           "vars": {
             "--draw": "1.000"
           },
           "count": 1,
-          "selector": "[data-motion='glyphs']"
+          "selector": "[data-motion='atlas']"
         },
         "exhibit-dot": {
           "found": true,
           "rect": {
-            "x": 270,
-            "y": -706.953,
-            "width": 551.25,
-            "height": 376.75,
-            "top": -706.953,
-            "right": 821.25,
-            "bottom": -330.203,
-            "left": 270
+            "x": 75,
+            "y": -973.5,
+            "width": 795,
+            "height": 526,
+            "top": -973.5,
+            "right": 870,
+            "bottom": -447.5,
+            "left": 75
           },
           "opacity": 1,
           "effectiveOpacity": 1,
@@ -5380,7 +5382,7 @@
             "is3d": false,
             "matrix": "none"
           },
-          "viewportProgress": 1.25863,
+          "viewportProgress": 1.31381,
           "inView": false,
           "vars": {
             "--t": "0.999"

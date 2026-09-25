@@ -50,7 +50,7 @@ export const MOTION = {
     stagger: 0.06,
     duration: 0.4,
     ease: 'none',
-    hold: 0.5,   // DECISION: hold the built grid before handing the toggle back (it vanished at ~0.8s, unreadable)
+    hold: 0.5,   // DECISION: hold the built grid 0.5s after the COUNT lands, so grid, 131 and modules land together (it used to vanish before the count finished)
     cite: 'DECISION — no prior carries a grid-construction timing. Linear because the grid is a measuring instrument drawing itself, not an object arriving.',
   },
 
@@ -63,8 +63,18 @@ export const MOTION = {
 
   findings: {
     stagger: 0.1,
-    start: 'top 75%',
+    start: 'top bottom',   // running by the time it is readable (was 'top 75%': read 0 in view at 1920x1080)
     cite: 'The evidence numbers count ONCE when the section enters (was scrubbed, so they read 0 beside prose saying 1,118 while the section was readable). Duration and ease are the count prior above.',
+  },
+
+  // Element-level scrubs: a whole-chapter range left the thesis highlight
+  // half-drawn while the sentence was readable, and the glyphs half-drawn in
+  // view (review). Each runs from its own element's entry to where it is done.
+  scrubs: {
+    walk: { start: 'top 85%', end: 'bottom 75%' },
+    find: { start: 'top 85%', end: 'bottom 50%' },
+    bars: { start: 'top 90%', end: 'top 55%' },
+    atlas: { start: 'top 85%', end: 'bottom 85%' },
   },
 
   scrub: {
@@ -108,11 +118,11 @@ export const label = {
   heroLines: `LINES · Y110→0 · ${MOTION.heroLines.ease.toUpperCase()} · ${MOTION.heroLines.duration}S · STAGGER ${MOTION.heroLines.stagger}`,
   // the target is data, so the label takes it as an argument (was a typed 131)
   count: (to) => `COUNT 0→${to} · ${MOTION.count.ease.toUpperCase()} · ${MOTION.count.duration}S`,
-  gridBuild: `GRID BUILD · SCALEY · LINEAR · STAGGER ${MOTION.gridBuild.stagger} · HOLD ${MOTION.gridBuild.hold}S`,
+  gridBuild: `GRID BUILD · SCALEY · LINEAR · STAGGER ${MOTION.gridBuild.stagger} · HOLD ${MOTION.gridBuild.hold}S AFTER THE COUNT LANDS`,
   walk: `OFFSET-PATH THROUGH 6 STOPS · ${Math.round(MOTION.walk.travel * 100)}% TRAVEL / ${Math.round((1 - MOTION.walk.travel) * 100)}% HOLD · SCRUB ${MOTION.scrub.value} · EASE NONE`,
   sheet: `CONTACT SHEET · ROWS IN AWARD ORDER · SCRUB ${MOTION.scrub.value} · EASE NONE`,
   bars: `BARS TO SCALE /${MOTION.bars.scaleMax} · SCRUB ${MOTION.scrub.value} · EASE NONE`,
-  glyphs: `EACH CURVE = THE FAMILY'S OWN RECORD · RIDER ${MOTION.glyph.ride}S · X LINEAR, Y = THE FAMILY'S EASE`,
+  glyphs: `CURVES GROUPED BY SHAPE (WITHIN 4%) · EACH = ONE FAMILY'S RECORD · RIDER ${MOTION.glyph.ride}S ONCE ON ENTRY · X LINEAR, Y = THE EASE`,
   findings: `COUNT ON ENTER · ${MOTION.count.ease.toUpperCase()} · ${MOTION.count.duration}S · STAGGER ${MOTION.findings.stagger} · WIDTH-STABLE NUMERALS`,
   exhibit: `SCRUB ${MOTION.scrub.value} · DOT LINEAR IN SCROLL · CURVE = ${MOTION.ease.reveal.toUpperCase()} = ${MOTION.ease.revealFormula}`,
   section: `SECTION · ${MOTION.section.ease.toUpperCase()} · ${MOTION.section.duration}S · STAGGER AMOUNT ${MOTION.section.staggerAmount}`,

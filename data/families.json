@@ -214,7 +214,8 @@
    "text": "Everything is real-time: physics character, following camera and sun, blinking NPCs. 113 tween call sites, 69 linear: the linear curve set is physics carrying the feel, not low volume."
   },
   "records": 10,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "blackbox-keyline-hud",
@@ -414,8 +415,11 @@
    "id": "blackbox-keyline-hud#17",
    "value": "cubic-bezier(.17,.4,.02,.99)",
    "label": "cubic-bezier(.17,.4,.02,.99)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "HUD capsule and button CSS transitions",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 4
  },
  {
   "name": "overscale-grotesk-whiteout",
@@ -563,7 +567,8 @@
    "text": "One curve, not little motion: 15 hero lines mask-wipe in (1.5s, +0.1s per line) across 4 carousel slides; 29 data-scroll-speed parallax layers; the one ease recurs 90× on links, header, burger."
   },
   "records": 4,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "colorfield-poster-grotesk",
@@ -700,9 +705,12 @@
   "ease": {
    "id": "colorfield-poster-grotesk#3",
    "value": "ease:\"none\"",
-   "label": "ease",
-   "kind": "keyword"
-  }
+   "label": "linear",
+   "kind": "linear",
+   "applies_to": "sticky scaleY scrub of the SVG display word",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 2
  },
  {
   "name": "prop-occluded-grotesk",
@@ -840,8 +848,11 @@
    "id": "prop-occluded-grotesk#16",
    "value": "power2.inOut",
    "label": "power2.inOut",
-   "kind": "gsap"
-  }
+   "kind": "gsap",
+   "applies_to": "every scrubbed camera waypoint leg",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 6
  },
  {
   "name": "flat-mascot-carnival",
@@ -953,9 +964,12 @@
   "ease": {
    "id": "flat-mascot-carnival#4",
    "value": "elastic.out(2, 0.5)",
-   "label": "elastic.out",
-   "kind": "gsap"
-  }
+   "label": "elastic.out(2,0.5)",
+   "kind": "gsap",
+   "applies_to": "intro letter pop (scale .8 to 1)",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 4
  },
  {
   "name": "flavor-swap-colorfield",
@@ -1077,8 +1091,11 @@
    "id": "flavor-swap-colorfield#5",
    "value": "1s cubic-bezier(.645,.045,.355,1)",
    "label": "cubic-bezier(.645,.045,.355,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "repaint of button, shadow and ink on SKU switch",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 2
  },
  {
   "name": "gilded-monument-walkthrough",
@@ -1199,8 +1216,11 @@
    "id": "gilded-monument-walkthrough#19",
    "value": "cubic-bezier(.2, 0, 0, 1)",
    "label": "cubic-bezier(.2,0,0,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "house ease, CSS and JS",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 3
  },
  {
   "name": "keyart-dossier-mono",
@@ -1317,9 +1337,12 @@
   "ease": {
    "id": "keyart-dossier-mono#12",
    "value": "ease: \"linear\"",
-   "label": "ease",
-   "kind": "keyword"
-  }
+   "label": "linear",
+   "kind": "linear",
+   "applies_to": "both decode-in heads",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 1
  },
  {
   "name": "scrubbed-product-cinema",
@@ -1426,7 +1449,8 @@
    "text": "Whole page is a scroll-driven film: 10 sequences (1,509 frames) on one sticky stage, frozen about half the runway (1,975vh hold vs 1,970vh move); every copy block fades 20vh, drifts 80px."
   },
   "records": 5,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "void-specimen-stage",
@@ -1546,8 +1570,11 @@
    "id": "void-specimen-stage#5",
    "value": "cubic-bezier(0.165, 0.84, 0.44, 1)",
    "label": "cubic-bezier(0.165,0.84,0.44,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "top entrance ease for DOM transforms",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 5
  },
  {
   "name": "canvas-native-studio",
@@ -1642,7 +1669,8 @@
    "text": "Very high: realtime WebGL app, no native scroll; one damped scalar moves canvas and DOM every frame; FLIP fluid, GPGPU particles, per-word reveals (bundle-read, runtime unseen). Restraint is graphic."
   },
   "records": 7,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "display-serif-hue-flood",
@@ -1742,8 +1770,11 @@
    "id": "display-serif-hue-flood#16",
    "value": "cubic-bezier(0.230, 1.000, 0.320, 1.000)",
    "label": "cubic-bezier(0.230,1.000,0.320,1.000)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "default entrance ease (Power4.easeOut) in CSS/WAAPI",
+   "provenance": "inferred"
+  },
+  "easeRecords": 3
  },
  {
   "name": "floating-inset-panel",
@@ -1840,8 +1871,11 @@
    "id": "floating-inset-panel#1",
    "value": "cubic-bezier(0.215, 0.61, 0.355, 1)",
    "label": "cubic-bezier(0.215,0.61,0.355,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "default for all chrome: theme fades, header hide, hovers",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 2
  },
  {
   "name": "keyart-slab-stage",
@@ -1937,7 +1971,15 @@
    "text": "Scroll owns motion: key-art video scrubs, slab titles hinge in (rotateX -40deg to 0, 1.3s), themes flip at tripwires, masks open 1.2s then idle-drift; hover only in corner chrome."
   },
   "records": 9,
-  "ease": null
+  "ease": {
+   "id": "keyart-slab-stage#8",
+   "value": "1-(1-t)^5",
+   "label": "1-(1-t)^5",
+   "kind": "code",
+   "applies_to": "slab hinge entry (GSAP power4.out)",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 2
  },
  {
   "name": "single-ink-cinema-poster",
@@ -2029,7 +2071,8 @@
    "text": "Scroll-scrubbed throughout: the homepage runs 10 scroll tweens on 7 scrubbed timelines under Lenis lerp .2, plus 70 CSS transitions; panels, cards and routes hinge 4-15deg in and out."
   },
   "records": 8,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "slat-reel-strip",
@@ -2125,7 +2168,8 @@
    "text": "Whole screen is input-driven: one rAF loop damps 9 props on every slat; z-push, colour and a <=39deg swivel ride scroll velocity. At rest amp 0.000, all gray. Titles wipe ±101%."
   },
   "records": 13,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "webgl-scroll-journey",
@@ -2221,7 +2265,8 @@
    "text": "Whole viewport is a WebGL scene rendered every frame; scroll flies its camera across a 1000vh runway (TOTAL_PAGES = 10, technique source); DOM overlays only fade and slide."
   },
   "records": 20,
-  "ease": null
+  "ease": null,
+  "easeRecords": 2
  },
  {
   "name": "atmosphere-as-wayfinding",
@@ -2296,9 +2341,12 @@
   "ease": {
    "id": "atmosphere-as-wayfinding#3",
    "value": "ease:\"none\"",
-   "label": "ease",
-   "kind": "keyword"
-  }
+   "label": "linear",
+   "kind": "linear",
+   "applies_to": "scrubbed uChapter dial tweens (0 to 2,3,4,5)",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 1
  },
  {
   "name": "blend-mode-swiss-poster",
@@ -2375,7 +2423,8 @@
    "text": "~90 CSS transitions (curve uses 55 arrive / 33 exit / 6 wipe), 6 scrubbed parallax timelines, Lenis, a fixed WebGL disc chain pulsing every 4-8s. All single-axis slides; nothing pinned."
   },
   "records": 1,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "contact-sheet-drift",
@@ -2454,8 +2503,11 @@
    "id": "contact-sheet-drift#12",
    "value": "20 − 7 · easeSinOut(t/9500)",
    "label": "easeSinOut",
-   "kind": "penner"
-  }
+   "kind": "penner",
+   "applies_to": "camera dolly on load (z 20 to 13 over 9500 ms)",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 2
  },
  {
   "name": "exploded-blueprint-mono",
@@ -2524,7 +2576,8 @@
    "text": "High, on one clock: scroll seeks one master timeline that explodes the 3D assembly, reveals labels and draws 11 leader lines (re-solved per frame); 113 ease: declarations in bundle. Short ≠ little."
   },
   "records": 13,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "flat-sticker-pop",
@@ -2605,8 +2658,11 @@
    "id": "flat-sticker-pop#1",
    "value": "cubic-bezier(0.22, 1, 0.36, 1)",
    "label": "cubic-bezier(0.22,1,0.36,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "house out-curve, CSS token and GSAP CustomEase \"n-out\"",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 2
  },
  {
   "name": "glacial-slate-telemetry",
@@ -2687,8 +2743,11 @@
    "id": "glacial-slate-telemetry#3",
    "value": "cubic-bezier(.25,.46,.45,.94)",
    "label": "cubic-bezier(.25,.46,.45,.94)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "hairline frame pen-trace edges",
+   "provenance": "inferred"
+  },
+  "easeRecords": 1
  },
  {
   "name": "hazed-relic-runes",
@@ -2764,7 +2823,8 @@
    "text": "The render carries it: synthetic scroll orbits the camera 900° (2.5 turns) across 6 crossfaded world states. Chrome barely moves: .3–1s CSS transitions, 1.2s/1.7s linear page dissolves."
   },
   "records": 2,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "iridescent-plaster-gallery",
@@ -2844,8 +2904,11 @@
    "id": "iridescent-plaster-gallery#1",
    "value": "cubic-bezier(.16,1,.3,1)",
    "label": "cubic-bezier(.16,1,.3,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "CSS arrivals (expo-out stand-in)",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 5
  },
  {
   "name": "old-master-remix",
@@ -2915,7 +2978,8 @@
    "text": "High, layered: scroll crossfades 13 code-split WebGL scenes through a paint-to-engraving shader wipe; 27 Rive in-page product animations; survey lines draw on over 3s; chrome = CSS on root data-attrs."
   },
   "records": 3,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "orrery-chart-vellum",
@@ -2995,8 +3059,11 @@
    "id": "orrery-chart-vellum#4",
    "value": "cubic-bezier(.23,1,.32,1)",
    "label": "cubic-bezier(.23,1,.32,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "menu open: transform 1s (easeOutQuint)",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 2
  },
  {
   "name": "rounded-frame-diorama",
@@ -3066,7 +3133,8 @@
    "text": "Always quietly alive: worker scenes (wind-wobbled leaf shade, photo-tunnel fly-through), 60s orbiting cut-outs, a 900vh scroll deck. Restraint is amplitude and expo-out-led curves, not volume."
   },
   "records": 4,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "swiss-grid-lab",
@@ -3144,7 +3212,8 @@
    "text": "High volume, stock curves: grids ships 578 keyframe blocks on 1,171 offset-path containers (312 travel, median 3,000px) on load, click, scroll. \"Restraint\" = curve set, not volume."
   },
   "records": 17,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "torn-paper-editorial",
@@ -3219,7 +3288,8 @@
    "text": "33 CSS transitions (22 at 1000 ms) for underline sweeps and clipping wipes, a 1000 ms two-sheet page turn, scraps fluttering in 5 fps bursts, pointer parallax. No native scroll."
   },
   "records": 22,
-  "ease": null
+  "ease": null,
+  "easeRecords": 1
  },
  {
   "name": "two-face-splice-editorial",
@@ -3296,7 +3366,8 @@
    "text": "Dense: every block reveals once on a one-way latch (25ms/char, 100ms/word, 75ms/block), 1.2s per-glyph h1 flip; drag slides, coaching cursor, marquees; custom curves used 40x and 33x."
   },
   "records": 14,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "acid-scrawl-telemetry",
@@ -3347,7 +3418,8 @@
    "text": "All JS, on every block: marker/oval reveals (70 split-text blocks on home), scrubbed Rive, Lenis, per-frame contour + fluid sim. 90 GSAP ease uses vs 3 CSS transition shorthands."
   },
   "records": 4,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "archival-particle-editorial",
@@ -3403,8 +3475,11 @@
    "id": "archival-particle-editorial#5",
    "value": "cubic-bezier(.25,.46,.45,.94)",
    "label": "cubic-bezier(.25,.46,.45,.94)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "busiest CSS curve",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 2
  },
  {
   "name": "botanical-wallpaper-mono",
@@ -3459,7 +3534,8 @@
    "text": "Medium, never rendered: 62 CSS transitions (.8s ×10, most .4–1s) on chrome and frame; a WebGL loop lags 70 sprites behind scroll (friction .01–.08) and eases the ground ink per section."
   },
   "records": 22,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "carved-ice-mono",
@@ -3518,8 +3594,11 @@
    "id": "carved-ice-mono#36",
    "value": "M0,0 C0.6,0 0,1 1,1",
    "label": "custom path",
-   "kind": "path"
-  }
+   "kind": "path",
+   "applies_to": "idle auto-snap to section anchor (inOut3)",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 4
  },
  {
   "name": "cg-diorama-poster",
@@ -3579,8 +3658,11 @@
    "id": "cg-diorama-poster#2",
    "value": "power3.out",
    "label": "power3.out",
-   "kind": "gsap"
-  }
+   "kind": "gsap",
+   "applies_to": "ENTER ring radius grow 0→0.8 (normalised), 1 s",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 1
  },
  {
   "name": "constructivist-bone-grid",
@@ -3636,7 +3718,8 @@
    "text": "Entrance motion, not scroll-linked: display lines rise from per-line masks and .anim-line rules draw 0→1; 3 SVG Lotties (loader 3.917s, scroll cue); 700ms veil between pages; nothing scrubbed."
   },
   "records": 3,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "ink-scrawl-white-cube",
@@ -3696,8 +3779,11 @@
    "id": "ink-scrawl-white-cube#26",
    "value": "cubic-bezier(.22,1,.36,1)",
    "label": "cubic-bezier(.22,1,.36,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "DOM state curve",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 3
  },
  {
   "name": "split-specimen-cinema",
@@ -3757,8 +3843,11 @@
    "id": "split-specimen-cinema#14",
    "value": "cubic-bezier(.19,1,.22,1)",
    "label": "cubic-bezier(.19,1,.22,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "CSS workhorse (reveals, a 3s link colour hover)",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 6
  },
  {
   "name": "sumi-e-paper",
@@ -3817,8 +3906,11 @@
    "id": "sumi-e-paper#23",
    "value": "cubic-bezier(.7, 0, .2, 1)",
    "label": "cubic-bezier(.7,0,.2,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "interactive states: nav underline, CTA fill",
+   "provenance": "verbatim-nonwinner"
+  },
+  "easeRecords": 2
  },
  {
   "name": "warped-serif-noir",
@@ -3874,7 +3966,8 @@
    "text": "Still at rest bar a 10 s sunburst; motion fires under the hand: hold displaces 0 to 50 (1 s in/2 s out), 600 ms hover shred, wheel blur .1 to .16; 34 <waypoint> reveal refs; hero rows fly in."
   },
   "records": 6,
-  "ease": null
+  "ease": null,
+  "easeRecords": 0
  },
  {
   "name": "woven-scanline-duotone",
@@ -3930,7 +4023,10 @@
    "id": "woven-scanline-duotone#19",
    "value": "cubic-bezier(0.76, 0, 0.24, 1)",
    "label": "cubic-bezier(0.76,0,0.24,1)",
-   "kind": "bezier"
-  }
+   "kind": "bezier",
+   "applies_to": "page-transition wipe and tab switches (CustomEase InOut)",
+   "provenance": "verbatim"
+  },
+  "easeRecords": 1
  }
 ]
